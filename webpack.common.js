@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 
@@ -22,7 +21,6 @@ module.exports = {
     extensions: [".ts", ".js"],
   },
   output: {
-    publicPath: "dist",
     filename: "bundle.js",
     path: path.resolve(__dirname, "./dist"),
   },
@@ -33,6 +31,5 @@ module.exports = {
       inject: "body",
     }),
     new CleanWebpackPlugin(),
-    // new FaviconsWebpackPlugin("./src/logo.png"),
   ],
 };
