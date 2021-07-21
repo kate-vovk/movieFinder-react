@@ -1,0 +1,26 @@
+{
+  "name": "moviefinder",
+  "version": "1.0.0",
+  "description": "Movie gallery",
+  "main": "index.js",
+  "scripts": {
+    "serve": "webpack serve",
+    "start": "webpack --config webpack.dev.js && webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.nixdev.co/universejs/moviefinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.5",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
+  }
+}
