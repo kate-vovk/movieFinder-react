@@ -38,3 +38,4 @@ module.exports = {
       'no-nested-ternary': 0,
     },
   };
+  
