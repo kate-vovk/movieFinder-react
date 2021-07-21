@@ -4,9 +4,9 @@
   "description": "Movie gallery",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve",
-    "start": "webpack --config webpack.dev.js && webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
