@@ -1,11 +1,9 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  //   mode: process.env.NODE_ENV || "production",
-  //   mode: "development",
-  //   devtool: false,
-  // mode: "development",
-  // devtool: "eval-source-map",
   entry: "./src/index.ts",
   optimization: {
     usedExports: true,
@@ -24,8 +22,17 @@ module.exports = {
     extensions: [".ts", ".js"],
   },
   output: {
-    publicPath: "public",
-    filename: "boundle.js",
-    path: path.resolve(__dirname, "public"),
+    publicPath: "dist",
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "./dist"),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "public", "index.html"),
+      filename: "index.html",
+      inject: "body",
+    }),
+    new CleanWebpackPlugin(),
+    // new FaviconsWebpackPlugin("./src/logo.png"),
+  ],
 };

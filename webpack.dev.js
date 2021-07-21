@@ -5,6 +5,6 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "eval-source-map",
   devServer: {
-    contentBase: "./public",
+    contentBase: "./dist",
   },
 });
