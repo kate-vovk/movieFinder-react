@@ -16,11 +16,8 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': 0,
     'comma-dangle': 0,
-    'react/react-in-jsx-scope': 0,
-    'react/self-closing-comp': 'error',
     'no-unused-vars': 1,
     'import/prefer-default-export': 0,
-    'no-param-reassign': ['error', { props: false }],
     'no-confusing-arrow': 0,
     'react/jsx-props-no-spreading': 0,
     'jsx-a11y/no-static-element-interactions': 0,
@@ -31,7 +28,6 @@ module.exports = {
     'object-curly-newline': 0,
     'function-paren-newline': 0,
     'no-prototype-builtins': 0,
-    'no-debugger': 0,
     'operator-linebreak': 0,
     'prettier/prettier': [
       'error',
