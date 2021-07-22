@@ -33,5 +33,11 @@ module.exports = {
     'no-prototype-builtins': 0,
     'no-debugger': 0,
     'operator-linebreak': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 };
