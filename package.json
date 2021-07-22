@@ -7,7 +7,9 @@
     "start": "webpack serve --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "prettier": "prettier --write src/**/*.{ts,tsx}", 
+    "lint:write": "eslint src/**/*.{ts,tsx} --fix", 
+    "lint": "eslint src/**/*.{ts,tsx}"
   },
   "repository": {
     "type": "git",
