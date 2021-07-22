@@ -11,7 +11,7 @@
     "lint:quiet": "eslint src/**/*.{ts,tsx} --quiet",
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "server": "json-server --watch db.json -m ./node_modules/json-server-auth --port 3010 --delay 200"
+    "server": "json-server --watch db.json -m ./node_modules/json-server-auth --port 3010"
   },
   "repository": {
     "type": "git",
