@@ -1,9 +1,16 @@
 module.exports = {
   env: {
     browser: true,
+    node: true,
     es2021: true,
   },
-  extends: ['airbnb'],
+  extends: [
+    'plugin:react/recommended',
+    'eslint-config-airbnb-base',
+    'airbnb/rules/react',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -11,8 +18,8 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  parser: 'babel-eslint',
-  plugins: ['react'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'react/jsx-filename-extension': 0,
     'comma-dangle': 0,
@@ -26,5 +33,32 @@ module.exports = {
     'function-paren-newline': 0,
     'no-prototype-builtins': 0,
     'operator-linebreak': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      {
+        allowExpressions: true,
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 };
