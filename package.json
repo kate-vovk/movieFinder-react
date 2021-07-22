@@ -8,7 +8,7 @@
     "build:prod": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
     "prettier": "prettier --write src/**/*.{ts,tsx}", 
-    "lint:write": "eslint src/**/*.{ts,tsx} --fix", 
+    "lint:fix": "eslint src/**/*.{ts,tsx} --quiet --fix", 
     "lint": "eslint src/**/*.{ts,tsx}"
   },
   "repository": {
