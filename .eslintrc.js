@@ -47,6 +47,8 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       {
