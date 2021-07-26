@@ -12,13 +12,21 @@ module.exports = {
       {
         test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
-        use: ['ts-loader', 'raw-loader'],
+        use: 'ts-loader',
         include: [path.resolve(__dirname, 'src')],
+      },
+      {
+        test: /\.(css|less)$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.(jpg|jpeg|png|svg)/,
+        use: ['file-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', 'js'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',

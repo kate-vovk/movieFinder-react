@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-use-before-define
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { useStyle } from './styles';
 
 interface Values {
   email: string;
@@ -19,7 +20,9 @@ const validationSchema = yup.object({
     .required('Password is required'),
 });
 
-export const RegisterForm = (): JSX.Element => {
+export const RegisterForm: FunctionComponent = () => {
+  const classes = useStyle();
+
   const formik = useFormik({
     initialValues: {
       email: 'foobar@example.com',
@@ -27,13 +30,13 @@ export const RegisterForm = (): JSX.Element => {
     },
     validationSchema,
     onSubmit: (values: Values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
     },
   });
 
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className={classes.paper}>
+      <form className={classes.form} onSubmit={formik.handleSubmit}>
         <TextField
           fullWidth
           id="email"
