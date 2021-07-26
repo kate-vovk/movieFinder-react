@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { RegisterForm } from '../../pages/registerForm/RegisterForm';
+import { Link } from "react-router-dom"
 
-export const Layout: FunctionComponent = () => {
+export const Layout: FunctionComponent = ({ children }) => {
   return (
-    <Router>
-      <RegisterForm />
-    </Router>
-  );
+    <div>
+      <Link to="signup">Signup <Link />
+        <NavBar />
+      {children}
+    </div>;
 };

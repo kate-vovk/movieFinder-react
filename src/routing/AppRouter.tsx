@@ -5,7 +5,7 @@ import { RegisterForm } from '../pages/registerForm/RegisterForm';
 export const AppRouter: FunctionComponent = () => {
   return (
     <Switch>
-      <Route path="/singup">
+      <Route path="/signup">
         <RegisterForm />
       </Route>
     </Switch>
