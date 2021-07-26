@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
@@ -7,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useStyle } from './styles';
 
-interface Values {
+interface IFormInputs {
   email: string;
   password: string;
 }
@@ -29,8 +28,8 @@ export const RegisterForm: FunctionComponent = () => {
       password: 'foobar',
     },
     validationSchema,
-    onSubmit: (values: Values) => {
-      // alert(JSON.stringify(values, null, 2));
+    onSubmit: (values: IFormInputs) => {
+      alert(JSON.stringify(values, null, 2));
     },
   });
 

@@ -33,6 +33,8 @@ module.exports = {
     'function-paren-newline': 0,
     'no-prototype-builtins': 0,
     'operator-linebreak': 0,
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
     'prettier/prettier': [
       'error',
       {
