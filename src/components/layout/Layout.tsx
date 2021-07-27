@@ -1,11 +1,15 @@
-import React, { FunctionComponent } from 'react';
-import { Link } from "react-router-dom"
+import React, { ReactElement } from 'react';
+import { NavBar } from '../navBar/NavBar';
 
-export const Layout: FunctionComponent = ({ children }) => {
+interface IProps {
+  children: ReactElement;
+}
+
+export const Layout = ({ children }: IProps): ReactElement => {
   return (
     <div>
-      <Link to="signup">Signup <Link />
-        <NavBar />
+      <NavBar />
       {children}
-    </div>;
+    </div>
+  );
 };
