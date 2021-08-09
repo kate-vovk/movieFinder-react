@@ -46,6 +46,7 @@
     "@typescript-eslint/parser": "^4.28.4",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^6.2.0",
+    "dotenv-webpack": "^7.0.3",
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
@@ -72,7 +73,22 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/styles": "^4.11.4",
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
-    "react": "^17.0.2"
+    "dotenv": "^10.0.0",
+    "formik": "^2.2.9",
+    "html-webpack-plugin": "^5.3.2",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-app-polyfill": "^2.0.0",
+    "react-devtools": "^4.14.0",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0",
+    "redux-persist": "^6.0.0",
+    "yup": "^0.32.9"
   }
 }

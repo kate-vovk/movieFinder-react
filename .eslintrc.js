@@ -33,6 +33,10 @@ module.exports = {
     'function-paren-newline': 0,
     'no-prototype-builtins': 0,
     'operator-linebreak': 0,
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'prettier/prettier': [
       'error',
       {
@@ -47,6 +51,8 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       {

@@ -8,7 +8,8 @@ const BASE_URL = (path: string): string =>
 export default class HTTPService {
   static get(path: string): any {
     return axios.get(BASE_URL(path)).then((response) => {
-      console.log(response);
+      // console.log(response, response.data);
+      return response;
     });
   }
 }
