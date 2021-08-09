@@ -35,6 +35,8 @@ module.exports = {
     'operator-linebreak': 0,
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'prettier/prettier': [
       'error',
       {

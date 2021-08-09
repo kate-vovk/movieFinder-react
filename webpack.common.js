@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -27,6 +28,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    fallback: {
+      fs: false,
+    },
   },
   output: {
     filename: 'bundle.js',
@@ -39,5 +43,8 @@ module.exports = {
       inject: 'body',
     }),
     new CleanWebpackPlugin(),
+    new Dotenv({
+      path: './.env',
+    }),
   ],
 };

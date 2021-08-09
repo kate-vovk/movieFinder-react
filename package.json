@@ -46,6 +46,7 @@
     "@typescript-eslint/parser": "^4.28.4",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^6.2.0",
+    "dotenv-webpack": "^7.0.3",
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
@@ -74,6 +75,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/styles": "^4.11.4",
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "formik": "^2.2.9",

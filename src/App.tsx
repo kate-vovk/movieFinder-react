@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Layout } from './components/layout/Layout';
+import { Layout } from './components/Layout/Layout';
 import { AppRouter } from './routing/AppRouter';
 
 export const App: FunctionComponent = () => {

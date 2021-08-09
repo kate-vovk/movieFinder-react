@@ -24,8 +24,8 @@ export const RegisterForm: FunctionComponent = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: 'foobar@example.com',
-      password: 'foobar',
+      email: '',
+      password: '',
     },
     validationSchema,
     onSubmit: (values: IFormInputs) => {
@@ -70,3 +70,6 @@ export const RegisterForm: FunctionComponent = () => {
     </div>
   );
 };
+function useState(arg0: string): [any, any] {
+  throw new Error('Function not implemented.');
+}

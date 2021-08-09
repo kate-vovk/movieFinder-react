@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-// import { NavBar } from '../navBar/NavBar';
+import { NavBar } from '../NavBar/NavBar';
 
 interface IProps {
   children: ReactElement;
@@ -8,7 +8,7 @@ interface IProps {
 export const Layout = ({ children }: IProps): ReactElement => {
   return (
     <div>
-      {/* <NavBar /> */}
+      <NavBar />
       {children}
     </div>
   );
