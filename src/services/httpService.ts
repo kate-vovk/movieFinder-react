@@ -4,7 +4,7 @@ const BASE_URL = (path: string | number): string =>
   `${process.env.REACT_APP_BASE_URL}${path}?api_key=${process.env.REACT_APP_API_KEY}`;
 
 export default class HTTPService {
-  static get(path: string | number = ''): any {
+  static get(path: string | number = ''): Promise<any> {
     return axios({ method: 'get', url: BASE_URL(path) })
       .then((response: any) => {
         return response;
@@ -14,7 +14,7 @@ export default class HTTPService {
       });
   }
 
-  static post(data: any, path: string | number = ''): any {
+  static post(data: any, path: string | number = ''): Promise<any> {
     return axios({
       method: 'post',
       url: BASE_URL(path),
@@ -29,7 +29,7 @@ export default class HTTPService {
       });
   }
 
-  static put(data: any, path: string | number): any {
+  static put(data: any, path: string | number = ''): Promise<any> {
     return axios({
       method: 'put',
       url: BASE_URL(path),
@@ -43,7 +43,7 @@ export default class HTTPService {
       });
   }
 
-  static delete(path: string | number): any {
+  static delete(path: string | number = ''): Promise<any> {
     return axios({
       method: 'delete',
       url: BASE_URL(path),
