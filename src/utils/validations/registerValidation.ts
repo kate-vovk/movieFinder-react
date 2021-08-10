@@ -3,7 +3,7 @@ import * as yup from 'yup';
 export const validationSchema = yup.object({
   name: yup
     .string()
-    .matches(/'[a-zA-Z][a-zA-Z]+$'/, 'Must сontain ьin 2 сharacters, letters and/or dash'),
+    .matches(/'[a-zA-Z][a-zA-Z]+$'/, 'Must сontain in 2 сharacters, letters and/or dash'),
   email: yup.string().email('Enter a valid email').required('Email is required'),
   password: yup
     .string()
