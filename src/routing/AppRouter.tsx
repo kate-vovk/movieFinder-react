@@ -5,7 +5,7 @@ import { RegisterForm } from '../pages/RegisterForm/RegisterForm';
 export const AppRouter: FunctionComponent = () => {
   return (
     <Switch>
-      <Route exact path="/" component={RegisterForm} />
+      <Route exact path="/signup" component={RegisterForm} />
     </Switch>
   );
 };
