@@ -7,8 +7,10 @@ import { validationSchema } from '../../utils/validations/registerValidation';
 import { useStyle } from './styles';
 
 interface IFormInputs {
+  name: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 export const RegisterForm: FunctionComponent = () => {
@@ -16,8 +18,10 @@ export const RegisterForm: FunctionComponent = () => {
 
   const formik = useFormik({
     initialValues: {
+      name: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
     validationSchema,
     onSubmit: (values: IFormInputs) => {
@@ -28,6 +32,16 @@ export const RegisterForm: FunctionComponent = () => {
   return (
     <div className={classes.paper}>
       <form className={classes.form} onSubmit={formik.handleSubmit}>
+        <TextField
+          fullWidth
+          id="name"
+          name="name"
+          label="Enter your name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
         <TextField
           fullWidth
           id="email"
@@ -48,6 +62,17 @@ export const RegisterForm: FunctionComponent = () => {
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
+        />
+        <TextField
+          fullWidth
+          id="confirmPassword"
+          name="confirmPassword"
+          label="Confirm password"
+          type="password"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
         />
         <Button
           className={classes.submit}
