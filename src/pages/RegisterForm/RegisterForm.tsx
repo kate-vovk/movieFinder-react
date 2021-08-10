@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { validationSchema } from '@/utils/validations/registerValidation';
 import { useStyle } from './styles';
-import { validationSchema } from '../../utils/validations/registerValidation';
 
 interface IFormInputs {
   name: string;

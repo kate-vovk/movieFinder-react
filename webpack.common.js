@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -27,9 +28,13 @@ module.exports = {
     ],
   },
   resolve: {
+    plugins: [new TsconfigPathsPlugin()],
     extensions: ['.tsx', '.ts', '.js'],
     fallback: {
       fs: false,
+    },
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   output: {
