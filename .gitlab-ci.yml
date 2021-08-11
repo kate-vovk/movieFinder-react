@@ -1,0 +1,23 @@
+image: node:10.19.0
+
+stages:
+  - build
+  - lint
+
+build:
+  stage: build
+  before_script:
+    - npm install
+  script:
+    - npm run build:dev
+  only:
+    - merge_request
+
+lint:
+  stage: lint
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+  only:
+    - merge_request
