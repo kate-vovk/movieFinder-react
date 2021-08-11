@@ -1,10 +1,12 @@
 import React, { FunctionComponent } from 'react';
+import { useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { validationSchema } from '../../utils/validations/registerValidation';
 import { useStyle } from './styles';
+import { registrationAsync } from '../../store/slices/auth-slice';
 
 interface IFormInputs {
   name: string;
@@ -16,6 +18,12 @@ interface IFormInputs {
 export const RegisterForm: FunctionComponent = () => {
   const classes = useStyle();
 
+  const dispatch = useDispatch();
+
+  const submit = async (values: IFormInputs): Promise<any> => {
+    await dispatch(registrationAsync(values));
+  };
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -25,7 +33,7 @@ export const RegisterForm: FunctionComponent = () => {
     },
     validationSchema,
     onSubmit: (values: IFormInputs) => {
-      alert(JSON.stringify(values, null, 2));
+      submit(values);
     },
   });
 
@@ -40,7 +48,7 @@ export const RegisterForm: FunctionComponent = () => {
           value={formik.values.name}
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
+          helperText={formik.touched.name && formik.errors.email}
         />
         <TextField
           fullWidth

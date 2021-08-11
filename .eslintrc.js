@@ -36,6 +36,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'no-shadow': 'off',
+    'no-param-reassign': [2, { props: false }],
     '@typescript-eslint/no-shadow': ['error'],
     'prettier/prettier': [
       'error',
