@@ -18,6 +18,6 @@ lint:
   before_script:
     - npm install
   script:
-    - npm run lint:fix
+    - npm run lint
   only:
     - merge_request
