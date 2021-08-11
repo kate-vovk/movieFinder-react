@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Content } from '../Content/Content';
 import { NavBar } from '../NavBar/NavBar';
 
 interface IProps {
@@ -9,7 +10,9 @@ export const Layout = ({ children }: IProps): ReactElement => {
   return (
     <div>
       <NavBar />
-      {children}
+      <Content>
+        {children}
+      </ Content>
     </div>
   );
 };
