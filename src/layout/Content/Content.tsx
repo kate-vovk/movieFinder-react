@@ -7,8 +7,9 @@ interface IProps {
 
 export const Content = ({children}: IProps): React.ReactElement  => {
     return (
-        <Container style={{backgroundColor: "lightBlue"}}>
-            {/* <Typography>
+        <main style={{position:"relative", width:"100%", height: "90%", backgroundColor: "blue"}}>
+             <Container style={{width:"100%", height: "90%",backgroundColor: "lightBlue"}}>
+            <Typography>
             Lorem ipsum dolor sit amet, et vitae dicant eum. Et solum saepe dissentiet vel, esse salutandi vel in. Rebum discere iracundia eam id. An suas wisi possim sit, eam autem dignissim et, ad novum dolorem fierent pro. Sed etiam exerci mnesarchum an.
 
 In has timeam equidem repudiandae, in vel error utinam deseruisse. Aliquam quaestio est id, dicat dicam et eam, ludus accumsan verterem sit cu. Ne cum autem vivendo maiestatis, mel causae recteque euripidis no, his propriae consequuntur ut. No sed tation aliquid volumus. Vix ea platonem intellegebat.
@@ -18,8 +19,10 @@ Ne dicunt postulant voluptatum mel, vis clita legimus recusabo eu, in ocurreret 
 Id tation melius ius, dicat novum comprehensam ius te. Justo debet mediocrem his no. Ius an labitur recteque temporibus, ex animal iracundia duo, paulo utroque vivendum sed at. Eam et referrentur comprehensam.
 
 Has tota velit aliquam ei, reque perfecto no eum, an mucius molestiae scribentur vel. Nam mandamus maiestatis an. Malis ignota ut his, quando nostrud blandit est ei. Cum ei illud aliquid tincidunt. Posse graece ex duo, ius id probo quando eruditi, meis altera an qui.
-            </Typography> */}
+            </Typography>
             {children}
         </Container>
+        </main>
+       
     )
 }

@@ -5,7 +5,7 @@ import { AppBar, Toolbar } from '@material-ui/core';
 export const NavBar: FunctionComponent = () => {
   return (
     <div>
-      <AppBar>
+      <AppBar position="relative">
         <Toolbar>
           <Link to="signup"> SignUp </Link>
           <Link to="signin"> SignIn </Link>
