@@ -6,8 +6,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useStyle } from './styles';
 
 export const Footer: React.FunctionComponent = () => {

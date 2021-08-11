@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { FunctionComponent } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { RegisterForm } from '@/components/RegisterForm/RegisterForm';

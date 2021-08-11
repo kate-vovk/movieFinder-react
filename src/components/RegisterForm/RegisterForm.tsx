@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { FunctionComponent } from 'react';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
