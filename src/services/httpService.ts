@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 const axios = require('axios').default;
 
 const BASE_URL = (path: string | number): string =>
@@ -6,7 +8,7 @@ const BASE_URL = (path: string | number): string =>
 export default class HTTPService {
   static get(path: string | number = ''): Promise<any> {
     return axios({ method: 'get', url: BASE_URL(path) })
-      .then((response: any) => {
+      .then((response: AxiosResponse) => {
         return response;
       })
       .catch((err: string) => {
@@ -21,7 +23,7 @@ export default class HTTPService {
       data,
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((response: any) => {
+      .then((response: AxiosResponse) => {
         return response;
       })
       .catch((err: string) => {
@@ -35,7 +37,7 @@ export default class HTTPService {
       url: BASE_URL(path),
       data,
     })
-      .then((response: any) => {
+      .then((response: AxiosResponse) => {
         return response;
       })
       .catch((err: string) => {
@@ -48,7 +50,7 @@ export default class HTTPService {
       method: 'delete',
       url: BASE_URL(path),
     })
-      .then((response: any) => {
+      .then((response: AxiosResponse) => {
         return response;
       })
       .catch((err: string) => {
