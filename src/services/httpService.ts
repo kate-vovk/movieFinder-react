@@ -23,8 +23,8 @@ export default class HTTPService {
   static post(path: string | number = '', isCustom: boolean, data: any): Promise<any> {
     return axios({
       method: 'post',
-      url: console.log(BASE_URL(path, isCustom)),
-      data: {},
+      url: BASE_URL(path, isCustom),
+      data,
       headers: { 'Content-Type': 'application/json' },
     })
       .then((response: AxiosResponse) => {

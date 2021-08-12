@@ -6,9 +6,11 @@ interface IAuthData {
   password: string;
 }
 
+const url = process.env.REACT_APP_AUTH_URL;
+
 export class AuthService {
   static async registartion({ name, password, email }: IAuthData): Promise<any> {
-    const data = await HTTPService.post(`${process.env.REACT_APP_AUTH_URL}/register`, true, {
+    const data = await HTTPService.post(`${url}/register`, true, {
       name,
       password,
       email,
