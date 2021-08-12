@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useStyle } from './styles';
 
 interface IProps {
@@ -10,9 +10,7 @@ export const Content = ({ children }: IProps): React.ReactElement => {
   const classes = useStyle();
   return (
     <Box mt={8}>
-      <main className={classes.content}>
-        <Container>{children}</Container>
-      </main>
+      <main className={classes.content}>{children}</main>
     </Box>
   );
 };

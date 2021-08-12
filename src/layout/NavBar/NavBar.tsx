@@ -5,11 +5,13 @@ import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
+  // will be developed further, currently toggles SignOut and SignIn buttons
   const [signInForm, openSignInForm] = React.useState(false);
+
   const classes = useStyle();
   return (
     <div>
-      <AppBar position="fixed" style={{ backgroundColor: 'lightBlue' }}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Button
             onClick={() => {
@@ -24,7 +26,13 @@ export const NavBar: FunctionComponent = () => {
           </Button>
           <div className={classes.buttonsContainer}>
             <Badge badgeContent={2} color="secondary">
-              <Button>
+              <Button
+                onClick={() => {
+                  if (signInForm) {
+                    openSignInForm(false);
+                  }
+                }}
+              >
                 <Link to="cart" className={classes.link}>
                   Cart
                 </Link>

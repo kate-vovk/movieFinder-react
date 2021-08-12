@@ -3,15 +3,15 @@ import { makeStyles } from '@material-ui/core';
 export const useStyle = makeStyles(() => ({
   footer: {
     marginTop: 'auto',
-    margin: '0px',
+    marginLeft: 0,
+    backgroundColor: 'lightPink',
   },
   paper: {
-    height: '100%',
     backgroundColor: 'lightGrey',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
-    color: 'black',
+    padding: '0px 15px',
   },
 }));
