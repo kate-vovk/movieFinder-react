@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Box } from '@material-ui/core';
 import { useStyle } from './styles';
 
-interface IProps {
-  children: React.ReactElement;
-}
-
-export const Content = ({ children }: IProps): React.ReactElement => {
+export const Content: FunctionComponent = ({ children }) => {
   const classes = useStyle();
   return (
     <Box mt={8}>

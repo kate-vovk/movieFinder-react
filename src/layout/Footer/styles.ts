@@ -14,4 +14,8 @@ export const useStyle = makeStyles(() => ({
     alignItems: 'center',
     padding: '0px 15px',
   },
+  link: {
+    width: '40px',
+    height: '40px',
+  },
 }));

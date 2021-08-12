@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-export const Cart: React.FunctionComponent = () => {
+export const Cart: FunctionComponent = () => {
   return <div>Cart</div>;
 };

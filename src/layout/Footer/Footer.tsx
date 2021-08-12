@@ -1,17 +1,21 @@
-import React from 'react';
-import { Button, IconButton, Paper } from '@material-ui/core';
+import React, { FunctionComponent, useCallback } from 'react';
+import { Button, IconButton, Paper, Link } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
+import { API_LOGO_URL } from '@/constants/contants';
 
 import { useHistory } from 'react-router-dom';
 import { useStyle } from './styles';
 
-export const Footer: React.FunctionComponent = () => {
+export const Footer: FunctionComponent = () => {
   const classes = useStyle();
   const history = useHistory();
+  const onClickLogoHandler = useCallback(() => {
+    history.push('/');
+  }, []);
   return (
     <footer className={classes.footer}>
       <Paper className={classes.paper}>
@@ -30,14 +34,14 @@ export const Footer: React.FunctionComponent = () => {
           </IconButton>
         </div>
         <span>
-          <IconButton onClick={() => history.push('/')}>
+          <IconButton onClick={onClickLogoHandler}>
             <MovieFilterIcon />
           </IconButton>
         </span>
         <span>
-          <Button onClick={() => window.open('https://www.themoviedb.org/', '_blank')}>
-            <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg" />
-          </Button>
+          <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
+            <img src={API_LOGO_URL} className={classes.link} />
+          </a>
         </span>
       </Paper>
     </footer>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Typography } from '@material-ui/core';
 
-export const Movies: React.FunctionComponent = () => {
+export const Movies: FunctionComponent = () => {
   // temporary text
   return (
     <div>

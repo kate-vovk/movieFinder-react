@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-export const SignInForm: React.FunctionComponent = () => {
+export const SignInForm: FunctionComponent = () => {
   return <div> SignIn Form</div>;
 };
