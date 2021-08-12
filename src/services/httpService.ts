@@ -2,8 +2,12 @@ import { AxiosResponse } from 'axios';
 
 const axios = require('axios').default;
 
-const BASE_URL = (path: string | number): string =>
-  `${process.env.REACT_APP_BASE_URL}${path}?api_key=${process.env.REACT_APP_API_KEY}`;
+const BASE_URL = (path: string | number, isCustom?: boolean): string => {
+  if (isCustom) {
+    return `${path}`;
+  }
+  return `${process.env.REACT_APP_BASE_URL}${path}?api_key=${process.env.REACT_APP_API_KEY}`;
+};
 
 export default class HTTPService {
   static get(path: string | number = ''): Promise<any> {
@@ -16,10 +20,10 @@ export default class HTTPService {
       });
   }
 
-  static post(path: string | number = '', data: any): Promise<any> {
+  static post(path: string | number = '', isCustom: boolean, data: any): Promise<any> {
     return axios({
       method: 'post',
-      url: BASE_URL(path),
+      url: console.log(BASE_URL(path, isCustom)),
       data: {},
       headers: { 'Content-Type': 'application/json' },
     })

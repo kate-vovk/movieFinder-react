@@ -27,6 +27,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'no-confusing-arrow': 0,
     'arrow-body-style': 0,
+    'no-array-index-key': 0,
     'implicit-arrow-linebreak': 0,
     'react/jsx-curly-newline': 0,
     'object-curly-newline': 0,

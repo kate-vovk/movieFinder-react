@@ -39,13 +39,15 @@ export const RegisterForm: FunctionComponent = () => {
   return (
     <div className={classes.paper}>
       <form className={classes.form} onSubmit={formik.handleSubmit}>
-        {registrationFormFields.map((field) => {
+        {registrationFormFields.map((field, index) => {
           return (
             <TextField
+              key={index}
               fullWidth={field.fullWidth}
               id={field.name}
               name={field.name}
               label={field.label}
+              type={field.type}
               value={formik.values[field.name]}
               onChange={formik.handleChange}
               error={formik.touched[field.name] && Boolean(formik.errors[field.name])}
