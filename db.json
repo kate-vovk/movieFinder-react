@@ -1,1 +1,15 @@
-
+{
+  "users": [
+    {
+      "name": "test",
+      "email": "test@gmail.com",
+      "id": "1"
+    },
+    {
+      "email": "olga@gmail.com",
+      "password": "$2a$10$/XpARZOxqAG66I1/Al7AGe.oAjIQC1u9QP0ZmaDi6IUglOZxQJiTq",
+      "name": "olga",
+      "id": "GoM29Eh"
+    }
+  ]
+}

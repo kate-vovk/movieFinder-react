@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AuthService } from '../services/authService';
+import { AuthService } from '../../services/authService';
 
 interface IAuthData {
   name: string;
@@ -8,7 +8,7 @@ interface IAuthData {
 }
 
 export const registrationAsync = createAsyncThunk(
-  'auth/fetchLogin',
+  'auth/registration',
   async ({ name, password, email }: IAuthData) => {
     const { accessToken } = await AuthService.registartion({ name, email, password });
     return { token: accessToken };
