@@ -1,23 +1,29 @@
-export const isAuthorizedButtons = [
-  {
-    name: 'Cart',
-    to: 'cart',
-    isAuthorized: true,
-    badge: 2,
-  },
-  {
-    name: 'SignUp',
-    to: 'signup',
-    isAuthorized: false,
-  },
-  {
-    name: 'SignOut',
-    to: '/',
-    isAuthorized: true,
-  },
-  {
-    name: 'SignIn',
-    to: 'signin',
-    isAuthorized: false,
-  },
-];
+interface isAuthorizedButton {
+  name: string;
+  to: string;
+  badge?: number;
+}
+
+export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[] =>
+  isAuthorized
+    ? [
+        {
+          name: 'Cart',
+          to: 'cart',
+          badge: 2,
+        },
+        {
+          name: 'SignOut',
+          to: '/',
+        },
+      ]
+    : [
+        {
+          name: 'SignUp',
+          to: 'signup',
+        },
+        {
+          name: 'SignIn',
+          to: 'signin',
+        },
+      ];

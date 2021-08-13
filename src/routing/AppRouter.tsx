@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { RegisterForm } from '@/components/RegisterForm/RegisterForm';
 import { Movies } from '@/components/Movies/Movies';

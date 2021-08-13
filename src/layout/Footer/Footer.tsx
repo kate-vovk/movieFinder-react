@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useCallback } from 'react';
-import { Button, IconButton, Paper, Link } from '@material-ui/core';
+import { FunctionComponent, useCallback } from 'react';
+import { IconButton, Paper } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-import { API_LOGO_URL } from '@/constants/contants';
+import { API_LOGO_URL, API_WEBSITE } from '@/constants/contants';
 
 import { useHistory } from 'react-router-dom';
 import { useStyle } from './styles';
@@ -39,7 +39,7 @@ export const Footer: FunctionComponent = () => {
           </IconButton>
         </span>
         <span>
-          <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
+          <a href={API_WEBSITE} target="_blank" rel="noreferrer">
             <img src={API_LOGO_URL} className={classes.link} />
           </a>
         </span>

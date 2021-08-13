@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { Button } from '@material-ui/core';
 import { useStyle } from './styles';
 import { Pagination } from './movies/Pagination/Pagination';
+import { SearchField } from './movies/Search/SearchField';
 
 export const Movies: FunctionComponent = () => {
   const classes = useStyle();
@@ -10,7 +11,7 @@ export const Movies: FunctionComponent = () => {
     <div>
       <div className={classes.header}>
         <Button>Show Filters</Button>
-        <Button>Search</Button>
+        <SearchField />
       </div>
       <Pagination />
     </div>
