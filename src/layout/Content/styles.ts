@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
   content: {
-    backgroundColor: 'white',
+    // marginTop: 70,
+    backgroundColor: 'lightGreen',
+    height: '100%',
+    width: '100%',
   },
 }));

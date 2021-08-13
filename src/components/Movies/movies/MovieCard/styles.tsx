@@ -7,4 +7,10 @@ export const useStyle = makeStyles(() => ({
     width: '300px',
     height: '400px',
   },
+  image: {
+    width: '150px',
+    height: '200px',
+    margin: 'auto',
+    backgroundColor: 'lightGreen',
+  },
 }));

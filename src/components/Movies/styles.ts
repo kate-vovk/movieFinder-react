@@ -1,20 +1,21 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
-  container: {
-    position: 'relative',
+  content: {
+    '@media (min-width:500px)': {
+      paddingLeft: 200,
+    },
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '100%',
-    width: 100,
     backgroundColor: 'lightBlue',
+    paddingLeft: 100,
   },
   header: {
     display: 'flex',
     padding: '0px 15px',
     justifyContent: 'space-between',
     backgroundColor: 'lightGrey',
-    height: '30%',
   },
 }));

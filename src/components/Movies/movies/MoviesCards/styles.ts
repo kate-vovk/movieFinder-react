@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
-  layout: {
-    height: '100%',
+  container: {
     display: 'flex',
-    flexDirection: 'column',
+    flexWrap: 'wrap',
+    gap: '15px',
+    justifyContent: 'space-around',
   },
 }));

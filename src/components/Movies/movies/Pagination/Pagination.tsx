@@ -1,5 +1,5 @@
 import { Pagination as PaginationItem } from '@material-ui/lab';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { useStyle } from './styles';
 
 export const Pagination: FunctionComponent = () => {
