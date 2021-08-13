@@ -9,17 +9,12 @@ export const NavBar: FunctionComponent = () => {
   // isAuthorized will be moved to global store further
   const [isAuthorized, setAuthorized] = useState(false);
 
-  const onClickLogoHandler = (): void => {
-    if (!isAuthorized) {
-      setAuthorized(false);
-    }
-  };
   const classes = useStyle();
   return (
     <div>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Button onClick={onClickLogoHandler}>
+          <Button>
             <Link to="/" className={classes.link}>
               <MovieFilterIcon />
             </Link>
