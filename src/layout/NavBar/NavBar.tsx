@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { AppBar, Toolbar, Button, Badge } from '@material-ui/core';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
@@ -7,11 +7,8 @@ import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
   // isAuthorized will be moved to global store further
-  const [isAuthorized, setAuthorized] = React.useState(false);
+  const [isAuthorized, setAuthorized] = useState(false);
 
-  const onClickSetAuthorizedHandler = (): void => {
-    setAuthorized(!isAuthorized);
-  };
   const onClickLogoHandler = (): void => {
     if (!isAuthorized) {
       setAuthorized(false);
@@ -28,25 +25,23 @@ export const NavBar: FunctionComponent = () => {
             </Link>
           </Button>
           <div className={classes.buttonsContainer}>
-            {isAuthorizedButtons
-              .filter((button) => isAuthorized === button.isAuthorized)
-              .map((item) =>
-                item.badge ? (
-                  <Badge badgeContent={item.badge} color="secondary">
-                    <Button>
-                      <Link to={item.to} className={classes.link}>
-                        {item.name}
-                      </Link>
-                    </Button>
-                  </Badge>
-                ) : (
-                  <Button onClick={onClickSetAuthorizedHandler}>
-                    <Link to={item.to} className={classes.link}>
-                      {item.name}
+            {isAuthorizedButtons(isAuthorized).map((button) =>
+              button.badge ? (
+                <Badge badgeContent={button.badge} color="secondary">
+                  <Button>
+                    <Link to={button.to} className={classes.link}>
+                      {button.name}
                     </Link>
                   </Button>
-                ),
-              )}
+                </Badge>
+              ) : (
+                <Button onClick={() => setAuthorized(!isAuthorized)}>
+                  <Link to={button.to} className={classes.link}>
+                    {button.name}
+                  </Link>
+                </Button>
+              ),
+            )}
           </div>
         </Toolbar>
       </AppBar>
