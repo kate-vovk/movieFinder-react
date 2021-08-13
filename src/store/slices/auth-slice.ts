@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit';
 import { AuthService } from '../../services/authService';
 
 interface IAuthData {
@@ -7,16 +7,24 @@ interface IAuthData {
   email: string;
 }
 
+interface IState {
+  auth: {
+    token: string;
+    isLoggedIn: boolean;
+  };
+}
+
 export const registrationAsync = createAsyncThunk(
   'auth/registration',
   async ({ name, password, email }: IAuthData) => {
-    const { accessToken } = await AuthService.registartion({ name, email, password });
-    return { token: accessToken };
+    const data = await AuthService.registartion({ name, email, password });
+    return data;
   },
 );
 
 const initialState = {
   token: '',
+  isLoggedIn: false,
 };
 
 export const authSlice = createSlice({
@@ -25,9 +33,14 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(registrationAsync.fulfilled, (state, action) => {
-      state.token = action.payload.token;
+      state.token = action.payload.data.accessToken;
+      state.isLoggedIn = true;
     });
   },
 });
+
+const stateSelector = (state: IState): any => state.auth;
+
+export const isLoggedInSelector = createSelector(stateSelector, (state) => state.isLoggedIn);
 
 export const authReducer = authSlice.reducer;

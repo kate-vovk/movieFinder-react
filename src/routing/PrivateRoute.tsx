@@ -1,11 +1,16 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { useSelector } from 'react-redux';
+import React, { FunctionComponent } from 'react';
 import { Route } from 'react-router-dom';
-import { tokenSelector } from '../../store/selectors/auth-selector';
-import { Login } from '../pages/login/Login';
+import { isLoggedInSelector } from '../store/slices/auth-slice';
+import { RegisterForm } from '../components/RegisterForm/RegisterForm';
 
-export const PrivateRoute = ({ component, path, exact }) => {
-  const isLogin = !!useSelector(tokenSelector);
-  const finalComponent = isLogin ? component : Login;
-  return <Route exact={exact} path={path} component={finalComponent} />;
+interface IPrivateRouteBlocks {
+  path: string;
+  component: FunctionComponent;
+}
+
+export const PrivateRoute = ({ path, component }: IPrivateRouteBlocks): JSX.Element => {
+  const isLoggedIn = useSelector(isLoggedInSelector);
+  const finalComponent = !isLoggedIn ? component : RegisterForm;
+  return <Route path={path} component={finalComponent} />;
 };

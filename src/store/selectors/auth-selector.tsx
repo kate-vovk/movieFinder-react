@@ -1,1 +1,5 @@
-export const tokenSelector = (state) => state.auth.token;
+interface IState {
+  isLoggedIn: boolean;
+}
+
+export const getIsLoggedInSelector = (state: IState): boolean => state.isLoggedIn;

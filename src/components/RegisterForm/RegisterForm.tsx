@@ -39,10 +39,10 @@ export const RegisterForm: FunctionComponent = () => {
   return (
     <div className={classes.paper}>
       <form className={classes.form} onSubmit={formik.handleSubmit}>
-        {registrationFormFields.map((field, index) => {
+        {registrationFormFields.map((field) => {
           return (
             <TextField
-              key={index}
+              key={field.name}
               fullWidth={field.fullWidth}
               id={field.name}
               name={field.name}

@@ -15,6 +15,6 @@ export class AuthService {
       password,
       email,
     });
-    return console.log(data);
+    return data;
   }
 }
