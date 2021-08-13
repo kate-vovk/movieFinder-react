@@ -14,11 +14,9 @@ export const NavBar: FunctionComponent = () => {
     <div>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Button>
-            <Link to="/" className={classes.link}>
-              <MovieFilterIcon />
-            </Link>
-          </Button>
+          <Link to="/" className={classes.link}>
+            <MovieFilterIcon />
+          </Link>
           <div className={classes.buttonsContainer}>
             {isAuthorizedButtons(isAuthorized).map((button) =>
               button.badge ? (
