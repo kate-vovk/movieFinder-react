@@ -4,12 +4,6 @@
       "name": "test",
       "email": "test@gmail.com",
       "id": "1"
-    },
-    {
-      "email": "otest@gmail.com",
-      "password": "$2a$10$z9HQr06cC03.bzip1Jg8/esCydvrX1JwCV.OZy4YKaNnlg1bJigae",
-      "name": "name",
-      "id": "Us-A9h2"
     }
   ]
 }

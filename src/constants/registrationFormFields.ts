@@ -24,7 +24,8 @@ export const registrationFormFields: IField[] = [
     fullWidth: true,
     name: 'password',
     label: 'Password',
-    type: 'password',
+    // type: 'password',
+    type: 'text',
   },
   {
     fullWidth: true,
