@@ -5,7 +5,7 @@ import { Sidebar } from '@/components/Sidebar/Sidebar';
 import { SearchField } from '@/components/Search/SearchField';
 import { useStyle } from './styles';
 
-export const MoviesPages: FunctionComponent = () => {
+export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
   return (
     <div>
