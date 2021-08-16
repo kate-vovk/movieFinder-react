@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { Route } from 'react-router-dom';
-import { isLoggedInSelector } from '../store/slices/auth-slice';
-// import { Redirect } from 'react-router-dom';
+import { isLoggedInSelector } from '@/selectors/auth';
 import { RegisterForm } from '../components/RegisterForm/RegisterForm';
 
 interface IPrivateRouteBlocks {

@@ -1,8 +1,7 @@
 import * as yup from 'yup';
 
 export const formValidationSchema = yup.object({
-  name: yup.string().required(),
-  // .matches(/'[a-zA-Z][a-zA-Z]+$'/, 'Must сontain min 2 сharacters, letters and/or dash'),
+  name: yup.string().required().min(2, 'Too Short!'),
   email: yup.string().email('Enter a valid email').required('Email is required'),
   password: yup
     .string()

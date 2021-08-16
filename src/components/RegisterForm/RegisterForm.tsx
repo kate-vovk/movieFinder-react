@@ -1,12 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
-import { formValidationSchema } from '../../utils/validations/registerValidation';
-import { registrationFormFields } from '../../constants/registrationFormFields';
-import { registrationAsync, isLoggedInSelector } from '../../store/slices/auth-slice';
+import { formValidationSchema } from '@/utils/validations/registerValidation';
+import { registrationFormFields } from '@/constants/registrationFormFields';
+import { registrationAsync } from '@/store/slices/auth-slice';
+import { isLoggedInSelector } from '@/selectors/auth';
 import { useStyle } from './styles';
 
 interface IFormInputs {

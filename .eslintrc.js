@@ -21,6 +21,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 0,
     'react/jsx-filename-extension': 0,
     'comma-dangle': 0,
     'no-unused-vars': 1,
