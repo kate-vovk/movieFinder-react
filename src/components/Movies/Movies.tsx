@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react';
-import { Button } from '@material-ui/core';
 import { useStyle } from './styles';
 import { Pagination } from './movies/Pagination/Pagination';
 import { SearchField } from './movies/Search/SearchField';
