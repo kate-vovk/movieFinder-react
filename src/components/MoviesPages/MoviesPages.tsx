@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react';
+import { Pagination } from '@/components/Pagination/Pagination';
+import { MoviesCards } from '@/components/MoviesCards/MoviesCards';
+import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { SearchField } from '@/components/Search/SearchField';
 import { useStyle } from './styles';
-import { Pagination } from './movies/Pagination/Pagination';
-import { SearchField } from './movies/Search/SearchField';
-import { MoviesCards } from './movies/MoviesCards/MoviesCards';
-import { Sidebar } from './movies/Sidebar/Sidebar';
 
-export const Movies: FunctionComponent = () => {
+export const MoviesPages: FunctionComponent = () => {
   const classes = useStyle();
   return (
     <div>

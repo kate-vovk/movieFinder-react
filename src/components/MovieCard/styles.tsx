@@ -5,8 +5,6 @@ export const useStyle = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    // width: '300px',
-    // height: '400px',
   },
   title: { textAlign: 'center' },
   image: {
@@ -17,12 +15,5 @@ export const useStyle = makeStyles(() => ({
   },
   description: {
     textAlign: 'justify',
-  },
-  footer: {
-    display: 'flex',
-    backgroundColor: 'lightGrey',
-  },
-  favoritesButton: {
-    color: 'yellow',
   },
 }));
