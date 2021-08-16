@@ -5,11 +5,10 @@ export const useStyle = makeStyles(() => ({
     '@media (min-width:500px)': {
       paddingLeft: 200,
     },
-    height: '100%',
+    minHeight: '85vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: 'lightBlue',
     paddingLeft: 100,
   },
   header: {

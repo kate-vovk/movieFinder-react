@@ -4,9 +4,8 @@ export const useStyle = makeStyles((theme) => ({
   footer: {
     zIndex: theme.zIndex.drawer + 1,
     marginTop: 'auto',
-    marginLeft: 0,
-    backgroundColor: 'lightPink',
-    // height: '50px',
+    height: '50px',
+    width: '100%',
   },
   paper: {
     backgroundColor: 'lightGrey',

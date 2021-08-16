@@ -8,7 +8,7 @@ import { Sidebar } from './movies/Sidebar/Sidebar';
 export const Movies: FunctionComponent = () => {
   const classes = useStyle();
   return (
-    <div style={{ height: '100%', backgroundColor: 'lightcoral' }}>
+    <div>
       <Sidebar />
       <div className={classes.content}>
         <div className={classes.header}>

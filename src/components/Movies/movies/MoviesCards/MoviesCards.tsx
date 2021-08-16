@@ -7,7 +7,7 @@ export const MoviesCards: FunctionComponent = () => {
   const classes = useStyle();
   return (
     <Box className={classes.container}>
-      {[1, 2, 3, 4, 5].map(() => (
+      {[1, 2, 3, 4].map(() => (
         <MovieCard />
       ))}
     </Box>

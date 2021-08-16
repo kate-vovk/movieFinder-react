@@ -5,6 +5,5 @@ export const useStyle = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: 'auto',
-    // backgroundColor: 'blue',
   },
 }));
