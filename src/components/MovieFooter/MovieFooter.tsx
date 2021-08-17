@@ -1,6 +1,4 @@
 import { FunctionComponent } from 'react';
-import StarIcon from '@material-ui/icons/Star';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { CustomButton } from '@/components/CustomButton';
 import { useStyle } from './styles';
 
@@ -9,11 +7,12 @@ export const MovieFooter: FunctionComponent = () => {
   return (
     <div className={classes.footer}>
       <CustomButton
+        name="favorite"
+        buttonType="button"
         className={classes.favoritesButton}
-        WrappedIcon={StarIcon}
         onClick={() => null}
       />
-      <CustomButton className="" WrappedIcon={ShoppingBasketIcon} onClick={() => null} />
+      <CustomButton name="cart" buttonType="button" className="" onClick={() => null} />
     </div>
   );
 };
