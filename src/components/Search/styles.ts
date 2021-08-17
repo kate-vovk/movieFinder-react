@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
-  content: {
-    width: '100%',
+  container: {
+    margin: '5px 0',
+    marginLeft: 'auto',
   },
 }));

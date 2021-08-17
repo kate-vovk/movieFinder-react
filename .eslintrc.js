@@ -69,6 +69,9 @@ module.exports = {
       typescript: {},
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+          src: path.resolve(__dirname, '../src'),
+        },
       },
     },
   },
