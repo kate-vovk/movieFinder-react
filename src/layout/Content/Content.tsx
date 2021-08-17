@@ -5,8 +5,8 @@ import { useStyle } from './styles';
 export const Content: FunctionComponent = ({ children }) => {
   const classes = useStyle();
   return (
-    <Box mt={8}>
-      <main className={classes.content}>{children}</main>
+    <Box mt={8} className={classes.content}>
+      {children}
     </Box>
   );
 };
