@@ -13,7 +13,6 @@ export const MovieFooter: FunctionComponent = () => {
         onClick={() => null}
       />
       <CustomButton name="cart" buttonType="button" className="" onClick={() => null} />
-      <CustomButton name="cart" buttonType="button" className="" onClick={() => null} />
     </div>
   );
 };
