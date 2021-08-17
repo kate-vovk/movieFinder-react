@@ -12,7 +12,7 @@ export const AppRouter: FunctionComponent = () => {
       <Route exact path="/">
         <Redirect to={{ pathname: '/movies' }} />
       </Route>
-      <PrivateRoute path="/signup" component={RegisterForm} />
+      <Route path="/signup" component={RegisterForm} />
       <PrivateRoute path="/movies" component={Movies} />
       <Route path="/signin" component={SignInForm} />
       <Route path="/cart" component={Cart} />

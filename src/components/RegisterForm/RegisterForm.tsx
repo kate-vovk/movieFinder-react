@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Redirect } from 'react-router-dom';
-import { formValidationSchema } from '@/utils/validations/registerValidation';
+import { Redirect, useHistory } from 'react-router-dom';
+import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
-import { registrationAsync } from '@/store/slices/auth-slice';
+import { registrationAsync } from '@/store/slices/authSlice';
 import { isLoggedInSelector } from '@/selectors/auth';
 import { useStyle } from './styles';
 
@@ -18,17 +18,18 @@ interface IFormInputs {
 }
 
 export const RegisterForm: FunctionComponent = () => {
+  const history = useHistory();
   const isLoggedIn = useSelector(isLoggedInSelector);
   const classes = useStyle();
 
   const dispatch = useDispatch();
 
-  const submit = async (values: IFormInputs): Promise<any> => {
+  const onSubmit = async (values: IFormInputs): Promise<any> => {
     await dispatch(registrationAsync(values));
   };
 
   if (isLoggedIn) {
-    <Redirect to="/movies" />;
+    history.push('/movies');
   }
 
   const formik = useFormik({
@@ -38,9 +39,9 @@ export const RegisterForm: FunctionComponent = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: formValidationSchema,
+    validationSchema: registrationFormValidationSchema,
     onSubmit: (values: IFormInputs) => {
-      submit(values);
+      onSubmit(values);
     },
   });
   return (

@@ -11,7 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { authReducer } from './slices/auth-slice';
+import { authReducer } from './slices/authSlice';
 
 const reducers = combineReducers({
   auth: authReducer,

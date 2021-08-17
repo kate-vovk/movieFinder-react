@@ -1,10 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 interface IState {
-  auth: {
-    token: string;
-    isLoggedIn: boolean;
-  };
+  auth: IAuth;
 }
 
 interface IAuth {
