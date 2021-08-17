@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { CustomButton } from '@/components/CustomButton';
+import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyle } from './styles';
 
 export const MovieFooter: FunctionComponent = () => {
@@ -12,6 +12,7 @@ export const MovieFooter: FunctionComponent = () => {
         className={classes.favoritesButton}
         onClick={() => null}
       />
+      <CustomButton name="cart" buttonType="button" className="" onClick={() => null} />
       <CustomButton name="cart" buttonType="button" className="" onClick={() => null} />
     </div>
   );

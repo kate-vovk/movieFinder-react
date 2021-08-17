@@ -7,19 +7,19 @@ interface Props {
   className: string;
   onClick: () => void;
   name: string;
-  buttonType: 'button';
+  buttonType: 'button' | 'submit' | 'reset';
 }
 
 export const CustomButton = (props: Props): ReactElement => {
   const { buttonType, className, onClick, name } = props;
-  const getIconByType = (type: string): JSX.Element | null => {
+  const getIconByType = (type: string): JSX.Element | string => {
     switch (type) {
       case 'favorite':
         return <StarIcon />;
       case 'cart':
         return <ShoppingBasketIcon />;
       default:
-        return null;
+        return type;
     }
   };
   return (
