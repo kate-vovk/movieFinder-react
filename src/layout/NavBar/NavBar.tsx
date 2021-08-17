@@ -28,7 +28,12 @@ export const NavBar: FunctionComponent = () => {
                   <Button onClick={onClickCartHandler}>{button.name}</Button>
                 </Badge>
               ) : (
-                <Button key={button.name} onClick={() => {}}>
+                <Button
+                  key={button.name}
+                  onClick={() => {
+                    // set isLoggedIn to false
+                  }}
+                >
                   <Link to={button.to} className={classes.link}>
                     {button.name}
                   </Link>
