@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core';
 import { ReactElement } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import SearchIcon from '@material-ui/icons/Search';
 
 interface Props {
   className: string;
@@ -18,6 +19,8 @@ export const CustomButton = (props: Props): ReactElement => {
         return <StarIcon />;
       case 'cart':
         return <ShoppingBasketIcon />;
+      case 'search':
+        return <SearchIcon />;
       default:
         return type;
     }
