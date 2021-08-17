@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
 import { registrationAsync } from '@/store/slices/authSlice';
@@ -40,9 +40,7 @@ export const RegisterForm: FunctionComponent = () => {
       confirmPassword: '',
     },
     validationSchema: registrationFormValidationSchema,
-    onSubmit: (values: IFormInputs) => {
-      onSubmit(values);
-    },
+    onSubmit,
   });
   return (
     <div className={classes.paper}>
