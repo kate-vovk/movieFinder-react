@@ -6,7 +6,7 @@ const BASE_URL = (path: string | number, isCustom?: boolean): string => {
   if (isCustom) {
     return `${path}`;
   }
-  return `${process.env.REACT_APP_BASE_URL}${path}?api_key=${process.env.REACT_APP_API_KEY}`;
+  return `${process.env.REACT_APP_AUTH_URL}${path}`;
 };
 
 export default class HTTPService {
