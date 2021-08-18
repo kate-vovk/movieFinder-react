@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -29,6 +31,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'no-confusing-arrow': 0,
     'arrow-body-style': 0,
+    'no-array-index-key': 'off',
     'implicit-arrow-linebreak': 0,
     'react/jsx-curly-newline': 0,
     'object-curly-newline': 0,
@@ -38,6 +41,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'no-shadow': 'off',
+    'no-param-reassign': [2, { props: false }],
     '@typescript-eslint/no-shadow': ['error'],
     'prettier/prettier': [
       'error',
@@ -67,6 +71,9 @@ module.exports = {
       typescript: {},
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+          src: path.resolve(__dirname, '../src'),
+        },
       },
     },
   },

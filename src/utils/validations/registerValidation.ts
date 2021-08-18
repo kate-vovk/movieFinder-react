@@ -1,19 +1,17 @@
 import * as yup from 'yup';
 
-export const validationSchema = yup.object({
-  name: yup
-    .string()
-    .matches(/'[a-zA-Z][a-zA-Z]+$'/, 'Must сontain in 2 сharacters, letters and/or dash'),
+export const registrationFormValidationSchema = yup.object({
+  name: yup.string().required().min(2, 'Too Short!'),
   email: yup.string().email('Enter a valid email').required('Email is required'),
   password: yup
     .string()
     .required('Password is required')
-    .matches(
-      /'^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$'/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
-    ),
+    .matches(/[a-z]/, 'Password should contain at least 1 lowercase letter')
+    .matches(/[~`!@#$%^&*()_-]/, 'Password should contain at least 1 special character')
+    .matches(/[A-Z]/, 'Password should contain at least 1 uppercase letter')
+    .matches(/[0-9]/, 'Password should containt at least 1 number'),
   confirmPassword: yup
     .string()
-    .required()
+    .required('Password is required')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });

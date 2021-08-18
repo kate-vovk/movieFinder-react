@@ -1,9 +1,13 @@
 import { FunctionComponent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { validationSchema } from '@/utils/validations/registerValidation';
+import { useHistory } from 'react-router-dom';
+import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
+import { registrationAsync } from '@/store/slices/authSlice';
+import { isLoggedInSelector } from '@/selectors/auth';
 import { useStyle } from './styles';
 
 interface IFormInputs {
@@ -14,7 +18,19 @@ interface IFormInputs {
 }
 
 export const RegisterForm: FunctionComponent = () => {
+  const history = useHistory();
+  const isLoggedIn = useSelector(isLoggedInSelector);
   const classes = useStyle();
+
+  const dispatch = useDispatch();
+
+  const onSubmit = async (values: IFormInputs): Promise<any> => {
+    await dispatch(registrationAsync(values));
+  };
+
+  if (isLoggedIn) {
+    history.push('/movies');
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -23,10 +39,8 @@ export const RegisterForm: FunctionComponent = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema,
-    onSubmit: (values: IFormInputs) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    validationSchema: registrationFormValidationSchema,
+    onSubmit,
   });
   return (
     <div className={classes.paper}>
@@ -34,10 +48,12 @@ export const RegisterForm: FunctionComponent = () => {
         {registrationFormFields.map((field) => {
           return (
             <TextField
+              key={field.name}
               fullWidth={field.fullWidth}
               id={field.name}
               name={field.name}
               label={field.label}
+              type={field.type}
               value={formik.values[field.name]}
               onChange={formik.handleChange}
               error={formik.touched[field.name] && Boolean(formik.errors[field.name])}
