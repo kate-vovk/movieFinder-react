@@ -16,4 +16,6 @@ export const useStyle = makeStyles(() => ({
   description: {
     textAlign: 'justify',
   },
+  listItem: {},
+  item: {},
 }));
