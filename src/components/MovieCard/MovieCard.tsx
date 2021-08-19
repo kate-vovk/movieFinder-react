@@ -1,26 +1,24 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import HTTPService from '@/services/httpService';
+import { FunctionComponent } from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 import { MovieFooter } from '../MovieFooter/MovieFooter';
 
-export const MovieCard: FunctionComponent = () => {
-  interface IMovies {
-    id: number;
-    title: string;
-    description: string;
-    cover: string;
-  }
-  const [movies, getMovies] = useState<IMovies[]>([]);
-  useEffect(() => {
-    HTTPService.get('/movies').then(({ data }) => {
-      getMovies(data);
-    });
-  }, []);
+interface IMovieCard {
+  loading: boolean;
+  id: number;
+  title: string;
+  cover: string;
+  description: string;
+}
+
+export const MovieCard: FunctionComponent<IMovieCard> = ({ movies, loading }) => {
   const classes = useStyle();
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <ul className={classes.listItem}>
-      {movies.map((movie: IMovies) => (
+      {movies.map((movie: IMovieCard) => (
         <li key={movie.id} className={classes.item}>
           <Card className={classes.container}>
             <CardActionArea>

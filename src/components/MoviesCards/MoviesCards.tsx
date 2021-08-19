@@ -1,8 +1,21 @@
-import { FunctionComponent } from 'react';
+import HTTPService from '@/services/httpService';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { MovieCard } from '../MovieCard/MovieCard';
-import { useStyle } from './styles';
+
+interface IMovies {
+  id: number;
+  title: string;
+  description: string;
+  cover: string;
+}
 
 export const MoviesCards: FunctionComponent = () => {
-  const classes = useStyle();
-  return <MovieCard />;
+  const [movies, setMovies] = useState<IMovies[]>([]);
+  useEffect(() => {
+    HTTPService.get('/movies').then(({ data }) => {
+      setMovies(data);
+    });
+  }, []);
+
+  return <MovieCard movies={movies} />;
 };
