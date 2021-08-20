@@ -2,14 +2,8 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import HTTPService from '@/services/httpService';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
 import { PATH } from '@/constants/contants';
+import { IMovieCard } from '@/constants/interfaces';
 import { useStyle } from './styles';
-
-interface IMovieCard {
-  id: number;
-  title: string;
-  cover: string;
-  description: string;
-}
 
 export const MoviesCards: FunctionComponent = () => {
   const classes = useStyle();
