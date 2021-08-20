@@ -1,3 +1,5 @@
+import { PATH } from '@/constants/contants';
+import { ILoginData } from '@/utils/interfaces/authInterfaces';
 import HTTPService from './httpService';
 
 interface IAuthData {
@@ -11,10 +13,18 @@ const isCustomUrl = true;
 
 export class AuthService {
   static async registartion({ name, password, email }: IAuthData): Promise<any> {
-    const data = await HTTPService.post(`${url}/register`, isCustomUrl, {
+    const data = await HTTPService.post(`${url}${PATH.register}`, isCustomUrl, {
       name,
       password,
       email,
+    });
+    return data;
+  }
+
+  static async login({ email, password }: ILoginData): Promise<any> {
+    const data = await HTTPService.post(`${url}${PATH.login}`, isCustomUrl, {
+      email,
+      password,
     });
     return data;
   }
