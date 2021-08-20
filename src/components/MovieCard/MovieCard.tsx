@@ -1,14 +1,8 @@
 import { FunctionComponent } from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { IMovieCard } from '@/constants/interfaces';
+import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
 import { useStyle } from './styles';
-import { MovieFooter } from '../MovieFooter/MovieFooter';
-
-interface IMovieCard {
-  id: number;
-  title: string;
-  cover: string;
-  description: string;
-}
 
 interface IProps {
   movie: IMovieCard;
