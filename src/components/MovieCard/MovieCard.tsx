@@ -10,31 +10,25 @@ interface IMovieCard {
   description: string;
 }
 
-interface IMovies {
-  movies: IMovieCard[];
+interface IProps {
+  movie: IMovieCard;
 }
 
-export const MovieCard: FunctionComponent<IMovies> = ({ movies }) => {
+export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
   const classes = useStyle();
 
   return (
-    <ul className={classes.listItem}>
-      {movies.map((movie: IMovieCard) => (
-        <li key={movie.id} className={classes.item}>
-          <Card className={classes.container}>
-            <CardActionArea>
-              <Typography className={classes.title} variant="h5">
-                {movie.title}
-              </Typography>
-              <CardMedia className={classes.image} image={movie.cover} />
-              <CardContent className={classes.description}>
-                <Typography>{movie.description}</Typography>
-              </CardContent>
-            </CardActionArea>
-            <MovieFooter />
-          </Card>
-        </li>
-      ))}
-    </ul>
+    <Card className={classes.container}>
+      <CardActionArea>
+        <Typography className={classes.title} variant="h5">
+          {movie.title}
+        </Typography>
+        <CardMedia className={classes.image} image={movie.cover} />
+        <CardContent className={classes.description}>
+          <Typography>{movie.description}</Typography>
+        </CardContent>
+      </CardActionArea>
+      <MovieFooter />
+    </Card>
   );
 };
