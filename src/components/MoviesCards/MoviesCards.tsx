@@ -1,11 +1,12 @@
-import HTTPService from '@/services/httpService';
 import { FunctionComponent, useEffect, useState } from 'react';
-import { MovieCard } from '../MovieCard/MovieCard';
+import HTTPService from '@/services/httpService';
+import { MovieCard } from '@/components/MovieCard/MovieCard';
+import { PATH } from '@/constants/contants';
 
 export const MoviesCards: FunctionComponent = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    HTTPService.get('/movies').then(({ data }) => {
+    HTTPService.get(PATH.movies).then(({ data }) => {
       setMovies(data);
     });
   }, []);

@@ -10,11 +10,11 @@ interface IMovieCard {
   description: string;
 }
 
-interface Movies {
+interface IMovies {
   movies: IMovieCard[];
 }
 
-export const MovieCard: FunctionComponent<Movies> = ({ movies }) => {
+export const MovieCard: FunctionComponent<IMovies> = ({ movies }) => {
   const classes = useStyle();
 
   return (
