@@ -2,15 +2,8 @@ import HTTPService from '@/services/httpService';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { MovieCard } from '../MovieCard/MovieCard';
 
-interface IMovies {
-  id: number;
-  title: string;
-  description: string;
-  cover: string;
-}
-
 export const MoviesCards: FunctionComponent = () => {
-  const [movies, setMovies] = useState<IMovies[]>([]);
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     HTTPService.get('/movies').then(({ data }) => {
       setMovies(data);

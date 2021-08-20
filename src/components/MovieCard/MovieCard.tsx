@@ -4,18 +4,15 @@ import { useStyle } from './styles';
 import { MovieFooter } from '../MovieFooter/MovieFooter';
 
 interface IMovieCard {
-  loading: boolean;
   id: number;
   title: string;
   cover: string;
   description: string;
 }
 
-export const MovieCard: FunctionComponent<IMovieCard> = ({ movies, loading }) => {
+export const MovieCard: FunctionComponent = ({ movies }) => {
   const classes = useStyle();
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+
   return (
     <ul className={classes.listItem}>
       {movies.map((movie: IMovieCard) => (
