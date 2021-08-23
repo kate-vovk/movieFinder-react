@@ -5,7 +5,12 @@ export const API_WEBSITE = 'https://www.themoviedb.org/';
 
 export const PATHS = {
   user: '/user',
+  users: '/users',
   movies: '/movies',
   register: '/register',
   login: '/login',
+  cart: '/cart',
+  signup: '/signup',
+  signin: '/signin',
+  main: '/',
 };

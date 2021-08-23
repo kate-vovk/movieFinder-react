@@ -30,8 +30,8 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: string) => {
-        throw new Error(err);
+      .catch((error: Record<string, any>) => {
+        throw new Error(error.response.data);
       });
   }
 
