@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Box } from '@material-ui/core';
-import { MovieCard } from '../MovieCard/MovieCard';
+import { MovieCard } from '@/components/MovieCard/MovieCard';
 import { useStyle } from './styles';
 
 export const MoviesCards: FunctionComponent = () => {

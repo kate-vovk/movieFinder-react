@@ -6,13 +6,8 @@ export const MovieFooter: FunctionComponent = () => {
   const classes = useStyle();
   return (
     <div className={classes.footer}>
-      <CustomButton
-        name="favorite"
-        buttonType="button"
-        className={classes.favoritesButton}
-        onClick={() => null}
-      />
-      <CustomButton name="cart" buttonType="button" className="" onClick={() => null} />
+      <CustomButton name="favorite" buttonType="button" className={classes.favoritesButton} />
+      <CustomButton name="cart" buttonType="button" />
     </div>
   );
 };

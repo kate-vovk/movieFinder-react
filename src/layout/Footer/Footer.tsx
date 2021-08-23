@@ -5,7 +5,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-import { API_LOGO_URL, API_WEBSITE } from '@/constants/contants';
+import { API_LOGO_URL, API_WEBSITE } from '@/constants/constants';
 
 import { useHistory } from 'react-router-dom';
 import { useStyle } from './styles';

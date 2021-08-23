@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
 import { useStyle } from './styles';
-import { MovieFooter } from '../MovieFooter/MovieFooter';
 
 export const MovieCard: FunctionComponent = () => {
   const classes = useStyle();
