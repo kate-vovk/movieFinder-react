@@ -1,4 +1,4 @@
-import { IMovieCard } from '@/constants/interfaces';
+import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
 import { createSelector } from '@reduxjs/toolkit';
 
 interface IState {
