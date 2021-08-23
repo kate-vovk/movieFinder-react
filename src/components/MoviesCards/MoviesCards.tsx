@@ -1,22 +1,33 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import HTTPService from '@/services/httpService';
+import { FunctionComponent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
-import { PATH } from '@/constants/contants';
+import { addToPage } from '@/store/slices/movieSlice';
 import { IMovieCard } from '@/constants/interfaces';
+import { movieListSelector } from '@/selectors/movie';
 import { useStyle } from './styles';
 
 export const MoviesCards: FunctionComponent = () => {
   const classes = useStyle();
-  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+  const listMovies = useSelector(movieListSelector);
+
   useEffect(() => {
-    HTTPService.get(PATH.movies).then(({ data }) => {
-      setMovies(data);
-    });
+    dispatch(addToPage());
   }, []);
+
+  // for the future pagination
+  // const [moviesForRender, setMoviesForRender] = useState<IMovieCard[]>([]);
+  // const loadMovie = (): void => {
+  //   dispatch(addToPage());
+  // };
+
+  // useEffect(() => {
+  //   setMoviesForRender(listMovies);
+  // }, [listMovies]);
 
   return (
     <ul className={classes.listItem}>
-      {movies.map((movie: IMovieCard) => (
+      {listMovies.map((movie: IMovieCard) => (
         <li key={movie.id} className={classes.item}>
           <MovieCard movie={movie} />
         </li>
