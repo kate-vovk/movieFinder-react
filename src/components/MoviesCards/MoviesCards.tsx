@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
-import { movieListRender } from '@/store/slices/moviesSlice';
-import { IMovieCard } from '@/constants/interfaces';
+import { getMovieList } from '@/store/slices/moviesSlice';
+import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
 import { movieListSelector } from '@/selectors/movie';
 import { useStyle } from './styles';
 
@@ -12,7 +12,7 @@ export const MoviesCards: FunctionComponent = () => {
   const movieList = useSelector(movieListSelector);
 
   useEffect(() => {
-    dispatch(movieListRender());
+    dispatch(getMovieList());
   }, []);
 
   return (
