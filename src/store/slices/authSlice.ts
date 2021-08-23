@@ -32,8 +32,9 @@ export const loginAsync = createAsyncThunk(
 );
 
 const initialState: IAuthInitialState = {
-  token: '',
+  token: null,
   isLoggedIn: false,
+  user: null,
 };
 
 export const authSlice = createSlice({
@@ -45,10 +46,12 @@ export const authSlice = createSlice({
       .addCase(registrationAsync.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.user = action.payload.data.user;
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.user = action.payload.data.user;
       });
   },
 });

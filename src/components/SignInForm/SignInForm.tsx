@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { singInFormFields } from '@/constants/SignInFormFields';
 import { loginAsync } from '@/store/slices/authSlice';
 import { isLoggedInSelector } from '@/selectors/auth';
-import { PATH } from '@/constants/contants';
+import { PATHS } from '@/constants/constants';
 import { ILoginData } from '@/utils/interfaces/authInterfaces';
 import { useStyle } from './styles';
 
@@ -24,7 +24,7 @@ export const SignInForm: FunctionComponent = () => {
   };
 
   if (isLoggedIn) {
-    history.push(PATH.movies);
+    history.push(PATHS.movies);
   }
 
   const formik = useFormik({

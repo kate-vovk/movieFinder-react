@@ -1,18 +1,26 @@
+import { FunctionComponent } from 'react';
 import { Button } from '@material-ui/core';
-import { ReactElement } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import SearchIcon from '@material-ui/icons/Search';
+import ClearIcon from '@material-ui/icons/Clear';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
-interface Props {
-  className: string;
-  onClick: () => void;
+type TButtons = 'button' | 'submit' | 'reset';
+
+interface IProps {
+  className?: string;
+  onClick?: () => void;
   name: string;
-  buttonType: 'button' | 'submit' | 'reset';
+  buttonType: TButtons;
 }
 
-export const CustomButton = (props: Props): ReactElement => {
-  const { buttonType, className, onClick, name } = props;
+export const CustomButton: FunctionComponent<IProps> = ({
+  buttonType,
+  className = '',
+  onClick = () => null,
+  name,
+}) => {
   const getIconByType = (type: string): JSX.Element | string => {
     switch (type) {
       case 'favorite':
@@ -21,6 +29,12 @@ export const CustomButton = (props: Props): ReactElement => {
         return <ShoppingBasketIcon />;
       case 'search':
         return <SearchIcon />;
+      case 'remove':
+        return <ClearIcon />;
+      case 'buy':
+        return <ShoppingBasketIcon />;
+      case 'back':
+        return <KeyboardBackspaceIcon />;
       default:
         return type;
     }

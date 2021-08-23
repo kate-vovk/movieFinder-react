@@ -3,9 +3,13 @@ export const API_LOGO_URL =
 
 export const API_WEBSITE = 'https://www.themoviedb.org/';
 
-export const PATH = {
-  user: '/user',
+export const PATHS = {
+  users: '/users',
   movies: '/movies',
   register: '/register',
   login: '/login',
+  cart: '/cart',
+  signup: '/signup',
+  signin: '/signin',
+  main: '/',
 };
