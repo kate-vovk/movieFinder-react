@@ -1,20 +1,14 @@
+import { IMovieCard } from '@/constants/interfaces';
 import { createSelector } from '@reduxjs/toolkit';
 
 interface IState {
-  movieList: movieList;
+  moviesList: moviesList;
 }
 
-interface movieList {
-  movies: IMovie[];
+interface moviesList {
+  movies: IMovieCard[];
 }
 
-interface IMovie {
-  id: number;
-  title: string;
-  description: string;
-  cover: string;
-}
-
-const stateSelector = (state: IState): movieList => state.movieList;
+const stateSelector = (state: IState): moviesList => state.moviesList;
 
 export const movieListSelector = createSelector(stateSelector, (state) => state.movies);

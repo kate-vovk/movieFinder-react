@@ -12,17 +12,17 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './slices/authSlice';
-import { movieReducer } from './slices/movieSlice';
+import { moviesReducer } from './slices/moviesSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
-  movieList: movieReducer,
+  moviesList: moviesReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'movieList'],
+  whitelist: ['auth', 'moviesList'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
