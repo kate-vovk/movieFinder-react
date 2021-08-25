@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
+import { IMovieCard } from '@/utils/interfaces/movieInterfaces';
 import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
