@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { IMovieCard } from '@/utils/interfaces/movieInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
 import { getMovieList } from '@/store/slices/moviesSlice';
-import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
 import { useStyle } from './styles';
 
 export const MoviesCards: FunctionComponent = () => {
