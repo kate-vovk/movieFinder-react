@@ -1,26 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HTTPService from '@/services/httpService';
 import { PATHS } from '@/constants/constants';
-import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
 
-interface IState {
-  movies: IMovieCard[];
-}
-
-export const getMovieList = createAsyncThunk('movies/movieListRender', async () => {
-  return HTTPService.get(PATHS.movies);
+export const getMovieList = createAsyncThunk('movies/getMovieList', async () => {
+  const { data } = await HTTPService.get(PATHS.movies);
+  return data;
 });
-const initialState: IState = { movies: [] };
 
 export const moviesSlice = createSlice({
   name: 'movies',
-  initialState,
+  initialState: {},
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getMovieList.fulfilled, (state, action) => {
-      state.movies = action.payload.data;
-    });
-  },
+  extraReducers: {},
 });
 
 export const moviesReducer = moviesSlice.reducer;

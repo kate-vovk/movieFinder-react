@@ -1,18 +1,23 @@
-import { FunctionComponent, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
 import { getMovieList } from '@/store/slices/moviesSlice';
 import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
-import { movieListSelector } from '@/selectors/movie';
 import { useStyle } from './styles';
 
 export const MoviesCards: FunctionComponent = () => {
-  const classes = useStyle();
   const dispatch = useDispatch();
-  const movieList = useSelector(movieListSelector);
+  const [movieList, setMovieList] = useState([]);
+  const classes = useStyle();
+
+  const moviesList = async (): Promise<void> => {
+    const response: any = await dispatch(getMovieList());
+    const data = response.payload;
+    setMovieList(data);
+  };
 
   useEffect(() => {
-    dispatch(getMovieList());
+    moviesList();
   }, []);
 
   return (
