@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HTTPService from '@/services/httpService';
-import { PATHS } from '@/constants/contants';
+import { PATHS } from '@/constants/constants';
 import { IMovieCard } from '@/utils/ interfaces/movieInterfaces';
 
 interface IState {
