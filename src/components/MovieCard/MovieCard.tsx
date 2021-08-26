@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react';
-import { IMovieCard } from '@/utils/interfaces/movieInterfaces';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 
 interface IProps {
-  movie: IMovieCard;
+  movie: IMovie;
 }
 
 export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
@@ -22,7 +22,7 @@ export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
           <Typography>{movie.description}</Typography>
         </CardContent>
       </CardActionArea>
-      <MovieFooter />
+      <MovieFooter price={movie.price} />
     </Card>
   );
 };
