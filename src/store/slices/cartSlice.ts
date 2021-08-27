@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HTTPService from '@/services/httpService';
-import { PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants/constants';
 import { ICart } from '@/utils/interfaces/cartInterfaces';
 
 export const addToCart = createAsyncThunk('cart/addToCart', async (id: number) => {
-  return HTTPService.get(`${PATHS.movies}/${id}`);
+  return HTTPService.get(`${CLIENT_PATHS.movies}/${id}`);
 });
 const initialState: ICart = { movies: [] };
 

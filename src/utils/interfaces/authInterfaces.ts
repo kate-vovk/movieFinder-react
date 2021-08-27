@@ -1,8 +1,15 @@
+import { FunctionComponent } from 'react';
+
 interface IUser {
   email: string;
   password: string;
   name: string;
   id: number;
+}
+
+export interface IPrivateRouteProps {
+  path: string;
+  component: FunctionComponent;
 }
 
 export interface ILoginData {
@@ -16,6 +23,9 @@ export interface IAuthData {
   email: string;
 }
 
+export interface IState {
+  auth: IAuth;
+}
 export interface IAuthInitialState {
   token: string | null;
   isLoggedIn: boolean;

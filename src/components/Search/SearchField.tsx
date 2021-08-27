@@ -7,7 +7,7 @@ export const SearchField: FunctionComponent = () => {
   const classes = useStyle();
   return (
     <Paper className={classes.container}>
-      <InputBase placeholder="Search movie" />
+      <InputBase placeholder="movie name, actor, studio" />
       <CustomButton name="search" buttonType="submit" />
     </Paper>
   );
