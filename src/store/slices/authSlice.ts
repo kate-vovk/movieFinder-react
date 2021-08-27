@@ -2,34 +2,28 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { IAuthData, IAuthInitialState, ILoginData } from '@/utils/interfaces/authInterfaces';
-import { AuthService } from '@/services/authService';
+import { getRegistrationData } from '@/businessLogic/registration';
+import { getLoginData } from '@/businessLogic/login';
 
 toast.configure();
 
-export const registrationAsync = createAsyncThunk(
+export const registration = createAsyncThunk(
   'auth/registration',
   async ({ name, password, email }: IAuthData) => {
-    try {
-      const data = await AuthService.registartion({ name, email, password });
-      return data;
-    } catch (error) {
-      return error;
-    }
+    return getRegistrationData({
+      name,
+      password,
+      email,
+    });
   },
 );
 
-export const loginAsync = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }: ILoginData) => {
-    try {
-      const data = await AuthService.login({ email, password });
-      return data;
-    } catch (error) {
-      toast(error.message);
-      return error;
-    }
-  },
-);
+export const login = createAsyncThunk('auth/login', async ({ email, password }: ILoginData) => {
+  return getLoginData({
+    email,
+    password,
+  });
+});
 
 const initialState: IAuthInitialState = {
   token: null,
@@ -43,15 +37,43 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(registrationAsync.fulfilled, (state, action) => {
-        state.token = action.payload.data.accessToken;
+      .addCase(registration.fulfilled, (state, action) => {
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.user = action.payload.data.user;
+        state.user = action.payload.user;
       })
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        state.token = action.payload.data.accessToken;
+      .addCase(registration.rejected, (state, action) => {
+        const { message } = action.error;
+        if (message) {
+          switch (JSON.parse(message).status) {
+            case 100:
+              toast('processing. Just wait for a while');
+              break;
+            case 300:
+            case 400:
+              toast(JSON.parse(message).data);
+              break;
+            case 500:
+              toast('Ooops, something went wrong! Try it later');
+              break;
+            default:
+              return JSON.parse(message).response;
+          }
+        }
+        return null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.user = action.payload.data.user;
+        state.user = action.payload.user;
+      })
+      .addCase(login.rejected, (state, action) => {
+        const { message } = action.error;
+        if (message) {
+          toast(JSON.parse(message).data);
+        } else {
+          toast('Error');
+        }
       });
   },
 });

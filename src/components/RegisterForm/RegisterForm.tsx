@@ -6,8 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
 import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
-import { registrationAsync } from '@/store/slices/authSlice';
 import { isLoggedInSelector } from '@/selectors/auth';
+import { CLIENT_PATHS } from '@/constants/constants';
+import { registration } from '@/store/slices/authSlice';
 import { useStyle } from './styles';
 
 interface IFormInputs {
@@ -24,12 +25,12 @@ export const RegisterForm: FunctionComponent = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = async (values: IFormInputs): Promise<any> => {
-    await dispatch(registrationAsync(values));
+  const onSubmit = (values: IFormInputs): void => {
+    dispatch(registration(values));
   };
 
   if (isLoggedIn) {
-    history.push('/movies');
+    history.push(CLIENT_PATHS.movies);
   }
 
   const formik = useFormik({

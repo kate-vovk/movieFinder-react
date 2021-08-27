@@ -5,10 +5,11 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
 import { singInFormFields } from '@/constants/SignInFormFields';
-import { loginAsync } from '@/store/slices/authSlice';
+import { login } from '@/store/slices/authSlice';
 import { isLoggedInSelector } from '@/selectors/auth';
-import { PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants/constants';
 import { ILoginData } from '@/utils/interfaces/authInterfaces';
+import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
 import { useStyle } from './styles';
 
 export const SignInForm: FunctionComponent = () => {
@@ -19,12 +20,12 @@ export const SignInForm: FunctionComponent = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = async (values: ILoginData): Promise<any> => {
-    await dispatch(loginAsync(values));
+  const onSubmit = (values: ILoginData): void => {
+    dispatch(login(values));
   };
 
   if (isLoggedIn) {
-    history.push(PATHS.movies);
+    history.push(CLIENT_PATHS.movies);
   }
 
   const formik = useFormik({
@@ -32,6 +33,7 @@ export const SignInForm: FunctionComponent = () => {
       email: '',
       password: '',
     },
+    validationSchema: loginFormValidationSchema,
     onSubmit,
   });
   return (
