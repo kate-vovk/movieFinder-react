@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export const useStyle = makeStyles(() => ({
+export const useStyle = makeStyles({
   footer: {
     display: 'flex',
     backgroundColor: 'lightGrey',
@@ -9,9 +9,13 @@ export const useStyle = makeStyles(() => ({
   favoritesButton: {
     color: 'yellow',
   },
+  addToCartButton: {
+    backgroundColor: ({ isIncluded }: { isIncluded: number | undefined }) =>
+      isIncluded ? 'yellow' : 'lightGrey',
+  },
   price: {
     color: 'red',
     alignSelf: 'flex-end',
     paddingRight: '25px',
   },
-}));
+});

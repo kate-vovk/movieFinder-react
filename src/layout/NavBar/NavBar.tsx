@@ -2,30 +2,22 @@ import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Badge } from '@material-ui/core';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
 import { isLoggedInSelector } from '@/selectors/auth';
-import { addToCart } from '@/store/slices/cartSlice';
-import { cartMoviesSelector } from '@/selectors/cart';
+import { cartSelector } from '@/selectors/cart';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
   const isLoggedIn = useSelector(isLoggedInSelector);
   const history = useHistory();
-  const dispatch = useDispatch();
-  const cartMovies = useSelector(cartMoviesSelector);
+  const { movies } = useSelector(cartSelector);
 
-  const onClickCartHandler = useCallback(() => {
+  const goToCart = useCallback(() => {
     history.push(CLIENT_PATHS.cart);
   }, []);
-  // temporar function, will be moved to movie cards (to add to cart buttons) on the main page
-  const onClickAddHandler = useCallback(() => {
-    dispatch(addToCart(1));
-    dispatch(addToCart(5));
-    dispatch(addToCart(10));
-    dispatch(addToCart(15));
-  }, []);
+
   const classes = useStyle();
   return (
     <div>
@@ -35,11 +27,10 @@ export const NavBar: FunctionComponent = () => {
             <MovieFilterIcon />
           </Link>
           <div className={classes.buttonsContainer}>
-            <Button onClick={onClickAddHandler}>Temp Button For Adding Movies To Cart</Button>
             {isAuthorizedButtons(isLoggedIn).map((button) =>
               button.badge ? (
-                <Badge key={button.name} badgeContent={cartMovies.length} color="secondary">
-                  <Button onClick={onClickCartHandler}>{button.name}</Button>
+                <Badge key={button.name} badgeContent={movies.length} color="secondary">
+                  <Button onClick={goToCart}>{button.name}</Button>
                 </Badge>
               ) : (
                 <Button
