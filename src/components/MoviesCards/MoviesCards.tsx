@@ -9,16 +9,22 @@ export const MoviesCards: FunctionComponent = () => {
   const classes = useStyle();
 
   useEffect(() => {
-    getMovies().then((response: IMovie[]) => setMovieList(response));
+    getMovies().then((data: IMovie[]) => setMovieList(data));
   }, []);
 
   return (
-    <ul className={classes.listItem}>
-      {movieList.map((movie: IMovie) => (
-        <li key={movie.id} className={classes.item}>
-          <MovieCard movie={movie} />
-        </li>
-      ))}
-    </ul>
+    <>
+      {movieList.length ? (
+        <ul className={classes.listItem}>
+          {movieList.map((movie: IMovie) => (
+            <li key={movie.id} className={classes.item}>
+              <MovieCard movie={movie} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Error download data from server</p>
+      )}
+    </>
   );
 };
