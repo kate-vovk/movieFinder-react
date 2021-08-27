@@ -1,26 +1,28 @@
 import { FunctionComponent } from 'react';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 
-export const MovieCard: FunctionComponent = () => {
+interface IProps {
+  movie: IMovie;
+}
+
+export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
   const classes = useStyle();
+
   return (
     <Card className={classes.container}>
       <CardActionArea>
         <Typography className={classes.title} variant="h5">
-          Movie name
+          {movie.title}
         </Typography>
-        <CardMedia className={classes.image} />
+        <CardMedia className={classes.image} image={movie.cover} />
         <CardContent className={classes.description}>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-            dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus.
-          </Typography>
+          <Typography>{movie.description}</Typography>
         </CardContent>
       </CardActionArea>
-      <MovieFooter />
+      <MovieFooter price={movie.price} />
     </Card>
   );
 };

@@ -1,15 +1,30 @@
-import { FunctionComponent } from 'react';
-import { Box } from '@material-ui/core';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
+import { getMovies } from '@/businessLogic/movies';
 import { useStyle } from './styles';
 
 export const MoviesCards: FunctionComponent = () => {
+  const [movieList, setMovieList] = useState<IMovie[]>([]);
   const classes = useStyle();
+
+  useEffect(() => {
+    getMovies().then((data: IMovie[]) => setMovieList(data));
+  }, []);
+
   return (
-    <Box className={classes.container}>
-      {[1, 2, 3, 4].map(() => (
-        <MovieCard />
-      ))}
-    </Box>
+    <>
+      {movieList.length ? (
+        <ul className={classes.listItem}>
+          {movieList.map((movie: IMovie) => (
+            <li key={movie.id} className={classes.item}>
+              <MovieCard movie={movie} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Error download data from server</p>
+      )}
+    </>
   );
 };
