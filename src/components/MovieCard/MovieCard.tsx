@@ -22,7 +22,7 @@ export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
           <Typography>{movie.description}</Typography>
         </CardContent>
       </CardActionArea>
-      <MovieFooter price={movie.price} />
+      <MovieFooter movieId={movie.id} price={movie.price} />
     </Card>
   );
 };

@@ -1,30 +1,43 @@
-import { FunctionComponent, useCallback } from 'react';
+import { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { List, Typography } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import EuroIcon from '@material-ui/icons/Euro';
-import { cartMoviesSelector } from '@/selectors/cart';
-import { sendData } from '@/store/slices/cartSlice';
+import { cartSelector } from '@/selectors/cart';
+import { getCartMovies, sendData } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { getMovie } from '@/businessLogic/cart';
 import { CartItem } from './CartItem';
 import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';
 
 export const Cart: FunctionComponent = () => {
   const history = useHistory();
-  const cartMovies = useSelector(cartMoviesSelector);
+  const { movies } = useSelector(cartSelector);
   const { id } = useSelector(userSelector);
-
-  const dispatch = useDispatch();
-
   const classes = useStyle();
+  const dispatch = useDispatch();
+  const [cartMovies, setCartMovies] = useState<IMovie[]>([]);
 
-  const onClickGoBackHandler = useCallback(() => {
+  const setMovies = async (): Promise<void> => {
+    movies.forEach(async (movieId: number) => {
+      const data = await getMovie(movieId);
+      setCartMovies((prev) => [...prev, data]);
+    });
+  };
+  useEffect(() => {
+    dispatch(getCartMovies(id));
+    setCartMovies([]);
+    setMovies();
+  }, [movies.length]);
+
+  const goToPreviousPage = useCallback(() => {
     history.goBack();
   }, []);
-  const onClickBuyHandler = (): void => {
-    dispatch(sendData({ user: id, movies: cartMovies.map((movieId) => movieId.id) }));
+  const clickOnBuyButton = (): void => {
+    dispatch(sendData({ userId: id, moviesIds: movies }));
     history.push('/');
   };
   const getTotalPrice = (): number =>
@@ -36,22 +49,16 @@ export const Cart: FunctionComponent = () => {
       ) : (
         <div className={classes.cartContainer}>
           <List>
-            {cartMovies.map((movie) => (
-              <CartItem
-                id={movie.id}
-                title={movie.title}
-                description={movie.description}
-                cover={movie.cover}
-                price={movie.price}
-              />
+            {cartMovies.map((movie: IMovie) => (
+              <CartItem key={movie.id} movie={movie} />
             ))}
           </List>
           <div className={classes.buttonsContainer}>
-            <CustomButton buttonType="button" onClick={onClickGoBackHandler} name="back" />
+            <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
             <CustomButton
               buttonType="button"
               className={classes.buyButton}
-              onClick={onClickBuyHandler}
+              onClick={clickOnBuyButton}
               name="Buy"
             />
             <div className={classes.priceContainer}>

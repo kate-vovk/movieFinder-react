@@ -13,7 +13,7 @@ import { useStyle } from './styles';
 export const Footer: FunctionComponent = () => {
   const classes = useStyle();
   const history = useHistory();
-  const onClickLogoHandler = useCallback(() => {
+  const goToMainPage = useCallback(() => {
     history.push('/');
   }, []);
   return (
@@ -34,7 +34,7 @@ export const Footer: FunctionComponent = () => {
           </IconButton>
         </div>
         <span>
-          <IconButton onClick={onClickLogoHandler}>
+          <IconButton onClick={goToMainPage}>
             <MovieFilterIcon />
           </IconButton>
         </span>

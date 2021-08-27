@@ -9,7 +9,19 @@
       "email": "otest@gmail.com",
       "password": "$2a$10$gJDggTkeI6EqvUTmMoEoLOv4Oc.0CtfHfe7yO6dNgre1foJBxDIey",
       "name": "name",
-      "id": "-xHMZ51"
+      "id": "T4S6w_y"
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$GkEyLXa70LUd9eI7lZAqC.nxVkHMpadPuXDAZ4p4k4D6M0tVYQKGq",
+      "name": "test",
+      "id": "P-wzSwh"
+    },
+    {
+      "email": "fgdgh@dfg.cp",
+      "password": "$2a$10$cWj9kpdZi.mgxbEDg7wJxuKlIv98gD7z.k7/41/n6w4iEqScXkkMO",
+      "name": "fgd",
+      "id": "UkIUuDc"
     }
   ],
   "genres": [
@@ -522,6 +534,22 @@
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BN2ViYTFiZmUtOTIxZi00YzIxLWEyMzUtYjQwZGNjMjNhY2IwXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=7vSsx1RkGls",
       "price": 22
+    }
+  ],
+  "cart": [
+    {
+      "id": 2,
+      "userId": "P-wzSwh",
+      "movies": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "userId": "UkIUuDc",
+      "movies": [],
+      "id": 3
     }
   ]
 }

@@ -1,35 +1,97 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HTTPService from '@/services/httpService';
 import { CLIENT_PATHS } from '@/constants/constants';
-import { ICart } from '@/utils/interfaces/cartInterfaces';
+import { getUserCart } from '@/businessLogic/cart';
+import { toast } from 'react-toastify';
+import { ICartData } from '@/utils/interfaces/cartInterfaces';
 
-export const addToCart = createAsyncThunk('cart/addToCart', async (id: number) => {
-  return HTTPService.get(`${CLIENT_PATHS.movies}/${id}`);
+toast.configure();
+
+const initialState: ICartData = { movies: [], userId: null, id: null };
+
+export const getCartMovies = createAsyncThunk('cart/getMovies', async (userId: number | null) => {
+  return getUserCart(userId);
 });
-const initialState: ICart = { movies: [] };
+
+export const addMovieToCart = createAsyncThunk(
+  'cart/addToCart',
+  async ({
+    userId,
+    movieId,
+    id,
+    movies,
+  }: {
+    userId: number | null;
+    movieId: number;
+    id: number | null;
+    movies: number[];
+  }) => {
+    // TODO: DELETE query will be removed when back end will be ready
+    await HTTPService.delete(`${CLIENT_PATHS.cart}/${id}`);
+    await HTTPService.post(`${CLIENT_PATHS.cart}`, false, {
+      userId,
+      movies: [...movies, movieId],
+    });
+    return movieId;
+  },
+);
+
+export const removeMovieFromCart = createAsyncThunk(
+  'cart/removeMovie',
+  async ({
+    userId,
+    movieId,
+    id,
+    movies,
+  }: {
+    userId: number | null;
+    movieId: number;
+    id: number | null;
+    movies: number[];
+  }) => {
+    const newMoviesArray = movies.filter((mId: number) => mId !== movieId);
+    // TODO: DELETE query will be removed when back end will be ready
+    await HTTPService.delete(`${CLIENT_PATHS.cart}/${id}`);
+    await HTTPService.post(`${CLIENT_PATHS.cart}`, false, {
+      userId,
+      movies: newMoviesArray,
+    });
+    return newMoviesArray;
+  },
+);
+
+export const sendData = createAsyncThunk(
+  'cart/sendData',
+  async ({ userId, moviesIds }: { userId: number; moviesIds: number[] }) => {
+    alert(JSON.stringify({ userId, moviesIds }));
+    const cart = await getUserCart(userId);
+    await HTTPService.put({ ...cart, movies: [] }, `${CLIENT_PATHS.cart}/${cart.id}`);
+    return [];
+  },
+);
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {
-    removeFromCart: (state, action) => {
-      return { ...state, movies: state.movies.filter(({ id }) => id !== action.payload) };
-    },
-    // will be async action in the future (post request to the server). Currently, just clears the cart.
-    sendData: (state, action) => {
-      alert(JSON.stringify(action.payload));
-      return { ...state, movies: [], totalPrice: 0 };
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addToCart.fulfilled, (state, action) => {
-      return {
-        ...state,
-        movies: [...state.movies, action.payload.data],
-      };
-    });
+    builder
+      .addCase(getCartMovies.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(getCartMovies.rejected, () => {
+        toast('No cart for current user exists');
+      })
+      .addCase(removeMovieFromCart.fulfilled, (state, action) => {
+        state.movies = action.payload;
+      })
+      .addCase(addMovieToCart.fulfilled, (state, action) => {
+        state.movies = [...state.movies, action.payload];
+      })
+      .addCase(sendData.fulfilled, (state, action) => {
+        state.movies = action.payload;
+      });
   },
 });
 
-export const { removeFromCart, sendData } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
