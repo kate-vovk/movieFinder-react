@@ -1,19 +1,15 @@
 import { useSelector } from 'react-redux';
-import { FunctionComponent } from 'react';
+import { IPrivateRouteProps } from '@/utils/interfaces/authInterfaces';
 import { Redirect, Route } from 'react-router-dom';
 import { isLoggedInSelector } from '@/selectors/auth';
-import { PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants/constants';
+import { FunctionComponent } from 'react';
 
-interface IPrivateRouteProps {
-  path: string;
-  component: FunctionComponent;
-}
-
-export const PrivateRoute = ({ path, component }: IPrivateRouteProps): JSX.Element => {
+export const PrivateRoute: FunctionComponent<IPrivateRouteProps> = ({ path, component }) => {
   const isLoggedIn = useSelector(isLoggedInSelector);
   return isLoggedIn ? (
     <Route exact path={path} component={component} />
   ) : (
-    <Redirect to={PATHS.signup} />
+    <Redirect to={CLIENT_PATHS.signup} />
   );
 };

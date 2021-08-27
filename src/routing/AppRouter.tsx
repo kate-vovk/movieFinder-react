@@ -4,19 +4,19 @@ import { RegisterForm } from '@/components/RegisterForm/RegisterForm';
 import { MoviesPage } from '@/components/MoviesPage/MoviesPage';
 import { SignInForm } from '@/components/SignInForm/SignInForm';
 import { Cart } from '@/components/Cart/Cart';
-import { PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants/constants';
 import { PrivateRoute } from './PrivateRoute';
 
 export const AppRouter: FunctionComponent = () => {
   return (
     <Switch>
-      <Route exact path={PATHS.main}>
-        <Redirect to={PATHS.movies} />
+      <Route exact path="/">
+        <Redirect to={CLIENT_PATHS.movies} />
       </Route>
-      <Route path={PATHS.signup} component={RegisterForm} />
-      <PrivateRoute path={PATHS.movies} component={MoviesPage} />
-      <Route path={PATHS.signin} component={SignInForm} />
-      <Route path={PATHS.cart} component={Cart} />
+      <Route exact path={CLIENT_PATHS.signup} component={RegisterForm} />
+      <Route path={CLIENT_PATHS.signin} component={SignInForm} />
+      <Route path={CLIENT_PATHS.cart} component={Cart} />
+      <PrivateRoute path={CLIENT_PATHS.movies} component={MoviesPage} />
     </Switch>
   );
 };

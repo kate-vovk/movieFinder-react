@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Badge } from '@material-ui/core';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 import { useSelector, useDispatch } from 'react-redux';
-import { PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
 import { isLoggedInSelector } from '@/selectors/auth';
 import { addToCart } from '@/store/slices/cartSlice';
@@ -17,7 +17,7 @@ export const NavBar: FunctionComponent = () => {
   const cartMovies = useSelector(cartMoviesSelector);
 
   const onClickCartHandler = useCallback(() => {
-    history.push(PATHS.cart);
+    history.push(CLIENT_PATHS.cart);
   }, []);
   // temporar function, will be moved to movie cards (to add to cart buttons) on the main page
   const onClickAddHandler = useCallback(() => {
@@ -31,7 +31,7 @@ export const NavBar: FunctionComponent = () => {
     <div>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Link to={PATHS.main} className={classes.link}>
+          <Link to={CLIENT_PATHS.main} className={classes.link}>
             <MovieFilterIcon />
           </Link>
           <div className={classes.buttonsContainer}>

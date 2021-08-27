@@ -1,9 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { IAuth } from '@/utils/interfaces/authInterfaces';
-
-interface IState {
-  auth: IAuth;
-}
+import { IAuth, IState } from '@/utils/interfaces/authInterfaces';
 
 const stateSelector = (state: IState): IAuth => state.auth;
 

@@ -31,7 +31,7 @@ export default class HTTPService {
         return response;
       })
       .catch((error: Record<string, any>) => {
-        throw new Error(error.response.data);
+        throw new Error(JSON.stringify(error.response));
       });
   }
 
