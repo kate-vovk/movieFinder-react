@@ -22,6 +22,12 @@
       "password": "$2a$10$cWj9kpdZi.mgxbEDg7wJxuKlIv98gD7z.k7/41/n6w4iEqScXkkMO",
       "name": "fgd",
       "id": "UkIUuDc"
+    },
+    {
+      "email": "drop@com.ua",
+      "password": "$2a$10$NuX3RWiuFInNq9bWqn3eqOX3CDCoELiWyaovGqTC7j4DemkSDSYQq",
+      "name": "name1",
+      "id": "w3YAN6G"
     }
   ],
   "genres": [
@@ -547,7 +553,7 @@
       ]
     },
     {
-      "userId": "UkIUuDc",
+      "userId": "w3YAN6G",
       "movies": [],
       "id": 3
     }
