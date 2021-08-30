@@ -8,13 +8,13 @@ export const CartIsEmpty: FunctionComponent = () => {
   const history = useHistory();
   const classes = useStyle();
 
-  const onClickGoBackHandler = useCallback(() => {
+  const goToPreviousPage = useCallback(() => {
     history.goBack();
   }, []);
   return (
     <div className={classes.cartIsEmpty}>
       <Typography>Your cart is empty</Typography>
-      <CustomButton buttonType="button" onClick={onClickGoBackHandler} name="back" />
+      <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
     </div>
   );
 };

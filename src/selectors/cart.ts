@@ -1,10 +1,10 @@
-import { ICart } from '@/utils/interfaces/cartInterfaces';
+import { ICartData } from '@/utils/interfaces/cartInterfaces';
 import { createSelector } from '@reduxjs/toolkit';
 
 interface IState {
-  cart: ICart;
+  cart: ICartData;
 }
 
-const stateSelector = (state: IState): ICart => state.cart;
+const stateSelector = (state: IState): ICartData => state.cart;
 
-export const cartMoviesSelector = createSelector(stateSelector, (state) => state.movies);
+export const cartSelector = createSelector(stateSelector, (state) => state);

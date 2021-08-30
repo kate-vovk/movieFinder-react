@@ -1,23 +1,27 @@
 import { FunctionComponent } from 'react';
 import { ListItem, ListItemIcon, Paper, Typography } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import EuroIcon from '@material-ui/icons/Euro';
 import { useHistory } from 'react-router-dom';
-import { removeFromCart } from '@/store/slices/cartSlice';
+import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { cartSelector } from '@/selectors/cart';
 import { useStyle } from './styles';
 
-export const CartItem: FunctionComponent<IMovie> = ({ id, cover, title, price, description }) => {
+export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
+  const { id, cover, title, price, description } = movie;
   const classes = useStyle();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const removeMovieFromCart = (): void => {
-    dispatch(removeFromCart(id));
+  const { userId, movies, id: cartId } = useSelector(cartSelector);
+
+  const removeMovieIdFromCart = (): void => {
+    dispatch(removeMovieFromCart({ userId, movieId: id, id: cartId, movies }));
   };
-  const linkToMovie = (): void => {
+  const goToDetailedView = (): void => {
     history.push(`${CLIENT_PATHS.movies}/${id}`);
   };
   return (
@@ -25,15 +29,16 @@ export const CartItem: FunctionComponent<IMovie> = ({ id, cover, title, price, d
       <ListItemIcon className={classes.image}>
         <img src={cover} />
       </ListItemIcon>
-      <div
-        onClick={linkToMovie}
-        className={`${classes.content} ${classes.titleDescriptionContent}`}
-      >
-        <Typography className={classes.title}>{title}</Typography>
-        <Typography className={classes.description}>{description}</Typography>
+      <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
+        <Typography onClick={goToDetailedView} className={classes.title}>
+          {title}
+        </Typography>
+        <Typography onClick={goToDetailedView} className={classes.description}>
+          {description}
+        </Typography>
       </div>
       <div className={`${classes.content} ${classes.removePriceContent}`}>
-        <CustomButton buttonType="button" onClick={removeMovieFromCart} name="remove" />
+        <CustomButton buttonType="button" onClick={removeMovieIdFromCart} name="remove" />
         <div className={classes.priceContainer}>
           <Typography variant="h6">{price}</Typography>
           <EuroIcon fontSize="small" />

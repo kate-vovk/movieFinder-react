@@ -11,7 +11,7 @@ export const Sidebar: FunctionComponent = () => {
       <Toolbar style={{ backgroundColor: 'lightblue' }} />
       <List>
         {sidebarFilterNamesFields.map(({ name, options }) => (
-          <CustomAccordion name={name} options={options} />
+          <CustomAccordion key={name} name={name} options={options} />
         ))}
       </List>
     </Drawer>

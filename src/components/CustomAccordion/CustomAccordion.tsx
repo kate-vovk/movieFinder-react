@@ -27,7 +27,7 @@ export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ name
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             {options.map((option) => (
-              <FilterOption item={option} />
+              <FilterOption key={option} item={option} />
             ))}
           </AccordionDetails>
         </Accordion>
