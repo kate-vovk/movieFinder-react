@@ -10,7 +10,7 @@ type TButtons = 'button' | 'submit' | 'reset';
 
 interface IProps {
   className?: string;
-  onClick?: () => void;
+  onClick?: () => any;
   name: string;
   buttonType: TButtons;
 }
@@ -18,7 +18,7 @@ interface IProps {
 export const CustomButton: FunctionComponent<IProps> = ({
   buttonType,
   className = '',
-  onClick = () => null,
+  onClick,
   name,
 }) => {
   const getIconByType = (type: string): JSX.Element | string => {

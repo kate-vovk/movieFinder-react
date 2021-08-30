@@ -5,14 +5,19 @@ import { useStyle } from './styles';
 
 interface IProps {
   price: number;
+  id: number;
 }
 
-export const MovieFooter: FunctionComponent<IProps> = ({ price }) => {
+export const openModal = (movieId: number): number => {
+  return movieId;
+};
+
+export const MovieFooter: FunctionComponent<IProps> = ({ price, id }) => {
   const classes = useStyle();
   return (
     <div className={classes.footer}>
       <CustomButton name="favorite" buttonType="button" className={classes.favoritesButton} />
-      <CustomButton name="cart" buttonType="button" />
+      <CustomButton name="cart" buttonType="button" onClick={openModal(id)} />
       <Typography className={classes.price} color="textSecondary" gutterBottom>
         {price} $
       </Typography>
