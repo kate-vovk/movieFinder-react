@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 
 interface IProps {
-  movieId: number;
+  movieId: string;
   price: number;
 }
 
@@ -16,7 +16,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
   const { userId, movies, id } = useSelector(cartSelector);
 
   const addMovieIdToCart = (): void => {
-    if (movies?.find((mId: number) => mId === movieId)) {
+    if (movies?.find((mId: string) => mId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
       dispatch(addMovieToCart({ userId, movieId, id, movies }));
@@ -24,7 +24,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
   };
 
   const classes = useStyle({
-    isIncluded: movies?.find((mId: number) => mId === movieId),
+    isIncluded: movies?.find((mId: string) => mId === movieId),
   });
   return (
     <div className={classes.footer}>
