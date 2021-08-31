@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
+import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
 import { ModalAddMovieToCard } from '../ModalAddMovieToCard/ModalAddMovieToCard';
 import { useStyle } from './styles';
@@ -21,12 +21,11 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
     if (movies?.find((mId: number) => mId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
-      //dispatch(addMovieToCart({ userId, movieId, id, movies }));
       setIsOpenModal(true);
     }
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsOpenModal(false);
   };
 
@@ -45,7 +44,12 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
       <Typography className={classes.price} color="textSecondary" gutterBottom>
         {price} $
       </Typography>
-      <ModalAddMovieToCard closeModal={closeModal} isOpenModal={isOpenModal} />
+      <ModalAddMovieToCard
+        movieId={movieId}
+        price={price}
+        isOpenModal={isOpenModal}
+        closeModal={closeModal}
+      />
     </div>
   );
 };

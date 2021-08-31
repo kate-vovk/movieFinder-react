@@ -1,13 +1,22 @@
 import { FunctionComponent } from 'react';
-import { Modal, Fade, Backdrop } from '@material-ui/core';
+import { Modal, Fade, Backdrop, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { useStyles } from './styles';
+import { ModalForm } from './ModalForm';
 
 interface IProps {
+  movieId: number;
+  price: number;
   isOpenModal: boolean;
   closeModal: () => void;
 }
 
-export const ModalAddMovieToCard: FunctionComponent<IProps> = ({ isOpenModal, closeModal }) => {
+export const ModalAddMovieToCard: FunctionComponent<IProps> = ({
+  movieId,
+  price,
+  isOpenModal,
+  closeModal,
+}) => {
   const classes = useStyles();
 
   return (
@@ -23,8 +32,11 @@ export const ModalAddMovieToCard: FunctionComponent<IProps> = ({ isOpenModal, cl
     >
       <Fade in={isOpenModal}>
         <div className={classes.paper}>
-          <h2>Transition modal</h2>
-          <p>react-transition-group animates me.</p>
+          <IconButton onClick={closeModal} aria-label="delete" className={classes.modalClose}>
+            <CloseIcon />
+          </IconButton>
+
+          <ModalForm movieId={movieId} price={price} />
         </div>
       </Fade>
     </Modal>
