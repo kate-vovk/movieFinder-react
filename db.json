@@ -1,27 +1,10 @@
 {
   "users": [
     {
-      "name": "test",
-      "email": "test@gmail.com",
-      "id": "1"
-    },
-    {
-      "email": "otest@gmail.com",
-      "password": "$2a$10$gJDggTkeI6EqvUTmMoEoLOv4Oc.0CtfHfe7yO6dNgre1foJBxDIey",
-      "name": "name",
-      "id": "T4S6w_y"
-    },
-    {
-      "email": "test@test.com",
-      "password": "$2a$10$GkEyLXa70LUd9eI7lZAqC.nxVkHMpadPuXDAZ4p4k4D6M0tVYQKGq",
-      "name": "test",
-      "id": "P-wzSwh"
-    },
-    {
-      "email": "fgdgh@dfg.cp",
-      "password": "$2a$10$cWj9kpdZi.mgxbEDg7wJxuKlIv98gD7z.k7/41/n6w4iEqScXkkMO",
-      "name": "fgd",
-      "id": "UkIUuDc"
+      "email": "larinHe@gmail.com",
+      "password": "$2a$10$hszrjIWdP4JWMhAe8Z3rPuvyocguVp.o7Zo4MFtyt/IlapEbxyODO",
+      "name": "Beshentsev",
+      "id": 1
     }
   ],
   "genres": [
@@ -536,20 +519,5 @@
       "price": 22
     }
   ],
-  "cart": [
-    {
-      "id": 2,
-      "userId": "P-wzSwh",
-      "movies": [
-        5,
-        6,
-        7
-      ]
-    },
-    {
-      "userId": "UkIUuDc",
-      "movies": [],
-      "id": 3
-    }
-  ]
+  "cart": []
 }

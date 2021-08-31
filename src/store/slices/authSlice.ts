@@ -25,10 +25,6 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }: 
   });
 });
 
-export const logout = createAsyncThunk('auth/logout', async ({ token }) => {
-  return token;
-});
-
 const initialState: IAuthInitialState = {
   token: null,
   isLoggedIn: false,
@@ -38,7 +34,11 @@ const initialState: IAuthInitialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: () => {
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registration.fulfilled, (state, action) => {
@@ -78,22 +78,9 @@ export const authSlice = createSlice({
         } else {
           toast('Error');
         }
-      })
-      .addCase(logout.fulfilled, (state) => {
-        console.log(state);
-        state.token = null;
-        state.isLoggedIn = false;
-        state.user = null;
-      })
-      .addCase(logout.rejected, (state, action) => {
-        const { message } = action.error;
-        if (message) {
-          toast(JSON.parse(message).data);
-        } else {
-          toast('Error');
-        }
       });
   },
 });
 
+export const { logout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
