@@ -4,7 +4,7 @@ interface IUser {
   email: string;
   password: string;
   name: string;
-  id: number;
+  id: string;
 }
 
 export interface IPrivateRouteProps {

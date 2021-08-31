@@ -9,7 +9,7 @@ toast.configure();
 
 const initialState: ICartData = { movies: [], userId: null, id: null };
 
-export const getCartMovies = createAsyncThunk('cart/getMovies', async (userId: number | null) => {
+export const getCartMovies = createAsyncThunk('cart/getMovies', async (userId: string | null) => {
   return getUserCart(userId);
 });
 
@@ -21,10 +21,10 @@ export const addMovieToCart = createAsyncThunk(
     id,
     movies,
   }: {
-    userId: number | null;
-    movieId: number;
-    id: number | null;
-    movies: number[];
+    userId: string | null;
+    movieId: string;
+    id: string | null;
+    movies: string[];
   }) => {
     // TODO: DELETE query will be removed when back end will be ready
     await HTTPService.delete(`${CLIENT_PATHS.cart}/${id}`);
@@ -44,12 +44,12 @@ export const removeMovieFromCart = createAsyncThunk(
     id,
     movies,
   }: {
-    userId: number | null;
-    movieId: number;
-    id: number | null;
-    movies: number[];
+    userId: string | null;
+    movieId: string;
+    id: string | null;
+    movies: string[];
   }) => {
-    const newMoviesArray = movies.filter((mId: number) => mId !== movieId);
+    const newMoviesArray = movies.filter((mId: string) => mId !== movieId);
     // TODO: DELETE query will be removed when back end will be ready
     await HTTPService.delete(`${CLIENT_PATHS.cart}/${id}`);
     await HTTPService.post(`${CLIENT_PATHS.cart}`, false, {
@@ -62,7 +62,7 @@ export const removeMovieFromCart = createAsyncThunk(
 
 export const sendData = createAsyncThunk(
   'cart/sendData',
-  async ({ userId, moviesIds }: { userId: number; moviesIds: number[] }) => {
+  async ({ userId, moviesIds }: { userId: string; moviesIds: string[] }) => {
     alert(JSON.stringify({ userId, moviesIds }));
     const cart = await getUserCart(userId);
     await HTTPService.put({ ...cart, movies: [] }, `${CLIENT_PATHS.cart}/${cart.id}`);
