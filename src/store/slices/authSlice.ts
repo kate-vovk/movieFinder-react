@@ -25,6 +25,10 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }: 
   });
 });
 
+export const logout = createAsyncThunk('auth/logout', async ({ token }) => {
+  return token;
+});
+
 const initialState: IAuthInitialState = {
   token: null,
   isLoggedIn: false,
@@ -68,6 +72,20 @@ export const authSlice = createSlice({
         state.user = action.payload.user;
       })
       .addCase(login.rejected, (state, action) => {
+        const { message } = action.error;
+        if (message) {
+          toast(JSON.parse(message).data);
+        } else {
+          toast('Error');
+        }
+      })
+      .addCase(logout.fulfilled, (state) => {
+        console.log(state);
+        state.token = null;
+        state.isLoggedIn = false;
+        state.user = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
         const { message } = action.error;
         if (message) {
           toast(JSON.parse(message).data);
