@@ -536,5 +536,11 @@
       "price": 22
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "userId": "DYJxmoe",
+      "movies": [],
+      "id": 1
+    }
+  ]
 }

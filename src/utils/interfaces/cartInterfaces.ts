@@ -14,7 +14,7 @@ export interface IMovie {
 }
 
 export interface ICartData {
-  userId: string | null;
+  userId: string;
   movies: string[];
-  id: string | null;
+  id: string;
 }

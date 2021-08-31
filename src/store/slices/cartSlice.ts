@@ -7,9 +7,9 @@ import { ICartData } from '@/utils/interfaces/cartInterfaces';
 
 toast.configure();
 
-const initialState: ICartData = { movies: [], userId: null, id: null };
+const initialState: ICartData = { movies: [], userId: '', id: '' };
 
-export const getCartMovies = createAsyncThunk('cart/getMovies', async (userId: string | null) => {
+export const getCartMovies = createAsyncThunk('cart/getMovies', async (userId: string) => {
   return getUserCart(userId);
 });
 
@@ -21,9 +21,9 @@ export const addMovieToCart = createAsyncThunk(
     id,
     movies,
   }: {
-    userId: string | null;
+    userId: string;
     movieId: string;
-    id: string | null;
+    id: string;
     movies: string[];
   }) => {
     // TODO: DELETE query will be removed when back end will be ready
@@ -44,9 +44,9 @@ export const removeMovieFromCart = createAsyncThunk(
     id,
     movies,
   }: {
-    userId: string | null;
+    userId: string;
     movieId: string;
-    id: string | null;
+    id: string;
     movies: string[];
   }) => {
     const newMoviesArray = movies.filter((mId: string) => mId !== movieId);
