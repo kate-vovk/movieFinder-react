@@ -1,7 +1,9 @@
 import { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { CLIENT_PATHS } from '@/constants/constants';
+import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 
 interface IProps {
@@ -13,7 +15,7 @@ export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
 
   return (
     <Card className={classes.container}>
-      <CardActionArea>
+      <Link to={`${CLIENT_PATHS.movie}/${movie.id}`}>
         <Typography className={classes.title} variant="h5">
           {movie.title}
         </Typography>
@@ -21,7 +23,7 @@ export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
         <CardContent className={classes.description}>
           <Typography>{movie.description}</Typography>
         </CardContent>
-      </CardActionArea>
+      </Link>
       <MovieFooter movieId={movie.id} price={movie.price} />
     </Card>
   );
