@@ -15,4 +15,6 @@ export const CLIENT_PATHS = {
 export const SERVER_PATHS = {
   signin: '/signin',
   signup: '/signup',
+  movies: '/movies',
+  main: '/',
 };
