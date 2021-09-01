@@ -2,16 +2,18 @@ import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Badge } from '@material-ui/core';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
 import { isLoggedInSelector } from '@/selectors/auth';
 import { cartSelector } from '@/selectors/cart';
+import { logout } from '@/store/slices/authSlice';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
   const isLoggedIn = useSelector(isLoggedInSelector);
   const history = useHistory();
+  const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
 
   const goToCart = useCallback(() => {
@@ -36,7 +38,8 @@ export const NavBar: FunctionComponent = () => {
                 <Button
                   key={button.name}
                   onClick={() => {
-                    // set isLoggedIn to false
+                    dispatch(logout());
+                    history.push(`${CLIENT_PATHS.signin}`);
                   }}
                 >
                   <Link to={button.to} className={classes.link}>
