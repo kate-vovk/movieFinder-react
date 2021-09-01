@@ -1,30 +1,52 @@
-import { FunctionComponent, useEffect } from 'react';
+import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { Pagination } from '@/components/Pagination/Pagination';
 import { MoviesCards } from '@/components/MoviesCards/MoviesCards';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
-import { SearchField } from '@/components/Search/SearchField';
+import { SearchBar } from '@/components/SearchBar/SearchBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartMovies } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
+import { searchOption } from '@/utils/interfaces/searchOption';
 import { useStyle } from './styles';
 
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
   const { id } = useSelector(userSelector);
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectParam, setSelectParam] = useState(searchOption.initial);
+  const [isRequest, setIsRequest] = useState(false);
+
   const dispatch = useDispatch();
+
+  const changedSelectParam = (event: ChangeEvent<{ name: string; value: searchOption }>): void => {
+    setSelectParam(event.target.value);
+  };
+
+  const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setSearchQuery(event.target.value);
+  };
 
   useEffect(() => {
     dispatch(getCartMovies(id));
   }, []);
+
   return (
     <div>
       <Sidebar />
       <div className={classes.content}>
         <div className={classes.header}>
-          <SearchField />
+          <SearchBar
+            searchQuery={searchQuery}
+            selectParam={selectParam}
+            isRequest={isRequest}
+            getSearchQuery={getSearchQuery}
+            setIsRequest={setIsRequest}
+            changedSelectParam={changedSelectParam}
+          />
         </div>
-        <MoviesCards />
+        <MoviesCards searchQuery={searchQuery} selectParam={selectParam} isRequest={isRequest} />
         <Pagination />
       </div>
     </div>

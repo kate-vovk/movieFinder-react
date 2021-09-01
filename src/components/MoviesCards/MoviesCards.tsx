@@ -1,20 +1,34 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
+import { getMovieByQuery } from '@/businessLogic/search';
 import { getMovies } from '@/businessLogic/movies';
 import { useStyle } from './styles';
 
-export const MoviesCards: FunctionComponent = () => {
+interface IProps {
+  searchQuery: string;
+  selectParam: string;
+  isRequest: boolean;
+}
+
+export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuery, isRequest }) => {
   const [movieList, setMovieList] = useState<IMovie[]>([]);
   const classes = useStyle();
 
   useEffect(() => {
-    getMovies().then((data: IMovie[]) => setMovieList(data));
-  }, []);
+    if (!selectParam && !searchQuery) {
+      getMovies().then((data: IMovie[]) => {
+        setMovieList(data);
+      });
+    }
+    getMovieByQuery(selectParam, searchQuery).then((data: IMovie[]) => {
+      setMovieList(data);
+    });
+  }, [isRequest]);
 
   return (
     <>
-      {movieList.length ? (
+      {movieList?.length ? (
         <ul className={classes.listItem}>
           {movieList.map((movie: IMovie) => (
             <li key={movie.id} className={classes.item}>
@@ -23,7 +37,7 @@ export const MoviesCards: FunctionComponent = () => {
           ))}
         </ul>
       ) : (
-        <p>Error download data from server</p>
+        <p>No data was found!</p>
       )}
     </>
   );
