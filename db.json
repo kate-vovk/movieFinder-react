@@ -128,20 +128,10 @@
       "title": "Beetlejuice",
       "year": "1988",
       "duration": 92,
-      "genres": [
-        "1",
-        "2"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["1", "2"],
+      "categories": ["1"],
       "director": "Tim Burton",
-      "actors": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "actors": ["1", "2", "3", "4"],
       "description": "A couple of recently deceased ghosts contract the services of a \"bio-exorcist\" in order to remove the obnoxious new owners of their house.",
       "cover": "https://m.media-amazon.com/images/I/7134I6+ZJmL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=ickbVzajrk0",
@@ -152,19 +142,10 @@
       "title": "The Cotton Club",
       "year": "1984",
       "duration": 127,
-      "genres": [
-        "3"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["3"],
+      "categories": ["1"],
       "director": "Francis Ford Coppola",
-      "actors": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "actors": ["5", "6", "7", "8"],
       "description": "The Cotton Club was a famous night club in Harlem. The story follows the people that visited the club, those that ran it, and is peppered with the Jazz music that made it so famous.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU5ODAyNzA4OV5BMl5BanBnXkFtZTcwNzYwNTIzNA@@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=T7m4F5GlS5Q",
@@ -175,18 +156,10 @@
       "title": "The Shawshank Redemption",
       "year": "1994",
       "duration": 142,
-      "genres": [
-        "4"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["4"],
+      "categories": ["1"],
       "director": "Frank Darabont",
-      "actors": [
-        "9",
-        "10",
-        "11"
-      ],
+      "actors": ["9", "10", "11"],
       "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
       "cover": "https://m.media-amazon.com/images/I/71H7DhnOoRL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=6hB3S9bIaco",
@@ -197,19 +170,10 @@
       "title": "Crocodile Dundee",
       "year": "1986",
       "duration": 97,
-      "genres": [
-        "5",
-        "6"
-      ],
-      "categories": [
-        "2"
-      ],
+      "genres": ["5", "6"],
+      "categories": ["2"],
       "director": "Peter Faiman",
-      "actors": [
-        "1",
-        "3",
-        "5"
-      ],
+      "actors": ["1", "3", "5"],
       "description": "An American reporter goes to the Australian outback to meet an eccentric crocodile poacher and invites him to New York City.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTg0MTU1MTg4NF5BMl5BanBnXkFtZTgwMDgzNzYxMTE@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=qvA5VyAShXw",
@@ -220,20 +184,10 @@
       "title": "Valkyrie",
       "year": "2008",
       "duration": 121,
-      "genres": [
-        "7",
-        "8",
-        "9"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["7", "8", "9"],
+      "categories": ["1"],
       "director": "Bryan Singer",
-      "actors": [
-        "7",
-        "9",
-        "11"
-      ],
+      "actors": ["7", "9", "11"],
       "description": "A dramatization of the 20 July assassination and political coup plot by desperate renegade German Army officers against Hitler during World War II.",
       "cover": "https://m.media-amazon.com/images/I/71f3+iTnLyL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=m_1UrKgvKb0",
@@ -244,19 +198,10 @@
       "title": "Ratatouille",
       "year": "2007",
       "duration": 111,
-      "genres": [
-        "4",
-        "6"
-      ],
-      "categories": [
-        "3"
-      ],
+      "genres": ["4", "6"],
+      "categories": ["3"],
       "director": "Brad Bird, Jan Pinkava",
-      "actors": [
-        "2",
-        "4",
-        "6"
-      ],
+      "actors": ["2", "4", "6"],
       "description": "A rat who can cook makes an unusual alliance with a young kitchen worker at a famous restaurant.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTMzODU0NTkxMF5BMl5BanBnXkFtZTcwMjQ4MzMzMw@@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=NgsQ8mVkN8w",
@@ -267,18 +212,10 @@
       "title": "City of God",
       "year": "2002",
       "duration": 130,
-      "genres": [
-        "1",
-        "3"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["1", "3"],
+      "categories": ["1"],
       "director": "Fernando Meirelles, Kátia Lund",
-      "actors": [
-        "8",
-        "10"
-      ],
+      "actors": ["8", "10"],
       "description": "Two boys growing up in a violent neighborhood of Rio de Janeiro take different paths: one becomes a photographer, the other a drug dealer.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4ODQ3ODkzNV5BMl5BanBnXkFtZTYwOTc4NDI3._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=dcUOO4Itgmw",
@@ -289,19 +226,10 @@
       "title": "Memento",
       "year": "2000",
       "duration": 113,
-      "genres": [
-        "5",
-        "7"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["5", "7"],
+      "categories": ["1"],
       "director": "Christopher Nolan",
-      "actors": [
-        "1",
-        "2",
-        "4"
-      ],
+      "actors": ["1", "2", "4"],
       "description": "A man juggles searching for his wife's murderer and keeping his short-term memory loss from being an obstacle.",
       "cover": "https://m.media-amazon.com/images/I/91adZwgrDCL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=4CV41hoyS8A",
@@ -312,19 +240,10 @@
       "title": "The Intouchables",
       "year": "2011",
       "duration": 112,
-      "genres": [
-        "8",
-        "9"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["8", "9"],
+      "categories": ["1"],
       "director": "Olivier Nakache, Eric Toledano",
-      "actors": [
-        "5",
-        "9",
-        "11"
-      ],
+      "actors": ["5", "9", "11"],
       "description": "After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver.",
       "cover": "https://m.media-amazon.com/images/I/71zxvndF5gL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=oK5hMNxqsFA",
@@ -335,19 +254,10 @@
       "title": "Stardust",
       "year": "2007",
       "duration": 127,
-      "genres": [
-        "2",
-        "4",
-        "9"
-      ],
-      "categories": [
-        "3"
-      ],
+      "genres": ["2", "4", "9"],
+      "categories": ["3"],
       "director": "Matthew Vaughn",
-      "actors": [
-        "1",
-        "10"
-      ],
+      "actors": ["1", "10"],
       "description": "In a countryside town bordering on a magical land, a young man makes a promise to his beloved that he'll retrieve a fallen star by venturing into the magical realm.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjkyMTE1OTYwNF5BMl5BanBnXkFtZTcwMDIxODYzMw@@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=-wwv427DAvA",
@@ -358,19 +268,10 @@
       "title": "Apocalypto",
       "year": "2006",
       "duration": 139,
-      "genres": [
-        "8",
-        "9"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["8", "9"],
+      "categories": ["1"],
       "director": "Mel Gibson",
-      "actors": [
-        "2",
-        "6",
-        "7"
-      ],
+      "actors": ["2", "6", "7"],
       "description": "As the Mayan kingdom faces its decline, the rulers insist the key to prosperity is to build more temples and offer human sacrifices. Jaguar Paw, a young man captured for sacrifice, flees to avoid his fate.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BNTM1NjYyNTY5OV5BMl5BanBnXkFtZTcwMjgwNTMzMQ@@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=gSw5l5jMnPM",
@@ -381,19 +282,10 @@
       "title": "Taxi Driver",
       "year": "1976",
       "duration": 113,
-      "genres": [
-        "1",
-        "7"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["1", "7"],
+      "categories": ["1"],
       "director": "Martin Scorsese",
-      "actors": [
-        "3",
-        "6",
-        "11"
-      ],
+      "actors": ["3", "6", "11"],
       "description": "A mentally unstable Vietnam War veteran works as a night-time taxi driver in New York City where the perceived decadence and sleaze feeds his urge for violent action, attempting to save a preadolescent prostitute in the process.",
       "cover": "https://m.media-amazon.com/images/I/81oapdOFgVL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=UUxD4-dEzn0",
@@ -404,19 +296,10 @@
       "title": "No Country for Old Men",
       "year": "2007",
       "duration": 122,
-      "genres": [
-        "4",
-        "5"
-      ],
-      "categories": [
-        "3"
-      ],
+      "genres": ["4", "5"],
+      "categories": ["3"],
       "director": "Ethan Coen, Joel Coen",
-      "actors": [
-        "4",
-        "5",
-        "9"
-      ],
+      "actors": ["4", "5", "9"],
       "description": "Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=38A__WT3-o0",
@@ -427,18 +310,10 @@
       "title": "Planet 51",
       "year": "2009",
       "duration": 91,
-      "genres": [
-        "8"
-      ],
-      "categories": [
-        "2"
-      ],
+      "genres": ["8"],
+      "categories": ["2"],
       "director": "Jorge Blanco, Javier Abad, Marcos Martínez",
-      "actors": [
-        "3",
-        "9",
-        "11"
-      ],
+      "actors": ["3", "9", "11"],
       "description": "An alien civilization is invaded by Astronaut Chuck Baker, who believes that the planet was uninhabited. Wanted by the military, Baker must get back to his ship before it goes into orbit without him.",
       "cover": "https://m.media-amazon.com/images/I/51clNc3TAbL._AC_UY218_.jpg",
       "trailer": "https://www.youtube.com/watch?v=_4LSg8s5XF4",
@@ -449,19 +324,10 @@
       "title": "Looper",
       "year": "2012",
       "duration": 119,
-      "genres": [
-        "8",
-        "9"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["8", "9"],
+      "categories": ["1"],
       "director": "Rian Johnson",
-      "actors": [
-        "1",
-        "9",
-        "10"
-      ],
+      "actors": ["1", "9", "10"],
       "description": "In 2074, when the mob wants to get rid of someone, the target is sent into the past, where a hired gun awaits - someone like Joe - who one day learns the mob wants to 'close the loop' by sending back Joe's future self for assassination.",
       "cover": "https://m.media-amazon.com/images/I/81A9LMaV21L._AC_UY218_.jpg",
       "trailer": "https://www.youtube.com/watch?v=2iQuhsmtfHw",
@@ -472,18 +338,10 @@
       "title": "Corpse Bride",
       "year": "2005",
       "duration": 77,
-      "genres": [
-        "2",
-        "3"
-      ],
-      "categories": [
-        "2"
-      ],
+      "genres": ["2", "3"],
+      "categories": ["2"],
       "director": "Tim Burton, Mike Johnson",
-      "actors": [
-        "4",
-        "8"
-      ],
+      "actors": ["4", "8"],
       "description": "When a shy groom practices his wedding vows in the inadvertent presence of a deceased young woman, she rises from the grave assuming he has married her.",
       "cover": "https://m.media-amazon.com/images/I/51fK4PJ11HL._AC_UL320_.jpg",
       "trailer": "https://www.youtube.com/watch?v=AGACeWVdFqo",
@@ -494,19 +352,10 @@
       "title": "The Third Man",
       "year": 1949,
       "duration": "93",
-      "genres": [
-        "3",
-        "5"
-      ],
-      "categories": [
-        1
-      ],
+      "genres": ["3", "5"],
+      "categories": [1],
       "director": "Carol Reed",
-      "actors": [
-        "9",
-        "10",
-        "11"
-      ],
+      "actors": ["9", "10", "11"],
       "description": "Pulp novelist Holly Martins travels to shadowy, postwar Vienna, only to find himself investigating the mysterious death of an old friend, Harry Lime.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMwNzMzMTQ0Ml5BMl5BanBnXkFtZTgwNjExMzUwNjE@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=r9yyDEDGlr0",
@@ -517,19 +366,10 @@
       "title": "The Beach",
       "year": "2000",
       "duration": 119,
-      "genres": [
-        "1",
-        "6"
-      ],
-      "categories": [
-        "1"
-      ],
+      "genres": ["1", "6"],
+      "categories": ["1"],
       "director": "Danny Boyle",
-      "actors": [
-        "6",
-        "7",
-        "9"
-      ],
+      "actors": ["6", "7", "9"],
       "description": "Twenty-something Richard travels to Thailand and finds himself in possession of a strange map. Rumours state that it leads to a solitary beach paradise, a tropical bliss - excited and intrigued, he sets out to find it.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BN2ViYTFiZmUtOTIxZi00YzIxLWEyMzUtYjQwZGNjMjNhY2IwXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
       "trailer": "https://www.youtube.com/watch?v=7vSsx1RkGls",
@@ -537,6 +377,11 @@
     }
   ],
   "cart": [
+    {
+      "id": 2,
+      "userId": "P-wzSwh",
+      "movies": [5, 6, 7]
+    },
     {
       "userId": "DYJxmoe",
       "movies": [],
