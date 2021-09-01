@@ -1,3 +1,5 @@
+import { CLIENT_PATHS } from './constants';
+
 interface isAuthorizedButton {
   name: string;
   to: string;
@@ -20,10 +22,10 @@ export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[]
     : [
         {
           name: 'SignUp',
-          to: 'signup',
+          to: `${CLIENT_PATHS.signup}`,
         },
         {
           name: 'SignIn',
-          to: 'signin',
+          to: `${CLIENT_PATHS.signin}`,
         },
       ];

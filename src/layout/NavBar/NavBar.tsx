@@ -39,7 +39,6 @@ export const NavBar: FunctionComponent = () => {
                   key={button.name}
                   onClick={() => {
                     dispatch(logout());
-                    history.push(`${CLIENT_PATHS.signin}`);
                   }}
                 >
                   <Link to={button.to} className={classes.link}>
