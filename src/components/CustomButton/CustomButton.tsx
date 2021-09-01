@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, SyntheticEvent } from 'react';
 import { Button } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -10,7 +10,7 @@ type TButtons = 'button' | 'submit' | 'reset';
 
 interface IProps {
   className?: string;
-  onClick?: () => any;
+  onClick?: (event: SyntheticEvent<HTMLButtonElement, any>) => void;
   name: string;
   buttonType: TButtons;
 }

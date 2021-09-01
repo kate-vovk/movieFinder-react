@@ -8,7 +8,7 @@ import { ModalAddMovieToCard } from '../ModalAddMovieToCard/ModalAddMovieToCard'
 import { useStyle } from './styles';
 
 interface IProps {
-  movieId: number;
+  movieId: string;
   price: number;
 }
 
@@ -18,7 +18,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const addMovieIdToCart = (): void => {
-    if (movies?.find((mId: number) => mId === movieId)) {
+    if (movies?.find((mId: string) => mId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
       setIsOpenModal(true);
@@ -30,7 +30,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
   };
 
   const classes = useStyle({
-    isIncluded: movies?.find((mId: number) => mId === movieId),
+    isIncluded: movies?.find((mId: string) => mId === movieId),
   });
   return (
     <div className={classes.footer}>

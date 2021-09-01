@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 import { ModalForm } from './ModalForm';
 
 interface IProps {
-  movieId: number;
+  movieId: string;
   price: number;
   isOpenModal: boolean;
   closeModal: () => void;
@@ -36,7 +36,7 @@ export const ModalAddMovieToCard: FunctionComponent<IProps> = ({
             <CloseIcon />
           </IconButton>
 
-          <ModalForm movieId={movieId} price={price} />
+          <ModalForm movieId={movieId} price={price} closeModal={closeModal} />
         </div>
       </Fade>
     </Modal>

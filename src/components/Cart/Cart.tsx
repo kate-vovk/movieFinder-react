@@ -22,7 +22,7 @@ export const Cart: FunctionComponent = () => {
   const [cartMovies, setCartMovies] = useState<IMovie[]>([]);
 
   const setMovies = async (): Promise<void> => {
-    movies.forEach(async (movieId: number) => {
+    movies.forEach(async (movieId: string) => {
       const data = await getMovie(movieId);
       setCartMovies((prev) => [...prev, data]);
     });

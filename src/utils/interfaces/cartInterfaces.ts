@@ -1,20 +1,20 @@
 export interface IMovie {
-  id: number;
+  id: string;
   title: string;
   description: string;
   cover: string;
   price: number;
-  year: number;
+  year: string;
   duration: number;
-  genres: number[];
-  categories: number[];
+  genres: string[];
+  categories: string[];
   director: string;
-  actors: number[];
+  actors: string[];
   trailer: string;
 }
 
 export interface ICartData {
-  userId: number | null;
-  movies: number[];
-  id: number | null;
+  userId: string;
+  movies: string[];
+  id: string;
 }

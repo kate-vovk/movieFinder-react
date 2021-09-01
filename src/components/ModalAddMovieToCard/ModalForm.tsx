@@ -9,11 +9,12 @@ import { ModalFormRadioGroup } from './ModalFormRadioGroup';
 import { ModalFormSelect } from './ModalFormSelect';
 
 interface IProps {
-  movieId: number;
+  movieId: string;
   price: number;
+  closeModal: () => void;
 }
 
-export const ModalForm: FunctionComponent<IProps> = ({ movieId, price }) => {
+export const ModalForm: FunctionComponent<IProps> = ({ movieId, price, closeModal }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { userId, id } = useSelector(cartSelector);
@@ -65,6 +66,7 @@ export const ModalForm: FunctionComponent<IProps> = ({ movieId, price }) => {
           price: priceMovie,
           movieId,
         };
+        closeModal();
         // dispatch(addMovieToCart({ userId, id, movies }));
         // eslint-disable-next-line no-alert
         alert(JSON.stringify({ userId, id, movies }, null, 2));

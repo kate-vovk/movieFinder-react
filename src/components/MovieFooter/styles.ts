@@ -10,7 +10,7 @@ export const useStyle = makeStyles({
     color: 'yellow',
   },
   addToCartButton: {
-    backgroundColor: ({ isIncluded }: { isIncluded: number | undefined }) =>
+    backgroundColor: ({ isIncluded }: { isIncluded: string | undefined }) =>
       isIncluded ? 'yellow' : 'lightGrey',
   },
   price: {
