@@ -29,6 +29,7 @@ export const addMovieToCart = createAsyncThunk(
     // TODO: DELETE query will be removed when back end will be ready
     await HTTPService.delete(`${CLIENT_PATHS.cart}/${id}`);
     await HTTPService.post(`${CLIENT_PATHS.cart}`, false, {
+      id,
       userId,
       movies: [...movies, movieId],
     });
