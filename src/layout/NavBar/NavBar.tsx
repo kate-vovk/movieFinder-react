@@ -35,7 +35,13 @@ export const NavBar: FunctionComponent = () => {
                   <Button onClick={goToCart}>{button.name}</Button>
                 </Badge>
               ) : (
-                <Button key={button.name} onClick={() => dispatch(logout())}>
+                <Button
+                  key={button.name}
+                  onClick={() => {
+                    dispatch(logout());
+                    history.push(`${CLIENT_PATHS.signin}`);
+                  }}
+                >
                   <Link to={button.to} className={classes.link}>
                     {button.name}
                   </Link>
