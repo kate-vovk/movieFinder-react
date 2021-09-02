@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import EuroIcon from '@material-ui/icons/Euro';
 import { cartSelector } from '@/selectors/cart';
-import { getCartMovies, sendData } from '@/store/slices/cartSlice';
+import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { getMovie } from '@/businessLogic/cart';
+import { PaymentDetailsModal } from '@/components/PaymentDetailsFormModal/PaymentDetailsModal';
 import { CartItem } from './CartItem';
 import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';
@@ -16,19 +17,20 @@ import { CartIsEmpty } from './CartIsEmpty';
 export const Cart: FunctionComponent = () => {
   const history = useHistory();
   const { movies } = useSelector(cartSelector);
-  const { id } = useSelector(userSelector);
+  const { id: userId } = useSelector(userSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
   const [cartMovies, setCartMovies] = useState<IMovie[]>([]);
+  const [openModal, isModalOpen] = useState(false);
 
   const setMovies = async (): Promise<void> => {
-    movies.forEach(async (movieId: string) => {
-      const data = await getMovie(movieId);
+    movies.forEach(async (movie: ICartMovieState) => {
+      const data = await getMovie(movie.movieId);
       setCartMovies((prev) => [...prev, data]);
     });
   };
   useEffect(() => {
-    dispatch(getCartMovies(id));
+    dispatch(setCartMoviesToStore(userId));
     setCartMovies([]);
     setMovies();
   }, [movies.length]);
@@ -37,8 +39,7 @@ export const Cart: FunctionComponent = () => {
     history.goBack();
   }, []);
   const clickOnBuyButton = (): void => {
-    dispatch(sendData({ userId: id, moviesIds: movies }));
-    history.push('/');
+    isModalOpen(true);
   };
   const getTotalPrice = (): number =>
     cartMovies.reduce((accumulator, { price }) => accumulator + price, 0);
@@ -70,6 +71,7 @@ export const Cart: FunctionComponent = () => {
           </div>
         </div>
       )}
+      <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
     </div>
   );
 };

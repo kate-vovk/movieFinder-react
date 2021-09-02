@@ -1,5 +1,5 @@
 import { searchOption } from '@/utils/interfaces/searchOption';
-import { CLIENT_PATHS as SERVER_PATHS } from '@/constants/constants';
+import { SERVER_PATHS } from '@/constants/constants';
 import HTTPService from '@/services/httpService';
 
 export const getMovieByParams = (selectParam: string, searchQuery: string): Promise<any> => {
