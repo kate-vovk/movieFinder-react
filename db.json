@@ -1,6 +1,7 @@
 {
   "users": [
     {
+<<<<<<< HEAD
       "email": "larinHe@gmail.com",
       "password": "$2a$10$hszrjIWdP4JWMhAe8Z3rPuvyocguVp.o7Zo4MFtyt/IlapEbxyODO",
       "name": "Beshentsev",
@@ -11,6 +12,35 @@
       "password": "$2a$10$/PlgFXD97egaHL.vLeedve2nAFNwSCSMoRSbVAEEComX1rn6/WZni",
       "name": "name",
       "id": 2
+=======
+      "name": "test",
+      "email": "test@gmail.com",
+      "id": "1"
+    },
+    {
+      "email": "otest@gmail.com",
+      "password": "$2a$10$gJDggTkeI6EqvUTmMoEoLOv4Oc.0CtfHfe7yO6dNgre1foJBxDIey",
+      "name": "name",
+      "id": "T4S6w_y"
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$GkEyLXa70LUd9eI7lZAqC.nxVkHMpadPuXDAZ4p4k4D6M0tVYQKGq",
+      "name": "test",
+      "id": "P-wzSwh"
+    },
+    {
+      "email": "fgdgh@dfg.cp",
+      "password": "$2a$10$cWj9kpdZi.mgxbEDg7wJxuKlIv98gD7z.k7/41/n6w4iEqScXkkMO",
+      "name": "fgd",
+      "id": "UkIUuDc"
+    },
+    {
+      "email": "drop@com.ua",
+      "password": "$2a$10$UNi2XU0daZFdRV30Unyl7.CWUENdvrYVRCocPlw58h/ASy4ypYcAy",
+      "name": "name1",
+      "id": "-XSAdeT"
+>>>>>>> 5024a8bab0cdd7ac184b4e0c7fee0ddd08263858
     }
   ],
   "genres": [
@@ -133,7 +163,7 @@
       ],
       "description": "A couple of recently deceased ghosts contract the services of a \"bio-exorcist\" in order to remove the obnoxious new owners of their house.",
       "cover": "https://m.media-amazon.com/images/I/7134I6+ZJmL._AC_UL320_.jpg",
-      "trailer": "https://www.youtube.com/watch?v=ickbVzajrk0",
+      "trailer": "https://www.youtube.com/embed/ickbVzajrk0",
       "price": 5
     },
     {
@@ -156,7 +186,7 @@
       ],
       "description": "The Cotton Club was a famous night club in Harlem. The story follows the people that visited the club, those that ran it, and is peppered with the Jazz music that made it so famous.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU5ODAyNzA4OV5BMl5BanBnXkFtZTcwNzYwNTIzNA@@._V1_SX300.jpg",
-      "trailer": "https://www.youtube.com/watch?v=T7m4F5GlS5Q",
+      "trailer": "https://www.youtube.com/embed/T7m4F5GlS5Q",
       "price": 5
     },
     {
@@ -178,7 +208,7 @@
       ],
       "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
       "cover": "https://m.media-amazon.com/images/I/71H7DhnOoRL._AC_UL320_.jpg",
-      "trailer": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+      "trailer": "https://www.youtube.com/embed/6hB3S9bIaco",
       "price": 9
     },
     {
@@ -201,7 +231,7 @@
       ],
       "description": "An American reporter goes to the Australian outback to meet an eccentric crocodile poacher and invites him to New York City.",
       "cover": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTg0MTU1MTg4NF5BMl5BanBnXkFtZTgwMDgzNzYxMTE@._V1_SX300.jpg",
-      "trailer": "https://www.youtube.com/watch?v=qvA5VyAShXw",
+      "trailer": "https://www.youtube.com/embed/qvA5VyAShXw",
       "price": 12
     },
     {
@@ -502,7 +532,7 @@
       "price": 11
     },
     {
-      "id": 18,
+      "id": "18",
       "title": "The Beach",
       "year": "2000",
       "duration": 119,
@@ -527,6 +557,7 @@
   ],
   "cart": [
     {
+<<<<<<< HEAD
       "id": 2,
       "userId": "P-wzSwh",
       "movies": [
@@ -538,6 +569,12 @@
     {
       "userId": "DYJxmoe",
       "movies": [],
+=======
+      "userId": "UkIUuDc",
+      "movies": [
+        "3"
+      ],
+>>>>>>> 5024a8bab0cdd7ac184b4e0c7fee0ddd08263858
       "id": 1
     }
   ]
