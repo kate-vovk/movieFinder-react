@@ -6,10 +6,14 @@ export const registrationFormValidationSchema = yup.object({
   password: yup
     .string()
     .required('Password is required')
-    .matches(/[a-z]/, 'Password should contain at least 1 lowercase letter')
-    .matches(/[~`!@#$%^&*()_-]/, 'Password should contain at least 1 special character')
-    .matches(/[A-Z]/, 'Password should contain at least 1 uppercase letter')
-    .matches(/[0-9]/, 'Password should containt at least 1 number'),
+    .matches(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{4,}$/,
+      'Password should be at least 4 symbols, contain at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character',
+    ),
+  // .matches(/[a-z]/, 'Password should contain at least 1 lowercase letter')
+  // .matches(/[~`!@#$%^&*()_-]/, 'Password should contain at least 1 special character')
+  // .matches(/[A-Z]/, 'Password should contain at least 1 uppercase letter')
+  // .matches(/[0-9]/, 'Password should containt at least 1 number'),
   confirmPassword: yup
     .string()
     .required('Password is required')

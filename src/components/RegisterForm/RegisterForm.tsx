@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
@@ -18,15 +18,16 @@ interface IFormInputs {
   confirmPassword: string;
 }
 
-export const RegisterForm: FunctionComponent = () => {
+export const RegisterForm: FunctionComponent<{}> = () => {
   const history = useHistory();
   const isLoggedIn = useSelector(isLoggedInSelector);
   const classes = useStyle();
 
   const dispatch = useDispatch();
 
-  const onSubmit = (values: IFormInputs): void => {
+  const onSubmit = (values: IFormInputs, { setSubmitting }: FormikHelpers<IFormInputs>): void => {
     dispatch(registration(values));
+    setSubmitting(false);
   };
 
   if (isLoggedIn) {
