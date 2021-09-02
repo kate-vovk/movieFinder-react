@@ -19,15 +19,123 @@
     },
     {
       "email": "fgdgh@dfg.cp",
-      "password": "$2a$10$cWj9kpdZi.mgxbEDg7wJxuKlIv98gD7z.k7/41/n6w4iEqScXkkMO",
+      "password": "$2a$10$LAeeRP9OZvs8vLQrEt8LLuJ.PGpzwuu4sxC5U31DDYmHpshh9z7Ke",
       "name": "fgd",
-      "id": "UkIUuDc"
-    },
-    {
-      "email": "drop@com.ua",
-      "password": "$2a$10$UNi2XU0daZFdRV30Unyl7.CWUENdvrYVRCocPlw58h/ASy4ypYcAy",
-      "name": "name1",
-      "id": "-XSAdeT"
+      "id": "UkIUuDc",
+      "rentedMoviesList": [
+        {
+          "movieId": "1",
+          "dateOfPurchase": "Tue, 31 Aug 2021 15:28:14 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "2",
+          "dateOfPurchase": "Tue, 31 Aug 2021 15:28:14 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "3",
+          "dateOfPurchase": "Tue, 31 Aug 2021 15:28:14 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "5",
+          "dateOfPurchase": "Tue, 31 Aug 2021 15:29:10 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "17",
+          "dateOfPurchase": "Tue, 31 Aug 2021 15:37:36 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "16",
+          "dateOfPurchase": "Tue, 31 Aug 2021 15:37:36 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "1",
+          "dateOfPurchase": "Tue, 31 Aug 2021 16:15:20 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "3",
+          "dateOfPurchase": "Tue, 31 Aug 2021 16:15:20 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "2",
+          "dateOfPurchase": "Tue, 31 Aug 2021 16:15:20 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "1",
+          "dateOfPurchase": "Thu, 02 Sep 2021 07:40:42 GMT",
+          "price": 3
+        },
+        {
+          "movieId": "2",
+          "dateOfPurchase": "Thu, 02 Sep 2021 07:40:42 GMT",
+          "price": 3
+        }
+      ],
+      "myMovies": [
+        {
+          "movieId": "1",
+          "expirationDate": "Thu, 30 Sep 2021 15:28:14 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "2",
+          "expirationDate": "Thu, 30 Sep 2021 15:28:14 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "3",
+          "expirationDate": "Thu, 30 Sep 2021 15:28:14 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "5",
+          "expirationDate": "0",
+          "quality": "HD"
+        },
+        {
+          "movieId": "17",
+          "expirationDate": "Thu, 30 Sep 2021 15:37:36 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "16",
+          "expirationDate": "Thu, 30 Sep 2021 15:37:36 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "1",
+          "expirationDate": "Thu, 30 Sep 2021 16:15:20 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "3",
+          "expirationDate": "Thu, 30 Sep 2021 16:15:20 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "2",
+          "expirationDate": "Thu, 30 Sep 2021 16:15:20 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "1",
+          "expirationDate": "Sat, 02 Oct 2021 07:40:42 GMT",
+          "quality": "HD"
+        },
+        {
+          "movieId": "2",
+          "expirationDate": "Sat, 02 Oct 2021 07:40:42 GMT",
+          "quality": "HD"
+        }
+      ]
     }
   ],
   "genres": [
@@ -544,11 +652,25 @@
   ],
   "cart": [
     {
-      "userId": "UkIUuDc",
+      "id": "2",
+      "userId": "P-wzSwh",
       "movies": [
-        "3"
-      ],
-      "id": 1
+        {
+          "movieId": "1",
+          "period": 30,
+          "quality": "HD"
+        },
+        {
+          "movieId": "2",
+          "period": 3,
+          "quality": "HD"
+        }
+      ]
+    },
+    {
+      "id": "1gwRAtC",
+      "userId": "UkIUuDc",
+      "movies": []
     }
   ]
 }
