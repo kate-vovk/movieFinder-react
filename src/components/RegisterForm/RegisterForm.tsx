@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormikHelpers, useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
 import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
-import { isLoggedInSelector } from '@/selectors/auth';
+import { isLoggedInSelector, isLoadingSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { registration } from '@/store/slices/authSlice';
 import { useStyle } from './styles';
@@ -19,8 +19,10 @@ interface IFormInputs {
 }
 
 export const RegisterForm: FunctionComponent<unknown> = () => {
+  const [IsDisabledButton, setIsDisabledButton] = useState(false);
   const history = useHistory();
   const isLoggedIn = useSelector(isLoggedInSelector);
+  const isLoading = useSelector(isLoadingSelector);
   const classes = useStyle();
 
   const dispatch = useDispatch();
@@ -28,6 +30,10 @@ export const RegisterForm: FunctionComponent<unknown> = () => {
   const onSubmit = (values: IFormInputs, { setSubmitting }: FormikHelpers<IFormInputs>): void => {
     dispatch(registration(values));
     setSubmitting(false);
+    if (isLoading) {
+      setIsDisabledButton(!IsDisabledButton);
+    }
+    console.log(IsDisabledButton);
   };
 
   if (isLoggedIn) {
@@ -69,6 +75,7 @@ export const RegisterForm: FunctionComponent<unknown> = () => {
           variant="contained"
           fullWidth
           type="submit"
+          disabled={IsDisabledButton}
         >
           Submit
         </Button>

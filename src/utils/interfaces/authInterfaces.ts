@@ -48,5 +48,6 @@ export interface IAuthInitialState {
 export interface IAuth {
   token: string;
   isLoggedIn: boolean;
+  IsLoading: boolean;
   user: IUser;
 }
