@@ -18,7 +18,7 @@ interface IFormInputs {
   confirmPassword: string;
 }
 
-export const RegisterForm: FunctionComponent<unknown> = () => {
+export const RegisterForm: FunctionComponent = () => {
   const [isDisabledButton, setIsDisabledButton] = useState(false);
   const history = useHistory();
   const isLoggedIn = useSelector(isLoggedInSelector);

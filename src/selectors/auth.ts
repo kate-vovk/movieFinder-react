@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { IAuth, IState } from '@/utils/interfaces/authInterfaces';
+import { IAuth, IStateSelector } from '@/utils/interfaces/authInterfaces';
 
-const stateSelector = (state: IState): IAuth => state.auth;
+const stateSelector = (state: IStateSelector): IAuth => state.auth;
 
 export const isLoggedInSelector = createSelector(stateSelector, (state) => state?.isLoggedIn);
 
