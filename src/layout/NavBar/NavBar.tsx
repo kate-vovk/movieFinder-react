@@ -20,9 +20,9 @@ export const NavBar: FunctionComponent = () => {
     history.push(CLIENT_PATHS.cart);
   }, []);
 
-  const goToLogOut = (): void => {
+  const goToLogOut = useCallback(() => {
     dispatch(logout());
-  };
+  }, []);
 
   const classes = useStyle();
   return (
