@@ -1,17 +1,17 @@
 import { FunctionComponent } from 'react';
-import { Modal, Fade, Backdrop, IconButton } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { Modal, Fade, Backdrop } from '@material-ui/core';
+import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyles } from './styles';
 import { ModalForm } from './ModalForm';
 
-interface IProps {
+interface IComponentNameProps {
   movieId: string;
   price: number;
   isOpenModal: boolean;
   closeModal: () => void;
 }
 
-export const ModalAddMovieToCard: FunctionComponent<IProps> = ({
+export const ModalAddMovieToCard: FunctionComponent<IComponentNameProps> = ({
   movieId,
   price,
   isOpenModal,
@@ -32,9 +32,12 @@ export const ModalAddMovieToCard: FunctionComponent<IProps> = ({
     >
       <Fade in={isOpenModal}>
         <div className={classes.paper}>
-          <IconButton onClick={closeModal} aria-label="delete" className={classes.modalClose}>
-            <CloseIcon />
-          </IconButton>
+          <CustomButton
+            name="close"
+            buttonType="button"
+            className={classes.modalClose}
+            onClick={closeModal}
+          />
 
           <ModalForm movieId={movieId} price={price} closeModal={closeModal} />
         </div>

@@ -18,6 +18,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       top: '5px',
       right: '5px',
+      minWidth: 'auto',
     },
     modalTitle: {
       marginBottom: '15px',

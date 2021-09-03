@@ -2,12 +2,15 @@ import { FunctionComponent, ChangeEvent } from 'react';
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import { useStyles } from './styles';
 
-interface IProps {
+interface IComponentNameProps {
   onChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   value: string;
 }
 
-export const ModalFormRadioGroup: FunctionComponent<IProps> = ({ onChange, value }) => {
+export const ModalFormRadioGroup: FunctionComponent<IComponentNameProps> = ({
+  onChange,
+  value,
+}) => {
   const classes = useStyles();
 
   return (
