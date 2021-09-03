@@ -24,17 +24,17 @@ export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, 
   const dispatch = useDispatch();
   const { userId, movies, id } = useSelector(cartSelector);
   const [priceMovie, setPriceMovie] = useState(price);
-  const [valueInputRadio, setValueInputRadio] = useState('hd');
-  const [valueInputSelect, setValueInputSelect] = useState(0);
+  const [valueQualityInput, setValueQualityInput] = useState('hd');
+  const [valuePeriodInput, setValuePeriodInput] = useState(0);
 
-  const addValueInputRadio = (event: ChangeEvent<HTMLInputElement>): void => {
-    setValueInputRadio((event.target as HTMLInputElement).value);
+  const getValueQualityInput = (event: ChangeEvent<HTMLInputElement>): void => {
+    setValueQualityInput((event.target as HTMLInputElement).value);
   };
 
-  const addValueInputSelect = (
+  const getValuePeriodInput = (
     event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
   ): void => {
-    setValueInputSelect(event.target.value as number);
+    setValuePeriodInput(event.target.value as number);
   };
 
   const calcCostMovieHd = (cost: number, valueInput: number): number => {
@@ -71,8 +71,8 @@ export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, 
     const movie = {
       ...values,
       movieId,
-      period: valueInputSelect,
-      quality: valueInputRadio,
+      period: valuePeriodInput,
+      quality: valueQualityInput,
       price: priceMovie,
     };
     dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
@@ -80,12 +80,12 @@ export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, 
   };
 
   useEffect(() => {
-    if (valueInputRadio === 'hd') {
-      setPriceMovie(calcCostMovieHd(price, valueInputSelect));
-    } else if (valueInputRadio === 'sd') {
-      setPriceMovie(calcCostMovieSd(price, valueInputSelect));
+    if (valueQualityInput === 'hd') {
+      setPriceMovie(calcCostMovieHd(price, valuePeriodInput));
+    } else if (valueQualityInput === 'sd') {
+      setPriceMovie(calcCostMovieSd(price, valuePeriodInput));
     }
-  }, [valueInputRadio, valueInputSelect]);
+  }, [valueQualityInput, valuePeriodInput]);
 
   return (
     <Formik
@@ -97,8 +97,8 @@ export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, 
     >
       {() => (
         <Form>
-          <ModalFormRadioGroup onChange={addValueInputRadio} value={valueInputRadio} />
-          <ModalFormSelect onChange={addValueInputSelect} value={valueInputSelect} />
+          <ModalFormRadioGroup onChange={getValueQualityInput} value={valueQualityInput} />
+          <ModalFormSelect onChange={getValuePeriodInput} value={valuePeriodInput} />
           <div className={classes.modalFormFooter}>
             <div className={classes.modalFormPrice}>
               <span>{priceMovie}</span> $
