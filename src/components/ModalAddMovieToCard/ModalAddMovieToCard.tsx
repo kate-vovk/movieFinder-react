@@ -4,14 +4,14 @@ import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyles } from './styles';
 import { ModalForm } from './ModalForm';
 
-interface IComponentNameProps {
+interface IComponentProps {
   movieId: string;
   price: number;
   isOpenModal: boolean;
   closeModal: () => void;
 }
 
-export const ModalAddMovieToCard: FunctionComponent<IComponentNameProps> = ({
+export const ModalAddMovieToCard: FunctionComponent<IComponentProps> = ({
   movieId,
   price,
   isOpenModal,

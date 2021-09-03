@@ -8,7 +8,7 @@ import { useStyles } from './styles';
 import { ModalFormRadioGroup } from './ModalFormRadioGroup';
 import { ModalFormSelect } from './ModalFormSelect';
 
-interface IComponentNameProps {
+interface IComponentProps {
   movieId: string;
   price: number;
   closeModal: () => void;
@@ -19,11 +19,7 @@ interface IStateValuesForm {
   period: number;
 }
 
-export const ModalForm: FunctionComponent<IComponentNameProps> = ({
-  movieId,
-  price,
-  closeModal,
-}) => {
+export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, closeModal }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { userId, movies, id } = useSelector(cartSelector);

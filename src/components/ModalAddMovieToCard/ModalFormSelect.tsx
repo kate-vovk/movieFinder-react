@@ -2,7 +2,7 @@ import { FunctionComponent, ChangeEvent, ReactNode } from 'react';
 import { FormControl, FormLabel, Select, MenuItem } from '@material-ui/core';
 import { useStyles } from './styles';
 
-interface IComponentNameProps {
+interface IComponentProps {
   onChange: (
     event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
     child: ReactNode,
@@ -10,7 +10,7 @@ interface IComponentNameProps {
   value: number;
 }
 
-export const ModalFormSelect: FunctionComponent<IComponentNameProps> = ({ onChange, value }) => {
+export const ModalFormSelect: FunctionComponent<IComponentProps> = ({ onChange, value }) => {
   const classes = useStyles();
 
   return (
