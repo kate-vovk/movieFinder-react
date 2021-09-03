@@ -19,7 +19,7 @@ interface IProps {
 export const CustomButton: FunctionComponent<IProps> = ({
   buttonType,
   className = '',
-  onClick = () => null,
+  onClick,
   name,
 }) => {
   const getIconByType = (type: string): JSX.Element | string => {
