@@ -136,6 +136,12 @@
           "quality": "HD"
         }
       ]
+    },
+    {
+      "email": "drop@com.ua",
+      "password": "$2a$10$ioQGLO9IGLJxQ/weKZqyP.9w7qBhnZy8DZK9URkywpJxAtkM7gq42",
+      "name": "name1",
+      "id": "-E9GRh9"
     }
   ],
   "genres": [
@@ -652,24 +658,13 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "userId": "P-wzSwh",
-      "movies": [
-        {
-          "movieId": "1",
-          "period": 30,
-          "quality": "HD"
-        },
-        {
-          "movieId": "2",
-          "period": 3,
-          "quality": "HD"
-        }
-      ]
-    },
-    {
       "id": "1gwRAtC",
       "userId": "UkIUuDc",
+      "movies": []
+    },
+    {
+      "id": "2",
+      "userId": "-E9GRh9",
       "movies": []
     }
   ]
