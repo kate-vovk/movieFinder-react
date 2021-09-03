@@ -9,8 +9,8 @@ import { useStyle } from './styles';
 interface IProps {
   searchQuery: string;
   selectParam: string;
-  isRequest: boolean;
-  setIsRequest: (bool: boolean) => void;
+  // isRequest: boolean;
+  // setIsRequest: (bool: boolean) => void;
   getSearchQuery: (event: ChangeEvent<HTMLInputElement>) => void;
   changedSelectParam: (event: ChangeEvent<{ name: string; value: searchOption }>) => void;
 }
@@ -18,14 +18,14 @@ interface IProps {
 export const SearchBar: FunctionComponent<IProps> = ({
   searchQuery,
   selectParam,
-  isRequest,
+  // isRequest,
   getSearchQuery,
   changedSelectParam,
-  setIsRequest,
+  // setIsRequest,
 }) => {
   const getParamsForSearchQuery = (event: SyntheticEvent<HTMLButtonElement, any>): void => {
     event.preventDefault();
-    setIsRequest(!isRequest);
+    // setIsRequest(!isRequest);
   };
 
   const classes = useStyle();

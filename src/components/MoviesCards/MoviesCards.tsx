@@ -2,16 +2,15 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
 import { getMovieByQuery } from '@/businessLogic/search';
-// import { getMovies } from '@/businessLogic/movies';
 import { useStyle } from './styles';
 
 interface IProps {
   searchQuery: string;
   selectParam: string;
-  isRequest: boolean;
+  // isRequest: boolean;
 }
 
-export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuery, isRequest }) => {
+export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuery }) => {
   const [movieList, setMovieList] = useState<IMovie[]>([]);
   const classes = useStyle();
 
@@ -19,7 +18,9 @@ export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuer
     getMovieByQuery(selectParam, searchQuery).then((data: IMovie[]) => {
       setMovieList(data);
     });
-  }, [isRequest]);
+  }, [selectParam, searchQuery]);
+
+  console.log(movieList);
 
   return (
     <>
