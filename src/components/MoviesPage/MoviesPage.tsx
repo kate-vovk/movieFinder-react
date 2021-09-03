@@ -15,7 +15,7 @@ export const MoviesPage: FunctionComponent = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectParam, setSelectParam] = useState(searchOption.initial);
-  const [isRequest, setIsRequest] = useState(false);
+  // const [isRequest, setIsRequest] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -40,13 +40,13 @@ export const MoviesPage: FunctionComponent = () => {
           <SearchBar
             searchQuery={searchQuery}
             selectParam={selectParam}
-            isRequest={isRequest}
+            // isRequest={isRequest}
             getSearchQuery={getSearchQuery}
-            setIsRequest={setIsRequest}
+            // setIsRequest={setIsRequest}
             changedSelectParam={changedSelectParam}
           />
         </div>
-        <MoviesCards searchQuery={searchQuery} selectParam={selectParam} isRequest={isRequest} />
+        <MoviesCards searchQuery={searchQuery} selectParam={selectParam} />
         <Pagination />
       </div>
     </div>
