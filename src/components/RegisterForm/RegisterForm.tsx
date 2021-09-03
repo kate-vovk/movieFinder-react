@@ -19,7 +19,7 @@ interface IFormInputs {
 }
 
 export const RegisterForm: FunctionComponent<unknown> = () => {
-  const [IsDisabledButton, setIsDisabledButton] = useState(false);
+  const [isDisabledButton, setIsDisabledButton] = useState(false);
   const history = useHistory();
   const isLoggedIn = useSelector(isLoggedInSelector);
   const isLoading = useSelector(isLoadingSelector);
@@ -31,7 +31,7 @@ export const RegisterForm: FunctionComponent<unknown> = () => {
     dispatch(registration(values));
     setSubmitting(false);
     if (isLoading) {
-      setIsDisabledButton(!IsDisabledButton);
+      setIsDisabledButton(!isDisabledButton);
     }
   };
 
@@ -74,7 +74,7 @@ export const RegisterForm: FunctionComponent<unknown> = () => {
           variant="contained"
           fullWidth
           type="submit"
-          disabled={IsDisabledButton}
+          disabled={isDisabledButton}
         >
           Submit
         </Button>
