@@ -2,9 +2,10 @@ import { FunctionComponent, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { ModalAddMovieToCard } from '@/components/ModalAddMovieToCard/ModalAddMovieToCard';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
-import { ModalAddMovieToCard } from '../ModalAddMovieToCard/ModalAddMovieToCard';
+import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
 
 interface IProps {
@@ -12,16 +13,23 @@ interface IProps {
   price: number;
 }
 
-export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProps) => {
+export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { userId, movies, id } = useSelector(cartSelector);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const addMovieIdToCart = (): void => {
-    if (movies?.find((mId: string) => mId === movieId)) {
+    if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
       setIsOpenModal(true);
+      // dispatch(
+      //   addMovieToCart({
+      //     userId,
+      //     id,
+      //     movies: [...movies, { movieId, period: PERIOD, quality: QUALITY, price: PRICE }],
+      //   }),
+      // );
     }
   };
 
@@ -30,7 +38,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }: IProp
   };
 
   const classes = useStyle({
-    isIncluded: movies?.find((mId: string) => mId === movieId),
+    isIncluded: Boolean(movies.find((movie: ICartMovieState) => movie.movieId === movieId)),
   });
   return (
     <div className={classes.footer}>

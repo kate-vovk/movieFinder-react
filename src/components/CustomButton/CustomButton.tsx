@@ -5,6 +5,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import CloseIcon from '@material-ui/icons/Close';
 
 type TButtons = 'button' | 'submit' | 'reset';
 
@@ -35,6 +36,8 @@ export const CustomButton: FunctionComponent<IProps> = ({
         return <ShoppingBasketIcon />;
       case 'back':
         return <KeyboardBackspaceIcon />;
+      case 'close':
+        return <CloseIcon />;
       default:
         return type;
     }

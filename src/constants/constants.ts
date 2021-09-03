@@ -5,17 +5,19 @@ export const API_WEBSITE = 'https://www.themoviedb.org/';
 
 export const CLIENT_PATHS = {
   user: '/user',
+  cart: '/cart',
   movies: '/movies',
   movie: '/movie',
   signin: '/signin',
   signup: '/signup',
-  cart: '/cart',
   main: '/',
 };
 
 export const SERVER_PATHS = {
   signin: '/signin',
   signup: '/signup',
+  cart: '/cart',
+  users: '/users',
   movies: '/movies',
   actors: '/actors',
   genres: '/genres',
