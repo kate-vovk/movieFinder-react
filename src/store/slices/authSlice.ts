@@ -29,7 +29,6 @@ const initialState: IAuthInitialState = {
   token: null,
   isLoggedIn: false,
   user: null,
-  isLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -45,7 +44,6 @@ export const authSlice = createSlice({
       .addCase(registration.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.isLoading = false;
         state.user = action.payload.user;
       })
       .addCase(registration.rejected, (state, action) => {

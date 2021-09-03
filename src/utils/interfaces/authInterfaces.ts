@@ -42,12 +42,10 @@ export interface IAuthInitialState {
   token: string | null;
   isLoggedIn: boolean;
   user: IUser | null;
-  isLoading: boolean;
 }
 
 export interface IAuth {
   token: string;
   isLoggedIn: boolean;
-  isLoading: boolean;
   user: IUser;
 }
