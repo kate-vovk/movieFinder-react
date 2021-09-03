@@ -13,8 +13,15 @@ export interface IMovie {
   trailer: string;
 }
 
-export interface ICartData {
+export interface ICart {
   userId: string;
-  movies: string[];
+  movies: ICartMovieState[];
   id: string;
+}
+
+export interface ICartMovieState {
+  movieId: string;
+  period: number;
+  quality: string;
+  price: number;
 }
