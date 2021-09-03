@@ -60,6 +60,7 @@ export const ModalForm: FunctionComponent<IProps> = ({ movieId, price, closeModa
       }}
       onSubmit={(values) => {
         const movie = {
+          ...values,
           movieId,
           period: valueSelect,
           quality: valueRadio,
