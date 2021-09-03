@@ -30,6 +30,7 @@ export interface IAuthInitialState {
   token: string | null;
   isLoggedIn: boolean;
   user: IUser | null;
+  IsLoading: boolean;
 }
 
 export interface IAuth {
