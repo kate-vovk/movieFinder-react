@@ -29,7 +29,7 @@ const initialState: IAuthInitialState = {
   token: null,
   isLoggedIn: false,
   user: null,
-  isLoading: true,
+  isLoading: false,
 };
 
 export const authSlice = createSlice({

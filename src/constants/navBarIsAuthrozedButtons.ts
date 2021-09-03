@@ -16,7 +16,7 @@ export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[]
         },
         {
           name: 'SignOut',
-          to: '/',
+          to: `${CLIENT_PATHS.main}`,
         },
       ]
     : [
