@@ -8,12 +8,12 @@ import { cartSelector } from '@/selectors/cart';
 import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IComponentProps {
   movieId: string;
   price: number;
 }
 
-export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
+export const MovieControl: FunctionComponent<IComponentProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { userId, movies, id } = useSelector(cartSelector);
   const [isOpenModal, setIsOpenModal] = useState(false);

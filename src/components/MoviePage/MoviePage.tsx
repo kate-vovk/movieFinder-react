@@ -8,11 +8,11 @@ import { MoviePoster } from './MoviePoster/MoviePoster';
 import { MovieFeedback } from './MovieFeedback/MovieFeedback';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IComponentProps {
   id: string;
 }
 
-export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
+export const MoviePage: FunctionComponent<IComponentProps> = ({ id }) => {
   const classes = useStyle();
   const history = useHistory();
   const [movie, setMovie] = useState<IMovie>({} as IMovie);
@@ -48,7 +48,12 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
         {Object.keys(movie).length ? (
           <>
             <div className={classes.contentMovie}>
-              <MoviePoster cover={movie?.cover} price={movie?.price} title={movie?.title} />
+              <MoviePoster
+                cover={movie?.cover}
+                price={movie?.price}
+                title={movie?.title}
+                movieId={id}
+              />
               <MovieInfo
                 title={movie?.title}
                 year={movie?.year}
