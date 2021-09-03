@@ -35,7 +35,7 @@ export interface IAuthData {
   email: string;
 }
 
-export interface IStateSelector {
+export interface IStoreState {
   auth: IAuth;
 }
 export interface IAuthInitialState {
