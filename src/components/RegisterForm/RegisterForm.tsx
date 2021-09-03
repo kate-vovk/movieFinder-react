@@ -33,7 +33,6 @@ export const RegisterForm: FunctionComponent<unknown> = () => {
     if (isLoading) {
       setIsDisabledButton(!IsDisabledButton);
     }
-    console.log(IsDisabledButton);
   };
 
   if (isLoggedIn) {
