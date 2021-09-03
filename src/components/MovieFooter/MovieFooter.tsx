@@ -23,13 +23,6 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
       setIsOpenModal(true);
-      // dispatch(
-      //   addMovieToCart({
-      //     userId,
-      //     id,
-      //     movies: [...movies, { movieId, period: PERIOD, quality: QUALITY, price: PRICE }],
-      //   }),
-      // );
     }
   };
 

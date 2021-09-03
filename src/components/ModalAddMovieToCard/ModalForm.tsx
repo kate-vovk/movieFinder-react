@@ -17,7 +17,7 @@ interface IProps {
 export const ModalForm: FunctionComponent<IProps> = ({ movieId, price, closeModal }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userId, id } = useSelector(cartSelector);
+  const { userId, movies, id } = useSelector(cartSelector);
   const [priceMovie, setPriceMovie] = useState(price);
   const [valueRadio, setValueRadio] = useState('hd');
   const [valueSelect, setValueSelect] = useState(0);
@@ -59,17 +59,14 @@ export const ModalForm: FunctionComponent<IProps> = ({ movieId, price, closeModa
         period: 0,
       }}
       onSubmit={(values) => {
-        const movies = {
-          ...values,
-          quality: valueRadio,
-          period: valueSelect,
-          price: priceMovie,
+        const movie = {
           movieId,
+          period: valueSelect,
+          quality: valueRadio,
+          price: priceMovie,
         };
+        dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
         closeModal();
-        // dispatch(addMovieToCart({ userId, id, movies }));
-        // eslint-disable-next-line no-alert
-        alert(JSON.stringify({ userId, id, movies }, null, 2));
       }}
     >
       {() => (
