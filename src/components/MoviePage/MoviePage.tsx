@@ -57,6 +57,7 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
                 actorsList={actors}
                 genresList={genres}
                 categoriesList={categories}
+                studio={movie?.company}
               />
             </div>
             <div className={classes.descriptionMovie}>

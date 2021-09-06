@@ -13,11 +13,13 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
         HTTPService.get(`${SERVER_PATHS.movies}?description_like=${searchQuery}`),
       ]).then((response) => {
         const movies = response.reduce((previous, current) => {
-          console.log(`previous: ${previous}`);
           return previous.concat(current.data);
         }, []);
 
-        return { data: movies };
+        const finalMovies = Array.from(new Set(movies.map(JSON.stringify))).map(
+          JSON.parse as never,
+        );
+        return { data: finalMovies };
       });
 
     case searchOption.movie:
