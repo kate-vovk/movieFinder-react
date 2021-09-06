@@ -136,6 +136,12 @@
           "quality": "HD"
         }
       ]
+    },
+    {
+      "email": "larinHe@gmail.comm",
+      "password": "$2a$10$C0i8t7XK5yPbZn8kbY/U/eEWuZ5TgnZmUFbZIQf/J3hEGwQPyiAmq",
+      "name": "Beshentsev",
+      "id": "Yj2PuvG"
     }
   ],
   "genres": [
@@ -241,6 +247,7 @@
       "id": "1",
       "title": "Beetlejuice",
       "year": "1988",
+      "company": "Walt Disney Pictures",
       "duration": 92,
       "genres": [
         "1",
@@ -265,6 +272,7 @@
       "id": "2",
       "title": "The Cotton Club",
       "year": "1984",
+      "company": "Universal Pictures",
       "duration": 127,
       "genres": [
         "3"
@@ -288,6 +296,7 @@
       "id": "3",
       "title": "The Shawshank Redemption",
       "year": "1994",
+      "company": "Columbia Pictures",
       "duration": 142,
       "genres": [
         "4"
@@ -310,6 +319,7 @@
       "id": "4",
       "title": "Crocodile Dundee",
       "year": "1986",
+      "company": "Walt Disney Pictures",
       "duration": 97,
       "genres": [
         "5",
@@ -333,6 +343,7 @@
       "id": "5",
       "title": "Valkyrie",
       "year": "2008",
+      "company": "Columbia Pictures",
       "duration": 121,
       "genres": [
         "7",
@@ -357,6 +368,7 @@
       "id": "6",
       "title": "Ratatouille",
       "year": "2007",
+      "company": "Paramount Pictures",
       "duration": 111,
       "genres": [
         "4",
@@ -380,6 +392,7 @@
       "id": "7",
       "title": "City of God",
       "year": "2002",
+      "company": "Columbia Pictures",
       "duration": 130,
       "genres": [
         "1",
@@ -402,6 +415,7 @@
       "id": "8",
       "title": "Memento",
       "year": "2000",
+      "company": "Walt Disney Pictures",
       "duration": 113,
       "genres": [
         "5",
@@ -425,6 +439,7 @@
       "id": "9",
       "title": "The Intouchables",
       "year": "2011",
+      "company": "Universal Pictures",
       "duration": 112,
       "genres": [
         "8",
@@ -448,6 +463,7 @@
       "id": "10",
       "title": "Stardust",
       "year": "2007",
+      "company": "Paramount Pictures",
       "duration": 127,
       "genres": [
         "2",
@@ -471,6 +487,7 @@
       "id": "11",
       "title": "Apocalypto",
       "year": "2006",
+      "company": "Walt Disney Pictures",
       "duration": 139,
       "genres": [
         "8",
@@ -494,6 +511,7 @@
       "id": "12",
       "title": "Taxi Driver",
       "year": "1976",
+      "company": "Columbia Pictures",
       "duration": 113,
       "genres": [
         "1",
@@ -517,6 +535,7 @@
       "id": "13",
       "title": "No Country for Old Men",
       "year": "2007",
+      "company": "Paramount Pictures",
       "duration": 122,
       "genres": [
         "4",
@@ -540,6 +559,7 @@
       "id": "14",
       "title": "Planet 51",
       "year": "2009",
+      "company": "Paramount Pictures",
       "duration": 91,
       "genres": [
         "8"
@@ -562,6 +582,7 @@
       "id": "15",
       "title": "Looper",
       "year": "2012",
+      "company": "Paramount Pictures",
       "duration": 119,
       "genres": [
         "8",
@@ -585,6 +606,7 @@
       "id": "16",
       "title": "Corpse Bride",
       "year": "2005",
+      "company": "Paramount Pictures",
       "duration": 77,
       "genres": [
         "2",
@@ -607,6 +629,7 @@
       "id": "17",
       "title": "The Third Man",
       "year": 1949,
+      "company": "Walt Disney Pictures",
       "duration": "93",
       "genres": [
         "3",
@@ -629,6 +652,7 @@
     {
       "id": "18",
       "title": "The Beach",
+      "company": "Universal Pictures",
       "year": "2000",
       "duration": 119,
       "genres": [
@@ -652,24 +676,8 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "userId": "P-wzSwh",
-      "movies": [
-        {
-          "movieId": "1",
-          "period": 30,
-          "quality": "HD"
-        },
-        {
-          "movieId": "2",
-          "period": 3,
-          "quality": "HD"
-        }
-      ]
-    },
-    {
-      "id": "1gwRAtC",
-      "userId": "UkIUuDc",
+      "id": "1",
+      "userId": "DYJxmoe",
       "movies": []
     }
   ]

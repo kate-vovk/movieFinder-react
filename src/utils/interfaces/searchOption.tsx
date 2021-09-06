@@ -1,5 +1,5 @@
 export enum searchOption {
-  initial = 'initial',
+  initial = '',
   movie = 'movie',
   actor = 'actor',
   studio = 'studio',
