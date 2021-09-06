@@ -1,29 +1,31 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
-import { getMovieByQuery } from '@/businessLogic/search';
-import { getMovies } from '@/businessLogic/movies';
+import { getMovieList, getMovieListWithQuery } from '@/store/slices/searchSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { movieListSelector } from '@/selectors/search';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMoviesCardsProps {
   searchQuery: string;
   selectParam: string;
   isRequest: boolean;
 }
 
-export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuery, isRequest }) => {
-  const [movieList, setMovieList] = useState<IMovie[]>([]);
+export const MoviesCards: FunctionComponent<IMoviesCardsProps> = ({
+  selectParam,
+  searchQuery,
+  isRequest,
+}) => {
   const classes = useStyle();
+  const dispatch = useDispatch();
+  const movieList = useSelector(movieListSelector);
 
   useEffect(() => {
     if (!selectParam && !searchQuery) {
-      getMovies().then((data: IMovie[]) => {
-        setMovieList(data);
-      });
+      dispatch(getMovieList());
     }
-    getMovieByQuery(selectParam, searchQuery).then((data: IMovie[]) => {
-      setMovieList(data);
-    });
+    dispatch(getMovieListWithQuery({ selectParam, searchQuery }));
   }, [isRequest]);
 
   return (
@@ -32,7 +34,7 @@ export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuer
         <ul className={classes.listItem}>
           {movieList.map((movie: IMovie) => (
             <li key={movie.id} className={classes.item}>
-              <MovieCard movie={movie} />
+              <MovieCard movie={movie} key={movie.id} />
             </li>
           ))}
         </ul>
