@@ -13,6 +13,7 @@ export const getMovieByParams = (selectParam: string, searchQuery: string): Prom
         HTTPService.get(`${SERVER_PATHS.movies}?description_like=${searchQuery}`),
       ]).then((response) => {
         const movies = response.reduce((previous, current) => {
+          console.log(`previous: ${previous}`);
           return previous.concat(current.data);
         }, []);
 

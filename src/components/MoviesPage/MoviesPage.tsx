@@ -15,7 +15,6 @@ export const MoviesPage: FunctionComponent = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectParam, setSelectParam] = useState(searchOption.initial);
-  // const [isRequest, setIsRequest] = useState(false);
 
   const dispatch = useDispatch();
 
