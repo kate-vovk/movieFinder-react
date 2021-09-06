@@ -55,7 +55,9 @@ export const authSlice = createSlice({
               break;
             case 300:
             case 400:
-              toast(JSON.parse(message).data);
+              toast(`${JSON.parse(message).data} - SignIn, please`, {
+                autoClose: false,
+              });
               break;
             case 500:
               toast('Ooops, something went wrong! Try it later');

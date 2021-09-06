@@ -1,30 +1,40 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
 import { getMovieByQuery } from '@/businessLogic/search';
+import { getMovieList, getMovieListWithQuery } from '@/store/slices/searchSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { movieListSelector } from '@/selectors/search';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMoviesCardsProps {
   searchQuery: string;
   selectParam: string;
 }
 
-export const MoviesCards: FunctionComponent<IProps> = ({ selectParam, searchQuery }) => {
-  const [movieList, setMovieList] = useState<IMovie[]>([]);
+export const MoviesCards: FunctionComponent<IMoviesCardsProps> = ({
+  selectParam,
+  searchQuery,
+  isRequest,
+}) => {
   const classes = useStyle();
+  const dispatch = useDispatch();
+  const movieList = useSelector(movieListSelector);
+
   useEffect(() => {
-    getMovieByQuery(selectParam, searchQuery).then((data: IMovie[]) => {
-      setMovieList(data);
-    });
-  }, [selectParam, searchQuery]);
-  // console.log(movieList);
+    if (!selectParam && !searchQuery) {
+      dispatch(getMovieList());
+    }
+    dispatch(getMovieListWithQuery({ selectParam, searchQuery }));
+  }, [isRequest]);
+
   return (
     <>
       {movieList?.length ? (
         <ul className={classes.listItem}>
           {movieList.map((movie: IMovie) => (
             <li key={movie.id} className={classes.item}>
-              <MovieCard movie={movie} />
+              <MovieCard movie={movie} key={movie.id} />
             </li>
           ))}
         </ul>

@@ -12,7 +12,6 @@ import { useStyle } from './styles';
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
   const { id } = useSelector(userSelector);
-
   const [searchQuery, setSearchQuery] = useState('');
   const [selectParam, setSelectParam] = useState(searchOption.initial);
 
