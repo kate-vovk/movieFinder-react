@@ -10,6 +10,6 @@ export const PrivateRoute: FunctionComponent<IPrivateRouteProps> = ({ path, comp
   return isLoggedIn ? (
     <Route exact path={path} component={component} />
   ) : (
-    <Redirect to={CLIENT_PATHS.signup} />
+    <Redirect to={CLIENT_PATHS.signin} />
   );
 };

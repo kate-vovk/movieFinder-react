@@ -5,6 +5,7 @@ export interface IMovie {
   cover: string;
   price: number;
   year: string;
+  company: string;
   duration: number;
   genres: string[];
   categories: string[];
