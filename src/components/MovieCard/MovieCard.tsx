@@ -6,11 +6,11 @@ import { CLIENT_PATHS } from '@/constants/constants';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMovieCardProps {
   movie: IMovie;
 }
 
-export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
+export const MovieCard: FunctionComponent<IMovieCardProps> = ({ movie }) => {
   const classes = useStyle();
 
   return (
