@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import { useStyle } from './styles';
 
 interface IProps {
@@ -33,19 +33,19 @@ export const MovieInfo: FunctionComponent<IProps> = ({
     { id: 8, name: 'actors', value: actorsList.join(', ') },
   ];
 
+  const resultMovieInfo = useMemo(() => movieInfo.filter((item) => item.value), [movieInfo]);
+
   return (
     <div className={classes.columnRight}>
       <h1 className={classes.infoMovieTitle}>{title}</h1>
       <ul className={classes.infoMovieList}>
-        {movieInfo
-          .filter((item) => item.value)
-          .map((item) => {
-            return (
-              <li key={item.id} className={classes.infoMovieListElement}>
-                {`${item.name}: ${item.value}`}
-              </li>
-            );
-          })}
+        {resultMovieInfo.map((item) => {
+          return (
+            <li key={item.id} className={classes.infoMovieListElement}>
+              {`${item.name}: ${item.value}`}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
