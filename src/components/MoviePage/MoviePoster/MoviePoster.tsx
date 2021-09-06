@@ -14,7 +14,11 @@ export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title }) 
   return (
     <div className={classes.columnLeft}>
       <div className={classes.poster}>
-        <img className={classes.posterImage} src={cover} alt={title} />
+        {cover ? (
+          <img className={classes.posterImage} src={cover} alt={title} />
+        ) : (
+          <h2>No image</h2>
+        )}
         <div className={classes.posterRate}>
           <StarIcon className={classes.posterRateIcon} />
           <span className={classes.posterRateText}>9</span>

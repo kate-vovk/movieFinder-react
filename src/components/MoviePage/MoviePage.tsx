@@ -59,25 +59,33 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
                 categoriesList={categories}
               />
             </div>
-            <div className={classes.descriptionMovie}>
-              <h2 className={classes.descriptionMovieTitle}>Description</h2>
-              <p className={classes.descriptionMovieText}>{movie?.description}</p>
-            </div>
-            <div className={classes.trailerMovie}>
-              <iframe
-                width="560"
-                height="315"
-                src={movie?.trailer}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            {movie.description ? (
+              <div className={classes.descriptionMovie}>
+                <h2 className={classes.descriptionMovieTitle}>Description</h2>
+                <p className={classes.descriptionMovieText}>{movie?.description}</p>
+              </div>
+            ) : (
+              <></>
+            )}
+            {movie.trailer ? (
+              <div className={classes.trailerMovie}>
+                <iframe
+                  width="560"
+                  height="315"
+                  src={movie?.trailer}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <></>
+            )}
             <MovieFeedback />
           </>
         ) : (
-          <h2>Sorry</h2>
+          <h2>Movie page not found</h2>
         )}
       </div>
     </div>

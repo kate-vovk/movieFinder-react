@@ -7,6 +7,11 @@ export const useStyle = makeStyles(() => ({
   poster: {
     position: 'relative',
     marginBottom: '10px',
+    minHeight: '250px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ccc',
   },
   posterImage: {
     width: '100%',

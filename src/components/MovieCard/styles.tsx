@@ -5,6 +5,7 @@ export const useStyle = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    width: '100%',
   },
   title: { textAlign: 'center', flex: '1 1 auto' },
   image: {
