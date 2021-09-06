@@ -24,7 +24,7 @@ export const MovieInfo: FunctionComponent<IProps> = ({
 
   const movieInfo = [
     { id: 1, name: 'country', value: 'USA' }, // Temporary solution. In the future, receiving data from the server will be implemented
-    { id: 2, name: 'duration', value: duration ? `${duration} min` : '' },
+    { id: 2, name: 'duration', value: `${duration} min` },
     { id: 3, name: 'release date (year)', value: year },
     { id: 4, name: 'production companies', value: 'Disney' }, // Temporary solution. In the future, receiving data from the server will be implemented
     { id: 5, name: 'genres', value: genresList.join(', ') },
@@ -33,7 +33,10 @@ export const MovieInfo: FunctionComponent<IProps> = ({
     { id: 8, name: 'actors', value: actorsList.join(', ') },
   ];
 
-  const resultMovieInfo = useMemo(() => movieInfo.filter((item) => item.value), [movieInfo]);
+  const resultMovieInfo = useMemo(
+    () => movieInfo.filter((item) => item.value && item.value.indexOf('undefined')),
+    [movieInfo],
+  );
 
   return (
     <div className={classes.columnRight}>
