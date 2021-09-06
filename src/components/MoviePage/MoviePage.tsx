@@ -59,15 +59,13 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
                 categoriesList={categories}
               />
             </div>
-            {movie.description ? (
+            {movie.description && (
               <div className={classes.descriptionMovie}>
                 <h2 className={classes.descriptionMovieTitle}>Description</h2>
                 <p className={classes.descriptionMovieText}>{movie?.description}</p>
               </div>
-            ) : (
-              <></>
             )}
-            {movie.trailer ? (
+            {movie.trailer && (
               <div className={classes.trailerMovie}>
                 <iframe
                   width="560"
@@ -79,8 +77,6 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
                   allowFullScreen
                 />
               </div>
-            ) : (
-              <></>
             )}
             <MovieFeedback />
           </>

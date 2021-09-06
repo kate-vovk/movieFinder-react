@@ -14,11 +14,14 @@ export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title }) 
   return (
     <div className={classes.columnLeft}>
       <div className={classes.poster}>
-        {cover ? (
-          <img className={classes.posterImage} src={cover} alt={title} />
-        ) : (
-          <h2>No image</h2>
-        )}
+        <img
+          className={classes.posterImage}
+          src={
+            cover ||
+            'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg'
+          }
+          alt={title}
+        />
         <div className={classes.posterRate}>
           <StarIcon className={classes.posterRateIcon} />
           <span className={classes.posterRateText}>9</span>

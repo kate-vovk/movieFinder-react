@@ -24,7 +24,7 @@ export const MovieInfo: FunctionComponent<IProps> = ({
 
   const movieInfo = [
     { id: 1, name: 'country', value: 'USA' }, // Temporary solution. In the future, receiving data from the server will be implemented
-    { id: 2, name: 'duration', value: `${duration} min` },
+    { id: 2, name: 'duration', value: duration ? `${duration} min` : '' },
     { id: 3, name: 'release date (year)', value: year },
     { id: 4, name: 'production companies', value: 'Disney' }, // Temporary solution. In the future, receiving data from the server will be implemented
     { id: 5, name: 'genres', value: genresList.join(', ') },
@@ -37,15 +37,15 @@ export const MovieInfo: FunctionComponent<IProps> = ({
     <div className={classes.columnRight}>
       <h1 className={classes.infoMovieTitle}>{title}</h1>
       <ul className={classes.infoMovieList}>
-        {movieInfo.map((item): JSX.Element | void => {
-          if (item.value)
+        {movieInfo
+          .filter((item) => item.value)
+          .map((item) => {
             return (
               <li key={item.id} className={classes.infoMovieListElement}>
                 {`${item.name}: ${item.value}`}
               </li>
             );
-          return <></>;
-        })}
+          })}
       </ul>
     </div>
   );
