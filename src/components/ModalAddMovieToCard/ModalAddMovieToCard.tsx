@@ -22,7 +22,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalAddMovieToCardProps> =
   const classes = useStyles();
 
   const closeModal = (): void => {
-    dispatch(hideModal(modalType));
+    dispatch(hideModal());
   };
 
   useEffect(() => {
