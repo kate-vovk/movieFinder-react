@@ -5,14 +5,14 @@ import { SearchInput } from '@/components/SearchInput/SearchInput';
 import { searchOption } from '@/utils/interfaces/searchOption';
 import { useStyle } from './styles';
 
-interface IProps {
+interface ISearchBarProps {
   searchQuery: string;
   selectParam: string;
   getSearchQuery: (event: ChangeEvent<HTMLInputElement>) => void;
   changedSelectParam: (event: ChangeEvent<{ name: string; value: searchOption }>) => void;
 }
 
-export const SearchBar: FunctionComponent<IProps> = ({
+export const SearchBar: FunctionComponent<ISearchBarProps> = ({
   searchQuery,
   selectParam,
   getSearchQuery,
