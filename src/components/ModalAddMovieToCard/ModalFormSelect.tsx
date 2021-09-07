@@ -10,6 +10,12 @@ interface IModalFormSelectProps {
   value: number;
 }
 
+const valueSelectOptions = [
+  { id: 1, value: 0, text: 'Forever' },
+  { id: 2, value: 7, text: 'For 7 days' },
+  { id: 3, value: 30, text: 'For 30 days' },
+];
+
 export const ModalFormSelect: FunctionComponent<IModalFormSelectProps> = ({ onChange, value }) => {
   const classes = useStyles();
 
@@ -25,9 +31,11 @@ export const ModalFormSelect: FunctionComponent<IModalFormSelectProps> = ({ onCh
           value={value}
           onChange={onChange}
         >
-          <MenuItem value={0}>Forever</MenuItem>
-          <MenuItem value={7}>For 7 days</MenuItem>
-          <MenuItem value={30}>For 30 days</MenuItem>
+          {valueSelectOptions.map((item) => (
+            <MenuItem key={item.id} value={item.value}>
+              {item.text}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>
