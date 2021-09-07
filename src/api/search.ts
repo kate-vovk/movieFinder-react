@@ -5,9 +5,6 @@ import HTTPService from '@/services/httpService';
 export const getMovieByParams = (selectParam?: string, searchQuery?: string): Promise<any> => {
   switch (selectParam) {
     case searchOption.initial:
-      if (!searchQuery) {
-        return HTTPService.get(SERVER_PATHS.movies).then((response) => response);
-      }
       return Promise.all([
         HTTPService.get(`${SERVER_PATHS.movies}?title_like=${searchQuery}`),
         HTTPService.get(`${SERVER_PATHS.movies}?description_like=${searchQuery}`),
@@ -16,9 +13,14 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
           return previous.concat(current.data);
         }, []);
 
-        const finalMovies = Array.from(new Set(movies.map(JSON.stringify))).map(
-          JSON.parse as never,
-        );
+        const finalMovies: Record<string, string | number>[] = [];
+        movies.forEach((movie: Record<string, string | number>) => {
+          if (
+            !finalMovies.some((finalMovie) => JSON.stringify(finalMovie) === JSON.stringify(movie))
+          )
+            finalMovies.push(movie);
+        });
+
         return { data: finalMovies };
       });
 
