@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMovieInfoProps {
   director: string;
   duration: number;
   title: string;
@@ -12,7 +12,7 @@ interface IProps {
   studio: string;
 }
 
-export const MovieInfo: FunctionComponent<IProps> = ({
+export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
   director,
   duration,
   title,
