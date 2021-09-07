@@ -8,7 +8,10 @@ interface IModalFormRadioGroupProps {
   value: string;
 }
 
-export const ModalFormRadioGroup: FunctionComponent<IModalFormRadioGroupProps> = ({ onChange, value }) => {
+export const ModalFormRadioGroup: FunctionComponent<IModalFormRadioGroupProps> = ({
+  onChange,
+  value,
+}) => {
   const classes = useStyles();
 
   const qualities: string[] = [Quality[0], Quality[1]];
