@@ -17,8 +17,7 @@ interface IMovieFooterProps {
 export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { movies, id } = useSelector(cartSelector);
-  const user = useSelector(userSelector);
-  const userId = user.id;
+  const { id: userId } = useSelector(userSelector);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const addMovieIdToCart = (): void => {

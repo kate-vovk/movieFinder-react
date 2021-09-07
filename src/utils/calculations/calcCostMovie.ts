@@ -1,12 +1,12 @@
-export const calcCostMovie = (cost: number, period: number, index = 1): number => {
+export const calcCostMovie = (cost: number, period: number, qualityIndex = 1): number => {
   switch (period) {
     case 0:
-      return cost * index;
+      return cost * qualityIndex;
     case 7:
-      return cost * index * 0.2;
+      return cost * qualityIndex * 0.2;
     case 30:
-      return cost * index * 0.5;
+      return cost * qualityIndex * 0.5;
     default:
-      return cost * index;
+      return cost * qualityIndex;
   }
 };
