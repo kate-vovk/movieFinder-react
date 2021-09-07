@@ -15,9 +15,7 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
 
         const finalMovies: Record<string, string | number>[] = [];
         movies.forEach((movie: Record<string, string | number>) => {
-          if (
-            !finalMovies.some((finalMovie) => JSON.stringify(finalMovie) === JSON.stringify(movie))
-          )
+          if (!finalMovies.some((finalMovie) => finalMovie.id === movie.id))
             finalMovies.push(movie);
         });
 
