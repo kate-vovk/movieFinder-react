@@ -26,3 +26,8 @@ export interface ICartMovieState {
   quality: string;
   price: number;
 }
+
+export enum Quality {
+  HD,
+  SD,
+}

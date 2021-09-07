@@ -4,11 +4,14 @@ import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
+import { userSelector } from '@/selectors/auth';
+import { calcCostMovie } from '@/utils/calculations/calcCostMovie';
+import { Quality } from '@/utils/interfaces/cartInterfaces';
 import { useStyles } from './styles';
 import { ModalFormRadioGroup } from './ModalFormRadioGroup';
 import { ModalFormSelect } from './ModalFormSelect';
 
-interface IComponentProps {
+interface IModalFormProps {
   movieId: string;
   price: number;
   closeModal: () => void;
@@ -19,12 +22,15 @@ interface IStateValuesForm {
   period: number;
 }
 
-export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, closeModal }) => {
+export const ModalForm: FunctionComponent<IModalFormProps> = ({ movieId, price, closeModal }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userId, movies, id } = useSelector(cartSelector);
+  const { movies, id } = useSelector(cartSelector);
+  const user = useSelector(userSelector);
+  const userId = user.id;
   const [priceMovie, setPriceMovie] = useState(price);
-  const [valueQualityInput, setValueQualityInput] = useState('hd');
+  const qualities: string[] = [Quality[0], Quality[1]];
+  const [valueQualityInput, setValueQualityInput] = useState(Quality[0]);
   const [valuePeriodInput, setValuePeriodInput] = useState(0);
 
   const getValueQualityInput = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -32,39 +38,9 @@ export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, 
   };
 
   const getValuePeriodInput = (
-    event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
+    event: React.ChangeEvent<{ name?: string; value: unknown }>,
   ): void => {
     setValuePeriodInput(event.target.value as number);
-  };
-
-  const calcCostMovieHd = (cost: number, valueInput: number): number => {
-    let resultCost: number;
-    switch (valueInput) {
-      case 7:
-        resultCost = cost * 0.2;
-        break;
-      case 30:
-        resultCost = cost * 0.5;
-        break;
-      default:
-        resultCost = cost;
-    }
-    return resultCost;
-  };
-
-  const calcCostMovieSd = (cost: number, valueInput: number): number => {
-    let resultCost: number;
-    switch (valueInput) {
-      case 7:
-        resultCost = cost * 0.9 * 0.2;
-        break;
-      case 30:
-        resultCost = cost * 0.9 * 0.5;
-        break;
-      default:
-        resultCost = cost * 0.9;
-    }
-    return resultCost;
   };
 
   const getFormValueInCart = (values: IStateValuesForm): void => {
@@ -80,17 +56,17 @@ export const ModalForm: FunctionComponent<IComponentProps> = ({ movieId, price, 
   };
 
   useEffect(() => {
-    if (valueQualityInput === 'hd') {
-      setPriceMovie(calcCostMovieHd(price, valuePeriodInput));
-    } else if (valueQualityInput === 'sd') {
-      setPriceMovie(calcCostMovieSd(price, valuePeriodInput));
+    if (valueQualityInput === qualities[0]) {
+      setPriceMovie(calcCostMovie(price, valuePeriodInput));
+    } else if (valueQualityInput === qualities[1]) {
+      setPriceMovie(calcCostMovie(price, valuePeriodInput, 0.9));
     }
   }, [valueQualityInput, valuePeriodInput]);
 
   return (
     <Formik
       initialValues={{
-        quality: 'hd',
+        quality: qualities[0],
         period: 0,
       }}
       onSubmit={getFormValueInCart}

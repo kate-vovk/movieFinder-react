@@ -5,17 +5,20 @@ import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { ModalAddMovieToCard } from '@/components/ModalAddMovieToCard/ModalAddMovieToCard';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
+import { userSelector } from '@/selectors/auth';
 import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMovieFooterProps {
   movieId: string;
   price: number;
 }
 
-export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
+export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
-  const { userId, movies, id } = useSelector(cartSelector);
+  const { movies, id } = useSelector(cartSelector);
+  const user = useSelector(userSelector);
+  const userId = user.id;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const addMovieIdToCart = (): void => {
