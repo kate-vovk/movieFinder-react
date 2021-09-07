@@ -5,6 +5,7 @@ export interface IMovie {
   cover: string;
   price: number;
   year: string;
+  company: string;
   duration: number;
   genres: string[];
   categories: string[];
@@ -13,8 +14,15 @@ export interface IMovie {
   trailer: string;
 }
 
-export interface ICartData {
+export interface ICart {
   userId: string;
-  movies: string[];
+  movies: ICartMovieState[];
   id: string;
+}
+
+export interface ICartMovieState {
+  movieId: string;
+  period: number;
+  quality: string;
+  price: number;
 }

@@ -1,10 +1,22 @@
 import { FunctionComponent } from 'react';
 
-interface IUser {
+export interface IRentedMovie {
+  movieId: string;
+  dateOfPurchase: string;
+  price: number;
+}
+export interface IMyMovie {
+  movieId: string;
+  expirationDate: string;
+  quality: string;
+}
+export interface IUser {
   email: string;
   password: string;
   name: string;
   id: string;
+  rentedMoviesList?: IRentedMovie[];
+  myMovies?: IMyMovie[];
 }
 
 export interface IPrivateRouteProps {
@@ -23,7 +35,7 @@ export interface IAuthData {
   email: string;
 }
 
-export interface IState {
+export interface IStoreState {
   auth: IAuth;
 }
 export interface IAuthInitialState {

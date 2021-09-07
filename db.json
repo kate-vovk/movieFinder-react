@@ -1,11 +1,6 @@
 {
   "users": [
     {
-      "name": "test",
-      "email": "test@gmail.com",
-      "id": "1"
-    },
-    {
       "email": "otest@gmail.com",
       "password": "$2a$10$gJDggTkeI6EqvUTmMoEoLOv4Oc.0CtfHfe7yO6dNgre1foJBxDIey",
       "name": "name",
@@ -18,16 +13,30 @@
       "id": "P-wzSwh"
     },
     {
-      "email": "fgdgh@dfg.cp",
-      "password": "$2a$10$cWj9kpdZi.mgxbEDg7wJxuKlIv98gD7z.k7/41/n6w4iEqScXkkMO",
-      "name": "fgd",
-      "id": "UkIUuDc"
+      "email": "larinHe@gmail.comm",
+      "password": "$2a$10$C0i8t7XK5yPbZn8kbY/U/eEWuZ5TgnZmUFbZIQf/J3hEGwQPyiAmq",
+      "name": "Beshentsev",
+      "id": "Yj2PuvG"
     },
     {
-      "email": "drop@com.ua",
-      "password": "$2a$10$UNi2XU0daZFdRV30Unyl7.CWUENdvrYVRCocPlw58h/ASy4ypYcAy",
-      "name": "name1",
-      "id": "-XSAdeT"
+      "email": "test@gmail.com",
+      "password": "$2a$10$SmFe3I.GlJGx.4NyWH2.lOBMsHP7Kqzb1K85jzHQVrbis/elzehFS",
+      "name": "test",
+      "id": "xWpr8v6",
+      "rentedMoviesList": [
+        {
+          "movieId": "3",
+          "dateOfPurchase": "Tue, 07 Sep 2021 15:20:34 GMT",
+          "price": 3
+        }
+      ],
+      "myMovies": [
+        {
+          "movieId": "3",
+          "expirationDate": "Thu, 07 Oct 2021 15:20:34 GMT",
+          "quality": "HD"
+        }
+      ]
     }
   ],
   "genres": [
@@ -133,6 +142,7 @@
       "id": "1",
       "title": "Beetlejuice",
       "year": "1988",
+      "company": "Walt Disney Pictures",
       "duration": 92,
       "genres": [
         "1",
@@ -157,6 +167,7 @@
       "id": "2",
       "title": "The Cotton Club",
       "year": "1984",
+      "company": "Universal Pictures",
       "duration": 127,
       "genres": [
         "3"
@@ -180,6 +191,7 @@
       "id": "3",
       "title": "The Shawshank Redemption",
       "year": "1994",
+      "company": "Columbia Pictures",
       "duration": 142,
       "genres": [
         "4"
@@ -202,6 +214,7 @@
       "id": "4",
       "title": "Crocodile Dundee",
       "year": "1986",
+      "company": "Walt Disney Pictures",
       "duration": 97,
       "genres": [
         "5",
@@ -225,6 +238,7 @@
       "id": "5",
       "title": "Valkyrie",
       "year": "2008",
+      "company": "Columbia Pictures",
       "duration": 121,
       "genres": [
         "7",
@@ -249,6 +263,7 @@
       "id": "6",
       "title": "Ratatouille",
       "year": "2007",
+      "company": "Paramount Pictures",
       "duration": 111,
       "genres": [
         "4",
@@ -272,6 +287,7 @@
       "id": "7",
       "title": "City of God",
       "year": "2002",
+      "company": "Columbia Pictures",
       "duration": 130,
       "genres": [
         "1",
@@ -294,6 +310,7 @@
       "id": "8",
       "title": "Memento",
       "year": "2000",
+      "company": "Walt Disney Pictures",
       "duration": 113,
       "genres": [
         "5",
@@ -317,6 +334,7 @@
       "id": "9",
       "title": "The Intouchables",
       "year": "2011",
+      "company": "Universal Pictures",
       "duration": 112,
       "genres": [
         "8",
@@ -340,6 +358,7 @@
       "id": "10",
       "title": "Stardust",
       "year": "2007",
+      "company": "Paramount Pictures",
       "duration": 127,
       "genres": [
         "2",
@@ -363,6 +382,7 @@
       "id": "11",
       "title": "Apocalypto",
       "year": "2006",
+      "company": "Walt Disney Pictures",
       "duration": 139,
       "genres": [
         "8",
@@ -386,6 +406,7 @@
       "id": "12",
       "title": "Taxi Driver",
       "year": "1976",
+      "company": "Columbia Pictures",
       "duration": 113,
       "genres": [
         "1",
@@ -409,6 +430,7 @@
       "id": "13",
       "title": "No Country for Old Men",
       "year": "2007",
+      "company": "Paramount Pictures",
       "duration": 122,
       "genres": [
         "4",
@@ -432,6 +454,7 @@
       "id": "14",
       "title": "Planet 51",
       "year": "2009",
+      "company": "Paramount Pictures",
       "duration": 91,
       "genres": [
         "8"
@@ -454,6 +477,7 @@
       "id": "15",
       "title": "Looper",
       "year": "2012",
+      "company": "Paramount Pictures",
       "duration": 119,
       "genres": [
         "8",
@@ -477,6 +501,7 @@
       "id": "16",
       "title": "Corpse Bride",
       "year": "2005",
+      "company": "Paramount Pictures",
       "duration": 77,
       "genres": [
         "2",
@@ -499,6 +524,7 @@
       "id": "17",
       "title": "The Third Man",
       "year": 1949,
+      "company": "Walt Disney Pictures",
       "duration": "93",
       "genres": [
         "3",
@@ -521,6 +547,7 @@
     {
       "id": "18",
       "title": "The Beach",
+      "company": "Universal Pictures",
       "year": "2000",
       "duration": 119,
       "genres": [
@@ -545,11 +572,8 @@
   "cart": [
     {
       "id": "1",
-      "userId": "UkIUuDc",
-      "movies": [
-        "3",
-        "2"
-      ]
+      "userId": "xWpr8v6",
+      "movies": []
     }
   ]
 }

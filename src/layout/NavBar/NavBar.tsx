@@ -20,6 +20,10 @@ export const NavBar: FunctionComponent = () => {
     history.push(CLIENT_PATHS.cart);
   }, []);
 
+  const goToLogOut = useCallback(() => {
+    dispatch(logout());
+  }, []);
+
   const classes = useStyle();
   return (
     <div>
@@ -35,13 +39,7 @@ export const NavBar: FunctionComponent = () => {
                   <Button onClick={goToCart}>{button.name}</Button>
                 </Badge>
               ) : (
-                <Button
-                  key={button.name}
-                  onClick={() => {
-                    dispatch(logout());
-                    history.push(`${CLIENT_PATHS.signin}`);
-                  }}
-                >
+                <Button key={button.name} onClick={goToLogOut}>
                   <Link to={button.to} className={classes.link}>
                     {button.name}
                   </Link>

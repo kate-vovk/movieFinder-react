@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
@@ -25,8 +25,12 @@ export const RegisterForm: FunctionComponent = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (values: IFormInputs): void => {
-    dispatch(registration(values));
+  const onSubmit = async (
+    values: IFormInputs,
+    { setSubmitting }: FormikHelpers<IFormInputs>,
+  ): Promise<void> => {
+    await dispatch(registration(values));
+    setSubmitting(false);
   };
 
   if (isLoggedIn) {
@@ -62,12 +66,14 @@ export const RegisterForm: FunctionComponent = () => {
             />
           );
         })}
+
         <Button
           className={classes.submit}
           color="primary"
           variant="contained"
           fullWidth
           type="submit"
+          disabled={formik.isSubmitting}
         >
           Submit
         </Button>
