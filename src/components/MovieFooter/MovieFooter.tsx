@@ -1,9 +1,9 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { ModalAddMovieToCard } from '@/components/ModalAddMovieToCard/ModalAddMovieToCard';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
+import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
@@ -18,18 +18,15 @@ export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, pri
   const dispatch = useDispatch();
   const { movies, id } = useSelector(cartSelector);
   const { id: userId } = useSelector(userSelector);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const modalType = 'MODAL_MOVIE_CART';
+  const modalProps = { movieId, price };
 
   const addMovieIdToCart = (): void => {
     if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
-      setIsOpenModal(true);
+      dispatch(showModal({ modalType, modalProps }));
     }
-  };
-
-  const closeModal = (): void => {
-    setIsOpenModal(false);
   };
 
   const classes = useStyle({
@@ -47,12 +44,6 @@ export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, pri
       <Typography className={classes.price} color="textSecondary" gutterBottom>
         {price} $
       </Typography>
-      <ModalAddMovieToCard
-        movieId={movieId}
-        price={price}
-        isOpenModal={isOpenModal}
-        closeModal={closeModal}
-      />
     </div>
   );
 };

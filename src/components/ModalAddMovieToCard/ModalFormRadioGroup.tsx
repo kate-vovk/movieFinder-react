@@ -14,15 +14,13 @@ export const ModalFormRadioGroup: FunctionComponent<IModalFormRadioGroupProps> =
 }) => {
   const classes = useStyles();
 
-  const qualities: string[] = [Quality[0], Quality[1]];
-
   return (
     <div className={classes.modalRadio}>
       <FormControl component="fieldset">
         <FormLabel component="legend">Select movie format</FormLabel>
         <RadioGroup aria-label="quality" name="quality" value={value} onChange={onChange}>
-          <FormControlLabel value={qualities[0]} control={<Radio />} label={qualities[0]} />
-          <FormControlLabel value={qualities[1]} control={<Radio />} label={qualities[1]} />
+          <FormControlLabel value={Quality.HD} control={<Radio />} label={Quality.HD} />
+          <FormControlLabel value={Quality.SD} control={<Radio />} label={Quality.SD} />
         </RadioGroup>
       </FormControl>
     </div>

@@ -680,22 +680,22 @@
       "userId": "B19AzRP",
       "movies": [
         {
-          "movieId": "2",
-          "period": 30,
           "quality": "HD",
-          "price": 3
+          "period": 0,
+          "movieId": "3",
+          "price": 9
         },
         {
           "quality": "HD",
           "period": 0,
-          "movieId": "1",
+          "movieId": "2",
           "price": 5
         },
         {
           "quality": "HD",
           "period": 0,
-          "movieId": "3",
-          "price": 9
+          "movieId": "4",
+          "price": 12
         }
       ]
     }

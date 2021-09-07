@@ -28,17 +28,14 @@ export const ModalForm: FunctionComponent<IModalFormProps> = ({ movieId, price, 
   const { movies, id } = useSelector(cartSelector);
   const { id: userId } = useSelector(userSelector);
   const [priceMovie, setPriceMovie] = useState(price);
-  const qualities: string[] = [Quality[0], Quality[1]];
-  const [valueQualityInput, setValueQualityInput] = useState(Quality[0]);
+  const [valueQualityInput, setValueQualityInput] = useState(`${Quality.HD}`);
   const [valuePeriodInput, setValuePeriodInput] = useState(0);
 
   const getValueQualityInput = (event: ChangeEvent<HTMLInputElement>): void => {
     setValueQualityInput((event.target as HTMLInputElement).value);
   };
 
-  const getValuePeriodInput = (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>,
-  ): void => {
+  const getValuePeriodInput = (event: ChangeEvent<{ name?: string; value: unknown }>): void => {
     setValuePeriodInput(event.target.value as number);
   };
 
@@ -55,9 +52,9 @@ export const ModalForm: FunctionComponent<IModalFormProps> = ({ movieId, price, 
   };
 
   useEffect(() => {
-    if (valueQualityInput === qualities[0]) {
+    if (valueQualityInput === Quality.HD) {
       setPriceMovie(calcCostMovie(price, valuePeriodInput));
-    } else if (valueQualityInput === qualities[1]) {
+    } else if (valueQualityInput === Quality.SD) {
       setPriceMovie(calcCostMovie(price, valuePeriodInput, 0.9));
     }
   }, [valueQualityInput, valuePeriodInput]);
@@ -65,7 +62,7 @@ export const ModalForm: FunctionComponent<IModalFormProps> = ({ movieId, price, 
   return (
     <Formik
       initialValues={{
-        quality: qualities[0],
+        quality: Quality.HD,
         period: 0,
       }}
       onSubmit={getFormValueInCart}
