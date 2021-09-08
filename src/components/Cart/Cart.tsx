@@ -10,11 +10,14 @@ import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { getMovie } from '@/businessLogic/cart';
 import { PaymentDetailsModal } from '@/components/PaymentDetailsFormModal/PaymentDetailsModal';
+import { useTranslation } from 'react-i18next';
 import { CartItem } from './CartItem';
 import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';
 
 export const Cart: FunctionComponent = () => {
+  const { t } = useTranslation(['Cart']);
+
   const history = useHistory();
   const { movies } = useSelector(cartSelector);
   const { id: userId } = useSelector(userSelector);
@@ -60,10 +63,10 @@ export const Cart: FunctionComponent = () => {
               buttonType="button"
               className={classes.buyButton}
               onClick={clickOnBuyButton}
-              name="Buy"
+              name={t('buyButton')}
             />
             <div className={classes.priceContainer}>
-              <Typography>Total Price: &nbsp; </Typography>
+              <Typography>{t('totalPrice')}: &nbsp; </Typography>
               <Typography className={classes.priceContainer}>
                 {getTotalPrice()} <EuroIcon fontSize="small" />
               </Typography>

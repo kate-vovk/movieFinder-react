@@ -26,6 +26,18 @@ i18n
           password: 'Password',
           submit: 'SignIn',
         },
+        Cart: {
+          emptyCart: 'Your cart is empty',
+          buyButton: 'Buy',
+          totalPrice: 'Total Price',
+        },
+        PaymentForm: {
+          paymentDetails: 'Payment details',
+          cardNumber: 'Card number',
+          expirationDate: 'Expiration date',
+          cvv: 'CVV',
+          submit: 'Submit',
+        },
       },
       ru: {
         AppBar: {
@@ -46,9 +58,21 @@ i18n
           password: 'Пароль',
           submit: 'Войти',
         },
+        Cart: {
+          emptyCart: 'Ваша корзина пуста',
+          buyButton: 'Купить',
+          totalPrice: 'Итого',
+        },
+        PaymentForm: {
+          paymentDetails: 'Данные карты',
+          cardNumber: 'Номер карты',
+          expirationDate: 'Срок Действия',
+          cvv: 'CVV',
+          submit: 'Подтвердить',
+        },
       },
     },
-    ns: ['AppBar', 'SignUp', 'SignIn'],
+    ns: ['AppBar', 'SignUp', 'SignIn', 'Cart', 'PaymentForm'],
 
     keySeparator: false,
 

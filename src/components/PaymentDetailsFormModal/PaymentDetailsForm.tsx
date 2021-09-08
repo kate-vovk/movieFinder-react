@@ -9,9 +9,11 @@ import { sendData } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
+import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 export const PaymentDetailsForm: FunctionComponent = () => {
+  const { t } = useTranslation(['PaymentForm']);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyle();
@@ -35,7 +37,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
     <div>
       <form onSubmit={formik.handleSubmit} className={classes.form}>
         <div className={classes.cardNumber}>
-          <Typography className={classes.title}>Card number</Typography>
+          <Typography className={classes.title}>{t('cardNumber')}</Typography>
           <InputMask
             mask="9999 9999 9999 9999"
             maskPlaceholder="X"
@@ -54,7 +56,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
         </div>
         <div className={classes.dateCVVContainer}>
           <div className={classes.dateCVV}>
-            <Typography className={classes.title}>Expiration date</Typography>
+            <Typography className={classes.title}>{t('expirationDate')}</Typography>
             <InputMask
               mask="99 / 99"
               maskPlaceholder="mm / yy"
@@ -72,7 +74,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
           </div>
 
           <div className={classes.dateCVV}>
-            <Typography className={classes.title}>CVV</Typography>
+            <Typography className={classes.title}>{t('cvv')}</Typography>
             <InputMask mask="999" maskPlaceholder="*" alwaysShowMask onChange={formik.handleChange}>
               <TextField
                 id="cvv"

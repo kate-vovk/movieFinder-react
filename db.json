@@ -20,20 +20,20 @@
     },
     {
       "email": "test@gmail.com",
-      "password": "$2a$10$SmFe3I.GlJGx.4NyWH2.lOBMsHP7Kqzb1K85jzHQVrbis/elzehFS",
-      "name": "test",
-      "id": "xWpr8v6",
+      "password": "$2a$10$zkHBRsxbKR.sTykIzV5NNeCq/LSTX0ArtMWquF3pboH0cf56Nv6BG",
+      "name": "test@gmail.com",
+      "id": "BmUCS1-",
       "rentedMoviesList": [
         {
-          "movieId": "3",
-          "dateOfPurchase": "Tue, 07 Sep 2021 15:20:34 GMT",
+          "movieId": "1",
+          "dateOfPurchase": "Wed, 08 Sep 2021 12:05:19 GMT",
           "price": 3
         }
       ],
       "myMovies": [
         {
-          "movieId": "3",
-          "expirationDate": "Thu, 07 Oct 2021 15:20:34 GMT",
+          "movieId": "1",
+          "expirationDate": "Fri, 08 Oct 2021 12:05:19 GMT",
           "quality": "HD"
         }
       ]
@@ -572,8 +572,15 @@
   "cart": [
     {
       "id": "1",
-      "userId": "xWpr8v6",
-      "movies": []
+      "userId": "BmUCS1-",
+      "movies": [
+        {
+          "movieId": "1",
+          "period": 30,
+          "quality": "HD",
+          "price": 3
+        }
+      ]
     }
   ]
 }
