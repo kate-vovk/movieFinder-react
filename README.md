@@ -23,3 +23,14 @@ You should have:
 REACT_APP_BASE_URL
 REACT_APP_AUTH_URL
 REACT_APP_API_KEY
+
+----------------------------------------
+To run project that uses queries to the server, please add the following CONST to the .env file:
+REACT_APP_API_URL = 'https://nodejs-moviefinder-api.herokuapp.com'
+
+To login there are 2 options: 
+1) use these credentials that already exist on the server:
+email: test@gmail.com
+password: Qwerty12345!
+
+2) registrate new user to the server. After registration you will be redirected to the login form

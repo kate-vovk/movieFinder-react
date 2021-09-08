@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { IAuthData, IAuthInitialState, ILoginData } from '@/utils/interfaces/authInterfaces';
 import { getRegistrationData } from '@/businessLogic/registration';
 import { getLoginData } from '@/businessLogic/login';
+import { logoutUser } from '@/businessLogic/logout';
 
 toast.configure();
 
@@ -25,27 +26,20 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }: 
   });
 });
 
+export const logout = createAsyncThunk('auth/logout', async () => {
+  return logoutUser();
+});
+
 const initialState: IAuthInitialState = {
-  token: null,
-  isLoggedIn: false,
-  user: null,
+  userId: null,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    logout: () => {
-      return initialState;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(registration.fulfilled, (state, action) => {
-        state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
-        state.user = action.payload.user;
-      })
       .addCase(registration.rejected, (state, action) => {
         const { message } = action.error;
         if (message) {
@@ -69,9 +63,7 @@ export const authSlice = createSlice({
         return null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
-        state.user = action.payload.user;
+        state.userId = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         const { message } = action.error;
@@ -80,9 +72,11 @@ export const authSlice = createSlice({
         } else {
           toast('Error');
         }
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.userId = null;
       });
   },
 });
 
-export const { logout } = authSlice.actions;
 export const authReducer = authSlice.reducer;

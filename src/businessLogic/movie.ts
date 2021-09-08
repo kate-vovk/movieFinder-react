@@ -40,11 +40,21 @@ const getListCategoriesMovie = async (arrayCategoryId: string[]): Promise<string
 export const getDataMoviePage = async (movieId: string): Promise<IMovieData> => {
   const { data: movieCardData } = await getMovie(movieId);
   const movieCard = movieCardData;
-  const actorsList = await getListActorsMovie(movieCardData.actors).then((data) => data);
-  const genresList = await getListGenresMovie(movieCardData.genres).then((data) => data);
-  const categoriesList = await getListCategoriesMovie(movieCardData.categories).then(
-    (data) => data,
-  );
+  const actorsList = await getListActorsMovie(movieCardData.actors)
+    .then((data) => data)
+    .catch(() => {
+      return [];
+    });
+  const genresList = await getListGenresMovie(movieCardData.genres)
+    .then((data) => data)
+    .catch(() => {
+      return [];
+    });
+  const categoriesList = await getListCategoriesMovie(movieCardData.categories)
+    .then((data) => data)
+    .catch(() => {
+      return [];
+    });
   return {
     movieCard,
     actorsList,
