@@ -13,14 +13,16 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
           return previous.concat(current.data);
         }, []);
 
-        const finalMovies: Record<string, string | number>[] = [];
-        movies.map((movie: Record<string, string | number>) => {
-          // used negation because finalMovies is empty in the start of the condition
-          if (!finalMovies.some((finalMovie) => finalMovie.id === movie.id)) {
-            finalMovies.push(movie);
-          }
-          return false;
-        });
+        const finalMovies: Record<string, string | number>[] = movies.reduce(
+          (acc: Record<string, string | number>[], movie: Record<string, string | number>) => {
+            // used negation because finalMovies is empty in the start of the condition
+            if (!acc.some((finalMovie) => finalMovie.id === movie.id)) {
+              acc.push(movie);
+            }
+            return acc;
+          },
+          [] as Record<string, string | number>[],
+        );
 
         return { data: finalMovies };
       });
