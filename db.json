@@ -696,12 +696,6 @@
           "period": 0,
           "movieId": "4",
           "price": 12
-        },
-        {
-          "quality": "SD",
-          "period": 0,
-          "movieId": "1",
-          "price": 4.5
         }
       ]
     }

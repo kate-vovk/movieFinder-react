@@ -7,6 +7,7 @@ import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
+import { modalTypes } from '@/constants/modalTypes';
 import { useStyle } from './styles';
 
 interface IMovieFooterProps {
@@ -18,7 +19,7 @@ export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, pri
   const dispatch = useDispatch();
   const { movies, id } = useSelector(cartSelector);
   const { id: userId } = useSelector(userSelector);
-  const modalType = 'MODAL_MOVIE_CART';
+  const modalType = modalTypes.modalMovieCart;
   const modalProps = { movieId, price };
 
   const addMovieIdToCart = (): void => {

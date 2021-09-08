@@ -1,61 +1,92 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Modal, Fade, Backdrop } from '@material-ui/core';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { modalSelector } from '@/selectors/modal';
-import { hideModal } from '@/store/slices/modalSlice';
+import { FunctionComponent, useState, useEffect, ChangeEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
+import { Button } from '@material-ui/core';
+import { addMovieToCart } from '@/store/slices/cartSlice';
+import { cartSelector } from '@/selectors/cart';
+import { userSelector } from '@/selectors/auth';
+import { calcCostMovie } from '@/utils/calculations/calcCostMovie';
+import { Quality } from '@/utils/interfaces/cartInterfaces';
 import { useStyles } from './styles';
-import { ModalForm } from './ModalForm';
+import { ModalFormRadioGroup } from './ModalFormRadioGroup';
+import { ModalFormSelect } from './ModalFormSelect';
 
-interface IModalAddMovieToCardProps {
-  movieId: string;
-  price: number;
+interface IModalFormProps {
+  movieId?: string;
+  price?: number;
+  closeModal: () => void;
 }
 
-export const ModalAddMovieToCard: FunctionComponent<IModalAddMovieToCardProps> = ({
+interface IStateValuesForm {
+  quality: string;
+  period: number;
+}
+
+export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   movieId,
   price,
+  closeModal,
 }) => {
-  const dispatch = useDispatch();
-  const { modalType } = useSelector(modalSelector);
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { movies, id } = useSelector(cartSelector);
+  const { id: userId } = useSelector(userSelector);
+  const [priceMovie, setPriceMovie] = useState(0);
+  const [valueQualityInput, setValueQualityInput] = useState(`${Quality.HD}`);
+  const [valuePeriodInput, setValuePeriodInput] = useState(0);
 
-  const closeModal = (): void => {
-    dispatch(hideModal());
+  const getValueQualityInput = (event: ChangeEvent<HTMLInputElement>): void => {
+    setValueQualityInput((event.target as HTMLInputElement).value);
+  };
+
+  const getValuePeriodInput = (event: ChangeEvent<{ name?: string; value: unknown }>): void => {
+    setValuePeriodInput(event.target.value as number);
+  };
+
+  const getFormValueInCart = (values: IStateValuesForm): void => {
+    if (movieId && price) {
+      const movie = {
+        ...values,
+        movieId,
+        period: valuePeriodInput,
+        quality: valueQualityInput,
+        price: priceMovie,
+      };
+      dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
+    }
+    closeModal();
   };
 
   useEffect(() => {
-    if (modalType) {
-      setIsOpenModal(true);
-    } else {
-      setIsOpenModal(false);
+    if (valueQualityInput === Quality.HD && price) {
+      setPriceMovie(calcCostMovie(price, valuePeriodInput));
+    } else if (valueQualityInput === Quality.SD && price) {
+      setPriceMovie(calcCostMovie(price, valuePeriodInput, 0.9));
     }
-  }, [modalType]);
+  }, [valueQualityInput, valuePeriodInput]);
 
   return (
-    <Modal
-      open={isOpenModal}
-      onClose={closeModal}
-      className={classes.modal}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
+    <Formik
+      initialValues={{
+        quality: Quality.HD,
+        period: 0,
       }}
+      onSubmit={getFormValueInCart}
     >
-      <Fade in={isOpenModal}>
-        <div className={classes.paper}>
-          <CustomButton
-            name="close"
-            buttonType="button"
-            className={classes.modalClose}
-            onClick={closeModal}
-          />
-
-          <ModalForm movieId={movieId} price={price} closeModal={closeModal} />
-        </div>
-      </Fade>
-    </Modal>
+      {() => (
+        <Form>
+          <ModalFormRadioGroup onChange={getValueQualityInput} value={valueQualityInput} />
+          <ModalFormSelect onChange={getValuePeriodInput} value={valuePeriodInput} />
+          <div className={classes.modalFormFooter}>
+            <div>
+              <span>{priceMovie}</span> $
+            </div>
+            <Button color="primary" variant="contained" type="submit">
+              Submit
+            </Button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };

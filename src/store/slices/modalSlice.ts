@@ -1,18 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-interface IModalState {
-  modalType: string | null;
-  modalProps: IModalProps;
-}
-
-interface IModalProps {
-  movieId?: string;
-  price?: number;
-}
+import { IModalState } from '@/utils/interfaces/modalinterfaces';
 
 const initialState: IModalState = {
   modalType: null,
   modalProps: {},
+  isModalOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -22,6 +14,7 @@ export const modalSlice = createSlice({
     showModal(state, action) {
       state.modalType = action.payload.modalType;
       state.modalProps = action.payload.modalProps;
+      state.isModalOpen = true;
     },
     hideModal() {
       return initialState;
