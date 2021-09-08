@@ -38,6 +38,14 @@ i18n
           cvv: 'CVV',
           submit: 'Submit',
         },
+        Search: {
+          search: 'search',
+          selectOption: 'select option',
+        },
+        MoviePage: {
+          submit: 'Submit',
+          feedback: 'Give feedback',
+        },
       },
       ru: {
         AppBar: {
@@ -70,9 +78,17 @@ i18n
           cvv: 'CVV',
           submit: 'Подтвердить',
         },
+        Search: {
+          search: 'поиск',
+          selectOption: 'поиск по...',
+        },
+        MoviePage: {
+          submit: 'Отправить',
+          feedback: 'Написать отзыв',
+        },
       },
     },
-    ns: ['AppBar', 'SignUp', 'SignIn', 'Cart', 'PaymentForm'],
+    ns: ['AppBar', 'SignUp', 'SignIn', 'Cart', 'PaymentForm', 'Search', 'MoviePage'],
 
     keySeparator: false,
 

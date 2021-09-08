@@ -49,7 +49,7 @@ export const NavBar: FunctionComponent = () => {
               ) : (
                 <Button key={button.name} onClick={goToLogOut}>
                   <Link to={button.to} className={classes.link}>
-                    {t(`AppBar:${button.name}`)}
+                    {t(button.name)}
                   </Link>
                 </Button>
               ),

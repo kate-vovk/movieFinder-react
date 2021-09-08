@@ -4,12 +4,12 @@ import { TextField, Button, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import InputMask from 'react-input-mask';
+import { useTranslation } from 'react-i18next';
 import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidation';
 import { sendData } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
-import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 export const PaymentDetailsForm: FunctionComponent = () => {
@@ -88,7 +88,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
         </div>
 
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
+          {t('submit')}
         </Button>
       </form>
     </div>
