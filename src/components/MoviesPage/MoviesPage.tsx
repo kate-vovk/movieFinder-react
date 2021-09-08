@@ -1,9 +1,9 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Pagination } from '@/components/Pagination/Pagination';
 import { MoviesCards } from '@/components/MoviesCards/MoviesCards';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
 import { SearchBar } from '@/components/SearchBar/SearchBar';
-import { useSelector, useDispatch } from 'react-redux';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { searchOption } from '@/utils/interfaces/searchOption';
@@ -14,7 +14,6 @@ export const MoviesPage: FunctionComponent = () => {
   const { id } = useSelector(userSelector);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectParam, setSelectParam] = useState(searchOption.initial);
-  const [isRequest, setIsRequest] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -39,13 +38,11 @@ export const MoviesPage: FunctionComponent = () => {
           <SearchBar
             searchQuery={searchQuery}
             selectParam={selectParam}
-            isRequest={isRequest}
             getSearchQuery={getSearchQuery}
-            setIsRequest={setIsRequest}
             changedSelectParam={changedSelectParam}
           />
         </div>
-        <MoviesCards searchQuery={searchQuery} selectParam={selectParam} isRequest={isRequest} />
+        <MoviesCards searchQuery={searchQuery} selectParam={selectParam} />
         <Pagination />
       </div>
     </div>

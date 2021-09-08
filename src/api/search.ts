@@ -5,9 +5,6 @@ import HTTPService from '@/services/httpService';
 export const getMovieByParams = (selectParam?: string, searchQuery?: string): Promise<any> => {
   switch (selectParam) {
     case searchOption.initial:
-      if (!searchQuery) {
-        return HTTPService.get(SERVER_PATHS.movies).then((response) => response);
-      }
       return Promise.all([
         HTTPService.get(`${SERVER_PATHS.movies}?title_like=${searchQuery}`),
         HTTPService.get(`${SERVER_PATHS.movies}?description_like=${searchQuery}`),
@@ -16,7 +13,18 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
           return previous.concat(current.data);
         }, []);
 
-        return { data: movies };
+        const finalMovies: Record<string, string | number>[] = movies.reduce(
+          (acc: Record<string, string | number>[], movie: Record<string, string | number>) => {
+            // used negation because finalMovies is empty in the start of the condition
+            if (!acc.some((finalMovie) => finalMovie.id === movie.id)) {
+              acc.push(movie);
+            }
+            return acc;
+          },
+          [] as Record<string, string | number>[],
+        );
+
+        return { data: finalMovies };
       });
 
     case searchOption.movie:

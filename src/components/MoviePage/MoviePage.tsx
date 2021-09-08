@@ -8,14 +8,14 @@ import { MoviePoster } from './MoviePoster/MoviePoster';
 import { MovieFeedback } from './MovieFeedback/MovieFeedback';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMoviePageProps {
   id: string;
 }
 
-export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
+export const MoviePage: FunctionComponent<IMoviePageProps> = ({ id }) => {
   const classes = useStyle();
   const history = useHistory();
-  const [movie, setMovie] = useState<IMovie>({} as IMovie);
+  const [movie, setMovie] = useState({} as IMovie);
   const [actors, setActors] = useState<string[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -57,6 +57,7 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
                 actorsList={actors}
                 genresList={genres}
                 categoriesList={categories}
+                studio={movie?.company}
               />
             </div>
             <div className={classes.descriptionMovie}>
