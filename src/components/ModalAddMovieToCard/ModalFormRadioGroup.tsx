@@ -19,8 +19,9 @@ export const ModalFormRadioGroup: FunctionComponent<IModalFormRadioGroupProps> =
       <FormControl component="fieldset">
         <FormLabel component="legend">Select movie format</FormLabel>
         <RadioGroup aria-label="quality" name="quality" value={value} onChange={onChange}>
-          <FormControlLabel value={Quality.HD} control={<Radio />} label={Quality.HD} />
-          <FormControlLabel value={Quality.SD} control={<Radio />} label={Quality.SD} />
+          {Object.values(Quality).map((item) => (
+            <FormControlLabel value={item} control={<Radio />} label={item} />
+          ))}
         </RadioGroup>
       </FormControl>
     </div>
