@@ -17,7 +17,7 @@ import { CartIsEmpty } from './CartIsEmpty';
 export const Cart: FunctionComponent = () => {
   const history = useHistory();
   const { movies } = useSelector(cartSelector);
-  const { id: userId } = useSelector(userSelector);
+  const userId = useSelector(userSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
   const [cartMovies, setCartMovies] = useState<IMovie[]>([]);

@@ -16,9 +16,10 @@ export const CLIENT_PATHS = {
 export const SERVER_PATHS = {
   signin: '/signin',
   signup: '/signup',
+  logout: '/signout',
   cart: '/cart',
   users: '/users',
-  movies: '/movies',
+  movies: '/films',
   actors: '/actors',
   genres: '/genres',
   categories: '/categories',

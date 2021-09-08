@@ -11,7 +11,7 @@ import { useStyle } from './styles';
 
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
-  const { id } = useSelector(userSelector);
+  const userId = useSelector(userSelector);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectParam, setSelectParam] = useState(searchOption.initial);
 
@@ -27,7 +27,7 @@ export const MoviesPage: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    dispatch(setCartMoviesToStore(id));
+    dispatch(setCartMoviesToStore(userId));
   }, []);
 
   return (
