@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-export interface IRentedMovie {
+export interface IOrderedMovie {
   movieId: string;
   dateOfPurchase: string;
   price: number;
@@ -15,7 +15,7 @@ export interface IUser {
   password: string;
   name: string;
   id: string;
-  rentedMoviesList?: IRentedMovie[];
+  orderedMovies?: IOrderedMovie[];
   myMovies?: IMyMovie[];
 }
 
@@ -39,13 +39,9 @@ export interface IStoreState {
   auth: IAuth;
 }
 export interface IAuthInitialState {
-  token: string | null;
-  isLoggedIn: boolean;
-  user: IUser | null;
+  userId: string | null;
 }
 
 export interface IAuth {
-  token: string;
-  isLoggedIn: boolean;
-  user: IUser;
+  userId: string;
 }

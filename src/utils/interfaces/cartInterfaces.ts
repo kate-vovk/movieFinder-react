@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 export interface IMovie {
   id: string;
   title: string;
   description: string;
-  cover: string;
+  cover_url: string;
   price: number;
   year: string;
   company: string;

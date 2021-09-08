@@ -1,6 +1,7 @@
 import { searchOption } from '@/utils/interfaces/searchOption';
 import { SERVER_PATHS } from '@/constants/constants';
 import HTTPService from '@/services/httpService';
+import { getMovies } from '@/businessLogic/movies';
 
 export const getMovieByParams = (selectParam?: string, searchQuery?: string): Promise<any> => {
   switch (selectParam) {
@@ -36,6 +37,6 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
         (response) => HTTPService.get(`${SERVER_PATHS.movies}?actors_like=${response.data[0]?.id}`),
       );
     default:
-      return HTTPService.get(SERVER_PATHS.movies).then((response) => response);
+      return getMovies();
   }
 };

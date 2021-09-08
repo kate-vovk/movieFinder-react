@@ -1,11 +1,11 @@
 import {
   addCartToServerAPI,
-  addRentedMoviesAndListMyMoviesToUserAPI,
+  addOrderedMoviesAndMyMoviesToUserAPI,
   deleteCartFromServerAPI,
   getCart,
   getMovie as getMovieObj,
 } from '@/api/cart';
-import { IMyMovie, IRentedMovie, IUser } from '@/utils/interfaces/authInterfaces';
+import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
 import { ICart, IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 
 export const getUserCart = async (userId: string): Promise<ICart> => {
@@ -36,18 +36,18 @@ export const deleteCartFromServer = async (id: string): Promise<any> => {
   return data;
 };
 
-export const addRentedMoviesAndListMyMoviesToUser = async ({
+export const addOrderedMoviesAndMyMoviesToUser = async ({
   user,
-  rentedMoviesList,
+  orderedMovies,
   myMovies,
 }: {
   user: IUser;
-  rentedMoviesList: IRentedMovie[];
+  orderedMovies: IOrderedMovie[];
   myMovies: IMyMovie[];
 }): Promise<any> => {
-  const { data } = await addRentedMoviesAndListMyMoviesToUserAPI({
+  const { data } = await addOrderedMoviesAndMyMoviesToUserAPI({
     user,
-    rentedMoviesList,
+    orderedMovies,
     myMovies,
   });
   return data;

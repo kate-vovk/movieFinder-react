@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { FunctionComponent } from 'react';
 import { ListItem, ListItemIcon, Paper, Typography } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +12,7 @@ import { cartSelector } from '@/selectors/cart';
 import { useStyle } from './styles';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
-  const { id, cover, title, price, description } = movie;
+  const { id, cover_url, title, price, description } = movie;
   const classes = useStyle();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -27,7 +28,7 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   return (
     <ListItem className={classes.container} component={Paper}>
       <ListItemIcon className={classes.image}>
-        <img src={cover} />
+        <img src={cover_url} />
       </ListItemIcon>
       <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
         <Typography onClick={goToDetailedView} className={classes.title}>

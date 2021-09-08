@@ -48,7 +48,7 @@ export const MoviePage: FunctionComponent<IMoviePageProps> = ({ id }) => {
         {Object.keys(movie).length ? (
           <>
             <div className={classes.contentMovie}>
-              <MoviePoster cover={movie?.cover} price={movie?.price} title={movie?.title} />
+              <MoviePoster cover={movie?.cover_url} price={movie?.price} title={movie?.title} />
               <MovieInfo
                 title={movie?.title}
                 year={movie?.year}

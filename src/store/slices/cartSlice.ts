@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import {
   addCartToServer,
-  addRentedMoviesAndListMyMoviesToUser,
+  addOrderedMoviesAndMyMoviesToUser,
   deleteCartFromServer,
   getUserCart,
 } from '@/businessLogic/cart';
@@ -76,7 +76,7 @@ export const sendData = createAsyncThunk(
         quality: movie.quality,
       };
     });
-    const rentedMoviesList = movies.map((movie) => {
+    const orderedMovies = movies.map((movie) => {
       return {
         movieId: movie.movieId,
         dateOfPurchase: getDateOfPurchaseUTC(),
@@ -85,26 +85,26 @@ export const sendData = createAsyncThunk(
     });
 
     // TODO: PUT query will be replaced with POST when back end will be ready
-    if (user.rentedMoviesList && user.myMovies) {
-      await addRentedMoviesAndListMyMoviesToUser({
+    if (user.orderedMovies && user.myMovies) {
+      await addOrderedMoviesAndMyMoviesToUser({
         user,
-        rentedMoviesList: [...user.rentedMoviesList, ...rentedMoviesList],
+        orderedMovies: [...user.orderedMovies, ...orderedMovies],
         myMovies: [...user.myMovies, ...myMovies],
       });
-    } else if (user.rentedMoviesList && !user.myMovies) {
-      await addRentedMoviesAndListMyMoviesToUser({
+    } else if (user.orderedMovies && !user.myMovies) {
+      await addOrderedMoviesAndMyMoviesToUser({
         user,
-        rentedMoviesList: [...user.rentedMoviesList, ...rentedMoviesList],
+        orderedMovies: [...user.orderedMovies, ...orderedMovies],
         myMovies,
       });
-    } else if (!user.rentedMoviesList && user.myMovies) {
-      await addRentedMoviesAndListMyMoviesToUser({
+    } else if (!user.orderedMovies && user.myMovies) {
+      await addOrderedMoviesAndMyMoviesToUser({
         user,
-        rentedMoviesList,
+        orderedMovies,
         myMovies: [...user.myMovies, ...myMovies],
       });
     } else {
-      await addRentedMoviesAndListMyMoviesToUser({ user, rentedMoviesList, myMovies });
+      await addOrderedMoviesAndMyMoviesToUser({ user, orderedMovies, myMovies });
     }
     return [];
   },
