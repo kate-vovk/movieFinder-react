@@ -15,6 +15,7 @@ export const getMovieByParams = (selectParam?: string, searchQuery?: string): Pr
 
         const finalMovies: Record<string, string | number>[] = [];
         movies.forEach((movie: Record<string, string | number>) => {
+          // used negation because finalMovies is empty in the start of the condition
           if (!finalMovies.some((finalMovie) => finalMovie.id === movie.id))
             finalMovies.push(movie);
         });
