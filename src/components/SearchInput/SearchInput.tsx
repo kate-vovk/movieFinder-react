@@ -13,7 +13,6 @@ export const SearchInput: FunctionComponent<ISearchInputQuery> = ({
   getSearchQuery,
 }) => {
   const classes = useStyle();
-
   return (
     <FormControl className={classes.searchForm}>
       <InputLabel htmlFor="search">search</InputLabel>
