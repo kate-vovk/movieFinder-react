@@ -8,6 +8,7 @@ import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
 import { isLoggedInSelector } from '@/selectors/auth';
 import { cartSelector } from '@/selectors/cart';
 import { logout } from '@/store/slices/authSlice';
+import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
@@ -15,6 +16,11 @@ export const NavBar: FunctionComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
+
+  const { t, i18n } = useTranslation(['AppBar']);
+  const changeLanguage = (lng: string): void => {
+    i18n.changeLanguage(lng);
+  };
 
   const goToCart = useCallback(() => {
     history.push(CLIENT_PATHS.cart);
@@ -32,16 +38,18 @@ export const NavBar: FunctionComponent = () => {
           <Link to={CLIENT_PATHS.main} className={classes.link}>
             <MovieFilterIcon />
           </Link>
+          <Button onClick={() => changeLanguage('en')}>En</Button>
+          <Button onClick={() => changeLanguage('ru')}>Ru</Button>
           <div className={classes.buttonsContainer}>
             {isAuthorizedButtons(isLoggedIn).map((button) =>
               button.badge ? (
                 <Badge key={button.name} badgeContent={movies.length} color="secondary">
-                  <Button onClick={goToCart}>{button.name}</Button>
+                  <Button onClick={goToCart}>{t(`AppBar:${button.name}`)}</Button>
                 </Badge>
               ) : (
                 <Button key={button.name} onClick={goToLogOut}>
                   <Link to={button.to} className={classes.link}>
-                    {button.name}
+                    {t(`AppBar:${button.name}`)}
                   </Link>
                 </Button>
               ),

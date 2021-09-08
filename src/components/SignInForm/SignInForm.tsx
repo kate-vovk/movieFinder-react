@@ -10,9 +10,11 @@ import { isLoggedInSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { ILoginData } from '@/utils/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
+import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 export const SignInForm: FunctionComponent = () => {
+  const { t } = useTranslation(['SignIn']);
   const history = useHistory();
   const isLoggedIn = useSelector(isLoggedInSelector);
 
@@ -46,7 +48,7 @@ export const SignInForm: FunctionComponent = () => {
               fullWidth={field.fullWidth}
               id={field.name}
               name={field.name}
-              label={field.label}
+              label={t(field.label)}
               type={field.type}
               value={formik.values[field.name]}
               onChange={formik.handleChange}
@@ -62,7 +64,7 @@ export const SignInForm: FunctionComponent = () => {
           fullWidth
           type="submit"
         >
-          Submit
+          {t('submit')}
         </Button>
       </form>
     </div>
