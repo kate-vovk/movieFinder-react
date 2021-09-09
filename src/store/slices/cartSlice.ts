@@ -9,6 +9,8 @@ import {
 import { ICart, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { getUser } from '@/businessLogic/user';
 
+// const { t } = useTranslation(['cartSlice']);
+
 toast.configure();
 
 const getExpirationDateUTC = (period: number): string => {
@@ -120,6 +122,7 @@ export const cartSlice = createSlice({
         return action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, () => {
+        // toast(t('noCart'));
         toast('No cart for current user exists');
       })
       .addCase(removeMovieFromCart.fulfilled, (state, action) => {

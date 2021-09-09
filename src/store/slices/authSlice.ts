@@ -8,6 +8,8 @@ import { logoutUser } from '@/businessLogic/logout';
 
 toast.configure();
 
+// const { t } = useTranslation(['authSlice']);
+
 export const registration = createAsyncThunk(
   'auth/registration',
   async ({ name, password, email }: IAuthData) => {
@@ -45,16 +47,21 @@ export const authSlice = createSlice({
         if (message) {
           switch (JSON.parse(message).status) {
             case 100:
+              // toast(t('100'));
               toast('processing. Just wait for a while');
               break;
             case 300:
             case 400:
+              // toast(`${JSON.parse(message).data} - ${t('400')}`, {
+              //   autoClose: false,
+              // });
               toast(`${JSON.parse(message).data} - SignIn, please`, {
                 autoClose: false,
               });
               break;
             case 500:
-              toast('Such user already exists in DB');
+              // toast(t('500'));
+              toast('Such user already exists');
               break;
             default:
               return JSON.parse(message).response;
@@ -70,6 +77,7 @@ export const authSlice = createSlice({
         if (message) {
           toast(JSON.parse(message).data);
         } else {
+          // toast(t('error'));
           toast('Error');
         }
       })
