@@ -10,7 +10,7 @@
       "password": "$2a$10$LAeeRP9OZvs8vLQrEt8LLuJ.PGpzwuu4sxC5U31DDYmHpshh9z7Ke",
       "name": "fgd",
       "id": "UkIUuDc",
-      "rentedMoviesList": [
+      "orderedMovies": [
         {
           "movieId": "1",
           "dateOfPurchase": "Tue, 31 Aug 2021 15:28:14 GMT",
@@ -124,18 +124,6 @@
           "quality": "HD"
         }
       ]
-    },
-    {
-      "email": "otest@gmail.com",
-      "password": "$2a$10$F5mSrBZukxUCbw0LmhA5OuaQeqSs/GpVSpcpQZ/9TqUBLGhQUh7Ni",
-      "name": "name",
-      "id": "jpdF6CB"
-    },
-    {
-      "email": "drop@com.ua",
-      "password": "$2a$10$NWuuR4a3bqJZFDsJazmJSeu1e5tPdtSkYb1OTtJPNCJyQh35a.NiW",
-      "name": "name1",
-      "id": "qvR5eea"
     }
   ],
   "genres": [

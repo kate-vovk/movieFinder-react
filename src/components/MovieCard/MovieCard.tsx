@@ -19,7 +19,7 @@ export const MovieCard: FunctionComponent<IProps> = ({ movie }) => {
         <Typography className={classes.title} variant="h5">
           {movie.title}
         </Typography>
-        <CardMedia className={classes.image} image={movie.cover} />
+        <CardMedia className={classes.image} image={movie.cover_url} />
         <CardContent className={classes.description}>
           <Typography>{movie.description}</Typography>
         </CardContent>

@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
 import { singInFormFields } from '@/constants/SignInFormFields';
 import { login } from '@/store/slices/authSlice';
-import { isLoggedInSelector } from '@/selectors/auth';
+import { userSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { ILoginData } from '@/utils/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
@@ -14,7 +14,7 @@ import { useStyle } from './styles';
 
 export const SignInForm: FunctionComponent = () => {
   const history = useHistory();
-  const isLoggedIn = useSelector(isLoggedInSelector);
+  const isLoggedIn = useSelector(userSelector);
 
   const classes = useStyle();
 
