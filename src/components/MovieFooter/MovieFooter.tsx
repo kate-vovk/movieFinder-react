@@ -23,7 +23,7 @@ export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, pri
   const modalProps = { movieId, price };
 
   const addMovieIdToCart = (): void => {
-    if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
+    if (movies?.find((movie: ICartMovieState) => movie.movieId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
       dispatch(showModal({ modalType, modalProps }));
@@ -31,7 +31,7 @@ export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, pri
   };
 
   const classes = useStyle({
-    isIncluded: Boolean(movies.find((movie: ICartMovieState) => movie.movieId === movieId)),
+    isIncluded: Boolean(movies?.find((movie: ICartMovieState) => movie.movieId === movieId)),
   });
   return (
     <div className={classes.footer}>

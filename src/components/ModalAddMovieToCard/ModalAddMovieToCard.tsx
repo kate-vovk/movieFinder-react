@@ -62,7 +62,9 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
       quality: movieQuality,
       price: getPriceMovie(),
     };
-    dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
+    if (movies) {
+      dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
+    }
 
     closeModal();
   };

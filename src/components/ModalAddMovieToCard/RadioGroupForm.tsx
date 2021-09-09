@@ -17,7 +17,7 @@ export const RadioGroupForm: FunctionComponent<IRadioGroupFormProps> = ({ onChan
         <FormLabel component="legend">Select movie format</FormLabel>
         <RadioGroup aria-label="quality" name="quality" value={value} onChange={onChange}>
           {Object.values(Quality).map((item) => (
-            <FormControlLabel value={item} control={<Radio />} label={item} />
+            <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
           ))}
         </RadioGroup>
       </FormControl>
