@@ -21,7 +21,6 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
   actorsList,
   genresList,
   categoriesList,
-  studio,
 }) => {
   const { t } = useTranslation(['MoviePage']);
   const classes = useStyle();
