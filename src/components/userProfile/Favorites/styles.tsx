@@ -7,7 +7,5 @@ export const useStyle = makeStyles(() => ({
     padding: '40px 15px 40px 15px',
     display: 'flex',
   },
-  tabPanel: {
-    marginLeft: '50px',
-  },
+  tabs: {},
 }));

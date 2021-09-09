@@ -21,7 +21,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   const { userId, movies, id } = useSelector(cartSelector);
 
   const addMovieIdToCart = (): void => {
-    if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
+    if (movies?.find((movie: ICartMovieState) => movie.movieId === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
     } else {
       dispatch(
@@ -35,7 +35,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   };
 
   const classes = useStyle({
-    isIncluded: Boolean(movies.find((movie: ICartMovieState) => movie.movieId === movieId)),
+    isIncluded: Boolean(movies?.find((movie: ICartMovieState) => movie.movieId === movieId)),
   });
   return (
     <div className={classes.footer}>
