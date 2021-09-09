@@ -4,13 +4,13 @@ import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { singInFormFields } from '@/constants/SignInFormFields';
 import { login } from '@/store/slices/authSlice';
 import { userSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { ILoginData } from '@/utils/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
-import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 export const SignInForm: FunctionComponent = () => {

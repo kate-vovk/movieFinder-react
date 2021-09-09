@@ -10,7 +10,6 @@ interface IMovieInfoProps {
   actorsList: string[];
   genresList: string[];
   categoriesList: string[];
-  studio: string;
 }
 
 export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({

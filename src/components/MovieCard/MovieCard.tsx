@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
+import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieFooter } from '@/components/MovieFooter/MovieFooter';
 import { CLIENT_PATHS } from '@/constants/constants';
-import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { useStyle } from './styles';
 
 interface IProps {

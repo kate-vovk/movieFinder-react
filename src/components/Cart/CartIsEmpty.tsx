@@ -1,8 +1,8 @@
 import { FunctionComponent, useCallback } from 'react';
 import { Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useTranslation } from 'react-i18next';
+import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyle } from './styles';
 
 export const CartIsEmpty: FunctionComponent = () => {

@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { DialogTitle, Typography } from '@material-ui/core';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useTranslation } from 'react-i18next';
+import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyle } from './styles';
 
 interface IModalHeader {

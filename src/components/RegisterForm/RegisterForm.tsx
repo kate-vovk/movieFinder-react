@@ -4,11 +4,11 @@ import { FormikHelpers, useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { registration } from '@/store/slices/authSlice';
-import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 interface IFormInputs {
