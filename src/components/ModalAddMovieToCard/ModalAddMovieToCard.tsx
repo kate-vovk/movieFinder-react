@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, useEffect, ChangeEvent } from 'react';
+import { FunctionComponent, useState, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
@@ -12,8 +12,8 @@ import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
 
 interface IModalFormProps {
-  movieId?: string;
-  price?: number;
+  movieId: string;
+  price: number;
   closeModal: () => void;
 }
 
@@ -31,7 +31,6 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   const dispatch = useDispatch();
   const { movies, id } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
-  const [priceMovie, setPriceMovie] = useState(0);
   const [movieQuality, setMovieQuality] = useState(`${Quality.HD}`);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
@@ -45,27 +44,28 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
     setMoviePurchasePeriod(event.target.value as number);
   };
 
-  const onHandleDataForCart = (values: IStateValuesForm): void => {
-    if (movieId && price) {
-      const movie = {
-        ...values,
-        movieId,
-        period: moviePurchasePeriod,
-        quality: movieQuality,
-        price: priceMovie,
-      };
-      dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
+  const getPriceMovie = (): number => {
+    if (movieQuality === Quality.HD) {
+      return calcCostMovie(price, moviePurchasePeriod);
     }
-    closeModal();
+    if (movieQuality === Quality.SD) {
+      return calcCostMovie(price, moviePurchasePeriod, 0.9);
+    }
+    return price;
   };
 
-  useEffect(() => {
-    if (movieQuality === Quality.HD && price) {
-      setPriceMovie(calcCostMovie(price, moviePurchasePeriod));
-    } else if (movieQuality === Quality.SD && price) {
-      setPriceMovie(calcCostMovie(price, moviePurchasePeriod, 0.9));
-    }
-  }, [movieQuality, moviePurchasePeriod]);
+  const onHandleDataForCart = (values: IStateValuesForm): void => {
+    const movie = {
+      ...values,
+      movieId,
+      period: moviePurchasePeriod,
+      quality: movieQuality,
+      price: getPriceMovie(),
+    };
+    dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
+
+    closeModal();
+  };
 
   return (
     <Formik
@@ -81,7 +81,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
             <div>
-              <span>{priceMovie}</span> $
+              <span>{getPriceMovie()}</span> $
             </div>
             <Button color="primary" variant="contained" type="submit">
               Submit
