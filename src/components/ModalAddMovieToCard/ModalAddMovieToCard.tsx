@@ -8,8 +8,8 @@ import { userSelector } from '@/selectors/auth';
 import { calcCostMovie } from '@/utils/calculations/calcCostMovie';
 import { Quality } from '@/utils/interfaces/cartInterfaces';
 import { useStyles } from './styles';
-import { ModalFormRadioGroup } from './ModalFormRadioGroup';
-import { ModalFormSelect } from './ModalFormSelect';
+import { RadioGroupForm } from './RadioGroupForm';
+import { SelectForm } from './SelectForm';
 
 interface IModalFormProps {
   movieId?: string;
@@ -32,24 +32,26 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   const { movies, id } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
   const [priceMovie, setPriceMovie] = useState(0);
-  const [valueQualityInput, setValueQualityInput] = useState(`${Quality.HD}`);
-  const [valuePeriodInput, setValuePeriodInput] = useState(0);
+  const [movieQuality, setMovieQuality] = useState(`${Quality.HD}`);
+  const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
-  const getValueQualityInput = (event: ChangeEvent<HTMLInputElement>): void => {
-    setValueQualityInput((event.target as HTMLInputElement).value);
+  const onHandleMovieQuality = (event: ChangeEvent<HTMLInputElement>): void => {
+    setMovieQuality((event.target as HTMLInputElement).value);
   };
 
-  const getValuePeriodInput = (event: ChangeEvent<{ name?: string; value: unknown }>): void => {
-    setValuePeriodInput(event.target.value as number);
+  const onHandleMoviePurchasePeriod = (
+    event: ChangeEvent<{ name?: string; value: unknown }>,
+  ): void => {
+    setMoviePurchasePeriod(event.target.value as number);
   };
 
-  const getFormValueInCart = (values: IStateValuesForm): void => {
+  const onHandleDataForCart = (values: IStateValuesForm): void => {
     if (movieId && price) {
       const movie = {
         ...values,
         movieId,
-        period: valuePeriodInput,
-        quality: valueQualityInput,
+        period: moviePurchasePeriod,
+        quality: movieQuality,
         price: priceMovie,
       };
       dispatch(addMovieToCart({ userId, id, movies: [...movies, movie] }));
@@ -58,12 +60,12 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   };
 
   useEffect(() => {
-    if (valueQualityInput === Quality.HD && price) {
-      setPriceMovie(calcCostMovie(price, valuePeriodInput));
-    } else if (valueQualityInput === Quality.SD && price) {
-      setPriceMovie(calcCostMovie(price, valuePeriodInput, 0.9));
+    if (movieQuality === Quality.HD && price) {
+      setPriceMovie(calcCostMovie(price, moviePurchasePeriod));
+    } else if (movieQuality === Quality.SD && price) {
+      setPriceMovie(calcCostMovie(price, moviePurchasePeriod, 0.9));
     }
-  }, [valueQualityInput, valuePeriodInput]);
+  }, [movieQuality, moviePurchasePeriod]);
 
   return (
     <Formik
@@ -71,12 +73,12 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
         quality: Quality.HD,
         period: 0,
       }}
-      onSubmit={getFormValueInCart}
+      onSubmit={onHandleDataForCart}
     >
       {() => (
         <Form>
-          <ModalFormRadioGroup onChange={getValueQualityInput} value={valueQualityInput} />
-          <ModalFormSelect onChange={getValuePeriodInput} value={valuePeriodInput} />
+          <RadioGroupForm onChange={onHandleMovieQuality} value={movieQuality} />
+          <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
             <div>
               <span>{priceMovie}</span> $

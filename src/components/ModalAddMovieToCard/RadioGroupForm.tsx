@@ -3,15 +3,12 @@ import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@ma
 import { Quality } from '@/utils/interfaces/cartInterfaces';
 import { useStyles } from './styles';
 
-interface IModalFormRadioGroupProps {
+interface IRadioGroupFormProps {
   onChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   value: string;
 }
 
-export const ModalFormRadioGroup: FunctionComponent<IModalFormRadioGroupProps> = ({
-  onChange,
-  value,
-}) => {
+export const RadioGroupForm: FunctionComponent<IRadioGroupFormProps> = ({ onChange, value }) => {
   const classes = useStyles();
 
   return (
