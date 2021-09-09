@@ -48,8 +48,3 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
     </Button>
   );
 };
-
-CustomButton.defaultProps = {
-  className: '',
-  onClick: () => null,
-};
