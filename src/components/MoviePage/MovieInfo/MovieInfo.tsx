@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
 interface IProps {
@@ -20,13 +21,14 @@ export const MovieInfo: FunctionComponent<IProps> = ({
   genresList,
   categoriesList,
 }) => {
+  const { t } = useTranslation(['MoviePage']);
   const classes = useStyle();
 
   const movieInfo = [
-    { id: 1, name: 'country', value: 'USA' }, // Temporary solution. In the future, receiving data from the server will be implemented
+    { id: 1, name: 'country', value: 'USA' }, // TODO Temporary solution. In the future, receiving data from the server will be implemented
     { id: 2, name: 'duration', value: duration },
-    { id: 3, name: 'release date (year)', value: year },
-    { id: 4, name: 'production companies', value: 'Disney' }, // Temporary solution. In the future, receiving data from the server will be implemented
+    { id: 3, name: 'releaseDate', value: year },
+    { id: 4, name: 'productionCompanies', value: 'Disney' }, // TODO Temporary solution. In the future, receiving data from the server will be implemented
     { id: 5, name: 'genres', value: genresList.join(', ') },
     { id: 6, name: 'categories', value: categoriesList.join(', ') },
     { id: 7, name: 'director', value: director },
@@ -40,7 +42,7 @@ export const MovieInfo: FunctionComponent<IProps> = ({
         {movieInfo.map((item) => {
           return (
             <li key={item.id} className={classes.infoMovieListElement}>
-              {`${item.name}: ${item.value}`}
+              {`${t(item.name)}: ${item.value}`}
             </li>
           );
         })}

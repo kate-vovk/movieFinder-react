@@ -1,6 +1,7 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieInfo } from './MovieInfo/MovieInfo';
@@ -13,6 +14,8 @@ interface IProps {
 }
 
 export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
+  const { t } = useTranslation(['MoviePage']);
+
   const classes = useStyle();
   const history = useHistory();
   const [movie, setMovie] = useState<IMovie>({} as IMovie);
@@ -43,7 +46,7 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
           type="button"
           onClick={goToBack}
         >
-          Go home
+          {t('goHome')}
         </Button>
         {Object.keys(movie).length ? (
           <>
@@ -60,7 +63,7 @@ export const MoviePage: FunctionComponent<IProps> = ({ id }) => {
               />
             </div>
             <div className={classes.descriptionMovie}>
-              <h2 className={classes.descriptionMovieTitle}>Description</h2>
+              <h2 className={classes.descriptionMovieTitle}>{t('description')}</h2>
               <p className={classes.descriptionMovieText}>{movie?.description}</p>
             </div>
             <div className={classes.trailerMovie}>
