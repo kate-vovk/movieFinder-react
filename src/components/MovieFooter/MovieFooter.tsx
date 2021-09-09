@@ -35,7 +35,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   };
 
   const classes = useStyle({
-    isIncluded: Boolean(movies.find((movie: ICartMovieState) => movie.movieId === movieId)),
+    isIncluded: Boolean(movies?.find((movie: ICartMovieState) => movie.movieId === movieId)),
   });
   return (
     <div className={classes.footer}>

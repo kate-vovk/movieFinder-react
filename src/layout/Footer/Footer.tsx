@@ -5,7 +5,6 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-import { API_LOGO_URL, API_WEBSITE } from '@/constants/constants';
 
 import { useHistory } from 'react-router-dom';
 import { useStyle } from './styles';
@@ -19,7 +18,7 @@ export const Footer: FunctionComponent = () => {
   return (
     <footer className={classes.footer}>
       <Paper className={classes.paper}>
-        <div>
+        <div className={classes.left}>
           <IconButton>
             <TwitterIcon />
           </IconButton>
@@ -37,11 +36,6 @@ export const Footer: FunctionComponent = () => {
           <IconButton onClick={goToMainPage}>
             <MovieFilterIcon />
           </IconButton>
-        </span>
-        <span>
-          <a href={API_WEBSITE} target="_blank" rel="noreferrer">
-            <img src={API_LOGO_URL} className={classes.link} />
-          </a>
         </span>
       </Paper>
     </footer>

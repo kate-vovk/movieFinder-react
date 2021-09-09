@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
-import { isLoggedInSelector } from '@/selectors/auth';
+import { userSelector } from '@/selectors/auth';
 import { cartSelector } from '@/selectors/cart';
 import { logout } from '@/store/slices/authSlice';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
-  const isLoggedIn = useSelector(isLoggedInSelector);
+  const user = useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
@@ -47,9 +47,9 @@ export const NavBar: FunctionComponent = () => {
               {/* // <Button onClick={() => changeLanguage('en')}>En</Button>
               // <Button onClick={() => changeLanguage('ru')}>Ru</Button> */}
             </ButtonGroup>
-            {isAuthorizedButtons(isLoggedIn).map((button) =>
+            {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
-                <Badge key={button.name} badgeContent={movies.length} color="secondary">
+                <Badge key={button.name} badgeContent={movies?.length} color="secondary">
                   <Button onClick={goToCart}>{t(button.name)}</Button>
                 </Badge>
               ) : (

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMovieInfoProps {
   director: string;
   duration: number;
   title: string;
@@ -10,9 +10,10 @@ interface IProps {
   actorsList: string[];
   genresList: string[];
   categoriesList: string[];
+  studio: string;
 }
 
-export const MovieInfo: FunctionComponent<IProps> = ({
+export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
   director,
   duration,
   title,
@@ -20,6 +21,7 @@ export const MovieInfo: FunctionComponent<IProps> = ({
   actorsList,
   genresList,
   categoriesList,
+  studio,
 }) => {
   const { t } = useTranslation(['MoviePage']);
   const classes = useStyle();
