@@ -7,7 +7,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: {
+      'en-US': {
         AppBar: {
           cart: 'Cart',
           signOut: 'SignOut',
@@ -123,12 +123,6 @@ i18n
       },
     },
     ns: ['AppBar', 'SignUp', 'SignIn', 'Cart', 'PaymentForm', 'Search', 'MoviePage', 'Filtration'],
-
-    keySeparator: false,
-
-    interpolation: {
-      escapeValue: false,
-    },
   });
 
 export default i18n;

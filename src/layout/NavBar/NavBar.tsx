@@ -20,6 +20,7 @@ export const NavBar: FunctionComponent = () => {
   const { movies } = useSelector(cartSelector);
 
   const { t, i18n } = useTranslation(['AppBar']);
+
   const changeLanguage = (lng: string): void => {
     i18n.changeLanguage(lng);
   };
@@ -32,7 +33,9 @@ export const NavBar: FunctionComponent = () => {
     dispatch(logout());
   }, []);
 
-  const classes = useStyle();
+  const classes = useStyle({
+    chosenLanguage: String(localStorage.getItem('i18nextLng')),
+  });
   return (
     <div>
       <AppBar position="fixed" className={classes.appBar}>
@@ -42,10 +45,18 @@ export const NavBar: FunctionComponent = () => {
           </Link>
           <div className={classes.buttonsContainer}>
             <ButtonGroup variant="text" aria-label="text primary button group">
-              <CustomButton onClick={() => changeLanguage('en')} name="En" buttonType="button" />
-              <CustomButton onClick={() => changeLanguage('ru')} name="Ru" buttonType="button" />
-              {/* // <Button onClick={() => changeLanguage('en')}>En</Button>
-              // <Button onClick={() => changeLanguage('ru')}>Ru</Button> */}
+              <CustomButton
+                className={classes.enButton}
+                onClick={() => changeLanguage('en-US')}
+                name="En"
+                buttonType="button"
+              />
+              <CustomButton
+                className={classes.ruButton}
+                onClick={() => changeLanguage('ru')}
+                name="Ru"
+                buttonType="button"
+              />
             </ButtonGroup>
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
