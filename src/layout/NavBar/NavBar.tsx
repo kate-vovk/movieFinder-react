@@ -34,10 +34,6 @@ export const NavBar: FunctionComponent = () => {
     dispatch(logout());
   }, []);
 
-  // useEffect(() => {
-  //   console.log('-US', 'en', languageFromLocalStorage, languageFromLocalStorage.split('-')[0]);
-  // }, []);
-
   const classes = useStyle({
     chosenLanguage:
       languageFromLocalStorage === 'en-US'
