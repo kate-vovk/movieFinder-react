@@ -1,15 +1,15 @@
 import HTTPService from '@/services/httpService';
 import { SERVER_PATHS } from '@/constants/constants';
-import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
 
 export const getCart = async (userId: string): Promise<any> => {
   return HTTPService.get(`${SERVER_PATHS.cart}?userId=${userId}`);
 };
 
-export const getMovie = async (movieId: string): Promise<any> => {
-  return HTTPService.get(`${SERVER_PATHS.movies}/${movieId}`);
-};
+// export const getMovie = async (movieId: string): Promise<any> => {
+//   return HTTPService.get(`${SERVER_PATHS.movies}/${movieId}`);
+// };
 
 export const addCartToServerAPI = async ({
   id,
@@ -18,7 +18,7 @@ export const addCartToServerAPI = async ({
 }: {
   id: string;
   userId: string;
-  movies: ICartMovieState[];
+  movies: IMovie[];
 }): Promise<any> => {
   return HTTPService.post(SERVER_PATHS.cart, {
     id,

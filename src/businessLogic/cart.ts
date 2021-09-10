@@ -1,22 +1,16 @@
-import {
-  addCartToServerAPI,
-  addOrderedMoviesAndMyMoviesToUserAPI,
-  deleteCartFromServerAPI,
-  getCart,
-  getMovie as getMovieObj,
-} from '@/api/cart';
-import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
-import { ICart, IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
+import { addCartToServerAPI, deleteCartFromServerAPI, getCart } from '@/api/cart';
+// import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 
-export const getUserCart = async (userId: string): Promise<ICart> => {
+export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   const { data } = await getCart(userId);
-  return data[0];
-};
-
-export const getMovie = async (movieId: string): Promise<IMovie> => {
-  const { data } = await getMovieObj(movieId);
   return data;
 };
+
+// export const getMovie = async (movieId: string): Promise<IMovie> => {
+//   const { data } = await getMovieObj(movieId);
+//   return data;
+// };
 
 export const addCartToServer = async ({
   id,
@@ -25,7 +19,7 @@ export const addCartToServer = async ({
 }: {
   id: string;
   userId: string;
-  movies: ICartMovieState[];
+  movies: IMovie[];
 }): Promise<any> => {
   const { data } = await addCartToServerAPI({ id, userId, movies });
   return data;
@@ -36,19 +30,19 @@ export const deleteCartFromServer = async (id: string): Promise<any> => {
   return data;
 };
 
-export const addOrderedMoviesAndMyMoviesToUser = async ({
-  user,
-  orderedMovies,
-  myMovies,
-}: {
-  user: IUser;
-  orderedMovies: IOrderedMovie[];
-  myMovies: IMyMovie[];
-}): Promise<any> => {
-  const { data } = await addOrderedMoviesAndMyMoviesToUserAPI({
-    user,
-    orderedMovies,
-    myMovies,
-  });
-  return data;
-};
+// export const addOrderedMoviesAndMyMoviesToUser = async ({
+//   user,
+//   orderedMovies,
+//   myMovies,
+// }: {
+//   user: IUser;
+//   orderedMovies: IOrderedMovie[];
+//   myMovies: string[];
+// }): Promise<any> => {
+//   const { data } = await addOrderedMoviesAndMyMoviesToUserAPI({
+//     user,
+//     orderedMovies,
+//     myMovies,
+//   });
+//   return data;
+// };
