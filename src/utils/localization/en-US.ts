@@ -54,13 +54,13 @@ export const enUS = {
     voteAverage: 'Vote average',
     year: 'Year',
   },
-  authSlice: {
+  AuthStatuses: {
     100: 'processing. Just wait for a while',
     400: 'SignIn, please',
     500: 'Such user already exists',
     error: 'Error',
   },
-  cartSlice: {
+  CartStatuses: {
     noCart: 'No cart for current user exists',
   },
 };

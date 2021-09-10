@@ -21,8 +21,8 @@ i18n
       'Search',
       'MoviePage',
       'Filtration',
-      'authSlice',
-      'cartSlice',
+      'AuthStatuses',
+      'CartStatuses',
     ],
   });
 

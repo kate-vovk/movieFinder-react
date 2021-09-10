@@ -121,7 +121,7 @@ export const cartSlice = createSlice({
         return action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, () => {
-        toast(i18next.t('cartSlice:noCart'));
+        toast(i18next.t('CartStatuses:noCart'));
       })
       .addCase(removeMovieFromCart.fulfilled, (state, action) => {
         state.movies = action.payload;

@@ -46,16 +46,16 @@ export const authSlice = createSlice({
         if (message) {
           switch (JSON.parse(message).status) {
             case 100:
-              toast(i18next.t('authSlice:100'));
+              toast(i18next.t('AuthStatuses:100'));
               break;
             case 300:
             case 400:
-              toast(`${JSON.parse(message).data} - ${i18next.t('authSlice:400')}`, {
+              toast(`${JSON.parse(message).data} - ${i18next.t('AuthStatuses:400')}`, {
                 autoClose: false,
               });
               break;
             case 500:
-              toast(i18next.t('authSlice:500'));
+              toast(i18next.t('AuthStatuses:500'));
               break;
             default:
               return JSON.parse(message).response;
@@ -71,7 +71,7 @@ export const authSlice = createSlice({
         if (message) {
           toast(JSON.parse(message).data);
         } else {
-          toast(i18next.t('authSlice:error'));
+          toast(i18next.t('AuthStatuses:error'));
         }
       })
       .addCase(logout.fulfilled, (state) => {
