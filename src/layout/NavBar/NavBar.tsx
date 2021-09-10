@@ -14,6 +14,7 @@ import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
+  const languageFromLocalStorage = String(localStorage.getItem('i18nextLng'));
   const user = useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -27,14 +28,21 @@ export const NavBar: FunctionComponent = () => {
 
   const goToCart = useCallback(() => {
     history.push(CLIENT_PATHS.cart);
-  }, []);
+  }, [languageFromLocalStorage]);
 
   const goToLogOut = useCallback(() => {
     dispatch(logout());
   }, []);
 
+  // useEffect(() => {
+  //   console.log('-US', 'en', languageFromLocalStorage, languageFromLocalStorage.split('-')[0]);
+  // }, []);
+
   const classes = useStyle({
-    chosenLanguage: String(localStorage.getItem('i18nextLng')),
+    chosenLanguage:
+      languageFromLocalStorage === 'en-US'
+        ? languageFromLocalStorage.split('-')[0]
+        : languageFromLocalStorage,
   });
   return (
     <div>

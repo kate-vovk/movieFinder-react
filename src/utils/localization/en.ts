@@ -1,4 +1,4 @@
-export const enUS = {
+export const en = {
   AppBar: {
     cart: 'Cart',
     signOut: 'SignOut',
