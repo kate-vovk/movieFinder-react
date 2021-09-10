@@ -3,7 +3,6 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { enUS } from './en-US';
 import { ru } from './ru';
-// import enUS from './enUS.json';
 
 i18n
   .use(LanguageDetector)
@@ -14,8 +13,6 @@ i18n
       ru,
     },
     ns: [
-      // 'englishTranslation',
-      // 'russianTranslation',
       'AppBar',
       'SignUp',
       'SignIn',
