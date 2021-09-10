@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 import { IAuthData, IAuthInitialState, ILoginData } from '@/utils/interfaces/authInterfaces';
 import { getRegistrationData } from '@/businessLogic/registration';
 import { getLoginData } from '@/businessLogic/login';
 import { logoutUser } from '@/businessLogic/logout';
 
 toast.configure();
-
-// const { t } = useTranslation(['authSlice']);
 
 export const registration = createAsyncThunk(
   'auth/registration',
@@ -47,21 +46,16 @@ export const authSlice = createSlice({
         if (message) {
           switch (JSON.parse(message).status) {
             case 100:
-              // toast(t('100'));
-              toast('processing. Just wait for a while');
+              toast(i18next.t('authSlice:100'));
               break;
             case 300:
             case 400:
-              // toast(`${JSON.parse(message).data} - ${t('400')}`, {
-              //   autoClose: false,
-              // });
-              toast(`${JSON.parse(message).data} - SignIn, please`, {
+              toast(`${JSON.parse(message).data} - ${i18next.t('authSlice:400')}`, {
                 autoClose: false,
               });
               break;
             case 500:
-              // toast(t('500'));
-              toast('Such user already exists');
+              toast(i18next.t('authSlice:500'));
               break;
             default:
               return JSON.parse(message).response;
@@ -77,8 +71,7 @@ export const authSlice = createSlice({
         if (message) {
           toast(JSON.parse(message).data);
         } else {
-          // toast(t('error'));
-          toast('Error');
+          toast(i18next.t('authSlice:error'));
         }
       })
       .addCase(logout.fulfilled, (state) => {

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 import {
   addCartToServer,
   addOrderedMoviesAndMyMoviesToUser,
@@ -8,8 +9,6 @@ import {
 } from '@/businessLogic/cart';
 import { ICart, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { getUser } from '@/businessLogic/user';
-
-// const { t } = useTranslation(['cartSlice']);
 
 toast.configure();
 
@@ -122,8 +121,7 @@ export const cartSlice = createSlice({
         return action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, () => {
-        // toast(t('noCart'));
-        toast('No cart for current user exists');
+        toast(i18next.t('cartSlice:noCart'));
       })
       .addCase(removeMovieFromCart.fulfilled, (state, action) => {
         state.movies = action.payload;
