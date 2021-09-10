@@ -22,6 +22,8 @@ export interface IUser {
 export interface IPrivateRouteProps {
   path: string;
   component: FunctionComponent;
+  id?: string;
+  exact?: boolean;
 }
 
 export interface ILoginData {

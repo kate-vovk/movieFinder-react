@@ -1,25 +1,29 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, Redirect } from 'react-router-dom';
+import { CLIENT_PATHS } from '@/constants/constants';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { movieListSelector } from '@/selectors/search';
+import { useSelector } from 'react-redux';
 import { MovieInfo } from './MovieInfo/MovieInfo';
 import { MoviePoster } from './MoviePoster/MoviePoster';
 import { MovieFeedback } from './MovieFeedback/MovieFeedback';
 import { useStyle } from './styles';
 
-interface IMoviePageProps {
+interface IParamsIdMovie {
   id: string;
 }
-
-export const MoviePage: FunctionComponent<IMoviePageProps> = ({ id }) => {
+export const MoviePage: FunctionComponent = () => {
+  const { id } = useParams<IParamsIdMovie>();
   const classes = useStyle();
   const history = useHistory();
   const [movie, setMovie] = useState({} as IMovie);
   const [actors, setActors] = useState<string[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-
+  const allMovies = useSelector(movieListSelector);
+  const existingFilm = allMovies.find((item) => item.id === id); // tested on type number. Will work when id-type is string.
   const goToBack = (): void => {
     history.goBack();
   };
@@ -45,7 +49,7 @@ export const MoviePage: FunctionComponent<IMoviePageProps> = ({ id }) => {
         >
           Go home
         </Button>
-        {Object.keys(movie).length ? (
+        {existingFilm ? (
           <>
             <div className={classes.contentMovie}>
               <MoviePoster cover={movie?.cover_url} price={movie?.price} title={movie?.title} />
@@ -78,7 +82,7 @@ export const MoviePage: FunctionComponent<IMoviePageProps> = ({ id }) => {
             <MovieFeedback />
           </>
         ) : (
-          <h2>Sorry</h2>
+          <Redirect to={CLIENT_PATHS.notFound} />
         )}
       </div>
     </div>
