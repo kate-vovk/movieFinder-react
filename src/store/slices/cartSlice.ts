@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import { addCartToServer, deleteMovieFromCartOnServer, getUserCart } from '@/businessLogic/cart';
-import { ICart, IMovie } from '@/utils/interfaces/cartInterfaces';
+import { ICart } from '@/utils/interfaces/cartInterfaces';
 
 toast.configure();
 
@@ -35,7 +35,7 @@ export const sendData = createAsyncThunk(
     // here we will make POST request to Orders and MyMovies on server.
 
     // TODO when query deleteAllMovieFromCart() will exist, it wil be used here
-
+    console.log(userId);
     return [];
   },
 );

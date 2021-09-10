@@ -7,7 +7,6 @@ import InputMask from 'react-input-mask';
 import { useTranslation } from 'react-i18next';
 import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidation';
 import { sendData } from '@/store/slices/cartSlice';
-import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { useStyle } from './styles';
