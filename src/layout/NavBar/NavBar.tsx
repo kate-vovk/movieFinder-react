@@ -21,8 +21,10 @@ export const NavBar: FunctionComponent = () => {
 
   const { t, i18n } = useTranslation(['AppBar']);
 
-  const changeLanguage = (lng: string): void => {
-    i18n.changeLanguage(lng);
+  const changeLanguage = (lang: string): void => {
+    // const ns = namespace || 'translation';
+    // i18n.addResourceBundle(lang, ns, resources);
+    i18n.changeLanguage(lang);
   };
 
   const goToCart = useCallback(() => {

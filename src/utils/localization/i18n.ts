@@ -3,16 +3,19 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { enUS } from './en-US';
 import { ru } from './ru';
+// import enUS from './enUS.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      'en-US': enUS,
+      'en-US': enUS ,
       ru,
     },
     ns: [
+      // 'englishTranslation',
+      // 'russianTranslation',
       'AppBar',
       'SignUp',
       'SignIn',
@@ -24,6 +27,15 @@ i18n
       'AuthStatuses',
       'CartStatuses',
     ],
+    fallbackLng: 'en-US',
+    react: {
+      bindI18n: 'languageChanged',
+      bindI18nStore: '',
+      transEmptyNodeValue: '',
+      transSupportBasicHtmlNodes: true,
+      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
+      useSuspense: false,
+    },
   });
 
 export default i18n;

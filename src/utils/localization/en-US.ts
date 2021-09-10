@@ -55,9 +55,9 @@ export const enUS = {
     year: 'Year',
   },
   AuthStatuses: {
-    100: 'processing. Just wait for a while',
-    400: 'SignIn, please',
-    500: 'Such user already exists',
+    '100': 'processing. Just wait for a while',
+    '400': 'SignIn, please',
+    '500': 'Such user already exists',
     error: 'Error',
   },
   CartStatuses: {
