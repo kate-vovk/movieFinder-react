@@ -51,7 +51,7 @@ export const NavBar: FunctionComponent = () => {
             <ButtonGroup variant="text" aria-label="text primary button group">
               <CustomButton
                 className={classes.enButton}
-                onClick={() => changeLanguage('en-US')}
+                onClick={() => changeLanguage('en')}
                 name="En"
                 buttonType="button"
               />
