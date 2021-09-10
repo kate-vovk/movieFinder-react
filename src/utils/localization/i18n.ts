@@ -25,14 +25,9 @@ i18n
       'CartStatuses',
     ],
     fallbackLng: 'en-US',
-    react: {
-      bindI18n: 'languageChanged',
-      bindI18nStore: '',
-      transEmptyNodeValue: '',
-      transSupportBasicHtmlNodes: true,
-      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
-      useSuspense: false,
-    },
+    parseMissingKeyHandler: (value: string) => {
+      return `[${value}]`;
+    }
   });
 
 export default i18n;
