@@ -11,25 +11,25 @@ export const registrationFormFields: IField[] = [
   {
     fullWidth: true,
     name: 'name',
-    label: 'Enter your name',
+    label: 'name',
     type: 'text',
   },
   {
     fullWidth: true,
     name: 'email',
-    label: 'Email',
+    label: 'email',
     type: 'text',
   },
   {
     fullWidth: true,
     name: 'password',
-    label: 'Password',
+    label: 'password',
     type: 'password',
   },
   {
     fullWidth: true,
     name: 'confirmPassword',
-    label: 'Confirm password',
+    label: 'confirmPassword',
     type: 'password',
   },
 ];

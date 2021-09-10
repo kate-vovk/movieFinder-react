@@ -1,5 +1,5 @@
-import { ICart } from '@/utils/interfaces/cartInterfaces';
 import { createSelector } from '@reduxjs/toolkit';
+import { ICart } from '@/utils/interfaces/cartInterfaces';
 
 interface IState {
   cart: ICart;

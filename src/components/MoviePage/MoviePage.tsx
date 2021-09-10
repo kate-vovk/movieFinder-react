@@ -1,11 +1,12 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { useHistory, useParams, Redirect } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { movieListSelector } from '@/selectors/search';
-import { useSelector } from 'react-redux';
 import { MovieInfo } from './MovieInfo/MovieInfo';
 import { MoviePoster } from './MoviePoster/MoviePoster';
 import { MovieFeedback } from './MovieFeedback/MovieFeedback';
@@ -14,7 +15,9 @@ import { useStyle } from './styles';
 interface IParamsIdMovie {
   id: string;
 }
+
 export const MoviePage: FunctionComponent = () => {
+  const { t } = useTranslation(['MoviePage']);
   const { id } = useParams<IParamsIdMovie>();
   const classes = useStyle();
   const history = useHistory();
@@ -23,7 +26,7 @@ export const MoviePage: FunctionComponent = () => {
   const [genres, setGenres] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const allMovies = useSelector(movieListSelector);
-  const existingFilm = allMovies.find((item) => item.id === id); // tested on type number. Will work when id-type is string.
+  const existingFilm = allMovies.find((item) => +item.id === +id); // tested on type number. Will work when id-type is string.
   const goToBack = (): void => {
     history.goBack();
   };
@@ -47,7 +50,7 @@ export const MoviePage: FunctionComponent = () => {
           type="button"
           onClick={goToBack}
         >
-          Go home
+          {t('goHome')}
         </Button>
         {existingFilm ? (
           <>
@@ -61,11 +64,10 @@ export const MoviePage: FunctionComponent = () => {
                 actorsList={actors}
                 genresList={genres}
                 categoriesList={categories}
-                studio={movie?.company}
               />
             </div>
             <div className={classes.descriptionMovie}>
-              <h2 className={classes.descriptionMovieTitle}>Description</h2>
+              <h2 className={classes.descriptionMovieTitle}>{t('description')}</h2>
               <p className={classes.descriptionMovieText}>{movie?.description}</p>
             </div>
             <div className={classes.trailerMovie}>

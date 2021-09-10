@@ -9,14 +9,14 @@ import CloseIcon from '@material-ui/icons/Close';
 
 type TButtons = 'button' | 'submit' | 'reset';
 
-interface IProps {
+interface ICustomButton {
   className?: string;
   onClick?: (event: SyntheticEvent<HTMLButtonElement, any>) => void;
   name: string;
   buttonType: TButtons;
 }
 
-export const CustomButton: FunctionComponent<IProps> = ({
+export const CustomButton: FunctionComponent<ICustomButton> = ({
   buttonType,
   className = '',
   onClick = () => null,

@@ -39,7 +39,7 @@ const getListCategoriesMovie = async (arrayCategoryId: string[]): Promise<string
 
 export const getDataMoviePage = async (movieId: string): Promise<IMovieData> => {
   const { data: movieCardData } = await getMovie(movieId);
-  const movieCard = movieCardData;
+  const movieCard = movieCardData[0];
   const actorsList = await getListActorsMovie(movieCardData.actors)
     .then((data) => data)
     .catch(() => {
