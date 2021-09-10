@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      'en-US': enUS ,
+      'en-US': enUS,
       ru,
     },
     ns: [
@@ -27,7 +27,7 @@ i18n
     fallbackLng: 'en-US',
     parseMissingKeyHandler: (value: string) => {
       return `[${value}]`;
-    }
+    },
   });
 
 export default i18n;
