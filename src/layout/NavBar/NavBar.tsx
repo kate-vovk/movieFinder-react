@@ -28,7 +28,7 @@ export const NavBar: FunctionComponent = () => {
 
   const goToCart = useCallback(() => {
     history.push(CLIENT_PATHS.cart);
-  }, [languageFromLocalStorage]);
+  }, []);
 
   const goToLogOut = useCallback(() => {
     dispatch(logout());
