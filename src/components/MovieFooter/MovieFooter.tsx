@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
+import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 
 interface IProps {
@@ -18,20 +18,15 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   // const PERIOD = 30;
   // const QUALITY = 'HD';
   // const PRICE = 3;
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
-  // const userId = useSelector(userSelector);
+  const userId = useSelector(userSelector);
   const addMovieIdToCart = (): void => {
-    // if (movies.find((movie: IMovie) => movie.id === movieId)) {
-    //   dispatch(removeMovieFromCart({ userId, movieId, movies }));
-    // } else {
-    //   dispatch(
-    //     addMovieToCart({
-    //       userId,
-    //       movies: [...movies, { movieId, period: PERIOD, quality: QUALITY, price: PRICE }],
-    //     }),
-    //   );
-    // }
+    if (movies.find((movie: IMovie) => movie.id === movieId)) {
+      dispatch(removeMovieFromCart({ userId, movieId }));
+    } else {
+      dispatch(addMovieToCart({ userId, movieId }));
+    }
   };
 
   const classes = useStyle({

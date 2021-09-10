@@ -17,11 +17,10 @@ export const PaymentDetailsForm: FunctionComponent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyle();
-  const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
 
   const clickBuyButton = (): void => {
-    dispatch(sendData({ userId, movies }));
+    dispatch(sendData({ userId }));
     history.push(CLIENT_PATHS.main);
   };
   const formik = useFormik({

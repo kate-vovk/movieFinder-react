@@ -14,7 +14,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   enButton: {
     color: ({ chosenLanguage }: { chosenLanguage: string }) =>
-      chosenLanguage === 'en-US' ? 'yellow' : 'black',
+      chosenLanguage === 'en' ? 'yellow' : 'black',
   },
   ruButton: {
     color: ({ chosenLanguage }: { chosenLanguage: string }) =>

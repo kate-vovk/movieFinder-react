@@ -1,108 +1,41 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
-import { addCartToServer, deleteCartFromServer, getUserCart } from '@/businessLogic/cart';
+import { addCartToServer, deleteMovieFromCartOnServer, getUserCart } from '@/businessLogic/cart';
 import { ICart, IMovie } from '@/utils/interfaces/cartInterfaces';
 
 toast.configure();
 
-// const getExpirationDateUTC = (period: number): string => {
-//   if (!period) {
-//     return String(period);
-//   }
-//   const now = new Date();
-//   const expirationDate = new Date(now);
-//   expirationDate.setDate(now.getDate() + period);
-//   return expirationDate.toUTCString();
-// };
-
-// const getDateOfPurchaseUTC = (): string => {
-//   return new Date().toUTCString();
-// };
-
 const initialState: ICart = { movies: [] };
 
-interface IMovieRemove {
-  userId: string;
-  movieId: string;
-  id: string;
-  // movies: ICartMovieState[];
-  movies: IMovie[];
-}
 export const setCartMoviesToStore = createAsyncThunk('cart/getMovies', async (userId: string) => {
   return getUserCart(userId);
 });
 
 export const addMovieToCart = createAsyncThunk(
   'cart/addToCart',
-  async ({ userId, id, movies }: any) => {
-    // TODO: DELETE query will be removed when back end will be ready
-    await deleteCartFromServer(id);
-    await addCartToServer({ id, userId, movies });
-    return movies;
+  async ({ userId, movieId }: any) => {
+    await addCartToServer({ userId, movieId });
+    return getUserCart(userId);
   },
 );
 
 export const removeMovieFromCart = createAsyncThunk(
   'cart/removeMovie',
-  async ({ userId, movieId, id, movies }: IMovieRemove) => {
-    const newMoviesArray = movies.filter((movie: IMovie) => movie.id !== movieId);
-
-    // TODO: DELETE query will be removed when back end will be ready
-    await deleteCartFromServer(id);
-    await addCartToServer({ id, userId, movies: newMoviesArray });
-    return newMoviesArray;
+  async ({ userId, movieId }: any) => {
+    await deleteMovieFromCartOnServer({ userId, movieId });
+    return getUserCart(userId);
   },
 );
 
 export const sendData = createAsyncThunk(
   'cart/sendData',
-  async ({ userId, movies }: { userId: string; movies: IMovie[] }) => {
-    console.log('sendData', userId, movies);
-    // const cart = await getUserCart(userId);
-    // const user = await getUser(userId);
+  async ({ userId }: { userId: string }) => {
+    // TODO will be implemented when Orders and MyMovies on server will be created
+    // here we will make POST request to Orders and MyMovies on server.
 
-    // // TODO: DELETE query will be removed when back end will be ready
-    // // await deleteCartFromServer(cart.id);
-    // // await addCartToServer({ id: cart.id, userId, movies: [] });
+    // TODO when query deleteAllMovieFromCart() will exist, it wil be used here
 
-    // const myMovies = movies.map((movie) => {
-    //   return {
-    //     movieId: String(movie.id),
-    //     // expirationDate: getExpirationDateUTC(movie.period),
-    //     // quality: movie.quality,
-    //   };
-    // });
-    // const orderedMovies = movies.map((movie) => {
-    //   return {
-    //     movieId: String(movie.id),
-    //     dateOfPurchase: getDateOfPurchaseUTC(),
-    //     price: movie.price,
-    //   };
-    // });
-
-    // TODO: PUT query will be replaced with POST when back end will be ready
-    // if (user.orderedMovies && user.myMovies) {
-    //   await addOrderedMoviesAndMyMoviesToUser({
-    //     user,
-    //     orderedMovies: [...user.orderedMovies, ...orderedMovies],
-    //     myMovies: [...user.myMovies, ...myMovies],
-    //   });
-    // } else if (user.orderedMovies && !user.myMovies) {
-    //   await addOrderedMoviesAndMyMoviesToUser({
-    //     user,
-    //     orderedMovies: [...user.orderedMovies, ...orderedMovies],
-    //     myMovies,
-    //   });
-    // } else if (!user.orderedMovies && user.myMovies) {
-    //   await addOrderedMoviesAndMyMoviesToUser({
-    //     user,
-    //     orderedMovies,
-    //     myMovies: [...user.myMovies, ...myMovies],
-    //   });
-    // } else {
-    //   await addOrderedMoviesAndMyMoviesToUser({ user, orderedMovies, myMovies });
-    // }
     return [];
   },
 );
@@ -114,7 +47,6 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(setCartMoviesToStore.fulfilled, (state, action) => {
-        console.log('getUserCart(userId)', action.payload, state.movies);
         state.movies = action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, () => {

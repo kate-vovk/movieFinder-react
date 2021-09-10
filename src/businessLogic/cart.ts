@@ -1,48 +1,28 @@
-import { addCartToServerAPI, deleteCartFromServerAPI, getCart } from '@/api/cart';
-// import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
+import { addCartToServerAPI, deleteMovieFromCartOnServerAPI, getCart } from '@/api/cart';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
+
+interface ICartParameters {
+  movieId: string;
+  userId: string;
+}
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   const { data } = await getCart(userId);
   return data;
 };
 
-// export const getMovie = async (movieId: string): Promise<IMovie> => {
-//   const { data } = await getMovieObj(movieId);
-//   return data;
-// };
+export const addCartToServer = async ({ movieId, userId }: ICartParameters): Promise<string> => {
+  const { data } = await addCartToServerAPI({ movieId, userId });
+  return data;
+};
 
-export const addCartToServer = async ({
-  id,
+export const deleteMovieFromCartOnServer = async ({
+  movieId,
   userId,
-  movies,
-}: {
-  id: string;
-  userId: string;
-  movies: IMovie[];
-}): Promise<any> => {
-  const { data } = await addCartToServerAPI({ id, userId, movies });
+}: ICartParameters): Promise<string> => {
+  const { data } = await deleteMovieFromCartOnServerAPI({
+    movieId,
+    userId,
+  });
   return data;
 };
-
-export const deleteCartFromServer = async (id: string): Promise<any> => {
-  const { data } = await deleteCartFromServerAPI(id);
-  return data;
-};
-
-// export const addOrderedMoviesAndMyMoviesToUser = async ({
-//   user,
-//   orderedMovies,
-//   myMovies,
-// }: {
-//   user: IUser;
-//   orderedMovies: IOrderedMovie[];
-//   myMovies: string[];
-// }): Promise<any> => {
-//   const { data } = await addOrderedMoviesAndMyMoviesToUserAPI({
-//     user,
-//     orderedMovies,
-//     myMovies,
-//   });
-//   return data;
-// };

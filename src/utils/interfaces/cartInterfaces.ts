@@ -20,20 +20,11 @@ export interface IMovie {
   producer: string;
   production_company_id: string | number;
   release_date: string;
+
+  quality?: string;
+  period?: number;
 }
 
 export interface ICart {
-  // userId?: string | undefined;
-  // movies: ICartMovieState[];
   movies: IMovie[];
-  // movies: any;
-  // id?: string | undefined;
-}
-
-export interface ICartMovieState {
-  movieId: string;
-  period: number;
-  quality: string;
-  price: number;
-  // movies: IMovie;
 }
