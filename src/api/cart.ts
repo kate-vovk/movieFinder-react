@@ -21,6 +21,7 @@ export const deleteMovieFromCartOnServerAPI = async ({
   return HTTPService.delete(`${SERVER_PATHS.cart}?userId=${userId}&filmId=${movieId}`);
 };
 
+//TODO will be modified when POST requests to Orders and MyMovies will be created
 export const addOrderedMoviesAndMyMoviesToUserAPI = async ({
   user,
   orderedMovies,
