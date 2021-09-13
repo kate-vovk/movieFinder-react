@@ -15,9 +15,8 @@ interface IProps {
 
 export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   // TODO: mocked data, will be developed in the 'purchase option modal' part
-  // const PERIOD = 30;
-  // const QUALITY = 'HD';
-  // const PRICE = 3;
+  const PERIOD = 30;
+  const QUALITY = 'HD';
   const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
@@ -25,7 +24,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
     if (movies.find((movie: IMovie) => movie.id === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId }));
     } else {
-      dispatch(addMovieToCart({ userId, movieId }));
+      dispatch(addMovieToCart({ userId, movieId, period: PERIOD, quality: QUALITY }));
     }
   };
 

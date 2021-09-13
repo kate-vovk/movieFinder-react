@@ -1,25 +1,29 @@
-import { addCartToServerAPI, deleteMovieFromCartOnServerAPI, getCart } from '@/api/cart';
-import { IMovie } from '@/utils/interfaces/cartInterfaces';
-
-interface ICartParameters {
-  movieId: string;
-  userId: string;
-}
+import { addMovieToCartOnServerAPI, deleteMovieFromCartOnServerAPI, getCart } from '@/api/cart';
+import {
+  IAddMovieToCartParameters,
+  IMovie,
+  IRemoveMovieFromCartParameters,
+} from '@/utils/interfaces/cartInterfaces';
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   const { data } = await getCart(userId);
   return data;
 };
 
-export const addCartToServer = async ({ movieId, userId }: ICartParameters): Promise<string> => {
-  const { data } = await addCartToServerAPI({ movieId, userId });
+export const addMovieToCartOnServer = async ({
+  movieId,
+  userId,
+  period,
+  quality,
+}: IAddMovieToCartParameters): Promise<string> => {
+  const { data } = await addMovieToCartOnServerAPI({ movieId, userId, period, quality });
   return data;
 };
 
 export const deleteMovieFromCartOnServer = async ({
   movieId,
   userId,
-}: ICartParameters): Promise<string> => {
+}: IRemoveMovieFromCartParameters): Promise<string> => {
   const { data } = await deleteMovieFromCartOnServerAPI({
     movieId,
     userId,

@@ -28,3 +28,15 @@ export interface IMovie {
 export interface ICart {
   movies: IMovie[];
 }
+
+export interface IAddMovieToCartParameters {
+  movieId: string;
+  userId: string;
+  period: number;
+  quality: string;
+}
+
+export interface IRemoveMovieFromCartParameters {
+  userId: string;
+  movieId: string;
+}

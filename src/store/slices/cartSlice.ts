@@ -1,8 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
-import { addCartToServer, deleteMovieFromCartOnServer, getUserCart } from '@/businessLogic/cart';
-import { ICart } from '@/utils/interfaces/cartInterfaces';
+import {
+  addMovieToCartOnServer,
+  deleteMovieFromCartOnServer,
+  getUserCart,
+} from '@/businessLogic/cart';
+import {
+  ICart,
+  IAddMovieToCartParameters,
+  IRemoveMovieFromCartParameters,
+} from '@/utils/interfaces/cartInterfaces';
 
 toast.configure();
 
@@ -14,15 +22,15 @@ export const setCartMoviesToStore = createAsyncThunk('cart/getMovies', async (us
 
 export const addMovieToCart = createAsyncThunk(
   'cart/addToCart',
-  async ({ userId, movieId }: any) => {
-    await addCartToServer({ userId, movieId });
+  async ({ userId, movieId, period, quality }: IAddMovieToCartParameters) => {
+    await addMovieToCartOnServer({ userId, movieId, period, quality });
     return getUserCart(userId);
   },
 );
 
 export const removeMovieFromCart = createAsyncThunk(
   'cart/removeMovie',
-  async ({ userId, movieId }: any) => {
+  async ({ userId, movieId }: IRemoveMovieFromCartParameters) => {
     await deleteMovieFromCartOnServer({ userId, movieId });
     return getUserCart(userId);
   },
@@ -35,7 +43,7 @@ export const sendData = createAsyncThunk(
     // here we will make POST request to Orders and MyMovies on server.
 
     // TODO when query deleteAllMovieFromCart() will exist, it wil be used here
-    console.log(userId);
+    alert(userId);
     return [];
   },
 );
