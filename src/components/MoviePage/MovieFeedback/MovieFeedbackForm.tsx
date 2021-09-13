@@ -1,6 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 import { Formik, FormikHelpers, Form } from 'formik';
 import { Button, TextField, Slider } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import {
   THandleChangeValueSlider,
   THandleChangeValueFeedback,
@@ -16,6 +17,8 @@ export const MovieFeedbackForm: FunctionComponent = () => {
   const classes = useStyle();
   const [valueRate, setValueRate] = useState(0);
   const [valueFeedback, setValueFeedback] = useState('');
+
+  const { t } = useTranslation(['MoviePage']);
 
   const getValueSlider: THandleChangeValueSlider = (_event, newValue): void => {
     setValueRate(newValue as number);
@@ -48,7 +51,7 @@ export const MovieFeedbackForm: FunctionComponent = () => {
           <TextField
             id="outlined-multiline-static"
             name="feedback"
-            label="Give feedback"
+            label={t('feedback')}
             multiline
             fullWidth
             onChange={getValueFeedback}
@@ -77,7 +80,7 @@ export const MovieFeedbackForm: FunctionComponent = () => {
               variant="contained"
               type="submit"
             >
-              Submit
+              {t('submit')}
             </Button>
           </div>
         </Form>

@@ -12,4 +12,12 @@ export const useStyle = makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'black',
   },
+  enButton: {
+    color: ({ chosenLanguage }: { chosenLanguage: string }) =>
+      chosenLanguage === 'en' ? 'yellow' : 'black',
+  },
+  ruButton: {
+    color: ({ chosenLanguage }: { chosenLanguage: string }) =>
+      chosenLanguage === 'ru' ? 'yellow' : 'black',
+  },
 }));

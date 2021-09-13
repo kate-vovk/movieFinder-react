@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
-import { Typography } from '@material-ui/core';
 import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
 

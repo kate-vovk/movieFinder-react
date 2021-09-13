@@ -1,14 +1,22 @@
 export const sidebarFilterNamesFields = [
   {
-    name: 'Favorite',
+    name: 'genres',
     options: ['yes', 'no'],
   },
   {
-    name: 'Genres',
+    name: 'categories',
     options: ['yes', 'no'],
   },
   {
-    name: 'Categories',
+    name: 'countries',
+    options: ['yes', 'no'],
+  },
+  {
+    name: 'voteAverage',
+    options: ['yes', 'no'],
+  },
+  {
+    name: 'year',
     options: ['yes', 'no'],
   },
 ];

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 import {
   addCartToServer,
   addOrderedMoviesAndMyMoviesToUser,
@@ -120,7 +121,7 @@ export const cartSlice = createSlice({
         return action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, () => {
-        toast('No cart for current user exists');
+        toast(i18next.t('CartStatuses:noCart'));
       })
       .addCase(removeMovieFromCart.fulfilled, (state, action) => {
         state.movies = action.payload;

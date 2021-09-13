@@ -11,13 +11,13 @@ export const singInFormFields: IField[] = [
   {
     fullWidth: true,
     name: 'email',
-    label: 'Email',
+    label: 'email',
     type: 'text',
   },
   {
     fullWidth: true,
     name: 'password',
-    label: 'Password',
+    label: 'password',
     type: 'password',
   },
 ];

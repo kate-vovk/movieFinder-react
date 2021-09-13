@@ -7,6 +7,7 @@ import { SignInForm } from '@/components/SignInForm/SignInForm';
 import { Cart } from '@/components/Cart/Cart';
 import { UserProfile } from '@/components/userProfile/UserProfile';
 import { CLIENT_PATHS } from '@/constants/constants';
+import { NotFoundPage } from '@/components/NotFoundPage/NotFoundPage';
 import { PrivateRoute } from './PrivateRoute';
 
 export const AppRouter: FunctionComponent = () => {
@@ -17,14 +18,12 @@ export const AppRouter: FunctionComponent = () => {
       </Route>
       <Route exact path={CLIENT_PATHS.signup} component={RegisterForm} />
       <Route path={CLIENT_PATHS.signin} component={SignInForm} />
-      <Route path={CLIENT_PATHS.cart} component={Cart} />
-      <PrivateRoute path={CLIENT_PATHS.movies} component={MoviesPage} />
-      <Route path={CLIENT_PATHS.user} component={UserProfile} />
-      {/* <PrivateRoute path={CLIENT_PATHS.user} component={UserProfile} /> */}
-      <Route
-        path={`${CLIENT_PATHS.movie}/:id`}
-        render={(props) => <MoviePage id={props.match.params.id} />}
-      />
+      <PrivateRoute exact path={CLIENT_PATHS.movies} component={MoviesPage} />
+      <PrivateRoute path={CLIENT_PATHS.cart} component={Cart} />
+      <PrivateRoute exact path={`${CLIENT_PATHS.movies}/:id`} component={MoviePage} />
+      <PrivateRoute path={CLIENT_PATHS.user} component={UserProfile} />
+      <PrivateRoute path={CLIENT_PATHS.notFound} component={NotFoundPage} />
+      <Redirect to={CLIENT_PATHS.notFound} />
     </Switch>
   );
 };
