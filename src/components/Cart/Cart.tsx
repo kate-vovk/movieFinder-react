@@ -26,7 +26,7 @@ export const Cart: FunctionComponent = () => {
 
   useEffect(() => {
     dispatch(setCartMoviesToStore(userId));
-  }, [movies.length]);
+  }, []);
 
   const goToPreviousPage = useCallback(() => {
     history.goBack();
