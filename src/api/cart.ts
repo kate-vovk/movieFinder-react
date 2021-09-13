@@ -24,7 +24,7 @@ export const deleteMovieFromCart = async ({ movieId, userId }: ICartMovieState):
 };
 
 // TODO will be modified when POST requests to Orders and MyMovies will be created
-export const addOrderedMoviesAndMyMoviesAPI = async ({
+export const addOrderedMoviesAndMyMovies = async ({
   user,
   orderedMovies,
   myMovies,
