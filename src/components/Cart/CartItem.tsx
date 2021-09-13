@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { FunctionComponent } from 'react';
 import { ListItem, ListItemIcon, Paper, Typography } from '@material-ui/core';
 import EuroIcon from '@material-ui/icons/Euro';
