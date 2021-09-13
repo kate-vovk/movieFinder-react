@@ -34,7 +34,7 @@ interface IMovieGET {
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   const { data } = await getCart(userId);
-  data.map((movie: IMovieGET) => {
+  const dataInCamelCase = data.map((movie: IMovieGET) => {
     const {
       category_id,
       country_id,
@@ -45,7 +45,7 @@ export const getUserCart = async (userId: string): Promise<IMovie[]> => {
       trailer_url,
       ...rest
     } = movie;
-    const obj = {
+    const movieInCamelCase = {
       category: category_id,
       countryId: country_id,
       coverUrl: cover_url,
@@ -53,11 +53,11 @@ export const getUserCart = async (userId: string): Promise<IMovie[]> => {
       productionCompanyId: production_company_id,
       releaseDate: release_date,
       trailerUrl: trailer_url,
-      rest,
+      ...rest,
     };
-    return obj;
+    return movieInCamelCase;
   });
-  return data;
+  return dataInCamelCase;
 };
 
 export const addMovieToCart = async ({
