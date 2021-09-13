@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 import { IAuthData, IAuthInitialState, ILoginData } from '@/utils/interfaces/authInterfaces';
 import { getRegistrationData } from '@/businessLogic/registration';
 import { getLoginData } from '@/businessLogic/login';
@@ -45,16 +46,16 @@ export const authSlice = createSlice({
         if (message) {
           switch (JSON.parse(message).status) {
             case 100:
-              toast('processing. Just wait for a while');
+              toast(i18next.t('AuthStatuses:100'));
               break;
             case 300:
             case 400:
-              toast(`${JSON.parse(message).data} - SignIn, please`, {
+              toast(`${JSON.parse(message).data} - ${i18next.t('AuthStatuses:400')}`, {
                 autoClose: false,
               });
               break;
             case 500:
-              toast('Ooops, something went wrong! Try it later');
+              toast(i18next.t('AuthStatuses:500'));
               break;
             default:
               return JSON.parse(message).response;
@@ -70,7 +71,7 @@ export const authSlice = createSlice({
         if (message) {
           toast(JSON.parse(message).data);
         } else {
-          toast('Error');
+          toast(i18next.t('AuthStatuses:error'));
         }
       })
       .addCase(logout.fulfilled, (state) => {

@@ -3,6 +3,7 @@ import { List, Typography } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import EuroIcon from '@material-ui/icons/Euro';
+import { useTranslation } from 'react-i18next';
 import { cartSelector } from '@/selectors/cart';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
@@ -15,6 +16,8 @@ import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';
 
 export const Cart: FunctionComponent = () => {
+  const { t } = useTranslation(['Cart']);
+
   const history = useHistory();
   const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
@@ -60,10 +63,10 @@ export const Cart: FunctionComponent = () => {
               buttonType="button"
               className={classes.buyButton}
               onClick={clickOnBuyButton}
-              name="Buy"
+              name={t('buyButton')}
             />
             <div className={classes.priceContainer}>
-              <Typography>Total Price: &nbsp; </Typography>
+              <Typography>{t('totalPrice')}: &nbsp; </Typography>
               <Typography className={classes.priceContainer}>
                 {getTotalPrice()} <EuroIcon fontSize="small" />
               </Typography>
