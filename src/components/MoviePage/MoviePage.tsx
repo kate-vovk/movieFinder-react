@@ -56,7 +56,7 @@ export const MoviePage: FunctionComponent = () => {
           <>
             <div className={classes.contentMovie}>
               <MoviePoster
-                cover={movie?.cover_url}
+                cover={movie?.coverUrl}
                 price={Number(movie?.price)}
                 title={movie?.title}
               />
@@ -78,7 +78,7 @@ export const MoviePage: FunctionComponent = () => {
               <iframe
                 width="560"
                 height="315"
-                src={movie?.trailer_url}
+                src={movie?.trailerUrl}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

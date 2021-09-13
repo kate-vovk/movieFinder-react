@@ -19,7 +19,7 @@ export const MovieCard: FunctionComponent<IMovieCardProps> = ({ movie }) => {
         <Typography className={classes.title} variant="h5">
           {movie.title}
         </Typography>
-        <CardMedia className={classes.image} image={movie.cover_url} />
+        <CardMedia className={classes.image} image={movie.coverUrl} />
         <CardContent className={classes.description}>
           <Typography>{movie.description}</Typography>
         </CardContent>

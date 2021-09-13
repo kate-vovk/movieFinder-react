@@ -11,7 +11,7 @@ import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
-  const { id, cover_url, title, price, description } = movie;
+  const { id, coverUrl, title, price, description } = movie;
   const classes = useStyle();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -27,7 +27,7 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   return (
     <ListItem className={classes.container} component={Paper}>
       <ListItemIcon className={classes.image}>
-        <img src={cover_url} />
+        <img src={coverUrl} />
       </ListItemIcon>
       <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
         <Typography onClick={goToDetailedView} className={classes.title}>

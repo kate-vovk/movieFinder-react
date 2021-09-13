@@ -2,15 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import {
-  addMovieToCartOnServer,
-  deleteMovieFromCartOnServer,
+  addMovieToCart as addMovieToCartS,
+  deleteMovieFromCart,
   getUserCart,
 } from '@/businessLogic/cart';
-import {
-  ICart,
-  IAddMovieToCartParameters,
-  IRemoveMovieFromCartParameters,
-} from '@/utils/interfaces/cartInterfaces';
+import { ICart, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 
 toast.configure();
 
@@ -22,16 +18,16 @@ export const setCartMoviesToStore = createAsyncThunk('cart/getMovies', async (us
 
 export const addMovieToCart = createAsyncThunk(
   'cart/addToCart',
-  async ({ userId, movieId, period, quality }: IAddMovieToCartParameters) => {
-    await addMovieToCartOnServer({ userId, movieId, period, quality });
+  async ({ userId, movieId, period, quality }: ICartMovieState) => {
+    await addMovieToCartS({ userId, movieId, period, quality });
     return getUserCart(userId);
   },
 );
 
 export const removeMovieFromCart = createAsyncThunk(
   'cart/removeMovie',
-  async ({ userId, movieId }: IRemoveMovieFromCartParameters) => {
-    await deleteMovieFromCartOnServer({ userId, movieId });
+  async ({ userId, movieId }: ICartMovieState) => {
+    await deleteMovieFromCart({ userId, movieId });
     return getUserCart(userId);
   },
 );

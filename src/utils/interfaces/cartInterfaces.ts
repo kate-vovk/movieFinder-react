@@ -2,7 +2,7 @@ export interface IMovie {
   id: string;
   title: string;
   description: string;
-  cover_url: string;
+  coverUrl: string;
   price: number;
   year: string;
   company: string;
@@ -11,14 +11,14 @@ export interface IMovie {
   categories: string[];
   director: string;
   actors: string[];
-  trailer_url: string;
+  trailerUrl: string;
 
-  category_id: string;
-  country_id: string | number;
-  genre_id: string | number;
+  categoryId: string;
+  countryId: string;
+  genreId: string;
   producer: string;
-  production_company_id: string | number;
-  release_date: string;
+  productionCompanyId: string;
+  releaseDate: string;
 
   quality?: string;
   period?: number;
@@ -28,14 +28,9 @@ export interface ICart {
   movies: IMovie[];
 }
 
-export interface IAddMovieToCartParameters {
-  movieId: string;
-  userId: string;
-  period: number;
-  quality: string;
-}
-
-export interface IRemoveMovieFromCartParameters {
+export interface ICartMovieState {
   userId: string;
   movieId: string;
+  period?: number;
+  quality?: string;
 }

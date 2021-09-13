@@ -46,7 +46,6 @@ module.exports = {
     'no-param-reassign': [2, { props: false }],
     '@typescript-eslint/no-shadow': ['error'],
     'react/require-default-props': 'off',
-    camelcase: 'off',
     'prettier/prettier': [
       'error',
       {
