@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { getMovie, getListActors, getListGenres, getListCategories } from '@/api/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 
@@ -39,7 +40,26 @@ const getListCategoriesMovie = async (arrayCategoryId: string[]): Promise<string
 
 export const getDataMoviePage = async (movieId: string): Promise<IMovieData> => {
   const { data: movieCardData } = await getMovie(movieId);
-  const movieCard = movieCardData[0];
+  const {
+    category_id,
+    country_id,
+    cover_url,
+    genre_id,
+    production_company_id,
+    release_date,
+    trailer_url,
+    ...rest
+  } = movieCardData[0];
+  const movieCard = {
+    category: category_id,
+    countryId: country_id,
+    coverUrl: cover_url,
+    genreId: genre_id,
+    productionCompanyId: production_company_id,
+    releaseDate: release_date,
+    trailerUrl: trailer_url,
+    ...rest,
+  };
   const actorsList = await getListActorsMovie(movieCardData.actors)
     .then((data) => data)
     .catch(() => {

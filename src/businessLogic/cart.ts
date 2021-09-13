@@ -4,33 +4,7 @@ import {
   deleteMovieFromCart as deleteMovieFromCartAPI,
   getCart,
 } from '@/api/cart';
-import { IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
-
-interface IMovieGET {
-  id: string;
-  title: string;
-  description: string;
-  cover_url: string;
-  price: number;
-  year: string;
-  company: string;
-  duration: number;
-  genres: string[];
-  categories: string[];
-  director: string;
-  actors: string[];
-  trailer_url: string;
-
-  category_id: string;
-  country_id: string;
-  genre_id: string;
-  producer: string;
-  production_company_id: string;
-  release_date: string;
-
-  quality?: string;
-  period?: number;
-}
+import { IMovie, ICartMovieState, IMovieGET } from '@/utils/interfaces/cartInterfaces';
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   const { data } = await getCart(userId);

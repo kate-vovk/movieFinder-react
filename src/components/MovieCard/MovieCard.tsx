@@ -12,7 +12,6 @@ interface IMovieCardProps {
 
 export const MovieCard: FunctionComponent<IMovieCardProps> = ({ movie }) => {
   const classes = useStyle();
-
   return (
     <Card className={classes.container}>
       <Link to={`${CLIENT_PATHS.movies}/${movie.id}`}>
