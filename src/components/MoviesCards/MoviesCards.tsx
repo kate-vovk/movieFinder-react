@@ -1,9 +1,8 @@
-import { FunctionComponent, useEffect } from 'react';
-import { useDebounce } from 'use-debounce';
+import { FunctionComponent } from 'react';
+
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
-import { getMovieListWithQuery } from '@/store/slices/searchSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { movieListSelector } from '@/selectors/search';
 import { useStyle } from './styles';
 
@@ -12,16 +11,9 @@ interface IMoviesCardsProps {
   selectParam: string;
 }
 
-export const MoviesCards: FunctionComponent<IMoviesCardsProps> = ({ selectParam, searchQuery }) => {
+export const MoviesCards: FunctionComponent<IMoviesCardsProps> = () => {
   const classes = useStyle();
-  const dispatch = useDispatch();
   const movieList = useSelector(movieListSelector);
-
-  const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
-
-  useEffect(() => {
-    dispatch(getMovieListWithQuery({ selectParam, searchQuery }));
-  }, [selectParam, debouncedSearchQuery]);
 
   return (
     <>

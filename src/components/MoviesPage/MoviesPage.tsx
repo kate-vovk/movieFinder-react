@@ -1,4 +1,4 @@
-import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination } from '@/components/Pagination/Pagination';
 import { MoviesCards } from '@/components/MoviesCards/MoviesCards';
@@ -6,28 +6,18 @@ import { Sidebar } from '@/components/Sidebar/Sidebar';
 import { SearchBar } from '@/components/SearchBar/SearchBar';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { searchOption } from '@/utils/interfaces/searchOption';
+import { getMoviesList, setSelectParam } from '@/store/slices/searchSlice';
 import { useStyle } from './styles';
 
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
   const userId = useSelector(userSelector);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectParam, setSelectParam] = useState(searchOption.initial);
-
   const dispatch = useDispatch();
 
-  const changedSelectParam = (event: ChangeEvent<{ name: string; value: searchOption }>): void => {
-    setSelectParam(event.target.value);
-  };
-
-  const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault();
-    setSearchQuery(event.target.value);
-  };
-
   useEffect(() => {
+    dispatch(getMoviesList());
     dispatch(setCartMoviesToStore(userId));
+    dispatch(setSelectParam(''));
   }, []);
 
   return (
@@ -35,14 +25,9 @@ export const MoviesPage: FunctionComponent = () => {
       <Sidebar />
       <div className={classes.content}>
         <div className={classes.header}>
-          <SearchBar
-            searchQuery={searchQuery}
-            selectParam={selectParam}
-            getSearchQuery={getSearchQuery}
-            changedSelectParam={changedSelectParam}
-          />
+          <SearchBar />
         </div>
-        <MoviesCards searchQuery={searchQuery} selectParam={selectParam} />
+        <MoviesCards searchQuery="" selectParam="" />
         <Pagination />
       </div>
     </div>

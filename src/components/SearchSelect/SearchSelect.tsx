@@ -1,29 +1,29 @@
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
+import { ChangeEvent, FunctionComponent, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
 import { searchOption } from '@/utils/interfaces/searchOption';
+import { setSelectParam } from '@/store/slices/searchSlice';
+import { useDispatch } from 'react-redux';
 import { useStyle } from './styles';
 
-interface ISearchParams {
-  selectParam: string;
-  changedSelectParam: (event: ChangeEvent<{ name: string; value: searchOption }>) => void;
-}
-
-export const SearchSelect: FunctionComponent<ISearchParams> = ({
-  selectParam,
-  changedSelectParam,
-}) => {
+export const SearchSelect: FunctionComponent = () => {
   const classes = useStyle();
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-  const handleClose = (): void => {
+  const dispatch = useDispatch();
+
+  const SelectClose = (): void => {
     setIsSelectOpen(false);
   };
 
-  const handleOpen = (): void => {
+  const selectOpen = (): void => {
     setIsSelectOpen(true);
+  };
+
+  const changedSelectParam = (event: ChangeEvent<{ name: string; value: searchOption }>): void => {
+    dispatch(setSelectParam(event.target.value));
   };
 
   return (
@@ -34,9 +34,8 @@ export const SearchSelect: FunctionComponent<ISearchParams> = ({
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={isSelectOpen}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={selectParam}
+          onClose={SelectClose}
+          onOpen={selectOpen}
           onChange={changedSelectParam as SelectProps['onChange']}
         >
           {Object.values(searchOption).map((option) => (
