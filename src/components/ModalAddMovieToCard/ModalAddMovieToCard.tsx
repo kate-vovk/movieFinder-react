@@ -31,11 +31,11 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   const dispatch = useDispatch();
   const { movies, id } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
-  const [movieQuality, setMovieQuality] = useState(`${Quality.HD}`);
+  const [movieQuality, setMovieQuality] = useState<string>(Quality.HD);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
   const onHandleMovieQuality = (event: ChangeEvent<HTMLInputElement>): void => {
-    setMovieQuality((event.target as HTMLInputElement).value);
+    setMovieQuality(event.target.value);
   };
 
   const onHandleMoviePurchasePeriod = (
@@ -45,13 +45,14 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   };
 
   const getPriceMovie = (): number => {
+    let newPrice = 0;
     if (movieQuality === Quality.HD) {
-      return calcCostMovie(price, moviePurchasePeriod);
+      newPrice = calcCostMovie(price, moviePurchasePeriod);
     }
     if (movieQuality === Quality.SD) {
-      return calcCostMovie(price, moviePurchasePeriod, 0.9);
+      newPrice = calcCostMovie(price, moviePurchasePeriod, 0.9);
     }
-    return price;
+    return newPrice;
   };
 
   const onHandleDataForCart = (values: IStateValuesForm): void => {
