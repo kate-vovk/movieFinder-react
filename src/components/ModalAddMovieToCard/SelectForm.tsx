@@ -10,6 +10,12 @@ interface ISelectFormProps {
   value: number;
 }
 
+const selectOption = [
+  { value: 0, children: 'Forever' },
+  { value: 7, children: 'For 7 days' },
+  { value: 30, children: 'For 30 days' },
+];
+
 export const SelectForm: FunctionComponent<ISelectFormProps> = ({ onChange, value }) => {
   const classes = useStyles();
 
@@ -18,9 +24,11 @@ export const SelectForm: FunctionComponent<ISelectFormProps> = ({ onChange, valu
       <FormControl>
         <FormLabel component="legend">Select subscription period</FormLabel>
         <Select value={value} onChange={onChange}>
-          <MenuItem value={0}>Forever</MenuItem>
-          <MenuItem value={7}>For 7 days</MenuItem>
-          <MenuItem value={30}>For 30 days</MenuItem>
+          {selectOption.map((item) => (
+            <MenuItem key={item.value} value={item.value}>
+              {item.children}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>

@@ -45,13 +45,13 @@ export const ModalRoot: FunctionComponent = () => {
             className={classes.modalClose}
             onClick={closeModal}
           />
-          {modalType === modalTypes.modalMovieCart && Object.keys(modalProps).length ? (
+          {modalType === modalTypes.modalMovieCart && Object.keys(modalProps).length && (
             <ModalAddMovieToCard
               movieId={modalProps.movieId}
               price={modalProps.price}
               closeModal={closeModal}
             />
-          ) : null}
+          )}
         </div>
       </Fade>
     </Modal>
