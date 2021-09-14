@@ -63,4 +63,27 @@ export const en = {
   CartStatuses: {
     noCart: 'No cart for current user exists',
   },
+  UserMenu: {
+    adminPanel: 'Admin panel',
+    profile: 'Profile',
+    orders: 'Orders',
+    favorites: 'Favorites',
+    signout: 'Sign Out',
+  },
+  mockAdmin: {
+    adminPanel: 'Admin panel',
+    goBack: 'GO BACK',
+  },
+  mockFavorites: {
+    favoritesPage: 'Favorites page',
+    goBack: 'GO BACK',
+  },
+  mockOrders: {
+    orderPage: 'Order page',
+    goBack: 'GO BACK',
+  },
+  mockProfile: {
+    profilePage: 'Profile page',
+    goBack: 'GO BACK',
+  },
 };

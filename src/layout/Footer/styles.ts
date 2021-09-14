@@ -35,4 +35,8 @@ export const useStyle = makeStyles((theme) => ({
     width: '40px',
     height: '40px',
   },
+  logo: {
+    paddingTop: '10px',
+    width: '50%',
+  },
 }));

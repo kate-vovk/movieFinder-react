@@ -63,4 +63,27 @@ export const ru = {
   CartStatuses: {
     noCart: 'Корзины для данного пользователя не существует',
   },
+  UserMenu: {
+    adminPanel: 'Админ панель',
+    profile: 'Профиль',
+    orders: 'Мои заказы',
+    favorites: 'Избранное',
+    signout: 'Выйти',
+  },
+  mockAdmin: {
+    adminPanel: 'Админ панель',
+    goBack: 'ВЕРНУТЬСЯ НАЗАД',
+  },
+  mockFavorites: {
+    favoritesPage: 'Избранное',
+    goBack: 'ВЕРНУТЬСЯ НАЗАД',
+  },
+  mockOrders: {
+    orderPage: 'Мои заказы',
+    goBack: 'ВЕРНУТЬСЯ НАЗАД',
+  },
+  mockProfile: {
+    profilePage: 'Профиль',
+    goBack: 'ВЕРНУТЬСЯ НАЗАД',
+  },
 };
