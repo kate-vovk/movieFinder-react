@@ -14,7 +14,7 @@ export const MovieCard: FunctionComponent<IMovieCardProps> = ({ movie }) => {
   const classes = useStyle();
   return (
     <Card className={classes.container}>
-      <Link to={`${CLIENT_PATHS.movies}/${movie.id}`}>
+      <Link to={`${CLIENT_PATHS.movies}/${movie.id}`} className={classes.link}>
         <Typography className={classes.title} variant="h5">
           {movie.title}
         </Typography>
