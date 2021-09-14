@@ -1,6 +1,6 @@
 import { searchOption } from '@/constants/constants';
 
-export const createPath = (params: any): string => {
+export const createPath = (params: never): string => {
   let finalPath = '';
   let querySelectParam = '';
   const { searchQuery, selectParam } = params;
