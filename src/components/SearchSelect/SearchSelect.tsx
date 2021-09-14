@@ -3,7 +3,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
-import { searchOption } from '@/utils/interfaces/searchOption';
+import { searchOption } from '@/constants/constants';
 import { setSelectParam } from '@/store/slices/searchSlice';
 import { useDispatch } from 'react-redux';
 import { useStyle } from './styles';

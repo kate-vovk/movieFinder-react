@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { getMovies } from '@/businessLogic/movies';
 import { getDataFromApi } from '@/api/search';
-import { searchOption } from '@/utils/interfaces/searchOption';
+import { createPath } from '@/utils/url';
 
 interface ISearchState {
   movies: IMovie[];
@@ -23,21 +23,8 @@ export const getMoviesList = createAsyncThunk('search/getMovieList', async () =>
 export const getMoviesListWithQuery = createAsyncThunk(
   'search/getMovieListWithQuery',
   async ({ selectParam, searchQuery }: ISearchQuery) => {
-    let querySelectParam = '';
-    switch (selectParam) {
-      case searchOption.initial:
-        querySelectParam = 'initial';
-        break;
-      case searchOption.studio:
-        querySelectParam = 'production_company';
-        break;
-      case searchOption.actor:
-        querySelectParam = 'actor';
-        break;
-      default:
-        break;
-    }
-    return getDataFromApi(`${querySelectParam}=${searchQuery}`);
+    const path = createPath({ selectParam, searchQuery });
+    return getDataFromApi(path);
   },
 );
 

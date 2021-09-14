@@ -1,4 +1,3 @@
-// import { searchOption } from '@/utils/interfaces/searchOption';
 import { SERVER_PATHS } from '@/constants/constants';
 import HTTPService from '@/services/httpService';
 

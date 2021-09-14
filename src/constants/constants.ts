@@ -25,3 +25,9 @@ export const SERVER_PATHS = {
   categories: '/categories',
   main: '/',
 };
+
+export enum searchOption {
+  initial = '',
+  actor = 'actor',
+  studio = 'studio',
+}
