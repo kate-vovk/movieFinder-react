@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { getMovieByQuery } from '@/businessLogic/search';
 import { getMovies } from '@/businessLogic/movies';
+import { getDataFromApi } from '@/api/search';
+import { searchOption } from '@/utils/interfaces/searchOption';
 
 interface ISearchState {
   movies: IMovie[];
@@ -22,7 +23,21 @@ export const getMoviesList = createAsyncThunk('search/getMovieList', async () =>
 export const getMoviesListWithQuery = createAsyncThunk(
   'search/getMovieListWithQuery',
   async ({ selectParam, searchQuery }: ISearchQuery) => {
-    return getMovieByQuery(selectParam, searchQuery);
+    let querySelectParam = '';
+    switch (selectParam) {
+      case searchOption.initial:
+        querySelectParam = 'initial';
+        break;
+      case searchOption.studio:
+        querySelectParam = 'production_company';
+        break;
+      case searchOption.actor:
+        querySelectParam = 'actor';
+        break;
+      default:
+        break;
+    }
+    return getDataFromApi(`${querySelectParam}=${searchQuery}`);
   },
 );
 
@@ -48,7 +63,7 @@ export const searchSlice = createSlice({
         state.totalCount = action.payload?.length;
       })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-        state.movies = action.payload;
+        state.movies = action.payload.data;
         state.totalCount = action.payload?.length;
         state.searchQuery = action.meta.arg.searchQuery;
         state.selectParam = action.meta.arg.selectParam;

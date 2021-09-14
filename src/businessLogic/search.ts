@@ -1,6 +1,6 @@
-import { getMovieByParams } from '@/api/search';
+import { getDataFromApi } from '@/api/search';
 
-export const getMovieByQuery = async (selectParam?: string, searchQuery?: string): Promise<any> => {
-  const { data } = await getMovieByParams(selectParam, searchQuery);
+export const getMovieByQuery = async (path: string): Promise<any> => {
+  const { data } = await getDataFromApi(path);
   return data;
 };
