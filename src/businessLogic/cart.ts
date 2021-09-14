@@ -1,54 +1,33 @@
 import {
-  addCartToServerAPI,
-  addOrderedMoviesAndMyMoviesToUserAPI,
-  deleteCartFromServerAPI,
+  addMovieToCart as addMovieToCartAPI,
+  deleteMovieFromCart as deleteMovieFromCartAPI,
   getCart,
-  getMovie as getMovieObj,
 } from '@/api/cart';
-import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
-import { ICart, IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
+import { convertToCamelCase } from '@/utils/conversionToCamelCase';
+import { IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 
-export const getUserCart = async (userId: string): Promise<ICart> => {
+export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   const { data } = await getCart(userId);
-  return data[0];
+  return convertToCamelCase(data);
 };
 
-export const getMovie = async (movieId: string): Promise<IMovie> => {
-  const { data } = await getMovieObj(movieId);
-  return data;
-};
-
-export const addCartToServer = async ({
-  id,
+export const addMovieToCart = async ({
+  movieId,
   userId,
-  movies,
-}: {
-  id: string;
-  userId: string;
-  movies: ICartMovieState[];
-}): Promise<any> => {
-  const { data } = await addCartToServerAPI({ id, userId, movies });
+  period,
+  quality,
+}: ICartMovieState): Promise<string> => {
+  const { data } = await addMovieToCartAPI({ movieId, userId, period, quality });
   return data;
 };
 
-export const deleteCartFromServer = async (id: string): Promise<any> => {
-  const { data } = await deleteCartFromServerAPI(id);
-  return data;
-};
-
-export const addOrderedMoviesAndMyMoviesToUser = async ({
-  user,
-  orderedMovies,
-  myMovies,
-}: {
-  user: IUser;
-  orderedMovies: IOrderedMovie[];
-  myMovies: IMyMovie[];
-}): Promise<any> => {
-  const { data } = await addOrderedMoviesAndMyMoviesToUserAPI({
-    user,
-    orderedMovies,
-    myMovies,
+export const deleteMovieFromCart = async ({
+  movieId,
+  userId,
+}: ICartMovieState): Promise<string> => {
+  const { data } = await deleteMovieFromCartAPI({
+    movieId,
+    userId,
   });
   return data;
 };

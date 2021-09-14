@@ -8,8 +8,7 @@ import { cartSelector } from '@/selectors/cart';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
-import { getMovie } from '@/businessLogic/cart';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { PaymentDetailsModal } from '@/components/PaymentDetailsFormModal/PaymentDetailsModal';
 import { CartItem } from './CartItem';
 import { useStyle } from './styles';
@@ -23,37 +22,31 @@ export const Cart: FunctionComponent = () => {
   const { userId } = useSelector(userSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
-  const [cartMovies, setCartMovies] = useState<IMovie[]>([]);
   const [openModal, isModalOpen] = useState(false);
 
-  const setMovies = async (): Promise<void> => {
-    movies.forEach(async (movie: ICartMovieState) => {
-      const data = await getMovie(movie.movieId);
-      setCartMovies((prev) => [...prev, data]);
-    });
-  };
   useEffect(() => {
     dispatch(setCartMoviesToStore(userId));
-    setCartMovies([]);
-    setMovies();
-  }, [movies.length]);
+  }, []);
 
   const goToPreviousPage = useCallback(() => {
     history.goBack();
   }, []);
+
   const clickOnBuyButton = (): void => {
     isModalOpen(true);
   };
+
   const getTotalPrice = (): number =>
-    cartMovies.reduce((accumulator, { price }) => accumulator + price, 0);
+    movies.reduce((accumulator, { price }) => accumulator + Number(price), 0);
+
   return (
     <div>
-      {!cartMovies.length ? (
+      {!movies.length ? (
         <CartIsEmpty />
       ) : (
         <div className={classes.cartContainer}>
           <List>
-            {cartMovies.map((movie: IMovie) => (
+            {movies.map((movie: IMovie) => (
               <CartItem key={movie.id} movie={movie} />
             ))}
           </List>
