@@ -1,12 +1,11 @@
 import { FunctionComponent, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { IconButton, Paper } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
-import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-
-import { useHistory } from 'react-router-dom';
+import logo from '@/assets/icons/logo.svg';
 import { useStyle } from './styles';
 
 export const Footer: FunctionComponent = () => {
@@ -34,7 +33,7 @@ export const Footer: FunctionComponent = () => {
         </div>
         <span>
           <IconButton onClick={goToMainPage}>
-            <MovieFilterIcon />
+            <img src={logo} className={classes.logo} alt="logo" />
           </IconButton>
         </span>
       </Paper>

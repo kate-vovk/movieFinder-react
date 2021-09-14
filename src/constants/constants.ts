@@ -4,8 +4,11 @@ export const CLIENT_PATHS = {
   movies: '/movies',
   signin: '/signin',
   signup: '/signup',
-  favourites: '/favourites',
   notFound: '/notFound',
+  favorites: '/favorites',
+  admin: '/admin',
+  profile: '/profile',
+  orders: '/orders',
   main: '/',
 };
 
@@ -19,6 +22,9 @@ export const SERVER_PATHS = {
   actors: '/actors',
   genres: '/genres',
   categories: '/categories',
-  favourites: '/favourites',
+  favorites: '/favorites',
+  admin: '/admin',
+  profile: '/profile',
+  orders: '/orders',
   main: '/',
 };
