@@ -27,7 +27,8 @@ export const SERVER_PATHS = {
 };
 
 export enum searchOption {
-  initial = 'movie',
+  initial = '',
+  movie = 'movie',
   actor = 'actor',
   studio = 'studio',
 }
