@@ -5,12 +5,12 @@ import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
 import { userSelector } from '@/selectors/auth';
 import { cartSelector } from '@/selectors/cart';
 import { logout } from '@/store/slices/authSlice';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { CustomButton } from '@/components';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {

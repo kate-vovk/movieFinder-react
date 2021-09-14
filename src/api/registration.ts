@@ -1,4 +1,4 @@
-import { SERVER_PATHS } from '@/constants/constants';
+import { SERVER_PATHS } from '@/constants';
 import HTTPService from '@/services/httpService';
 import { IAuthData } from '@/utils/interfaces/authInterfaces';
 
