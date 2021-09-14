@@ -7,7 +7,6 @@ import InputMask from 'react-input-mask';
 import { useTranslation } from 'react-i18next';
 import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidation';
 import { sendData } from '@/store/slices/cartSlice';
-import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants/constants';
 import { useStyle } from './styles';
@@ -17,11 +16,10 @@ export const PaymentDetailsForm: FunctionComponent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyle();
-  const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
 
   const clickBuyButton = (): void => {
-    dispatch(sendData({ userId, movies }));
+    dispatch(sendData({ userId }));
     history.push(CLIENT_PATHS.main);
   };
   const formik = useFormik({

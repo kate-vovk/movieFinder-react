@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 import { getMovie, getListActors, getListGenres, getListCategories } from '@/api/movie';
+import { convertToCamelCase } from '@/utils/conversionToCamelCase';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 
 interface IMovieData {
@@ -39,7 +41,8 @@ const getListCategoriesMovie = async (arrayCategoryId: string[]): Promise<string
 
 export const getDataMoviePage = async (movieId: string): Promise<IMovieData> => {
   const { data: movieCardData } = await getMovie(movieId);
-  const movieCard = movieCardData[0];
+  const movieCard = convertToCamelCase(movieCardData)[0];
+
   const actorsList = await getListActorsMovie(movieCardData.actors)
     .then((data) => data)
     .catch(() => {

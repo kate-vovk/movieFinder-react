@@ -1,11 +1,12 @@
 import { FunctionComponent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
 import { cartSelector } from '@/selectors/cart';
-import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
+import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
+import { userSelector } from '@/selectors/auth';
 
 interface IProps {
   movieId: string;
@@ -16,26 +17,19 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   // TODO: mocked data, will be developed in the 'purchase option modal' part
   const PERIOD = 30;
   const QUALITY = 'HD';
-  const PRICE = 3;
   const dispatch = useDispatch();
-  const { userId, movies, id } = useSelector(cartSelector);
-
+  const { movies } = useSelector(cartSelector);
+  const userId = useSelector(userSelector);
   const addMovieIdToCart = (): void => {
-    if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
-      dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
+    if (movies.find((movie: IMovie) => movie.id === movieId)) {
+      dispatch(removeMovieFromCart({ userId, movieId }));
     } else {
-      dispatch(
-        addMovieToCart({
-          userId,
-          id,
-          movies: [...movies, { movieId, period: PERIOD, quality: QUALITY, price: PRICE }],
-        }),
-      );
+      dispatch(addMovieToCart({ userId, movieId, period: PERIOD, quality: QUALITY }));
     }
   };
 
   const classes = useStyle({
-    isIncluded: Boolean(movies?.find((movie: ICartMovieState) => movie.movieId === movieId)),
+    isIncluded: Boolean(movies.find((movie: IMovie) => movie.id === movieId)),
   });
   return (
     <div className={classes.footer}>
