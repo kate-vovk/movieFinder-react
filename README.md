@@ -32,9 +32,9 @@ To login there are 2 options:
 1) use these credentials that already exist on the server:
 
 {
-"name": "admin",
-"email": "admin@gmail.com",
-"password": "Qwerty12345!",
+  "name": "admin",
+  "email": "admin@gmail.com",
+  "password": "Qwerty12345!",
 }
 
 2) registrate new user to the server. After registration you will be redirected to the login form
