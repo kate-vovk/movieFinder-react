@@ -1,7 +1,7 @@
-export { Footer } from './Footer/Footer';
+export { Footer } from './Footer';
 
-export { Layout } from './Layout/Layout';
+export { Layout } from './Layout';
 
-export { Content } from './Content/Content';
+export { Content } from './Content';
 
-export { NavBar } from './NavBar/NavBar';
+export { NavBar } from './NavBar';

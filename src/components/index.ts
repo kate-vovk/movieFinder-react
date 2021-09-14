@@ -16,3 +16,4 @@ export { RegisterForm } from './RegisterForm';
 export { SearchBar } from './SearchBar';
 export { SearchSelect } from './SearchSelect';
 export { SearchInput } from './SearchInput';
+export { MenuButton } from './MenuButton';
