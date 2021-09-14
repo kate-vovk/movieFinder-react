@@ -6,9 +6,9 @@ import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
-import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
-import { modalTypes } from '@/constants/modalTypes';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { modalTypes } from '@/constants/modalTypes';
+
 import { useStyle } from './styles';
 
 interface IMovieFooterProps {
@@ -24,10 +24,9 @@ export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, pri
   const modalProps = { movieId, price };
 
   const addMovieIdToCart = (): void => {
-    if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
+    if (movies.find((movie: IMovie) => movie.id === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId }));
     } else {
-      // dispatch(addMovieToCart({ userId, movieId, period: PERIOD, quality: QUALITY }));
       dispatch(showModal({ modalType, modalProps }));
     }
   };

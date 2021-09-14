@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
 import { addMovieToCart } from '@/store/slices/cartSlice';
-import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { calcCostMovie } from '@/utils/calculations/calcCostMovie';
 import { Quality } from '@/utils/interfaces/cartInterfaces';
@@ -17,11 +16,6 @@ interface IModalFormProps {
   closeModal: () => void;
 }
 
-interface IStateValuesForm {
-  quality: string;
-  period: number;
-}
-
 export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   movieId,
   price,
@@ -29,7 +23,6 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
   const [movieQuality, setMovieQuality] = useState<string>(Quality.HD);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
@@ -45,7 +38,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   };
 
   const getPriceMovie = (): number => {
-    let newPrice = 0;
+    let newPrice = price;
     if (movieQuality === Quality.HD) {
       newPrice = calcCostMovie(price, moviePurchasePeriod);
     }
@@ -55,7 +48,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
     return newPrice;
   };
 
-  const onHandleDataForCart = (values: IStateValuesForm): void => {
+  const onHandleDataForCart = (): void => {
     dispatch(
       addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
     );
