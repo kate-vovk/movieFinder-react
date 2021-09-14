@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { calcCostMovie } from '@/utils/calculations/calcCostMovie';
-import { Quality } from '@/utils/interfaces/cartInterfaces';
+import { getPriceMovie } from '@/utils/calculations/calcCostMovie';
+import { EQuality } from '@/utils/interfaces/cartInterfaces';
 import { useStyles } from './styles';
 import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
@@ -24,7 +24,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   const classes = useStyles();
   const dispatch = useDispatch();
   const userId = useSelector(userSelector);
-  const [movieQuality, setMovieQuality] = useState<string>(Quality.HD);
+  const [movieQuality, setMovieQuality] = useState<string>(EQuality.HD);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
   const onHandleMovieQuality = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -37,18 +37,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
     setMoviePurchasePeriod(event.target.value as number);
   };
 
-  const getPriceMovie = (): number => {
-    let newPrice = price;
-    if (movieQuality === Quality.HD) {
-      newPrice = calcCostMovie(price, moviePurchasePeriod);
-    }
-    if (movieQuality === Quality.SD) {
-      newPrice = calcCostMovie(price, moviePurchasePeriod, 0.9);
-    }
-    return newPrice;
-  };
-
-  const onHandleDataForCart = (): void => {
+  const onHandleAddMovieDataToCart = (): void => {
     dispatch(
       addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
     );
@@ -58,10 +47,10 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   return (
     <Formik
       initialValues={{
-        quality: Quality.HD,
+        quality: EQuality.HD,
         period: 0,
       }}
-      onSubmit={onHandleDataForCart}
+      onSubmit={onHandleAddMovieDataToCart}
     >
       {() => (
         <Form>
@@ -69,7 +58,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
             <div>
-              <span>{getPriceMovie()}</span> $
+              <span>{getPriceMovie(price, EQuality, movieQuality, moviePurchasePeriod)}</span>
             </div>
             <Button color="primary" variant="contained" type="submit">
               Submit

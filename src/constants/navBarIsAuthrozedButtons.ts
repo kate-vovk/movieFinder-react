@@ -11,21 +11,17 @@ export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[]
     ? [
         {
           name: 'cart',
-          to: 'cart',
+          to: CLIENT_PATHS.cart,
           badge: 2,
-        },
-        {
-          name: 'signOut',
-          to: `${CLIENT_PATHS.main}`,
         },
       ]
     : [
         {
           name: 'signUp',
-          to: `${CLIENT_PATHS.signup}`,
+          to: CLIENT_PATHS.signup,
         },
         {
           name: 'signIn',
-          to: `${CLIENT_PATHS.signin}`,
+          to: CLIENT_PATHS.signin,
         },
       ];

@@ -19,11 +19,7 @@ export const ModalRoot: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (isModalOpen) {
-      setIsOpenModal(true);
-    } else {
-      setIsOpenModal(false);
-    }
+    setIsOpenModal(isModalOpen);
   }, [isModalOpen]);
 
   return (

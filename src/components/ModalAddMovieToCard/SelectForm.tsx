@@ -3,10 +3,7 @@ import { FormControl, FormLabel, Select, MenuItem } from '@material-ui/core';
 import { useStyles } from './styles';
 
 interface ISelectFormProps {
-  onChange: (
-    event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
-    child: ReactNode,
-  ) => void;
+  onChange: (event: ChangeEvent<{ name?: string; value: unknown }>, child: ReactNode) => void;
   value: number;
 }
 
