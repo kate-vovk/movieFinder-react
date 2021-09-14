@@ -7,7 +7,7 @@ interface ICreatePath {
 
 export const createPath = (params: ICreatePath): string => {
   let finalPath = '';
-  let querySelectParam = '';
+  let querySelectParam = 'movie';
   const { searchQuery, selectParam } = params;
 
   switch (selectParam) {
