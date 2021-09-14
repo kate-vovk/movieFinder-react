@@ -51,6 +51,7 @@ export const useStyle = makeStyles(() => ({
   },
   image: {
     backgroundColor: 'white',
+    width: 90,
     height: 140,
     '@media (max-width:500px)': {
       width: 80,

@@ -1,9 +1,8 @@
-/* eslint-disable camelcase */
 export interface IMovie {
   id: string;
   title: string;
   description: string;
-  cover_url: string;
+  coverUrl: string;
   price: number;
   year: string;
   company: string;
@@ -12,20 +11,28 @@ export interface IMovie {
   categories: string[];
   director: string;
   actors: string[];
-  trailer: string;
+  trailerUrl: string;
+
+  categoryId: string;
+  countryId: string;
+  genreId: string;
+  producer: string;
+  productionCompanyId: string;
+  releaseDate: string;
+
+  quality?: string;
+  period?: number;
 }
 
 export interface ICart {
-  userId: string;
-  movies: ICartMovieState[];
-  id: string;
+  movies: IMovie[];
 }
 
 export interface ICartMovieState {
+  userId: string;
   movieId: string;
-  period: number;
-  quality: string;
-  price: number;
+  period?: number;
+  quality?: string;
 }
 
 export enum Quality {
