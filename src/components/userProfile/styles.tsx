@@ -10,4 +10,7 @@ export const useStyle = makeStyles(() => ({
   tabPanel: {
     marginLeft: '50px',
   },
+  title: {
+    margin: '0 0 40px 0',
+  },
 }));

@@ -1,11 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
-  container: {
-    maxWidth: '1358px',
-    margin: '0 auto',
-    padding: '40px 15px 40px 15px',
-    display: 'flex',
+  title: {
+    margin: '0 0 40px 0',
   },
-  tabs: {},
+  inputLine: {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingBottom: '30px',
+  },
+  input: {
+    marginBottom: '20px',
+  },
 }));

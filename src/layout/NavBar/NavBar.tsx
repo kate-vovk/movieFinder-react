@@ -62,6 +62,11 @@ export const NavBar: FunctionComponent = () => {
                 buttonType="button"
               />
             </ButtonGroup>
+            <Button>
+              <Link to={CLIENT_PATHS.user} className={classes.link}>
+                USER
+              </Link>
+            </Button>
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
                 <Badge key={button.name} badgeContent={movies?.length} color="secondary">

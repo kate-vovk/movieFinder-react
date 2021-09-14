@@ -42,8 +42,12 @@ export interface IStoreState {
 }
 export interface IAuthInitialState {
   userId: string | null;
+  userName: string | null;
+  userEmail: string | null;
 }
 
 export interface IAuth {
   userId: string;
+  userName: string;
+  userEmail: string;
 }

@@ -1,7 +1,5 @@
 import { FunctionComponent, useState, ChangeEvent } from 'react';
-import { useSelector } from 'react-redux';
 import { Tabs, Tab } from '@material-ui/core';
-import { userSelector } from '@/selectors/auth';
 import { TabPanel } from '@/components/userProfile/TabPanel';
 import { useStyle } from './styles';
 import { Profile } from './Profile/Profile';
@@ -17,11 +15,10 @@ const TabItem = [
 ];
 
 export const UserProfile: FunctionComponent = () => {
-  const userId = useSelector(userSelector);
   const [value, setValue] = useState(0);
   const classes = useStyle();
 
-  const handleChange = (event: ChangeEvent<{}>, newValue: number): void => {
+  const handleChange = (event: ChangeEvent<unknown>, newValue: number): void => {
     setValue(newValue);
   };
 

@@ -4,7 +4,5 @@ import { useStyle } from './styles';
 export const Favorites: FunctionComponent = () => {
   const classes = useStyle();
 
-  return (
-    <h1>Favorites</h1>
-  );
+  return <h1 className={classes.title}>Favorites</h1>;
 };

@@ -33,6 +33,8 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 
 const initialState: IAuthInitialState = {
   userId: null,
+  userName: null,
+  userEmail: null,
 };
 
 export const authSlice = createSlice({
@@ -64,7 +66,9 @@ export const authSlice = createSlice({
         return null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.userId = action.payload;
+        state.userId = action.payload.userId;
+        state.userName = action.payload.userName;
+        state.userEmail = action.payload.userEmail;
       })
       .addCase(login.rejected, (state, action) => {
         const { message } = action.error;
@@ -76,6 +80,8 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.userId = null;
+        state.userName = null;
+        state.userEmail = null;
       });
   },
 });

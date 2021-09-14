@@ -18,7 +18,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
   const history = useHistory();
   const classes = useStyle();
   const { movies } = useSelector(cartSelector);
-  const userId = useSelector(userSelector);
+  const { userId } = useSelector(userSelector);
 
   const clickBuyButton = (): void => {
     dispatch(sendData({ userId, movies }));
