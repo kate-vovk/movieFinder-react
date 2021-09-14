@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { getMovie, getListActors, getListGenres, getListCategories } from '@/api/movie';
-import { convertToCamelCase } from '@/utils/conversionToCamelCase/conversionToCamelCase';
+import { convertToCamelCase } from '@/utils/conversionToCamelCase';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 
 interface IMovieData {

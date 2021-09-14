@@ -3,7 +3,7 @@ import {
   deleteMovieFromCart as deleteMovieFromCartAPI,
   getCart,
 } from '@/api/cart';
-import { convertToCamelCase } from '@/utils/conversionToCamelCase/conversionToCamelCase';
+import { convertToCamelCase } from '@/utils/conversionToCamelCase';
 import { IMovie, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
