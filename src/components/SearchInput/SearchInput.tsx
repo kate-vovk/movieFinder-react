@@ -22,7 +22,7 @@ export const SearchInput: FunctionComponent = () => {
 
   useEffect(() => {
     dispatch(getMoviesListWithQuery({ searchQuery: debouncedSearchQuery, selectParam }));
-  }, [selectParam, debouncedSearchQuery]);
+  }, [debouncedSearchQuery]);
 
   return (
     <FormControl className={classes.searchForm}>
