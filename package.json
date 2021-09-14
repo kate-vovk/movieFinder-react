@@ -10,8 +10,7 @@
     "prettier": "prettier --write src/**/*.{ts,tsx}",
     "lint:quiet": "eslint src/**/*.{ts,tsx} --quiet",
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
-    "lint": "eslint src/**/*.{ts,tsx}",
-    "server": "json-server --watch db.json -m ./node_modules/json-server-auth -r routes.json --port 3070"
+    "lint": "eslint src/**/*.{ts,tsx}"
   },
   "repository": {
     "type": "git",
