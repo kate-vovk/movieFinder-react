@@ -1,16 +1,17 @@
-import { ChangeEvent, FunctionComponent, useState } from 'react';
+import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
 import { searchOption } from '@/constants/constants';
-import { setSelectParam } from '@/store/slices/searchSlice';
+import { setSelectedParam } from '@/store/slices/searchSlice';
 import { useDispatch } from 'react-redux';
 import { useStyle } from './styles';
 
 export const SearchSelect: FunctionComponent = () => {
   const classes = useStyle();
   const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [selectParam, setSelectParam] = useState('');
 
   const dispatch = useDispatch();
 
@@ -23,8 +24,12 @@ export const SearchSelect: FunctionComponent = () => {
   };
 
   const changedSelectParam = (event: ChangeEvent<{ name: string; value: searchOption }>): void => {
-    dispatch(setSelectParam(event.target.value));
+    setSelectParam(event.target?.value);
   };
+
+  useEffect(() => {
+    dispatch(setSelectedParam(selectParam));
+  }, [selectParam]);
 
   return (
     <div>
@@ -36,6 +41,7 @@ export const SearchSelect: FunctionComponent = () => {
           open={isSelectOpen}
           onClose={SelectClose}
           onOpen={selectOpen}
+          value={selectParam}
           onChange={changedSelectParam as SelectProps['onChange']}
         >
           {Object.values(searchOption).map((option) => (

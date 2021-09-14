@@ -15,7 +15,7 @@ export const SearchInput: FunctionComponent = () => {
 
   const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target?.value);
   };
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
@@ -33,6 +33,7 @@ export const SearchInput: FunctionComponent = () => {
         type="text"
         autoComplete="off"
         placeholder="search"
+        value={searchQuery}
         onChange={getSearchQuery}
         id="search"
       />

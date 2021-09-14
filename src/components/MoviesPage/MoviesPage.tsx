@@ -6,7 +6,7 @@ import { Sidebar } from '@/components/Sidebar/Sidebar';
 import { SearchBar } from '@/components/SearchBar/SearchBar';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { getMoviesList, setSelectParam } from '@/store/slices/searchSlice';
+import { getMoviesList, setSelectedParam } from '@/store/slices/searchSlice';
 import { useStyle } from './styles';
 
 export const MoviesPage: FunctionComponent = () => {
@@ -17,7 +17,7 @@ export const MoviesPage: FunctionComponent = () => {
   useEffect(() => {
     dispatch(getMoviesList());
     dispatch(setCartMoviesToStore(userId));
-    dispatch(setSelectParam(''));
+    dispatch(setSelectedParam(''));
   }, []);
 
   return (

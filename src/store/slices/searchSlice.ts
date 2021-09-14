@@ -39,7 +39,7 @@ export const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    setSelectParam(state, action) {
+    setSelectedParam(state, action) {
       state.selectParam = action.payload;
     },
   },
@@ -59,4 +59,4 @@ export const searchSlice = createSlice({
 });
 
 export const searchReducer = searchSlice.reducer;
-export const { setSelectParam } = searchSlice.actions;
+export const { setSelectedParam } = searchSlice.actions;
