@@ -1,6 +1,6 @@
 import { FunctionComponent, ChangeEvent } from 'react';
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
-import { EQuality } from '@/utils/interfaces/cartInterfaces';
+import { EQuality } from '@/constants/constantsModal';
 import { useStyles } from './styles';
 
 interface IRadioGroupFormProps {

@@ -7,4 +7,4 @@ interface IState {
 
 const stateSelector = (state: IState): IModalState => state.modal;
 
-export const modalSelector = createSelector(stateSelector, (state) => state);
+export const modalSelector = createSelector(stateSelector, (modal) => modal);

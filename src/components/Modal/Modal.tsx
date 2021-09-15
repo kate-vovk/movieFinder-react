@@ -1,6 +1,6 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal, Fade, Backdrop } from '@material-ui/core';
+import { Modal as ModalMUI, Fade, Backdrop } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
 import { modalSelector } from '@/selectors/modal';
 import { hideModal } from '@/store/slices/modalSlice';
@@ -8,23 +8,18 @@ import { ModalAddMovieToCard } from '@/components/ModalAddMovieToCard/ModalAddMo
 import { modalTypes } from '@/constants/modalTypes';
 import { useStyles } from './styles';
 
-export const ModalRoot: FunctionComponent = () => {
+export const Modal: FunctionComponent = () => {
   const dispatch = useDispatch();
   const { modalType, isModalOpen, modalProps } = useSelector(modalSelector);
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const classes = useStyles();
 
   const closeModal = (): void => {
     dispatch(hideModal());
   };
 
-  useEffect(() => {
-    setIsOpenModal(isModalOpen);
-  }, [isModalOpen]);
-
   return (
-    <Modal
-      open={isOpenModal}
+    <ModalMUI
+      open={isModalOpen}
       onClose={closeModal}
       className={classes.modal}
       closeAfterTransition
@@ -33,7 +28,7 @@ export const ModalRoot: FunctionComponent = () => {
         timeout: 500,
       }}
     >
-      <Fade in={isOpenModal}>
+      <Fade in={isModalOpen}>
         <div className={classes.paper}>
           <CustomButton
             name="close"
@@ -50,6 +45,6 @@ export const ModalRoot: FunctionComponent = () => {
           )}
         </div>
       </Fade>
-    </Modal>
+    </ModalMUI>
   );
 };

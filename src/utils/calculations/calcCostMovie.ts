@@ -1,3 +1,5 @@
+import { EQuality } from '@/constants/constantsModal';
+
 const calcCostMovie = (cost: number, period: number, qualityIndex = 1): number => {
   switch (period) {
     case 0:
@@ -13,19 +15,15 @@ const calcCostMovie = (cost: number, period: number, qualityIndex = 1): number =
 
 export const getPriceMovie = (
   price: number,
-  quality: {
-    HD: string;
-    SD: string;
-  },
   movieQuality: string,
   purchasePeriod: number,
 ): number => {
   let newPrice = price;
   switch (movieQuality) {
-    case quality.HD:
+    case EQuality.HD:
       newPrice = calcCostMovie(price, purchasePeriod);
       break;
-    case quality.SD:
+    case EQuality.SD:
       newPrice = calcCostMovie(price, purchasePeriod, 0.9);
       break;
     default:

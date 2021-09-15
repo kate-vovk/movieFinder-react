@@ -34,8 +34,3 @@ export interface ICartMovieState {
   period?: number;
   quality?: string;
 }
-
-export enum EQuality {
-  HD = 'HD',
-  SD = 'SD',
-}

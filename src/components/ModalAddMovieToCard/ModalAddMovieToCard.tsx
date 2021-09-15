@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { getPriceMovie } from '@/utils/calculations/calcCostMovie';
-import { EQuality } from '@/utils/interfaces/cartInterfaces';
+import { EQuality } from '@/constants/constantsModal';
 import { useStyles } from './styles';
 import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
@@ -60,9 +60,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
             <div>
-              <span>
-                {price && getPriceMovie(price, EQuality, movieQuality, moviePurchasePeriod)}
-              </span>
+              <span>{price && getPriceMovie(price, movieQuality, moviePurchasePeriod)}</span>
             </div>
             <Button color="primary" variant="contained" type="submit">
               Submit

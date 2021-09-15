@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactElement } from 'react';
-import { ModalRoot } from '@/components/ModalRoot/ModalRoot';
+import { Modal } from '@/components/Modal/Modal';
 import { Content, NavBar, Footer } from '@/layout';
 import { useStyle } from './style';
 
@@ -15,7 +15,7 @@ export const Layout: FunctionComponent<IProps> = ({ children }) => {
       <NavBar />
       <Content>{children}</Content>
       <Footer />
-      <ModalRoot />
+      <Modal />
     </div>
   );
 };
