@@ -21,11 +21,15 @@ export const getPriceMovie = (
   purchasePeriod: number,
 ): number => {
   let newPrice = price;
-  if (movieQuality === quality.HD) {
-    newPrice = calcCostMovie(price, purchasePeriod);
-  }
-  if (movieQuality === quality.SD) {
-    newPrice = calcCostMovie(price, purchasePeriod, 0.9);
+  switch (movieQuality) {
+    case quality.HD:
+      newPrice = calcCostMovie(price, purchasePeriod);
+      break;
+    case quality.SD:
+      newPrice = calcCostMovie(price, purchasePeriod, 0.9);
+      break;
+    default:
+      newPrice = price;
   }
   return newPrice;
 };

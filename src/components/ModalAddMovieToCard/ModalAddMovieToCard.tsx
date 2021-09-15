@@ -11,8 +11,8 @@ import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
 
 interface IModalFormProps {
-  movieId: string;
-  price: number;
+  movieId?: string;
+  price?: number;
   closeModal: () => void;
 }
 
@@ -38,9 +38,11 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   };
 
   const onHandleAddMovieDataToCart = (): void => {
-    dispatch(
-      addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
-    );
+    if (movieId) {
+      dispatch(
+        addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
+      );
+    }
     closeModal();
   };
 
@@ -58,7 +60,9 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
             <div>
-              <span>{getPriceMovie(price, EQuality, movieQuality, moviePurchasePeriod)}</span>
+              <span>
+                {price && getPriceMovie(price, EQuality, movieQuality, moviePurchasePeriod)}
+              </span>
             </div>
             <Button color="primary" variant="contained" type="submit">
               Submit

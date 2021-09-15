@@ -5,5 +5,6 @@ export interface IModalState {
 }
 
 export interface IModalProps {
-  [keyof: string]: string | number;
+  movieId?: string;
+  price?: number;
 }
