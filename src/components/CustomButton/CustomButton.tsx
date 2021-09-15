@@ -22,7 +22,7 @@ interface ICustomButton {
 export const CustomButton: FunctionComponent<ICustomButton> = ({
   buttonType,
   className = '',
-  onClick = () => null,
+  onClick,
   name,
   disabled = false,
 }) => {
