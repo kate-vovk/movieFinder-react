@@ -36,7 +36,7 @@ export const Modal: FunctionComponent = () => {
             className={classes.modalClose}
             onClick={closeModal}
           />
-          {modalType === modalTypes.modalMovieCart && Object.keys(modalProps).length && (
+          {modalType === modalTypes.modalMovieCart && modalProps.movieId && modalProps.price && (
             <ModalAddMovieToCard
               movieId={modalProps.movieId}
               price={modalProps.price}
