@@ -3,9 +3,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { searchOption } from '@/constants/constants';
 import { setSelectedParam } from '@/store/slices/searchSlice';
-import { useDispatch } from 'react-redux';
 import { useStyle } from './styles';
 
 export const SearchSelect: FunctionComponent = () => {
@@ -14,6 +15,8 @@ export const SearchSelect: FunctionComponent = () => {
   const [selectParam, setSelectParam] = useState('');
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation(['Search']);
 
   const SelectClose = (): void => {
     setIsSelectOpen(false);
@@ -34,7 +37,7 @@ export const SearchSelect: FunctionComponent = () => {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">select option</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">{t('selectOption')}</InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"

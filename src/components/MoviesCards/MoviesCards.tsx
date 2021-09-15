@@ -1,8 +1,7 @@
 import { FunctionComponent } from 'react';
-
+import { useSelector } from 'react-redux';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components/MovieCard/MovieCard';
-import { useSelector } from 'react-redux';
 import { movieListSelector } from '@/selectors/search';
 import { useStyle } from './styles';
 
