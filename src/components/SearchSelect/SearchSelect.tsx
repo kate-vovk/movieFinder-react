@@ -27,6 +27,7 @@ export const SearchSelect: FunctionComponent = () => {
   };
 
   const changedSelectParam = (event: ChangeEvent<{ name: string; value: searchOption }>): void => {
+    console.log('event.target?.value', event.target, event.target?.value);
     setSelectParam(event.target?.value);
   };
 

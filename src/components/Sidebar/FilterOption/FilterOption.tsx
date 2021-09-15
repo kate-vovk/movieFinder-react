@@ -1,17 +1,16 @@
-import { ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/core';
+import { ListItem, Radio, FormControlLabel } from '@material-ui/core';
 import { FunctionComponent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface IFilterOptionProps {
   item: string;
 }
 
 export const FilterOption: FunctionComponent<IFilterOptionProps> = ({ item }) => {
+  const { t } = useTranslation(['Filtration']);
   return (
     <ListItem key={item} role="listitem" button>
-      <ListItemIcon>
-        <Checkbox tabIndex={-1} disableRipple />
-      </ListItemIcon>
-      <ListItemText id={item} primary={item} />
+      <FormControlLabel value={item} control={<Radio />} label={t(item)} />
     </ListItem>
   );
 };

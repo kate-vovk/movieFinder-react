@@ -3,7 +3,7 @@ import { Drawer, List, Toolbar } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { sidebarFilterNamesFields } from '@/constants/sidebarFilterNamesFields';
 import { useStyle } from './styles';
-import { CustomAccordion } from '@/components';
+import { CustomAccordion } from './CustomAccordion';
 
 export const Sidebar: FunctionComponent = () => {
   const { t } = useTranslation(['Filtration']);

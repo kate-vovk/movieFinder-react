@@ -5,10 +5,12 @@ import {
   AccordionSummary,
   Typography,
   AccordionDetails,
+  FormControl,
+  RadioGroup,
 } from '@material-ui/core';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState, ChangeEvent } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FilterOption } from '@/components';
+import { FilterOption } from '../FilterOption/FilterOption';
 import { useStyle } from './styles';
 
 export interface ICustomAccordionProps {
@@ -18,6 +20,11 @@ export interface ICustomAccordionProps {
 
 export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ name, options }) => {
   const classes = useStyle();
+  const [value, setValue] = useState(name);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setValue((event.target as HTMLInputElement).value);
+  };
   return (
     <ListItem key={name}>
       <ListItemText>
@@ -26,9 +33,13 @@ export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ name
             <Typography> {name}</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
-            {options.map((option) => (
-              <FilterOption key={option} item={option} />
-            ))}
+            <FormControl component="fieldset">
+              <RadioGroup aria-label={name} name={name} value={value} onChange={handleChange}>
+                {options.map((option) => (
+                  <FilterOption key={option} item={option} />
+                ))}
+              </RadioGroup>
+            </FormControl>
           </AccordionDetails>
         </Accordion>
       </ListItemText>

@@ -1,15 +1,15 @@
 export const sidebarFilterNamesFields = [
   {
     name: 'genres',
-    options: ['yes', 'no'],
+    options: ['Action', 'Comedy', 'Fantasy', 'Thriller', 'Horror', 'Crime', 'Drama'],
   },
   {
     name: 'categories',
-    options: ['yes', 'no'],
+    options: ['Movie', 'Cartoon'],
   },
   {
     name: 'countries',
-    options: ['yes', 'no'],
+    options: ['USA', 'German', 'France', 'Canada'],
   },
   {
     name: 'voteAverage',
