@@ -1,30 +1,33 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
-import { CustomButton } from '@/components';
+import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { removeMovieFromCart } from '@/store/slices/cartSlice';
+import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
-import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { useStyle } from './styles';
-import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { modalTypes } from '@/constants/modalTypes';
 
-interface IProps {
+import { useStyle } from './styles';
+
+interface IMovieFooterProps {
   movieId: string;
   price: number;
 }
 
-export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
-  // TODO: mocked data, will be developed in the 'purchase option modal' part
-  const PERIOD = 30;
-  const QUALITY = 'HD';
+export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
+  const modalType = modalTypes.modalMovieCart;
+  const modalProps = { movieId, price };
+
   const addMovieIdToCart = (): void => {
     if (movies.find((movie: IMovie) => movie.id === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId }));
     } else {
-      dispatch(addMovieToCart({ userId, movieId, period: PERIOD, quality: QUALITY }));
+      dispatch(showModal({ modalType, modalProps }));
     }
   };
 
