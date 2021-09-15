@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { singInFormFields } from '@/constants/SignInFormFields';
 import { login } from '@/store/slices/authSlice';
 import { userSelector } from '@/selectors/auth';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { ILoginData } from '@/utils/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
 import { useStyle } from './styles';

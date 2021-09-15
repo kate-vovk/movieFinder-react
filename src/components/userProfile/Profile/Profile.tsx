@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useFormik, FormikHelpers } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import { userSelector } from '@/selectors/auth';
@@ -15,7 +15,7 @@ interface IFormInputs {
 
 export const Profile: FunctionComponent = () => {
   const user = useSelector(userSelector);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const classes = useStyle();
 
   const onSubmit = async (

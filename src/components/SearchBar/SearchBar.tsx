@@ -1,7 +1,6 @@
 import { ChangeEvent, FunctionComponent } from 'react';
 import { Paper } from '@material-ui/core';
-import { SearchSelect } from '@/components/SearchSelect/SearchSelect';
-import { SearchInput } from '@/components/SearchInput/SearchInput';
+import { SearchSelect, SearchInput } from '@/components';
 import { searchOption } from '@/utils/interfaces/searchOption';
 import { useStyle } from './styles';
 

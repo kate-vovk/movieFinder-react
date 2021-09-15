@@ -1,0 +1,1 @@
+export { MoviePosterFooter } from './MoviePosterFooter';

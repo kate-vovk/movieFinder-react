@@ -1,5 +1,5 @@
 import HTTPService from '@/services/httpService';
-import { SERVER_PATHS } from '@/constants/constants';
+import { SERVER_PATHS } from '@/constants';
 import { IMyMovie, IOrderedMovie, IUser } from '@/utils/interfaces/authInterfaces';
 import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 

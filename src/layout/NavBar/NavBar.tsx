@@ -1,15 +1,13 @@
 import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { AppBar, Toolbar, Badge } from '@material-ui/core';
-import { ButtonGroup, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Badge, ButtonGroup, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
 import { userSelector } from '@/selectors/auth';
 import { cartSelector } from '@/selectors/cart';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { MenuButton } from '@/components/MenuButton/MenuButton';
+import { CustomButton, MenuButton } from '@/components';
 import { userMenuLinks } from '@/constants/menuButton';
 import logo from '@/assets/icons/logo.svg';
 import { useStyle } from './styles';
