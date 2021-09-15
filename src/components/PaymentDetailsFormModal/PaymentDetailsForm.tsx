@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidation';
 import { sendData } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { useStyle } from './styles';
 
 export const PaymentDetailsForm: FunctionComponent = () => {

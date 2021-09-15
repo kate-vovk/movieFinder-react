@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { CustomButton } from '@/components';
 import { useStyle } from './styles';
 
 interface IProps {

@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { registration } from '@/store/slices/authSlice';
 import { useStyle } from './styles';
 

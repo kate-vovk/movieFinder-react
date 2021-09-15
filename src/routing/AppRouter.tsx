@@ -1,12 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { RegisterForm } from '@/components/RegisterForm/RegisterForm';
-import { MoviesPage } from '@/components/MoviesPage/MoviesPage';
-import { MoviePage } from '@/components/MoviePage/MoviePage';
-import { SignInForm } from '@/components/SignInForm/SignInForm';
-import { Cart } from '@/components/Cart/Cart';
-import { CLIENT_PATHS } from '@/constants/constants';
-import { NotFoundPage } from '@/components/NotFoundPage/NotFoundPage';
+import { MoviesPage, MoviePage, NotFoundPage, SignInForm, RegisterForm, Cart } from '@/components';
+import { CLIENT_PATHS } from '@/constants';
 import { mockAdmin } from '@/layout/NavBar/mockAdmin';
 import { mockFavorites } from '@/layout/NavBar/mockFavorites';
 import { mockProfile } from '@/layout/NavBar/mockProfile';

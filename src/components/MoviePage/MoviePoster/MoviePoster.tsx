@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import StarIcon from '@material-ui/icons/Star';
-import { MoviePosterFooter } from '@/components/MoviePage/MoviePosterFooter/MoviePosterFooter';
+import { MoviePosterFooter } from '@/components/MoviePage/MoviePosterFooter';
 import { useStyle } from './styles';
 
 interface IProps {
