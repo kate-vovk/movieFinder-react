@@ -19,7 +19,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   const QUALITY = 'HD';
   const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
-  const userId = useSelector(userSelector);
+  const { userId } = useSelector(userSelector);
   const addMovieIdToCart = (): void => {
     if (movies.find((movie: IMovie) => movie.id === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId }));

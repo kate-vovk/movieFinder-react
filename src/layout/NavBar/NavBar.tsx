@@ -1,7 +1,7 @@
 import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { AppBar, Toolbar, Badge } from '@material-ui/core';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { ButtonGroup, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CLIENT_PATHS } from '@/constants/constants';

@@ -16,7 +16,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyle();
-  const userId = useSelector(userSelector);
+  const { userId } = useSelector(userSelector);
 
   const clickBuyButton = (): void => {
     dispatch(sendData({ userId }));

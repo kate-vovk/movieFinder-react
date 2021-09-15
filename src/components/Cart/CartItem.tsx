@@ -16,7 +16,7 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userId = useSelector(userSelector);
+  const { userId } = useSelector(userSelector);
 
   const removeMovieIdFromCart = (): void => {
     dispatch(removeMovieFromCart({ userId, movieId: movie.id }));
