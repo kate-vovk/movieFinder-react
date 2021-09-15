@@ -3,14 +3,16 @@ import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface IFilterOptionProps {
-  item: string;
+  query: string;
+  param: string;
 }
 
-export const FilterOption: FunctionComponent<IFilterOptionProps> = ({ item }) => {
+export const FilterOption: FunctionComponent<IFilterOptionProps> = ({ query, param }) => {
+  console.log('query, param', query, param);
   const { t } = useTranslation(['Filtration']);
   return (
-    <ListItem key={item} role="listitem" button>
-      <FormControlLabel value={item} control={<Radio />} label={t(item)} />
+    <ListItem key={query} role="listitem" button>
+      <FormControlLabel value={query} control={<Radio />} label={t(query)} />
     </ListItem>
   );
 };

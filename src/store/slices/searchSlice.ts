@@ -9,6 +9,9 @@ interface ISearchState {
   totalCount: number;
   searchQuery: string;
   selectParam: string;
+  selectedGenres: string[];
+  selectedCategories: string[];
+  selectedCountries: string[];
 }
 
 interface ISearchQuery {
@@ -33,6 +36,9 @@ const initialState: ISearchState = {
   totalCount: 0,
   searchQuery: '',
   selectParam: 'initial',
+  selectedGenres: [],
+  selectedCategories: [],
+  selectedCountries: [],
 };
 
 export const searchSlice = createSlice({

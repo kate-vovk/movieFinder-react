@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import { FunctionComponent, useState, ChangeEvent } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useTranslation } from 'react-i18next';
 import { FilterOption } from '../FilterOption/FilterOption';
 import { useStyle } from './styles';
 
@@ -19,6 +20,7 @@ export interface ICustomAccordionProps {
 }
 
 export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ name, options }) => {
+  const { t } = useTranslation(['Filtration']);
   const classes = useStyle();
   const [value, setValue] = useState(name);
 
@@ -30,13 +32,13 @@ export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ name
       <ListItemText>
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={name} id={name}>
-            <Typography> {name}</Typography>
+            <Typography> {t(name)}</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             <FormControl component="fieldset">
               <RadioGroup aria-label={name} name={name} value={value} onChange={handleChange}>
                 {options.map((option) => (
-                  <FilterOption key={option} item={option} />
+                  <FilterOption key={option} query={option} param={name} />
                 ))}
               </RadioGroup>
             </FormControl>
