@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { movieListSelector } from '@/selectors/search';

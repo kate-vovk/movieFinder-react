@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { CustomButton } from '@/components';
 import { cartSelector } from '@/selectors/cart';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';

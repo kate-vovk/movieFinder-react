@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
 import { useDispatch, useSelector } from 'react-redux';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { MovieCard } from '@/components/MovieCard/MovieCard';
+import { MovieCard } from '@/components';
 import { getMovieListWithQuery } from '@/store/slices/searchSlice';
 import { movieListSelector } from '@/selectors/search';
 import { useStyle } from './styles';

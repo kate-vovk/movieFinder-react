@@ -1,7 +1,5 @@
 import { FunctionComponent, ReactElement } from 'react';
-import { Content } from '@/layout/Content/Content';
-import { NavBar } from '@/layout/NavBar/NavBar';
-import { Footer } from '@/layout/Footer/Footer';
+import { Content, NavBar, Footer } from '@/layout';
 import { useStyle } from './style';
 
 interface IProps {
