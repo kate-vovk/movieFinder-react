@@ -1,4 +1,5 @@
 import { FunctionComponent, useState, ChangeEvent } from 'react';
+import { useParams } from 'react-router-dom';
 import { Tabs, Tab } from '@material-ui/core';
 import { TabPanel } from '@/components/userProfile/TabPanel';
 import { useStyle } from './styles';
@@ -14,8 +15,13 @@ const TabItem = [
   { index: 3, name: 'My feedback' },
 ];
 
+interface IParamsIndexTab {
+  indexTab: string;
+}
+
 export const UserProfile: FunctionComponent = () => {
-  const [value, setValue] = useState(0);
+  const { indexTab } = useParams<IParamsIndexTab>();
+  const [value, setValue] = useState(Number(indexTab));
   const classes = useStyle();
 
   const handleChange = (event: ChangeEvent<unknown>, newValue: number): void => {

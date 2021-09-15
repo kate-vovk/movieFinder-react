@@ -1,6 +1,6 @@
 import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { AppBar, Toolbar, Badge, ButtonGroup, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Badge, ButtonGroup } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CLIENT_PATHS } from '@/constants';
@@ -56,11 +56,6 @@ export const NavBar: FunctionComponent = () => {
                 buttonType="button"
               />
             </ButtonGroup>
-            <Button>
-              <Link to={CLIENT_PATHS.user} className={classes.link}>
-                USER
-              </Link>
-            </Button>
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
                 <Badge key={button.name} badgeContent={movies.length} color="secondary">
