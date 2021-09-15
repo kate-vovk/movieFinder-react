@@ -24,6 +24,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   const classes = useStyles();
   const dispatch = useDispatch();
   const userId = useSelector(userSelector);
+
   const [movieQuality, setMovieQuality] = useState<string>(EQuality.HD);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
