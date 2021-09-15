@@ -1,10 +1,11 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
 import { CustomButton } from '@/components';
 import { cartSelector } from '@/selectors/cart';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { useStyle } from './styles';
+import { useStyle, cartButtonTheme } from './styles';
 import { addMovieToCart, removeMovieFromCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 
@@ -18,7 +19,7 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   const PERIOD = 30;
   const QUALITY = 'HD';
   const dispatch = useDispatch();
-  const { movies } = useSelector(cartSelector);
+  const { movies, isLoading } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
   const addMovieIdToCart = (): void => {
     if (movies.find((movie: IMovie) => movie.id === movieId)) {
@@ -34,12 +35,15 @@ export const MovieFooter: FunctionComponent<IProps> = ({ movieId, price }) => {
   return (
     <div className={classes.footer}>
       <CustomButton name="favorite" buttonType="button" className={classes.favoritesButton} />
-      <CustomButton
-        name="cart"
-        buttonType="button"
-        onClick={addMovieIdToCart}
-        className={classes.addToCartButton}
-      />
+      <ThemeProvider theme={cartButtonTheme}>
+        <CustomButton
+          name="cart"
+          buttonType="button"
+          onClick={addMovieIdToCart}
+          className={classes.addToCartButton}
+          disabled={isLoading}
+        />
+      </ThemeProvider>
       <Typography className={classes.price} color="textSecondary" gutterBottom>
         {price} $
       </Typography>
