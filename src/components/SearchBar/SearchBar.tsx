@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Paper } from '@material-ui/core';
-import { SearchSelect } from '@/components/SearchSelect/SearchSelect';
-import { SearchInput } from '@/components/SearchInput/SearchInput';
+import { SearchSelect, SearchInput } from '@/components';
 import { useStyle } from './styles';
 
 export const SearchBar: FunctionComponent = () => {

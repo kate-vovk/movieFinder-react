@@ -2,7 +2,7 @@ import { FunctionComponent, useCallback } from 'react';
 import { Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { CustomButton } from '@/components';
 import { useStyle } from './styles';
 
 export const CartIsEmpty: FunctionComponent = () => {

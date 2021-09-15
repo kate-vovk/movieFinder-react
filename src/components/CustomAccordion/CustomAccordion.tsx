@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { FunctionComponent } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FilterOption } from '../FilterOption.tsx/FilterOption';
+import { FilterOption } from '@/components';
 import { useStyle } from './styles';
 
 export interface ICustomAccordionProps {

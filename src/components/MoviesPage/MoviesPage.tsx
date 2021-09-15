@@ -1,9 +1,6 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Pagination } from '@/components/Pagination/Pagination';
-import { MoviesCards } from '@/components/MoviesCards/MoviesCards';
-import { Sidebar } from '@/components/Sidebar/Sidebar';
-import { SearchBar } from '@/components/SearchBar/SearchBar';
+import { Pagination, Sidebar, MoviesCards, SearchBar } from '@/components';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { getMoviesList, setSelectedParam } from '@/store/slices/searchSlice';
