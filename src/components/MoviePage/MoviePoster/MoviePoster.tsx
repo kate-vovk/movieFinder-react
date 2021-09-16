@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import StarIcon from '@material-ui/icons/Star';
-import { MovieControl } from '@/components/MovieControl/MovieControl';
+import { MovieControl } from '@/components';
 import { useStyle } from './styles';
 
 interface IProps {
