@@ -30,7 +30,7 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
 
   const movieInfo = [
     { id: 1, name: 'country', value: country },
-    { id: 2, name: 'duration', value: `${duration} min` },
+    { id: 2, name: 'duration', value: `${duration} ${t('min')}` },
     { id: 3, name: 'releaseDate', value: new Date(year).getFullYear() },
     { id: 4, name: 'productionCompanies', value: company },
     { id: 5, name: 'genres', value: genresList },

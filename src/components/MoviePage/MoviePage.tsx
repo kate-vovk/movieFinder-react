@@ -11,6 +11,8 @@ import { MovieFeedback } from './MovieFeedback/MovieFeedback';
 import { MovieInfo } from './MovieInfo/MovieInfo';
 import { MoviePoster } from './MoviePoster/MoviePoster';
 import { useStyle } from './styles';
+import { MovieDescription } from './MovieDescription/MovieDescription';
+import { MovieTrailer } from './MovieTrailer/MovieTrailer';
 
 interface IParamsIdMovie {
   id: string;
@@ -67,31 +69,8 @@ export const MoviePage: FunctionComponent = () => {
                 categoriesList={movie?.categoryId}
               />
             </div>
-            <div className={classes.descriptionMovie}>
-              <h2 className={classes.descriptionMovieTitle}>{t('description')}</h2>
-              <p className={classes.descriptionMovieText}>{movie?.description}</p>
-            </div>
-            <div className={classes.trailerMovie}>
-              {/* <iframe
-                width="560"
-                height="315"
-                src={movie?.trailerUrl}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              /> */}
-              <iframe
-                src={movie?.trailerUrl}
-                width="560"
-                height="315"
-                // allowfullscreen="true"
-                // mozallowfullscreen="true"
-                // webkitallowfullscreen="true"
-                frameBorder="no"
-                scrolling="no"
-              />
-            </div>
+            <MovieDescription description={movie?.description} />
+            <MovieTrailer trailerUrl={movie?.trailerUrl} />
             <MovieFeedback />
           </>
         ) : (
