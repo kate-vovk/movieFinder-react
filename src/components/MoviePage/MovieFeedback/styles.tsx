@@ -7,7 +7,7 @@ export const useStyle = makeStyles(() => ({
     margin: '30px 10px 30px 10px',
   },
   feedbackButton: {
-    margin: '0 0 0 50%',
+    margin: '0 0 0 20%',
   },
   feedbackList: {
     margin: '0 0 0 0',

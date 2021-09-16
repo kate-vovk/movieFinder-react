@@ -17,4 +17,8 @@ export const useStyle = makeStyles(() => ({
   description: {
     textAlign: 'justify',
   },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
 }));

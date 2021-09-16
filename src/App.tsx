@@ -1,8 +1,9 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Layout } from './layout/Layout/Layout';
+import { Layout } from './layout';
 import { AppRouter } from './routing/AppRouter';
 import './reset.css';
+import '@/utils/localization/i18n';
 
 export const App: FunctionComponent = () => {
   return (

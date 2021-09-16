@@ -14,17 +14,19 @@ import {
 import { authReducer } from './slices/authSlice';
 import { cartReducer } from './slices/cartSlice';
 import { searchReducer } from './slices/searchSlice';
+import { modalReducer } from './slices/modalSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
   cart: cartReducer,
   search: searchReducer,
+  modal: modalReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'cart', 'search'],
+  whitelist: ['auth', 'search'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
