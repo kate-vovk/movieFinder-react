@@ -15,4 +15,4 @@ interface ISearchList {
 const stateSelector = (state: ISearchState): ISearchList => state.search;
 
 export const movieListSelector = createSelector(stateSelector, (state) => state.movies);
-export const movieSearchSelector = createSelector(stateSelector, (state) => state);
+export const movieSearchSelector = createSelector(stateSelector, (state) => state.selectParam);

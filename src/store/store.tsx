@@ -38,6 +38,8 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [
           'auth/registration/fulfilled',
+          'search/getMovieListWithQuery/pending',
+          'search/getMovieListWithQuery/fulfilled',
           FLUSH,
           REHYDRATE,
           PAUSE,
