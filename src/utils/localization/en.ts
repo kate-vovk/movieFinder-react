@@ -46,6 +46,7 @@ export const en = {
     director: 'director',
     actors: 'actors',
     description: 'Description',
+    min: 'min',
   },
   Filtration: {
     genres: 'Genres',

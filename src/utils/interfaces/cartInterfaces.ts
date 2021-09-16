@@ -4,21 +4,20 @@ export interface IMovie {
   description: string;
   coverUrl: string;
   price: number;
-  year: string;
-  company: string;
+  releaseDate: string;
+  productionCompany: string;
   duration: number;
-  genres: string[];
-  categories: string[];
-  director: string;
-  actors: string[];
+  genres: string;
+  categories: string;
+  producer: string;
+  cast: string;
   trailerUrl: string;
+  country: string;
 
   categoryId: string;
   countryId: string;
   genreId: string;
-  producer: string;
   productionCompanyId: string;
-  releaseDate: string;
 
   quality?: string;
   period?: number;

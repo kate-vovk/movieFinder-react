@@ -1,7 +1,7 @@
 export { PaymentDetailsModal } from './PaymentDetailsFormModal';
 export { MoviesCards } from './MoviesCards';
 export { MoviePage } from './MoviePage';
-export { MovieFooter } from './MovieFooter';
+export { MovieControl } from './MovieControl';
 export { MovieCard } from './MovieCard';
 export { FilterOption } from './FilterOption';
 export { CustomButton } from './CustomButton';

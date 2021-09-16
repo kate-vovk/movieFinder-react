@@ -1,1 +1,0 @@
-export { MovieFooter } from './MovieFooter';
