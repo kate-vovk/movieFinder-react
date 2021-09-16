@@ -1,31 +1,42 @@
 import { searchOption } from '@/constants/constants';
 
 interface ICreatePath {
-  searchQuery: string;
-  selectParam: string;
+  searchQuery?: string;
+  selectParam?: string;
+  selectedGenres?: string[];
+  selectedCategories?: string[];
+  selectedCountries?: string[];
 }
 
-export const createPath = (params: ICreatePath): string => {
+export const createPath = ({
+  searchQuery = '',
+  selectParam = '',
+  selectedGenres = [],
+  selectedCategories = [],
+  selectedCountries = [],
+}: ICreatePath): string => {
   let finalPath = '';
-  let querySelectParam = '';
-  const { searchQuery, selectParam } = params;
+  let searchParam = '';
+  const filtrationGenres = `genres=${selectedGenres.join()}`;
+  const filtrationCategories = `categories=${selectedCategories.join()}`;
+  const filtrationCountries = `countries=${selectedCountries.join()}`;
 
   switch (selectParam) {
     case searchOption.initial:
-      querySelectParam = 'initial';
+      searchParam = 'initial';
       break;
     case searchOption.movie:
-      querySelectParam = 'initial';
+      searchParam = 'initial';
       break;
     case searchOption.studio:
-      querySelectParam = 'production_company';
+      searchParam = 'production_company';
       break;
     case searchOption.actor:
-      querySelectParam = 'actor';
+      searchParam = 'actor';
       break;
     default:
       break;
   }
-  finalPath = `${querySelectParam}=${searchQuery}`;
+  finalPath = `${searchParam}=${searchQuery}&${filtrationGenres}&${filtrationCategories}&${filtrationCountries}`;
   return finalPath;
 };

@@ -8,38 +8,43 @@ import {
   FormControl,
   RadioGroup,
 } from '@material-ui/core';
-import { FunctionComponent, useState, ChangeEvent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useTranslation } from 'react-i18next';
 import { FilterOption } from '../FilterOption/FilterOption';
 import { useStyle } from './styles';
 
 export interface ICustomAccordionProps {
-  name: string;
+  param: string;
   options: string[];
 }
 
-export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ name, options }) => {
+export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ param, options }) => {
   const { t } = useTranslation(['Filtration']);
   const classes = useStyle();
-  const [value, setValue] = useState(name);
+  const [option, setOption] = useState('');
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setValue((event.target as HTMLInputElement).value);
-  };
   return (
-    <ListItem key={name}>
+    <ListItem key={param}>
       <ListItemText>
         <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={name} id={name}>
-            <Typography> {t(name)}</Typography>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={param} id={param}>
+            <Typography> {t(param)}</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             <FormControl component="fieldset">
-              <RadioGroup aria-label={name} name={name} value={value} onChange={handleChange}>
-                {options.map((option) => (
-                  <FilterOption key={option} query={option} param={name} />
-                ))}
+              <RadioGroup aria-label={param} name={param} value={option}>
+                {options.map((query) => {
+                  return (
+                    <FilterOption
+                      key={query}
+                      param={param}
+                      query={query}
+                      option={option}
+                      setOption={setOption}
+                    />
+                  );
+                })}
               </RadioGroup>
             </FormControl>
           </AccordionDetails>

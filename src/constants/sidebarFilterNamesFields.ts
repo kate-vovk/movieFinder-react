@@ -9,14 +9,6 @@ export const sidebarFilterNamesFields = [
   },
   {
     name: 'countries',
-    options: ['USA', 'German', 'France', 'Canada'],
-  },
-  {
-    name: 'voteAverage',
-    options: ['yes', 'no'],
-  },
-  {
-    name: 'year',
-    options: ['yes', 'no'],
+    options: ['USA', 'German'],
   },
 ];

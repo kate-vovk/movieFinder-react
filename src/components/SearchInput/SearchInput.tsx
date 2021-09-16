@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import InputLabel from '@material-ui/core/InputLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesListWithQuery } from '@/store/slices/searchSlice';
-import { movieSearchSelector } from '@/selectors/search';
+import { movieSearchSelector } from '@/selectors/movies';
 import { useStyle } from './styles';
 
 export const SearchInput: FunctionComponent = () => {

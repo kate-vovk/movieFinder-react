@@ -19,6 +19,14 @@ interface ISearchQuery {
   searchQuery: string;
 }
 
+interface IFiltrationQuery {
+  selectParam: string;
+  searchQuery: string;
+  selectedGenres: string[];
+  selectedCategories: string[];
+  selectedCountries: string[];
+}
+
 export const getMoviesList = createAsyncThunk('search/getMovieList', async () => {
   return getMovies();
 });
@@ -30,7 +38,25 @@ export const getMoviesListWithQuery = createAsyncThunk(
     return getDataFromApi(path);
   },
 );
-
+export const getFIltereAndSearcheddMoviesList = createAsyncThunk(
+  'filtration/getFIlteredMoviesList',
+  async ({
+    selectParam,
+    searchQuery,
+    selectedGenres,
+    selectedCategories,
+    selectedCountries,
+  }: IFiltrationQuery) => {
+    const path = createPath({
+      selectParam,
+      searchQuery,
+      selectedGenres,
+      selectedCategories,
+      selectedCountries,
+    });
+    return getDataFromApi(path);
+  },
+);
 const initialState: ISearchState = {
   movies: [],
   totalCount: 0,
@@ -48,6 +74,41 @@ export const searchSlice = createSlice({
     setSelectedParam(state, action) {
       state.selectParam = action.payload;
     },
+    addFilterOption(state, action) {
+      switch (action.payload.param) {
+        // TODO temporary solution to store just 1 option/query in array(selectedGenres or selectedCategories or selectedCountries).
+        // When radiobuttons will be replaced with checkboxes state.selectedGenres = [], state.selectedCategories = [], and state.selectedCountries = [] will be deleted
+        case 'genres':
+          state.selectedGenres = [];
+          state.selectedGenres.push(action.payload.option);
+          break;
+        case 'categories':
+          state.selectedCategories = [];
+          state.selectedCategories.push(action.payload.option);
+          break;
+        case 'countries':
+          state.selectedCountries = [];
+          state.selectedCountries.push(action.payload.option);
+          break;
+        default:
+          break;
+      }
+    },
+    removeLastFilterOption(state, action) {
+      switch (action.payload) {
+        case 'genres':
+          state.selectedGenres.pop();
+          break;
+        case 'categories':
+          state.selectedCategories.pop();
+          break;
+        case 'countries':
+          state.selectedCountries.pop();
+          break;
+        default:
+          break;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -60,9 +121,13 @@ export const searchSlice = createSlice({
         state.totalCount = action.payload?.length;
         state.searchQuery = action.meta.arg.searchQuery;
         state.selectParam = action.meta.arg.selectParam;
+      })
+      .addCase(getFIltereAndSearcheddMoviesList.fulfilled, (state, action) => {
+        state.movies = action.payload.data;
+        state.totalCount = action.payload?.length;
       });
   },
 });
 
 export const searchReducer = searchSlice.reducer;
-export const { setSelectedParam } = searchSlice.actions;
+export const { setSelectedParam, addFilterOption, removeLastFilterOption } = searchSlice.actions;
