@@ -5,7 +5,9 @@ import { sidebarFilterNamesFields } from '@/constants/sidebarFilterNamesFields';
 import { useStyle } from './styles';
 import { CustomAccordion } from './CustomAccordion';
 import { CustomButton } from '..';
-import { getFIltereAndSearcheddMoviesList } from '@/store/slices/searchSlice';
+// import { getFIltereAndSearcheddMoviesList } from '@/store/slices/moviesSlice';
+import { getMoviesListWithQuery } from '@/store/slices/moviesSlice';
+
 import { moviesSelector } from '@/selectors/movies';
 
 export const Sidebar: FunctionComponent = () => {
@@ -16,7 +18,7 @@ export const Sidebar: FunctionComponent = () => {
 
   const filterMovies = (): void => {
     dispatch(
-      getFIltereAndSearcheddMoviesList({
+      getMoviesListWithQuery({
         selectParam,
         searchQuery,
         selectedGenres,

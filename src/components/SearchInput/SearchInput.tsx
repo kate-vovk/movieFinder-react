@@ -4,15 +4,15 @@ import { useDebounce } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
 import InputLabel from '@material-ui/core/InputLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesListWithQuery } from '@/store/slices/searchSlice';
-import { movieSearchSelector } from '@/selectors/movies';
+import { getMoviesListWithQuery } from '@/store/slices/moviesSlice';
+import { moviesSelector } from '@/selectors/movies';
 import { useStyle } from './styles';
 
 export const SearchInput: FunctionComponent = () => {
   const { t } = useTranslation(['Search']);
   const classes = useStyle();
   const dispatch = useDispatch();
-  const selectParam = useSelector(movieSearchSelector);
+  // const selectParam = useSelector(movieSearchSelector);
   const [searchQuery, setSearchQuery] = useState('');
 
   const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -22,9 +22,20 @@ export const SearchInput: FunctionComponent = () => {
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
+  const { selectParam, selectedGenres, selectedCategories, selectedCountries } =
+    useSelector(moviesSelector);
+
   useEffect(() => {
     if (searchQuery !== '') {
-      dispatch(getMoviesListWithQuery({ searchQuery: debouncedSearchQuery, selectParam }));
+      dispatch(
+        getMoviesListWithQuery({
+          searchQuery: debouncedSearchQuery,
+          selectParam,
+          selectedGenres,
+          selectedCategories,
+          selectedCountries,
+        }),
+      );
     }
   }, [selectParam, debouncedSearchQuery]);
 

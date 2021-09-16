@@ -2,7 +2,7 @@ import { ListItem, Radio, FormControlLabel } from '@material-ui/core';
 import { FunctionComponent, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { addFilterOption, removeLastFilterOption } from '@/store/slices/searchSlice';
+import { addFilterOption, removeLastFilterOption } from '@/store/slices/moviesSlice';
 
 export interface IFilterOptionProps {
   param: string;

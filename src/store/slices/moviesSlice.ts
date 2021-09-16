@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { getMovies } from '@/businessLogic/movies';
-import { getDataFromApi } from '@/api/search';
+import { getDataFromApi } from '@/api/search-filter';
 import { createPath } from '@/utils/url';
 
 interface ISearchState {
@@ -14,10 +14,10 @@ interface ISearchState {
   selectedCountries: string[];
 }
 
-interface ISearchQuery {
-  selectParam: string;
-  searchQuery: string;
-}
+// interface ISearchQuery {
+//   selectParam: string;
+//   searchQuery: string;
+// }
 
 interface IFiltrationQuery {
   selectParam: string;
@@ -31,14 +31,15 @@ export const getMoviesList = createAsyncThunk('search/getMovieList', async () =>
   return getMovies();
 });
 
+// export const getMoviesListWithQuery = createAsyncThunk(
+//   'search/getMovieListWithQuery',
+//   async ({ selectParam, searchQuery }: ISearchQuery) => {
+//     console.log('selectParam, searchQuery', selectParam, searchQuery);
+//     const path = createPath({ selectParam, searchQuery });
+//     return getDataFromApi(path);
+//   },
+// );
 export const getMoviesListWithQuery = createAsyncThunk(
-  'search/getMovieListWithQuery',
-  async ({ selectParam, searchQuery }: ISearchQuery) => {
-    const path = createPath({ selectParam, searchQuery });
-    return getDataFromApi(path);
-  },
-);
-export const getFIltereAndSearcheddMoviesList = createAsyncThunk(
   'filtration/getFIlteredMoviesList',
   async ({
     selectParam,
@@ -67,7 +68,7 @@ const initialState: ISearchState = {
   selectedCountries: [],
 };
 
-export const searchSlice = createSlice({
+export const moviesSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
@@ -116,18 +117,18 @@ export const searchSlice = createSlice({
         state.movies = action.payload;
         state.totalCount = action.payload?.length;
       })
+      // .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
+      //   state.movies = action.payload.data;
+      //   state.totalCount = action.payload?.length;
+      //   state.searchQuery = action.meta.arg.searchQuery;
+      //   state.selectParam = action.meta.arg.selectParam;
+      // })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-        state.movies = action.payload.data;
-        state.totalCount = action.payload?.length;
-        state.searchQuery = action.meta.arg.searchQuery;
-        state.selectParam = action.meta.arg.selectParam;
-      })
-      .addCase(getFIltereAndSearcheddMoviesList.fulfilled, (state, action) => {
         state.movies = action.payload.data;
         state.totalCount = action.payload?.length;
       });
   },
 });
 
-export const searchReducer = searchSlice.reducer;
-export const { setSelectedParam, addFilterOption, removeLastFilterOption } = searchSlice.actions;
+export const moviesReducer = moviesSlice.reducer;
+export const { setSelectedParam, addFilterOption, removeLastFilterOption } = moviesSlice.actions;
