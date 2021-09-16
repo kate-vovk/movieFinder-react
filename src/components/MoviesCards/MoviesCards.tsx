@@ -5,12 +5,7 @@ import { MovieCard } from '@/components';
 import { movieListSelector } from '@/selectors/search';
 import { useStyle } from './styles';
 
-interface IMoviesCardsProps {
-  searchQuery: string;
-  selectParam: string;
-}
-
-export const MoviesCards: FunctionComponent<IMoviesCardsProps> = () => {
+export const MoviesCards: FunctionComponent = () => {
   const classes = useStyle();
   const movieList = useSelector(movieListSelector);
 

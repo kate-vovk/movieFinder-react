@@ -24,7 +24,7 @@ export const MoviesPage: FunctionComponent = () => {
         <div className={classes.header}>
           <SearchBar />
         </div>
-        <MoviesCards searchQuery="" selectParam="" />
+        <MoviesCards />
         <Pagination />
       </div>
     </div>
