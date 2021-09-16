@@ -12,6 +12,7 @@ interface IProps {
 
 export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title, movieId }) => {
   const classes = useStyle();
+
   return (
     <div className={classes.columnLeft}>
       <div className={classes.poster}>
