@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import { FunctionComponent, useMemo } from 'react';
-=======
-import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
->>>>>>> 5284b2c8fbdad9b5a99c4e59e5617dfba5c05fc2
 import { useStyle } from './styles';
 
 interface IMovieInfoProps {
@@ -34,8 +30,8 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
 
   const movieInfo = [
     { id: 1, name: 'country', value: country },
-    { id: 2, name: 'duration', value: `${duration} ${t('min')}` },
-    { id: 3, name: 'releaseDate', value: new Date(year).getFullYear() },
+    { id: 2, name: 'duration', value: duration ? `${duration} ${t('min')}` : undefined },
+    { id: 3, name: 'releaseDate', value: String(new Date(year).getFullYear()) },
     { id: 4, name: 'productionCompanies', value: company },
     { id: 5, name: 'genres', value: genresList },
     { id: 6, name: 'categories', value: categoriesList },
