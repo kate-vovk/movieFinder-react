@@ -1,25 +1,25 @@
 import { FunctionComponent } from 'react';
 import { ListItem, ListItemIcon, Paper, Typography } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
 import EuroIcon from '@material-ui/icons/Euro';
 import { useHistory } from 'react-router-dom';
-import { removeMovieFromCart } from '@/store/slices/cartSlice';
-import { CLIENT_PATHS } from '@/constants/constants';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { CLIENT_PATHS } from '@/constants';
+import { CustomButton } from '@/components';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { cartSelector } from '@/selectors/cart';
 import { useStyle } from './styles';
+import { removeMovieFromCart } from '@/store/slices/cartSlice';
+import { userSelector } from '@/selectors/auth';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
-  const { id, cover, title, price, description } = movie;
+  const { id, coverUrl, title, price, description } = movie;
   const classes = useStyle();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { userId, movies, id: cartId } = useSelector(cartSelector);
+  const userId = useSelector(userSelector);
 
   const removeMovieIdFromCart = (): void => {
-    dispatch(removeMovieFromCart({ userId, movieId: id, id: cartId, movies }));
+    dispatch(removeMovieFromCart({ userId, movieId: movie.id }));
   };
   const goToDetailedView = (): void => {
     history.push(`${CLIENT_PATHS.movies}/${id}`);
@@ -27,7 +27,7 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   return (
     <ListItem className={classes.container} component={Paper}>
       <ListItemIcon className={classes.image}>
-        <img src={cover} />
+        <img src={coverUrl} />
       </ListItemIcon>
       <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
         <Typography onClick={goToDetailedView} className={classes.title}>

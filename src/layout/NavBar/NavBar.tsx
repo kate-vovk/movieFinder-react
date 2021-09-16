@@ -1,49 +1,74 @@
 import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { AppBar, Toolbar, Button, Badge } from '@material-ui/core';
-import MovieFilterIcon from '@material-ui/icons/MovieFilter';
-import { useDispatch, useSelector } from 'react-redux';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { AppBar, Toolbar, Badge } from '@material-ui/core';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { CLIENT_PATHS } from '@/constants';
 import { isAuthorizedButtons } from '@/constants/navBarIsAuthrozedButtons';
-import { isLoggedInSelector } from '@/selectors/auth';
+import { userSelector } from '@/selectors/auth';
 import { cartSelector } from '@/selectors/cart';
-import { logout } from '@/store/slices/authSlice';
+import { CustomButton, MenuButton } from '@/components';
+import { userMenuLinks } from '@/constants/menuButton';
+import logo from '@/assets/icons/logo.svg';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
-  const isLoggedIn = useSelector(isLoggedInSelector);
+  const languageFromLocalStorage = String(localStorage.getItem('i18nextLng'));
+  const user = useSelector(userSelector);
   const history = useHistory();
-  const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
+
+  const { i18n } = useTranslation(['AppBar']);
+
+  const changeLanguage = (lang: string): void => {
+    i18n.changeLanguage(lang);
+  };
 
   const goToCart = useCallback(() => {
     history.push(CLIENT_PATHS.cart);
   }, []);
 
-  const goToLogOut = useCallback(() => {
-    dispatch(logout());
-  }, []);
-
-  const classes = useStyle();
+  const classes = useStyle({
+    chosenLanguage:
+      languageFromLocalStorage === 'en-US'
+        ? languageFromLocalStorage.split('-')[0]
+        : languageFromLocalStorage,
+  });
   return (
     <div>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Link to={CLIENT_PATHS.main} className={classes.link}>
-            <MovieFilterIcon />
+            <img src={logo} className={classes.logo} alt="logo" />
           </Link>
           <div className={classes.buttonsContainer}>
-            {isAuthorizedButtons(isLoggedIn).map((button) =>
+            <ButtonGroup variant="text" aria-label="text primary button group">
+              <CustomButton
+                className={classes.enButton}
+                onClick={() => changeLanguage('en')}
+                name="En"
+                buttonType="button"
+              />
+              <CustomButton
+                className={classes.ruButton}
+                onClick={() => changeLanguage('ru')}
+                name="Ru"
+                buttonType="button"
+              />
+            </ButtonGroup>
+            {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
                 <Badge key={button.name} badgeContent={movies.length} color="secondary">
-                  <Button onClick={goToCart}>{button.name}</Button>
+                  <MenuButton menuLink={userMenuLinks} />
+                  <CustomButton buttonType="button" onClick={goToCart} name="cart" />
                 </Badge>
               ) : (
-                <Button key={button.name} onClick={goToLogOut}>
-                  <Link to={button.to} className={classes.link}>
-                    {button.name}
-                  </Link>
-                </Button>
+                <CustomButton
+                  name={button.name}
+                  buttonType="button"
+                  onClick={() => history.push(button.to)}
+                />
               ),
             )}
           </div>

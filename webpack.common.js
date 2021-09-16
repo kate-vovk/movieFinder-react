@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -23,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|svg)/,
-        use: ['file-loader'],
+        use: 'file-loader',
       },
     ],
   },
@@ -40,6 +41,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -47,6 +49,7 @@ module.exports = {
       filename: 'index.html',
       inject: 'body',
     }),
+    new FaviconsWebpackPlugin('./public/favicon.ico'),
     new CleanWebpackPlugin(),
     new Dotenv({
       path: './.env',

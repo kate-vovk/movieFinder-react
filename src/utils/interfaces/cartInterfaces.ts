@@ -2,29 +2,36 @@ export interface IMovie {
   id: string;
   title: string;
   description: string;
-  cover: string;
+  coverUrl: string;
   price: number;
-  year: string;
-  company: string;
+  releaseDate: string;
+  productionCompany: string;
   duration: number;
-  genres: string[];
-  categories: string[];
-  director: string;
-  actors: string[];
-  trailer: string;
+  genres: string;
+  categories: string;
+  producer: string;
+  cast: string;
+  trailerUrl: string;
+  country: string;
+
+  categoryId: string;
+  countryId: string;
+  genreId: string;
+  productionCompanyId: string;
+
+  quality?: string;
+  period?: number;
 }
 
 export interface ICart {
-  userId: string;
-  movies: ICartMovieState[];
-  id: string;
+  movies: IMovie[];
 }
 
 export interface ICartMovieState {
+  userId: string;
   movieId: string;
-  period: number;
-  quality: string;
-  price: number;
+  period?: number;
+  quality?: string;
 }
 
 export enum Quality {

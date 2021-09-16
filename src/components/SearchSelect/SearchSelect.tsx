@@ -3,6 +3,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
+import { useTranslation } from 'react-i18next';
 import { searchOption } from '@/utils/interfaces/searchOption';
 import { useStyle } from './styles';
 
@@ -18,6 +19,8 @@ export const SearchSelect: FunctionComponent<ISearchParams> = ({
   const classes = useStyle();
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
+  const { t } = useTranslation(['Search']);
+
   const handleClose = (): void => {
     setIsSelectOpen(false);
   };
@@ -29,7 +32,7 @@ export const SearchSelect: FunctionComponent<ISearchParams> = ({
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">select option</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">{t('selectOption')}</InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"

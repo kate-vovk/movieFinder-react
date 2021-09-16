@@ -1,11 +1,14 @@
-import { FunctionComponent, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { FunctionComponent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { ModalAddMovieToCard } from '@/components/ModalAddMovieToCard/ModalAddMovieToCard';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
+import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
-import { ICartMovieState } from '@/utils/interfaces/cartInterfaces';
+import { userSelector } from '@/selectors/auth';
+import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { modalTypes } from '@/constants/modalTypes';
+
 import { useStyle } from './styles';
 
 interface IMovieControlProps {
@@ -15,23 +18,21 @@ interface IMovieControlProps {
 
 export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
-  const { userId, movies, id } = useSelector(cartSelector);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const { movies } = useSelector(cartSelector);
+  const userId = useSelector(userSelector);
+  const modalType = modalTypes.modalMovieCart;
+  const modalProps = { movieId, price };
 
   const addMovieIdToCart = (): void => {
-    if (movies.find((movie: ICartMovieState) => movie.movieId === movieId)) {
-      dispatch(removeMovieFromCart({ userId, movieId, id, movies }));
+    if (movies.find((movie: IMovie) => movie.id === movieId)) {
+      dispatch(removeMovieFromCart({ userId, movieId }));
     } else {
-      setIsOpenModal(true);
+      dispatch(showModal({ modalType, modalProps }));
     }
   };
 
-  const closeModal = (): void => {
-    setIsOpenModal(false);
-  };
-
   const classes = useStyle({
-    isIncluded: Boolean(movies.find((movie: ICartMovieState) => movie.movieId === movieId)),
+    isIncluded: Boolean(movies.find((movie: IMovie) => movie.id === movieId)),
   });
   return (
     <div className={classes.footer}>
@@ -45,12 +46,6 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
       <Typography className={classes.price} color="textSecondary" gutterBottom>
         {price} $
       </Typography>
-      <ModalAddMovieToCard
-        movieId={movieId}
-        price={price}
-        isOpenModal={isOpenModal}
-        closeModal={closeModal}
-      />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { FunctionComponent, ReactElement } from 'react';
-import { Content } from '@/layout/Content/Content';
-import { NavBar } from '@/layout/NavBar/NavBar';
-import { Footer } from '@/layout/Footer/Footer';
+import { Modal } from '@/components/Modal/Modal';
+import { Content, NavBar, Footer } from '@/layout';
 import { useStyle } from './style';
 
 interface IProps {
@@ -10,11 +9,13 @@ interface IProps {
 
 export const Layout: FunctionComponent<IProps> = ({ children }) => {
   const classes = useStyle();
+
   return (
     <div className={classes.layout}>
       <NavBar />
       <Content>{children}</Content>
       <Footer />
+      <Modal />
     </div>
   );
 };

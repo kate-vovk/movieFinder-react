@@ -1,47 +1,71 @@
-import { FunctionComponent } from 'react';
-import { Modal, Fade, Backdrop } from '@material-ui/core';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
+import { FunctionComponent, useState, ChangeEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
+import { Button } from '@material-ui/core';
+import { addMovieToCart } from '@/store/slices/cartSlice';
+import { userSelector } from '@/selectors/auth';
+import { getPriceMovie } from '@/utils/calculations/calcCostMovie';
+import { EQuality } from '@/constants/constantsModal';
 import { useStyles } from './styles';
-import { ModalForm } from './ModalForm';
+import { RadioGroupForm } from './RadioGroupForm';
+import { SelectForm } from './SelectForm';
 
-interface IModalAddMovieToCardProps {
+interface IModalFormProps {
   movieId: string;
   price: number;
-  isOpenModal: boolean;
   closeModal: () => void;
 }
 
-export const ModalAddMovieToCard: FunctionComponent<IModalAddMovieToCardProps> = ({
+export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   movieId,
   price,
-  isOpenModal,
   closeModal,
 }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const userId = useSelector(userSelector);
+  const [movieQuality, setMovieQuality] = useState<string>(EQuality.HD);
+  const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
+
+  const onHandleMovieQuality = (event: ChangeEvent<HTMLInputElement>): void => {
+    setMovieQuality(event.target.value);
+  };
+
+  const onHandleMoviePurchasePeriod = (
+    event: ChangeEvent<{ name?: string; value: unknown }>,
+  ): void => {
+    setMoviePurchasePeriod(event.target.value as number);
+  };
+
+  const onHandleAddMovieDataToCart = (): void => {
+    dispatch(
+      addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
+    );
+    closeModal();
+  };
 
   return (
-    <Modal
-      open={isOpenModal}
-      onClose={closeModal}
-      className={classes.modal}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
+    <Formik
+      initialValues={{
+        quality: EQuality.HD,
+        period: 0,
       }}
+      onSubmit={onHandleAddMovieDataToCart}
     >
-      <Fade in={isOpenModal}>
-        <div className={classes.paper}>
-          <CustomButton
-            name="close"
-            buttonType="button"
-            className={classes.modalClose}
-            onClick={closeModal}
-          />
-
-          <ModalForm movieId={movieId} price={price} closeModal={closeModal} />
-        </div>
-      </Fade>
-    </Modal>
+      {() => (
+        <Form>
+          <RadioGroupForm onChange={onHandleMovieQuality} value={movieQuality} />
+          <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
+          <div className={classes.modalFormFooter}>
+            <div>
+              <span>{getPriceMovie(price, movieQuality, moviePurchasePeriod)}</span>
+            </div>
+            <Button color="primary" variant="contained" type="submit">
+              Submit
+            </Button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };

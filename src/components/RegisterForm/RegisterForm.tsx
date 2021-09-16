@@ -1,13 +1,13 @@
 import { FunctionComponent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FormikHelpers, useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { registrationFormValidationSchema } from '@/utils/validations/registerValidation';
 import { registrationFormFields } from '@/constants/registrationFormFields';
-import { isLoggedInSelector } from '@/selectors/auth';
-import { CLIENT_PATHS } from '@/constants/constants';
+import { CLIENT_PATHS } from '@/constants';
 import { registration } from '@/store/slices/authSlice';
 import { useStyle } from './styles';
 
@@ -19,8 +19,9 @@ interface IFormInputs {
 }
 
 export const RegisterForm: FunctionComponent = () => {
+  const { t } = useTranslation(['SignUp']);
+
   const history = useHistory();
-  const isLoggedIn = useSelector(isLoggedInSelector);
   const classes = useStyle();
 
   const dispatch = useDispatch();
@@ -31,11 +32,8 @@ export const RegisterForm: FunctionComponent = () => {
   ): Promise<void> => {
     await dispatch(registration(values));
     setSubmitting(false);
+    history.push(CLIENT_PATHS.signin);
   };
-
-  if (isLoggedIn) {
-    history.push(CLIENT_PATHS.movies);
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -57,7 +55,7 @@ export const RegisterForm: FunctionComponent = () => {
               fullWidth={field.fullWidth}
               id={field.name}
               name={field.name}
-              label={field.label}
+              label={t(field.label)}
               type={field.type}
               value={formik.values[field.name]}
               onChange={formik.handleChange}
@@ -75,7 +73,7 @@ export const RegisterForm: FunctionComponent = () => {
           type="submit"
           disabled={formik.isSubmitting}
         >
-          Submit
+          {t('submit')}
         </Button>
       </form>
     </div>
