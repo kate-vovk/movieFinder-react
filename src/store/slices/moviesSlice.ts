@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { getMovies } from '@/businessLogic/movies';
-import { getMovieByQuery } from '@/businessLogic/search-filter';
+import { getMovieByQuery } from '@/businessLogic/searchFilter';
 import { createPath } from '@/utils/url';
 
 interface ISearchState {

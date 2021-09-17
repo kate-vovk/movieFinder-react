@@ -5,7 +5,6 @@ import { sidebarFilterNamesFields } from '@/constants/sidebarFilterNamesFields';
 import { useStyle } from './styles';
 import { CustomAccordion } from './CustomAccordion';
 import { CustomButton } from '..';
-// import { getFIltereAndSearcheddMoviesList } from '@/store/slices/moviesSlice';
 import { getMoviesListWithQuery } from '@/store/slices/moviesSlice';
 
 import { moviesSelector } from '@/selectors/movies';
