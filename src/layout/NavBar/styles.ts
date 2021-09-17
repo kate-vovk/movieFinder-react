@@ -36,9 +36,6 @@ export const useStyle = makeStyles((theme) => ({
     width: '50%',
   },
   button: {
-    // width: '10px',
-    // padding: '0px',
-    // margin: '0px',
     backgroundColor: 'pink',
   },
 }));
