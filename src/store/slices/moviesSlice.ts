@@ -57,7 +57,7 @@ const initialState: ISearchState = {
 };
 
 export const moviesSlice = createSlice({
-  name: 'search',
+  name: 'movies',
   initialState,
   reducers: {
     setSelectedParam(state, action) {
