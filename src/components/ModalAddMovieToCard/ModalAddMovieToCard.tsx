@@ -5,9 +5,10 @@ import { Button } from '@material-ui/core';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { EQuality } from '@/constants/constantsModal';
-// import { useStyles } from './styles';
+import { useStyles } from './styles';
 import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
+import { convertQualityToNumber } from '@/utils/convertQualityToNumber';
 
 interface IModalFormProps {
   movieId: string;
@@ -18,19 +19,14 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   movieId,
   closeModal,
 }) => {
-  // const classes = useStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
   const userId = useSelector(userSelector);
-  const [movieQuality, setMovieQuality] = useState<number>(1);
+  const [movieQuality, setMovieQuality] = useState<string>(EQuality.HD);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
   const onHandleMovieQuality = (event: ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.value === EQuality.HD) {
-      setMovieQuality(1);
-    }
-    if (event.target.value === EQuality.SD) {
-      setMovieQuality(2);
-    }
+    setMovieQuality(event.target.value);
   };
 
   const onHandleMoviePurchasePeriod = (
@@ -41,7 +37,12 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
 
   const onHandleAddMovieDataToCart = (): void => {
     dispatch(
-      addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
+      addMovieToCart({
+        userId,
+        movieId,
+        period: moviePurchasePeriod,
+        quality: convertQualityToNumber(movieQuality),
+      }),
     );
     closeModal();
   };
@@ -58,14 +59,11 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
         <Form>
           <RadioGroupForm onChange={onHandleMovieQuality} value={movieQuality} />
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
-          {/* <div className={classes.modalFormFooter}> */}
-          {/* <div>
-              <span>{getPriceMovie(price, movieQuality, moviePurchasePeriod)}</span>
-            </div> */}
-          <Button color="primary" variant="contained" type="submit">
-            Submit
-          </Button>
-          {/* </div> */}
+          <div className={classes.modalFormFooter}>
+            <Button color="primary" variant="contained" type="submit">
+              Submit
+            </Button>
+          </div>
         </Form>
       )}
     </Formik>

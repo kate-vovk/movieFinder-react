@@ -11,14 +11,14 @@ export const getCart = async (userId: string): Promise<any> => {
 export const addMovieToCart = async ({
   userId: user_id,
   movieId: film_id,
-  period: period_id,
-  quality,
+  period,
+  quality: quality_id,
 }: ICartMovieState): Promise<any> => {
   return HTTPService.post(`${SERVER_PATHS.cart}?userId=${user_id}&filmId=${film_id}`, {
     user_id,
     film_id,
-    period_id,
-    quality,
+    period,
+    quality_id,
   });
 };
 

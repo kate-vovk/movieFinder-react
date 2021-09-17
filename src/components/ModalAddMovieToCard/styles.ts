@@ -15,7 +15,7 @@ export const useStyles = makeStyles(() =>
     modalFormFooter: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
     },
   }),
 );
