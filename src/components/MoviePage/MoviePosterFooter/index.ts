@@ -1,1 +1,0 @@
-export { MoviePosterFooter } from './MoviePosterFooter';

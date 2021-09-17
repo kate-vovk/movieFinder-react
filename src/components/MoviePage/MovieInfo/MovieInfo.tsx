@@ -7,9 +7,11 @@ interface IMovieInfoProps {
   duration: number;
   title: string;
   year: string;
-  actorsList: string[];
-  genresList: string[];
-  categoriesList: string[];
+  company: string;
+  country: string;
+  actorsList: string;
+  genresList: string;
+  categoriesList: string;
 }
 
 export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
@@ -20,19 +22,21 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
   actorsList,
   genresList,
   categoriesList,
+  company,
+  country,
 }) => {
   const { t } = useTranslation(['MoviePage']);
   const classes = useStyle();
 
   const movieInfo = [
-    { id: 1, name: 'country', value: 'USA' }, // TODO Temporary solution. In the future, receiving data from the server will be implemented
-    { id: 2, name: 'duration', value: duration },
-    { id: 3, name: 'releaseDate', value: year },
-    { id: 4, name: 'productionCompanies', value: 'Disney' }, // TODO Temporary solution. In the future, receiving data from the server will be implemented
-    { id: 5, name: 'genres', value: genresList.join(', ') },
-    { id: 6, name: 'categories', value: categoriesList.join(', ') },
+    { id: 1, name: 'country', value: country },
+    { id: 2, name: 'duration', value: `${duration} ${t('min')}` },
+    { id: 3, name: 'releaseDate', value: new Date(year).getFullYear() },
+    { id: 4, name: 'productionCompanies', value: company },
+    { id: 5, name: 'genres', value: genresList },
+    { id: 6, name: 'categories', value: categoriesList },
     { id: 7, name: 'director', value: director },
-    { id: 8, name: 'actors', value: actorsList.join(', ') },
+    { id: 8, name: 'actors', value: actorsList },
   ];
 
   return (

@@ -11,12 +11,12 @@ import { modalTypes } from '@/constants/modalTypes';
 
 import { useStyle } from './styles';
 
-interface IMovieFooterProps {
+interface IMovieControlProps {
   movieId: string;
   price: number;
 }
 
-export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, price }) => {
+export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { movies } = useSelector(cartSelector);
   const userId = useSelector(userSelector);

@@ -46,6 +46,7 @@ export const ru = {
     director: 'режиссёр',
     actors: 'в ролях',
     description: 'Описание',
+    min: 'мин',
   },
   Filtration: {
     genres: 'Жанры',

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { MovieFooter } from '@/components';
+import { MovieControl } from '@/components';
 import { CLIENT_PATHS } from '@/constants';
 import { useStyle } from './styles';
 
@@ -23,7 +23,7 @@ export const MovieCard: FunctionComponent<IMovieCardProps> = ({ movie }) => {
           <Typography>{movie.description}</Typography>
         </CardContent>
       </Link>
-      <MovieFooter movieId={movie.id} price={movie.price} />
+      <MovieControl movieId={movie.id} price={movie.price} />
     </Card>
   );
 };
