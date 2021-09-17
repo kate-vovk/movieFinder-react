@@ -7,9 +7,11 @@ import { CLIENT_PATHS } from '@/constants';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { movieListSelector } from '@/selectors/search';
-import { MovieInfo } from './MovieInfo/MovieInfo';
-import { MoviePoster } from './MoviePoster/MoviePoster';
-import { MovieFeedback } from './MovieFeedback/MovieFeedback';
+import { MovieFeedback } from './MovieFeedback';
+import { MovieInfo } from './MovieInfo';
+import { MoviePoster } from './MoviePoster';
+import { MovieDescription } from './MovieDescription';
+import { MovieTrailer } from './MovieTrailer';
 import { useStyle } from './styles';
 
 interface IParamsIdMovie {
@@ -22,21 +24,15 @@ export const MoviePage: FunctionComponent = () => {
   const classes = useStyle();
   const history = useHistory();
   const [movie, setMovie] = useState({} as IMovie);
-  const [actors, setActors] = useState<string[]>([]);
-  const [genres, setGenres] = useState<string[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
   const allMovies = useSelector(movieListSelector);
-  const existingFilm = allMovies.find((item) => +item.id === +id); // tested on type number. Will work when id-type is string.
+  const existingFilm = allMovies.find((item) => item.id === id); // tested on type number. Will work when id-type is string.
   const goToBack = (): void => {
     history.goBack();
   };
 
   useEffect(() => {
     getDataMoviePage(id).then((data): void => {
-      setMovie(data.movieCard);
-      setActors(data.actorsList);
-      setGenres(data.genresList);
-      setCategories(data.categoriesList);
+      setMovie(data);
     });
   }, []);
 
@@ -59,32 +55,22 @@ export const MoviePage: FunctionComponent = () => {
                 cover={movie?.coverUrl}
                 price={Number(movie?.price)}
                 title={movie?.title}
+                movieId={id}
               />
               <MovieInfo
                 title={movie?.title}
-                year={movie?.year}
+                year={movie?.releaseDate}
                 duration={movie?.duration}
-                director={movie?.director}
-                actorsList={actors}
-                genresList={genres}
-                categoriesList={categories}
+                director={movie?.producer}
+                company={movie?.productionCompanyId}
+                country={movie?.countryId}
+                actorsList={movie?.cast}
+                genresList={movie?.genreId}
+                categoriesList={movie?.categoryId}
               />
             </div>
-            <div className={classes.descriptionMovie}>
-              <h2 className={classes.descriptionMovieTitle}>{t('description')}</h2>
-              <p className={classes.descriptionMovieText}>{movie?.description}</p>
-            </div>
-            <div className={classes.trailerMovie}>
-              <iframe
-                width="560"
-                height="315"
-                src={movie?.trailerUrl}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            <MovieDescription description={movie?.description} />
+            <MovieTrailer trailerUrl={movie?.trailerUrl} />
             <MovieFeedback />
           </>
         ) : (

@@ -1,16 +1,18 @@
 import { FunctionComponent } from 'react';
 import StarIcon from '@material-ui/icons/Star';
-import { MoviePosterFooter } from '@/components/MoviePage/MoviePosterFooter';
+import { MovieControl } from '@/components';
 import { useStyle } from './styles';
 
 interface IProps {
   cover: string;
   price: number;
   title: string;
+  movieId: string;
 }
 
-export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title }) => {
+export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title, movieId }) => {
   const classes = useStyle();
+
   return (
     <div className={classes.columnLeft}>
       <div className={classes.poster}>
@@ -21,7 +23,7 @@ export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title }) 
           <span>/10</span>
         </div>
       </div>
-      <MoviePosterFooter price={price} />
+      <MovieControl movieId={movieId} price={price} />
     </div>
   );
 };

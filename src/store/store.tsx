@@ -26,7 +26,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'search'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -38,6 +38,8 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [
           'auth/registration/fulfilled',
+          'search/getMovieListWithQuery/pending',
+          'search/getMovieListWithQuery/fulfilled',
           FLUSH,
           REHYDRATE,
           PAUSE,

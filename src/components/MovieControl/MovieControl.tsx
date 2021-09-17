@@ -11,12 +11,12 @@ import { useStyle, cartButtonTheme } from './styles';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { modalTypes } from '@/constants/modalTypes';
 
-interface IMovieFooterProps {
+interface IMovieControlProps {
   movieId: string;
   price: number;
 }
 
-export const MovieFooter: FunctionComponent<IMovieFooterProps> = ({ movieId, price }) => {
+export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { movies, isLoading } = useSelector(cartSelector);
   const userId = useSelector(userSelector);

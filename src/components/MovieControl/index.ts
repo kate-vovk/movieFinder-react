@@ -1,0 +1,1 @@
+export { MovieControl } from './MovieControl';
