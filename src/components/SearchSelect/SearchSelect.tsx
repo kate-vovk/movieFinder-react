@@ -18,7 +18,7 @@ export const SearchSelect: FunctionComponent = () => {
 
   const { t } = useTranslation(['Search']);
 
-  const SelectClose = (): void => {
+  const selectClose = (): void => {
     setIsSelectOpen(false);
   };
 
@@ -42,7 +42,7 @@ export const SearchSelect: FunctionComponent = () => {
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={isSelectOpen}
-          onClose={SelectClose}
+          onClose={selectClose}
           onOpen={selectOpen}
           value={selectParam}
           onChange={changedSelectParam as SelectProps['onChange']}

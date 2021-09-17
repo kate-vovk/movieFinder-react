@@ -4,7 +4,7 @@ import { useDebounce } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
 import InputLabel from '@material-ui/core/InputLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesListWithQuery } from '@/store/slices/moviesSlice';
+import { getMoviesListWithQuery, setSearchOption } from '@/store/slices/moviesSlice';
 import { moviesSelector } from '@/selectors/movies';
 import { useStyle } from './styles';
 
@@ -12,9 +12,8 @@ export const SearchInput: FunctionComponent = () => {
   const { t } = useTranslation(['Search']);
   const classes = useStyle();
   const dispatch = useDispatch();
-  // const selectParam = useSelector(movieSearchSelector);
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [searchParam, setSearchParam] = useState('');
   const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     setSearchQuery(event.target?.value);
@@ -26,7 +25,7 @@ export const SearchInput: FunctionComponent = () => {
     useSelector(moviesSelector);
 
   useEffect(() => {
-    if (searchQuery !== '') {
+    if (!(debouncedSearchQuery === '' && searchParam !== selectParam)) {
       dispatch(
         getMoviesListWithQuery({
           searchQuery: debouncedSearchQuery,
@@ -36,8 +35,13 @@ export const SearchInput: FunctionComponent = () => {
           selectedCountries,
         }),
       );
+      dispatch(setSearchOption(debouncedSearchQuery));
     }
   }, [selectParam, debouncedSearchQuery]);
+
+  useEffect(() => {
+    setSearchParam(selectParam);
+  }, [selectParam]);
 
   return (
     <FormControl className={classes.searchForm}>

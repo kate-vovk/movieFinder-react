@@ -14,12 +14,7 @@ interface ISearchState {
   selectedCountries: string[];
 }
 
-// interface ISearchQuery {
-//   selectParam: string;
-//   searchQuery: string;
-// }
-
-interface IFiltrationQuery {
+interface IQuery {
   selectParam: string;
   searchQuery: string;
   selectedGenres: string[];
@@ -31,14 +26,6 @@ export const getMoviesList = createAsyncThunk('search/getMovieList', async () =>
   return getMovies();
 });
 
-// export const getMoviesListWithQuery = createAsyncThunk(
-//   'search/getMovieListWithQuery',
-//   async ({ selectParam, searchQuery }: ISearchQuery) => {
-//     console.log('selectParam, searchQuery', selectParam, searchQuery);
-//     const path = createPath({ selectParam, searchQuery });
-//     return getDataFromApi(path);
-//   },
-// );
 export const getMoviesListWithQuery = createAsyncThunk(
   'filtration/getFIlteredMoviesList',
   async ({
@@ -47,7 +34,7 @@ export const getMoviesListWithQuery = createAsyncThunk(
     selectedGenres,
     selectedCategories,
     selectedCountries,
-  }: IFiltrationQuery) => {
+  }: IQuery) => {
     const path = createPath({
       selectParam,
       searchQuery,
@@ -58,6 +45,7 @@ export const getMoviesListWithQuery = createAsyncThunk(
     return getDataFromApi(path);
   },
 );
+
 const initialState: ISearchState = {
   movies: [],
   totalCount: 0,
@@ -74,6 +62,9 @@ export const moviesSlice = createSlice({
   reducers: {
     setSelectedParam(state, action) {
       state.selectParam = action.payload;
+    },
+    setSearchOption(state, action) {
+      state.searchQuery = action.payload;
     },
     addFilterOption(state, action) {
       switch (action.payload.param) {
@@ -117,12 +108,6 @@ export const moviesSlice = createSlice({
         state.movies = action.payload;
         state.totalCount = action.payload?.length;
       })
-      // .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-      //   state.movies = action.payload.data;
-      //   state.totalCount = action.payload?.length;
-      //   state.searchQuery = action.meta.arg.searchQuery;
-      //   state.selectParam = action.meta.arg.selectParam;
-      // })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
         state.movies = action.payload.data;
         state.totalCount = action.payload?.length;
@@ -131,4 +116,5 @@ export const moviesSlice = createSlice({
 });
 
 export const moviesReducer = moviesSlice.reducer;
-export const { setSelectedParam, addFilterOption, removeLastFilterOption } = moviesSlice.actions;
+export const { setSelectedParam, setSearchOption, addFilterOption, removeLastFilterOption } =
+  moviesSlice.actions;
