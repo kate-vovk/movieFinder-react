@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { getMovies } from '@/businessLogic/movies';
-import { getDataFromApi } from '@/api/search-filter';
+import { getMovieByQuery } from '@/businessLogic/search-filter';
 import { createPath } from '@/utils/url';
 
 interface ISearchState {
@@ -42,7 +42,7 @@ export const getMoviesListWithQuery = createAsyncThunk(
       selectedCategories,
       selectedCountries,
     });
-    return getDataFromApi(path);
+    return getMovieByQuery(path);
   },
 );
 
@@ -109,7 +109,7 @@ export const moviesSlice = createSlice({
         state.totalCount = action.payload?.length;
       })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-        state.movies = action.payload.data;
+        state.movies = action.payload;
         state.totalCount = action.payload?.length;
       });
   },
