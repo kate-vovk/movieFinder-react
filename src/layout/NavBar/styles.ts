@@ -35,4 +35,10 @@ export const useStyle = makeStyles((theme) => ({
     paddingTop: '10px',
     width: '50%',
   },
+  button: {
+    // width: '10px',
+    // padding: '0px',
+    // margin: '0px',
+    backgroundColor: 'pink',
+  },
 }));

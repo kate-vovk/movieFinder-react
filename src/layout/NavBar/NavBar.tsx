@@ -1,6 +1,6 @@
 import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { AppBar, Toolbar, Badge } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -60,9 +60,14 @@ export const NavBar: FunctionComponent = () => {
             <MenuButton menuLink={userMenuLinks} />
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
-                <Badge key={button.name} badgeContent={movies?.length} color="secondary">
-                  <CustomButton buttonType="button" onClick={goToCart} name="cart" />
-                </Badge>
+                <CustomButton
+                  // className={classes.button}
+                  name={button.name}
+                  buttonType="button"
+                  onClick={goToCart}
+                  // isBadgeInvisible={false}
+                  badgeContent={movies.length}
+                />
               ) : (
                 <CustomButton
                   name={button.name}

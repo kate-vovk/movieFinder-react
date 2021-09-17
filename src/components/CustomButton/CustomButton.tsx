@@ -1,5 +1,5 @@
-import { FunctionComponent, SyntheticEvent } from 'react';
-import { Button } from '@material-ui/core';
+import { FunctionComponent } from 'react';
+import { Button, Badge } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -8,14 +8,19 @@ import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import CloseIcon from '@material-ui/icons/Close';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { useStyle } from './styles';
 
 type TButtons = 'button' | 'submit' | 'reset';
 
 interface ICustomButton {
   className?: string;
-  onClick?: (event: SyntheticEvent<HTMLButtonElement, any>) => void;
+  onClick?: (event: any) => void;
   name: string;
   buttonType: TButtons;
+  badgeContent?: number;
+  ariaControls?: string;
+  ariaHaspopup?: boolean;
 }
 
 export const CustomButton: FunctionComponent<ICustomButton> = ({
@@ -23,7 +28,11 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
   className = '',
   onClick,
   name,
+  badgeContent = 0,
+  ariaControls = 'none',
+  ariaHaspopup = false,
 }) => {
+  const classes = useStyle();
   const getIconByType = (type: string): JSX.Element | string => {
     switch (type) {
       case 'favorite':
@@ -42,13 +51,23 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
         return <PersonAddIcon />;
       case 'signIn':
         return <ExitToAppIcon />;
+      case 'accountCircleIcon':
+        return <AccountCircleIcon />;
       default:
         return type;
     }
   };
   return (
-    <Button type={buttonType} className={className} onClick={onClick}>
-      {getIconByType(name)}
+    <Button
+      type={buttonType}
+      className={className}
+      onClick={onClick}
+      aria-controls={ariaControls}
+      aria-haspopup={ariaHaspopup}
+    >
+      <Badge key={name} badgeContent={badgeContent} color="secondary" className={classes.badge}>
+        {getIconByType(name)}
+      </Badge>
     </Button>
   );
 };
