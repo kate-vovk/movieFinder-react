@@ -23,6 +23,7 @@ i18n
       'Filtration',
       'AuthStatuses',
       'CartStatuses',
+      'ModalAddMovieToCart',
     ],
     fallbackLng: 'en',
     parseMissingKeyHandler: (value: string) => {

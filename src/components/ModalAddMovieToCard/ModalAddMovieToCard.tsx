@@ -2,6 +2,7 @@ import { FunctionComponent, useState, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
 import { EQuality } from '@/constants/constantsModal';
@@ -19,6 +20,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   movieId,
   closeModal,
 }) => {
+  const { t } = useTranslation(['ModalAddMovieToCart']);
   const classes = useStyles();
   const dispatch = useDispatch();
   const userId = useSelector(userSelector);
@@ -61,7 +63,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
             <Button color="primary" variant="contained" type="submit">
-              Submit
+              {t('submit')}
             </Button>
           </div>
         </Form>
