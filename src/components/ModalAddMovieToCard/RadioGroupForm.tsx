@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 
 interface IRadioGroupFormProps {
   onChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-  value: string;
+  value: number;
 }
 
 export const RadioGroupForm: FunctionComponent<IRadioGroupFormProps> = ({ onChange, value }) => {

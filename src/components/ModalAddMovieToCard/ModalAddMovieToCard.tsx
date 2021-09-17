@@ -4,31 +4,33 @@ import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { getPriceMovie } from '@/utils/calculations/calcCostMovie';
 import { EQuality } from '@/constants/constantsModal';
-import { useStyles } from './styles';
+// import { useStyles } from './styles';
 import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
 
 interface IModalFormProps {
   movieId: string;
-  price: number;
   closeModal: () => void;
 }
 
 export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   movieId,
-  price,
   closeModal,
 }) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch();
   const userId = useSelector(userSelector);
-  const [movieQuality, setMovieQuality] = useState<string>(EQuality.HD);
+  const [movieQuality, setMovieQuality] = useState<number>(1);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 
   const onHandleMovieQuality = (event: ChangeEvent<HTMLInputElement>): void => {
-    setMovieQuality(event.target.value);
+    if (event.target.value === EQuality.HD) {
+      setMovieQuality(1);
+    }
+    if (event.target.value === EQuality.SD) {
+      setMovieQuality(2);
+    }
   };
 
   const onHandleMoviePurchasePeriod = (
@@ -56,14 +58,14 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
         <Form>
           <RadioGroupForm onChange={onHandleMovieQuality} value={movieQuality} />
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
-          <div className={classes.modalFormFooter}>
-            <div>
+          {/* <div className={classes.modalFormFooter}> */}
+          {/* <div>
               <span>{getPriceMovie(price, movieQuality, moviePurchasePeriod)}</span>
-            </div>
-            <Button color="primary" variant="contained" type="submit">
-              Submit
-            </Button>
-          </div>
+            </div> */}
+          <Button color="primary" variant="contained" type="submit">
+            Submit
+          </Button>
+          {/* </div> */}
         </Form>
       )}
     </Formik>
