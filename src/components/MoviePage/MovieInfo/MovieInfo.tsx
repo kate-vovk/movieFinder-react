@@ -39,10 +39,7 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
     { id: 8, name: 'actors', value: actorsList },
   ];
 
-  const resultMovieInfo = useMemo(
-    () => movieInfo.filter((item) => item.value && item.value.indexOf('undefined')),
-    [movieInfo],
-  );
+  const resultMovieInfo = useMemo(() => movieInfo.filter((item) => item.value), [movieInfo]);
 
   return (
     <div className={classes.columnRight}>
