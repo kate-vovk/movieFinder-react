@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { sidebarFilterNamesFields } from '@/constants/sidebarFilterNamesFields';
 import { useStyle } from './styles';
 import { CustomAccordion } from './CustomAccordion';
-import { CustomButton } from '..';
 import { getMoviesListWithQuery } from '@/store/slices/moviesSlice';
-
+import { CustomButton } from '../CustomButton';
 import { moviesSelector } from '@/selectors/movies';
 
 export const Sidebar: FunctionComponent = () => {
