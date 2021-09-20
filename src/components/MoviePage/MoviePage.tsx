@@ -7,12 +7,12 @@ import { CLIENT_PATHS } from '@/constants';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { movieListSelector } from '@/selectors/search';
-import { MovieFeedback } from './MovieFeedback/MovieFeedback';
-import { MovieInfo } from './MovieInfo/MovieInfo';
-import { MoviePoster } from './MoviePoster/MoviePoster';
+import { MovieFeedback } from './MovieFeedback';
+import { MovieInfo } from './MovieInfo';
+import { MoviePoster } from './MoviePoster';
+import { MovieDescription } from './MovieDescription';
+import { MovieTrailer } from './MovieTrailer';
 import { useStyle } from './styles';
-import { MovieDescription } from './MovieDescription/MovieDescription';
-import { MovieTrailer } from './MovieTrailer/MovieTrailer';
 
 interface IParamsIdMovie {
   id: string;

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import StarIcon from '@material-ui/icons/Star';
-import { MovieControl } from '@/components/MovieControl/MovieControl';
+import { MovieControl } from '@/components';
 import { useStyle } from './styles';
 
 interface IProps {
@@ -15,6 +15,7 @@ const urlEmptyPoster =
 
 export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title, movieId }) => {
   const classes = useStyle();
+
   return (
     <div className={classes.columnLeft}>
       <div className={classes.poster}>

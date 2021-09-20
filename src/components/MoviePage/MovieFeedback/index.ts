@@ -1,0 +1,1 @@
+export { MovieFeedback } from './MovieFeedback';
