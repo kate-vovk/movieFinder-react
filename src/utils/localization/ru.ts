@@ -100,4 +100,12 @@ export const ru = {
     profilePage: 'Профиль',
     goBack: 'ВЕРНУТЬСЯ НАЗАД',
   },
+  ModalAddMovieToCart: {
+    selectPeriod: 'Выберите период подписки',
+    selectFormat: 'Выберите качество фильма',
+    submit: 'Подтвердить',
+    forever: 'Навсегда',
+    'for 7 days': 'На 7 дней',
+    'for 30 days': 'На 30 дней',
+  },
 };

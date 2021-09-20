@@ -32,5 +32,5 @@ export interface ICartMovieState {
   userId: string;
   movieId: string;
   period?: number;
-  quality?: string;
+  quality?: number;
 }

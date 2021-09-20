@@ -60,7 +60,7 @@ export const Cart: FunctionComponent = () => {
             <div className={classes.priceContainer}>
               <Typography>{t('totalPrice')}: &nbsp; </Typography>
               <Typography className={classes.priceContainer}>
-                {getTotalPrice()} <EuroIcon fontSize="small" />
+                {getTotalPrice().toFixed(2)} <EuroIcon fontSize="small" />
               </Typography>
             </div>
           </div>

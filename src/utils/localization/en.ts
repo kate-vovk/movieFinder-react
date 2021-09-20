@@ -100,4 +100,12 @@ export const en = {
     profilePage: 'Profile page',
     goBack: 'GO BACK',
   },
+  ModalAddMovieToCart: {
+    selectPeriod: 'Select subscription period',
+    selectFormat: 'Select movie format',
+    submit: 'Submit',
+    forever: 'Forever',
+    'for 7 days': 'For 7 days',
+    'for 30 days': 'For 30 days',
+  },
 };
