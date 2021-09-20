@@ -25,6 +25,7 @@ export interface IMovie {
 
 export interface ICart {
   movies: IMovie[];
+  isLoading: boolean;
 }
 
 export interface ICartMovieState {

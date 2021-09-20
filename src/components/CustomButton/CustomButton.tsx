@@ -21,6 +21,7 @@ interface ICustomButton {
   badgeContent?: number;
   ariaControls?: string;
   ariaHaspopup?: boolean;
+  disabled?: boolean;
 }
 
 export const CustomButton: FunctionComponent<ICustomButton> = ({
@@ -31,6 +32,7 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
   badgeContent = 0,
   ariaControls = 'none',
   ariaHaspopup = false,
+  disabled = false,
 }) => {
   const classes = useStyle();
   const getIconByType = (type: string): JSX.Element | string => {
@@ -64,6 +66,7 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
       onClick={onClick}
       aria-controls={ariaControls}
       aria-haspopup={ariaHaspopup}
+      disabled={disabled}
     >
       <Badge key={name} badgeContent={badgeContent} color="secondary" className={classes.badge}>
         {getIconByType(name)}
