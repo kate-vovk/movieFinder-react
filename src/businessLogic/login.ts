@@ -1,7 +1,7 @@
+import { ILoginData, IAuth } from '@/utils/interfaces/authInterfaces';
 import { loginAPI } from '@/api/login';
-import { ILoginData } from '@/utils/interfaces/authInterfaces';
 
-export const getLoginData = async ({ password, email }: ILoginData): Promise<any> => {
+export const getLoginData = async ({ password, email }: ILoginData): Promise<IAuth> => {
   const {
     data: { userId, userName, userEmail },
   } = await loginAPI({ password, email });

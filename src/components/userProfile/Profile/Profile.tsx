@@ -15,15 +15,13 @@ interface IFormInputs {
 
 export const Profile: FunctionComponent = () => {
   const user = useSelector(userSelector);
-  // const dispatch = useDispatch();
   const classes = useStyle();
 
-  const onSubmit = async (
-    values: IFormInputs,
-    { setSubmitting }: FormikHelpers<IFormInputs>,
-  ): Promise<void> => {
-    // await dispatch(registration(values));
-    await console.log('name:', values.name, 'email:', values.email, 'birthday:', values.date);
+  const onSubmit = (values: IFormInputs, { setSubmitting }: FormikHelpers<IFormInputs>): void => {
+    // Sending data to the server will be implemented later
+    alert(
+      `id: ${user.userId} name: ${values.name}, email: ${values.email}, birthday: ${values.date}`,
+    );
     setSubmitting(false);
   };
 
