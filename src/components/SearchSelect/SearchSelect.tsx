@@ -6,7 +6,7 @@ import Select, { SelectProps } from '@material-ui/core/Select';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { searchOption } from '@/constants/constants';
-import { setSelectedParam } from '@/store/slices/searchSlice';
+import { setSelectedParam } from '@/store/slices/moviesSlice';
 import { useStyle } from './styles';
 
 export const SearchSelect: FunctionComponent = () => {
