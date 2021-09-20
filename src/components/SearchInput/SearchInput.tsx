@@ -25,7 +25,7 @@ export const SearchInput: FunctionComponent = () => {
     useSelector(moviesSelector);
 
   useEffect(() => {
-    if (!(debouncedSearchQuery === '' && searchParam !== selectParam)) {
+    if (debouncedSearchQuery !== '' || searchParam === selectParam) {
       dispatch(
         getMoviesListWithQuery({
           searchQuery: debouncedSearchQuery,
