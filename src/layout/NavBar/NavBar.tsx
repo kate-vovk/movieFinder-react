@@ -58,7 +58,7 @@ export const NavBar: FunctionComponent = () => {
             </ButtonGroup>
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
-                <Badge key={button.name} badgeContent={movies.length} color="secondary">
+                <Badge key={button.name} badgeContent={movies?.length} color="secondary">
                   <MenuButton menuLink={userMenuLinks} />
                   <CustomButton buttonType="button" onClick={goToCart} name="cart" />
                 </Badge>

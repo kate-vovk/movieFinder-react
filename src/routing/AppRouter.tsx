@@ -16,8 +16,7 @@ export const AppRouter: FunctionComponent = () => {
       <Route path={CLIENT_PATHS.signin} component={SignInForm} />
       <PrivateRoute exact path={CLIENT_PATHS.movies} component={MoviesPage} />
       <PrivateRoute path={CLIENT_PATHS.cart} component={Cart} />
-      <PrivateRoute exact path={`${CLIENT_PATHS.movies}/:id`} component={MoviePage} />
-      {/* <PrivateRoute path={CLIENT_PATHS.user} component={UserProfile} /> */}
+      <PrivateRoute path={`${CLIENT_PATHS.movies}/:id`} component={MoviePage} />
       <PrivateRoute path={CLIENT_PATHS.notFound} component={NotFoundPage} />
       <PrivateRoute path={CLIENT_PATHS.admin} component={mockAdmin} />
       <PrivateRoute exact path={`${CLIENT_PATHS.user}/:indexTab`} component={UserProfile} />

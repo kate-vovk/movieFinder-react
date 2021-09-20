@@ -25,3 +25,10 @@ export const SERVER_PATHS = {
   orders: '/orders',
   main: '/',
 };
+
+export enum searchOption {
+  initial = '',
+  movie = 'movie',
+  actor = 'actor',
+  studio = 'studio',
+}
