@@ -3,7 +3,7 @@ import StarIcon from '@material-ui/icons/Star';
 import { MovieControl } from '@/components';
 import { useStyle } from './styles';
 
-interface IProps {
+interface IMoviePosterProps {
   cover: string;
   price: number;
   title: string;
@@ -13,7 +13,12 @@ interface IProps {
 const urlEmptyPoster =
   'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg';
 
-export const MoviePoster: FunctionComponent<IProps> = ({ cover, price, title, movieId }) => {
+export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
+  cover,
+  price,
+  title,
+  movieId,
+}) => {
   const classes = useStyle();
 
   return (
