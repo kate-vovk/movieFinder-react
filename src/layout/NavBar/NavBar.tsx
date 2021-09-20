@@ -61,11 +61,9 @@ export const NavBar: FunctionComponent = () => {
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
                 <CustomButton
-                  // className={classes.button}
                   name={button.name}
                   buttonType="button"
                   onClick={goToCart}
-                  // isBadgeInvisible={false}
                   badgeContent={movies.length}
                 />
               ) : (

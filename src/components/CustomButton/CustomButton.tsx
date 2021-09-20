@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, SyntheticEvent } from 'react';
 import { Button, Badge } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -15,7 +15,7 @@ type TButtons = 'button' | 'submit' | 'reset';
 
 interface ICustomButton {
   className?: string;
-  onClick?: (event: any) => void;
+  onClick?: (event: SyntheticEvent<HTMLButtonElement, any>) => void;
   name: string;
   buttonType: TButtons;
   badgeContent?: number;
