@@ -15,32 +15,39 @@ import { FilterOption } from '../FilterOption/FilterOption';
 import { useStyle } from './styles';
 
 export interface ICustomAccordionProps {
-  param: string;
-  options: string[];
+  filterParam: string;
+  filterOptions: string[];
 }
 
-export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({ param, options }) => {
+export const CustomAccordion: FunctionComponent<ICustomAccordionProps> = ({
+  filterParam,
+  filterOptions,
+}) => {
   const { t } = useTranslation(['Filtration']);
   const classes = useStyle();
   const [option, setOption] = useState('');
 
   return (
-    <ListItem key={param}>
+    <ListItem key={filterParam}>
       <ListItemText>
         <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={param} id={param}>
-            <Typography> {t(param)}</Typography>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={filterParam}
+            id={filterParam}
+          >
+            <Typography> {t(filterParam)}</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             <FormControl component="fieldset">
-              <RadioGroup aria-label={param} name={param} value={option}>
-                {options.map((query) => {
+              <RadioGroup aria-label={filterParam} name={filterParam} value={option}>
+                {filterOptions.map((query) => {
                   return (
                     <FilterOption
                       key={query}
-                      param={param}
+                      filterParam={filterParam}
                       query={query}
-                      option={option}
+                      filterOption={option}
                       setOption={setOption}
                     />
                   );

@@ -21,8 +21,7 @@ export const SearchInput: FunctionComponent = () => {
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
-  const { selectParam, selectedGenres, selectedCategories, selectedCountries } =
-    useSelector(moviesSelector);
+  const { selectParam, filters } = useSelector(moviesSelector);
 
   useEffect(() => {
     if (debouncedSearchQuery !== '' || searchParam === selectParam) {
@@ -30,9 +29,7 @@ export const SearchInput: FunctionComponent = () => {
         getMoviesListWithQuery({
           searchQuery: debouncedSearchQuery,
           selectParam,
-          selectedGenres,
-          selectedCategories,
-          selectedCountries,
+          filters,
         }),
       );
       dispatch(setSearchOption(debouncedSearchQuery));

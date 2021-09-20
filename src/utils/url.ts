@@ -3,23 +3,19 @@ import { searchOption } from '@/constants/constants';
 interface ICreatePath {
   searchQuery?: string;
   selectParam?: string;
-  selectedGenres?: string[];
-  selectedCategories?: string[];
-  selectedCountries?: string[];
+  filters?: { [key: string]: string[] };
 }
 
 export const createPath = ({
   searchQuery = '',
   selectParam = '',
-  selectedGenres = [],
-  selectedCategories = [],
-  selectedCountries = [],
+  filters = {},
 }: ICreatePath): string => {
   let finalPath = '';
   let searchParam = '';
-  const filtrationGenres = `genres=${selectedGenres.join()}`;
-  const filtrationCategories = `categories=${selectedCategories.join()}`;
-  const filtrationCountries = `countries=${selectedCountries.join()}`;
+  const filtrationGenres = filters.genres ? `&genres=${filters.genres.join()}` : '';
+  const filtrationCategories = filters.categories ? `&categories=${filters.categories.join()}` : '';
+  const filtrationCountries = filters.countries ? `&countries=${filters.countries.join()}` : '';
 
   switch (selectParam) {
     case searchOption.initial:
@@ -37,6 +33,7 @@ export const createPath = ({
     default:
       break;
   }
-  finalPath = `${searchParam}=${searchQuery}&${filtrationGenres}&${filtrationCategories}&${filtrationCountries}`;
+
+  finalPath = `${searchParam}=${searchQuery}${filtrationGenres}${filtrationCategories}${filtrationCountries}`;
   return finalPath;
 };

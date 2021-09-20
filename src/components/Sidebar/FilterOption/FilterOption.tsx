@@ -5,27 +5,29 @@ import { useDispatch } from 'react-redux';
 import { addFilterOption, removeLastFilterOption } from '@/store/slices/moviesSlice';
 
 export interface IFilterOptionProps {
-  param: string;
+  filterParam: string;
   query: string;
-  option: string;
+  filterOption: string;
   setOption: (value: string) => void;
 }
 
 export const FilterOption: FunctionComponent<IFilterOptionProps> = ({
-  param,
+  filterParam,
   query,
-  option,
+  filterOption,
   setOption,
 }) => {
   const { t } = useTranslation(['Filtration']);
   const dispatch = useDispatch();
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
-    if ((event.target as HTMLInputElement).value === option) {
-      dispatch(removeLastFilterOption(param));
+    if ((event.target as HTMLInputElement).value === filterOption) {
+      dispatch(removeLastFilterOption(filterParam));
       setOption('');
     } else {
-      dispatch(addFilterOption({ param, option: (event.target as HTMLInputElement).value }));
+      dispatch(
+        addFilterOption({ filterParam, filterOption: (event.target as HTMLInputElement).value }),
+      );
       setOption((event.target as HTMLInputElement).value);
     }
   };

@@ -9,17 +9,13 @@ interface ISearchState {
   totalCount: number;
   searchQuery: string;
   selectParam: string;
-  selectedGenres: string[];
-  selectedCategories: string[];
-  selectedCountries: string[];
+  filters: { [key: string]: string[] };
 }
 
 interface IQuery {
   selectParam: string;
   searchQuery: string;
-  selectedGenres: string[];
-  selectedCategories: string[];
-  selectedCountries: string[];
+  filters: { [key: string]: string[] };
 }
 
 export const getMoviesList = createAsyncThunk('search/getMovieList', async () => {
@@ -28,19 +24,11 @@ export const getMoviesList = createAsyncThunk('search/getMovieList', async () =>
 
 export const getMoviesListWithQuery = createAsyncThunk(
   'filtration/getFIlteredMoviesList',
-  async ({
-    selectParam,
-    searchQuery,
-    selectedGenres,
-    selectedCategories,
-    selectedCountries,
-  }: IQuery) => {
+  async ({ selectParam, searchQuery, filters }: IQuery) => {
     const path = createPath({
       selectParam,
       searchQuery,
-      selectedGenres,
-      selectedCategories,
-      selectedCountries,
+      filters,
     });
     return getMovieByQuery(path);
   },
@@ -51,9 +39,7 @@ const initialState: ISearchState = {
   totalCount: 0,
   searchQuery: '',
   selectParam: 'initial',
-  selectedGenres: [],
-  selectedCategories: [],
-  selectedCountries: [],
+  filters: {},
 };
 
 export const moviesSlice = createSlice({
@@ -67,39 +53,10 @@ export const moviesSlice = createSlice({
       state.searchQuery = action.payload;
     },
     addFilterOption(state, action) {
-      switch (action.payload.param) {
-        // TODO temporary solution to store just 1 option/query in array(selectedGenres or selectedCategories or selectedCountries).
-        // When radiobuttons will be replaced with checkboxes state.selectedGenres = [], state.selectedCategories = [], and state.selectedCountries = [] will be deleted
-        case 'genres':
-          state.selectedGenres = [];
-          state.selectedGenres.push(action.payload.option);
-          break;
-        case 'categories':
-          state.selectedCategories = [];
-          state.selectedCategories.push(action.payload.option);
-          break;
-        case 'countries':
-          state.selectedCountries = [];
-          state.selectedCountries.push(action.payload.option);
-          break;
-        default:
-          break;
-      }
+      state.filters[action.payload.filterParam] = [action.payload.filterOption];
     },
     removeLastFilterOption(state, action) {
-      switch (action.payload) {
-        case 'genres':
-          state.selectedGenres.pop();
-          break;
-        case 'categories':
-          state.selectedCategories.pop();
-          break;
-        case 'countries':
-          state.selectedCountries.pop();
-          break;
-        default:
-          break;
-      }
+      state.filters[action.payload].pop();
     },
   },
   extraReducers: (builder) => {

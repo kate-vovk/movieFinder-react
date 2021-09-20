@@ -11,17 +11,14 @@ import { moviesSelector } from '@/selectors/movies';
 export const Sidebar: FunctionComponent = () => {
   const classes = useStyle();
   const dispatch = useDispatch();
-  const { selectParam, searchQuery, selectedGenres, selectedCategories, selectedCountries } =
-    useSelector(moviesSelector);
+  const { selectParam, searchQuery, filters } = useSelector(moviesSelector);
 
   const filterMovies = (): void => {
     dispatch(
       getMoviesListWithQuery({
         selectParam,
         searchQuery,
-        selectedGenres,
-        selectedCategories,
-        selectedCountries,
+        filters,
       }),
     );
   };
@@ -30,7 +27,7 @@ export const Sidebar: FunctionComponent = () => {
       <Toolbar />
       <List>
         {sidebarFilterNamesFields.map(({ name, options }) => (
-          <CustomAccordion key={name} param={name} options={options} />
+          <CustomAccordion key={name} filterParam={name} filterOptions={options} />
         ))}
       </List>
       <CustomButton name="filter" buttonType="button" onClick={filterMovies} />

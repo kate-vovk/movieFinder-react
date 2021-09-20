@@ -10,9 +10,10 @@ interface ISearchList {
   movieCount: number;
   searchQuery: string;
   selectParam: string;
-  selectedGenres: string[];
-  selectedCategories: string[];
-  selectedCountries: string[];
+  filters: { [key: string]: string[] };
+  // selectedGenres: string[];
+  // selectedCategories: string[];
+  // selectedCountries: string[];
 }
 
 const stateSelector = (state: ISearchState): ISearchList => state.movies;
