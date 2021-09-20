@@ -13,9 +13,10 @@ export const createPath = ({
 }: ICreatePath): string => {
   let finalPath = '';
   let searchParam = '';
-  const filtrationGenres = filters.genres ? `&genres=${filters.genres.join()}` : '';
-  const filtrationCategories = filters.categories ? `&categories=${filters.categories.join()}` : '';
-  const filtrationCountries = filters.countries ? `&countries=${filters.countries.join()}` : '';
+  const filtersPath = Object.keys(filters).reduce(
+    (acc: string, key) => `${acc}&${key}=${filters[key].join()}`,
+    '',
+  );
 
   switch (selectParam) {
     case searchOption.initial:
@@ -34,6 +35,6 @@ export const createPath = ({
       break;
   }
 
-  finalPath = `${searchParam}=${searchQuery}${filtrationGenres}${filtrationCategories}${filtrationCountries}`;
+  finalPath = `${searchParam}=${searchQuery}${filtersPath}`;
   return finalPath;
 };
