@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/constants';
 import { getDataMoviePage } from '@/businessLogic/movie';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
-import { movieListSelector } from '@/selectors/search';
+import { movieListSelector } from '@/selectors/movies';
 import { MovieFeedback } from './MovieFeedback';
 import { MovieInfo } from './MovieInfo';
 import { MoviePoster } from './MoviePoster';

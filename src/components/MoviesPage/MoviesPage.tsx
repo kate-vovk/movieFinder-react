@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Sidebar, MoviesCards, SearchBar } from '@/components';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { getMoviesList, setSelectedParam } from '@/store/slices/searchSlice';
+import { getMoviesList, setSelectedParam } from '@/store/slices/moviesSlice';
 import { useStyle } from './styles';
 
 export const MoviesPage: FunctionComponent = () => {
