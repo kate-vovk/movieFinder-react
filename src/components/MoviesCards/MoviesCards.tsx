@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { MovieCard } from '@/components';
-import { movieListSelector } from '@/selectors/search';
+import { movieListSelector } from '@/selectors/movies';
 import { useStyle } from './styles';
 
 export const MoviesCards: FunctionComponent = () => {

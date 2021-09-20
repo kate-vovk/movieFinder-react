@@ -13,20 +13,20 @@ import {
 } from 'redux-persist';
 import { authReducer } from './slices/authSlice';
 import { cartReducer } from './slices/cartSlice';
-import { searchReducer } from './slices/searchSlice';
+import { moviesReducer } from './slices/moviesSlice';
 import { modalReducer } from './slices/modalSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
   cart: cartReducer,
-  search: searchReducer,
+  movies: moviesReducer,
   modal: modalReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'search'],
+  whitelist: ['auth'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -38,8 +38,8 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [
           'auth/registration/fulfilled',
-          'search/getMovieListWithQuery/pending',
-          'search/getMovieListWithQuery/fulfilled',
+          'movies/getMovieListWithQuery/pending',
+          'movies/getMovieListWithQuery/fulfilled',
           FLUSH,
           REHYDRATE,
           PAUSE,

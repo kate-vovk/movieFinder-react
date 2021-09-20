@@ -7,7 +7,7 @@ import Menu from '@material-ui/core/Menu';
 import Fade from '@material-ui/core/Fade';
 import { logout } from '@/store/slices/authSlice';
 import { IUserMenuLinks } from '@/constants/menuButton';
-import { CustomButton } from '..';
+import { CustomButton } from '@/components';
 
 interface IPropsMenu {
   menuLink: IUserMenuLinks[];
