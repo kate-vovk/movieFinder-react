@@ -9,9 +9,9 @@ interface ISelectFormProps {
 }
 
 const selectOption = [
-  { value: 0, children: 'forever' },
-  { value: 7, children: 'for 7 days' },
-  { value: 30, children: 'for 30 days' },
+  { value: 0, label: 'forever' },
+  { value: 7, label: 'for 7 days' },
+  { value: 30, label: 'for 30 days' },
 ];
 
 export const SelectForm: FunctionComponent<ISelectFormProps> = ({ onChange, value }) => {
@@ -25,7 +25,7 @@ export const SelectForm: FunctionComponent<ISelectFormProps> = ({ onChange, valu
         <Select value={value} onChange={onChange}>
           {selectOption.map((item) => (
             <MenuItem key={item.value} value={item.value}>
-              {t(item.children)}
+              {t(item.label)}
             </MenuItem>
           ))}
         </Select>
