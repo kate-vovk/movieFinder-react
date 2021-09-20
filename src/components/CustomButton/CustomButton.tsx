@@ -16,6 +16,7 @@ interface ICustomButton {
   onClick?: (event: SyntheticEvent<HTMLButtonElement, any>) => void;
   name: string;
   buttonType: TButtons;
+  disabled?: boolean;
 }
 
 export const CustomButton: FunctionComponent<ICustomButton> = ({
@@ -23,6 +24,7 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
   className = '',
   onClick,
   name,
+  disabled = false,
 }) => {
   const getIconByType = (type: string): JSX.Element | string => {
     switch (type) {
@@ -47,7 +49,7 @@ export const CustomButton: FunctionComponent<ICustomButton> = ({
     }
   };
   return (
-    <Button type={buttonType} className={className} onClick={onClick}>
+    <Button type={buttonType} className={className} onClick={onClick} disabled={disabled}>
       {getIconByType(name)}
     </Button>
   );
