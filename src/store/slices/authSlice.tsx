@@ -63,7 +63,7 @@ export const authSlice = createSlice({
               return JSON.parse(message).response;
           }
         }
-        return null;
+        return initialState;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.userId = action.payload.userId;
