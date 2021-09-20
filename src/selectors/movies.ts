@@ -11,9 +11,6 @@ interface ISearchList {
   searchQuery: string;
   selectParam: string;
   filters: { [key: string]: string[] };
-  // selectedGenres: string[];
-  // selectedCategories: string[];
-  // selectedCountries: string[];
 }
 
 const stateSelector = (state: ISearchState): ISearchList => state.movies;

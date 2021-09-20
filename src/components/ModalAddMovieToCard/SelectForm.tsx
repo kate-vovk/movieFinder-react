@@ -23,9 +23,9 @@ export const SelectForm: FunctionComponent<ISelectFormProps> = ({ onChange, valu
       <FormControl>
         <FormLabel component="legend">{t('selectPeriod')}</FormLabel>
         <Select value={value} onChange={onChange}>
-          {selectOption.map((item) => (
-            <MenuItem key={item.value} value={item.value}>
-              {t(item.label)}
+          {selectOption.map(({ value: itemValue, label: itemLabel }) => (
+            <MenuItem key={itemValue} value={itemValue}>
+              {t(itemLabel)}
             </MenuItem>
           ))}
         </Select>
