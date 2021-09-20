@@ -1,15 +1,15 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
-import { CustomButton } from '@/components/CustomButton/CustomButton';
-import { removeMovieFromCart } from '@/store/slices/cartSlice';
+import { ThemeProvider } from '@material-ui/styles';
+import { CustomButton } from '@/components';
 import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
 import { userSelector } from '@/selectors/auth';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
+import { useStyle, cartButtonTheme } from './styles';
+import { removeMovieFromCart } from '@/store/slices/cartSlice';
 import { modalTypes } from '@/constants/modalTypes';
-
-import { useStyle } from './styles';
 
 interface IMovieControlProps {
   movieId: string;
@@ -18,7 +18,7 @@ interface IMovieControlProps {
 
 export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
-  const { movies } = useSelector(cartSelector);
+  const { movies, isLoading } = useSelector(cartSelector);
   const userId = useSelector(userSelector);
   const modalType = modalTypes.modalMovieCart;
   const modalProps = { movieId, price };
@@ -37,12 +37,15 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
   return (
     <div className={classes.footer}>
       <CustomButton name="favorite" buttonType="button" className={classes.favoritesButton} />
-      <CustomButton
-        name="cart"
-        buttonType="button"
-        onClick={addMovieIdToCart}
-        className={classes.addToCartButton}
-      />
+      <ThemeProvider theme={cartButtonTheme}>
+        <CustomButton
+          name="cart"
+          buttonType="button"
+          onClick={addMovieIdToCart}
+          className={classes.addToCartButton}
+          disabled={isLoading}
+        />
+      </ThemeProvider>
       <Typography className={classes.price} color="textSecondary" gutterBottom>
         {price} $
       </Typography>
