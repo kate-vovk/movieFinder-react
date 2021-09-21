@@ -25,11 +25,12 @@ export interface IMovie {
 
 export interface ICart {
   movies: IMovie[];
+  isLoading: boolean;
 }
 
 export interface ICartMovieState {
   userId: string;
   movieId: string;
   period?: number;
-  quality?: string;
+  quality?: number;
 }

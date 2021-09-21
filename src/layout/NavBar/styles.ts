@@ -7,6 +7,8 @@ export const useStyle = makeStyles((theme) => ({
   },
   buttonsContainer: {
     marginLeft: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
   },
   link: {
     textDecoration: 'none',

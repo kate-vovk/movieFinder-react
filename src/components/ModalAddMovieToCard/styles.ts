@@ -17,5 +17,10 @@ export const useStyles = makeStyles(() =>
       alignItems: 'center',
       justifyContent: 'space-between',
     },
+    priceContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   }),
 );

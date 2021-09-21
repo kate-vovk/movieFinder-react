@@ -54,6 +54,19 @@ export const ru = {
     countries: 'Страны',
     voteAverage: 'Средняя оценка',
     year: 'Год',
+    Action: 'Боевик',
+    Comedy: 'Комедия',
+    Fantasy: 'Фантастика',
+    Thriller: 'Триллер',
+    Horror: 'Ужасы',
+    Crime: 'Криминал',
+    Drama: 'Драма',
+    Movie: 'Фильм',
+    Cartoon: 'Мультфильм',
+    USA: 'США',
+    German: 'Германия',
+    France: 'Франция',
+    Canada: 'Канада',
   },
   AuthStatuses: {
     '100': 'идет обработка. Ожидайте',
@@ -86,5 +99,13 @@ export const ru = {
   mockProfile: {
     profilePage: 'Профиль',
     goBack: 'ВЕРНУТЬСЯ НАЗАД',
+  },
+  ModalAddMovieToCart: {
+    selectPeriod: 'Выберите период подписки',
+    selectFormat: 'Выберите качество фильма',
+    submit: 'Подтвердить',
+    forever: 'Навсегда',
+    'for 7 days': 'На 7 дней',
+    'for 30 days': 'На 30 дней',
   },
 };

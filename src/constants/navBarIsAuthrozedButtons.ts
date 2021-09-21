@@ -3,7 +3,7 @@ import { CLIENT_PATHS } from './constants';
 interface isAuthorizedButton {
   name: string;
   to: string;
-  badge?: number;
+  badge: boolean;
 }
 
 export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[] =>
@@ -12,16 +12,18 @@ export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[]
         {
           name: 'cart',
           to: CLIENT_PATHS.cart,
-          badge: 2,
+          badge: true,
         },
       ]
     : [
         {
           name: 'signUp',
           to: CLIENT_PATHS.signup,
+          badge: false,
         },
         {
           name: 'signIn',
           to: CLIENT_PATHS.signin,
+          badge: false,
         },
       ];

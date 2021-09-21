@@ -54,6 +54,19 @@ export const en = {
     countries: 'Countries',
     voteAverage: 'Vote average',
     year: 'Year',
+    Action: 'Action',
+    Comedy: 'Comedy',
+    Fantasy: 'Fantasy',
+    Thriller: 'Thriller',
+    Horror: 'Horror',
+    Crime: 'Crime',
+    Drama: 'Drama',
+    Movie: 'Movie',
+    Cartoon: 'Cartoon',
+    USA: 'USA',
+    German: 'German',
+    France: 'France',
+    Canada: 'Canada',
   },
   AuthStatuses: {
     '100': 'processing. Just wait for a while',
@@ -86,5 +99,13 @@ export const en = {
   mockProfile: {
     profilePage: 'Profile page',
     goBack: 'GO BACK',
+  },
+  ModalAddMovieToCart: {
+    selectPeriod: 'Select subscription period',
+    selectFormat: 'Select movie format',
+    submit: 'Submit',
+    forever: 'Forever',
+    'for 7 days': 'For 7 days',
+    'for 30 days': 'For 30 days',
   },
 };

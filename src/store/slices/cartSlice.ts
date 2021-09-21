@@ -10,7 +10,7 @@ import { ICart, ICartMovieState } from '@/utils/interfaces/cartInterfaces';
 
 toast.configure();
 
-const initialState: ICart = { movies: [] };
+const initialState: ICart = { movies: [], isLoading: false };
 
 export const setCartMoviesToStore = createAsyncThunk('cart/getMovies', async (userId: string) => {
   return getUserCart(userId);
@@ -39,7 +39,7 @@ export const sendData = createAsyncThunk(
     // here we will make POST request to Orders and MyMovies on server.
 
     // TODO when query deleteAllMovieFromCart() will exist, it wil be used here
-    alert(userId);
+    alert(`userId: ${userId}`);
     return [];
   },
 );
@@ -53,17 +53,32 @@ export const cartSlice = createSlice({
       .addCase(setCartMoviesToStore.fulfilled, (state, action) => {
         state.movies = action.payload;
       })
-      .addCase(setCartMoviesToStore.rejected, () => {
+      .addCase(setCartMoviesToStore.rejected, (state) => {
         toast(i18next.t('CartStatuses:noCart'));
+        state.isLoading = false;
       })
-      .addCase(removeMovieFromCart.fulfilled, (state, action) => {
-        state.movies = action.payload;
+
+      .addCase(addMovieToCart.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(addMovieToCart.fulfilled, (state, action) => {
         state.movies = action.payload;
+        state.isLoading = false;
+      })
+
+      .addCase(removeMovieFromCart.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeMovieFromCart.fulfilled, (state, action) => {
+        state.movies = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(sendData.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(sendData.fulfilled, (state, action) => {
         state.movies = action.payload;
+        state.isLoading = false;
       });
   },
 });

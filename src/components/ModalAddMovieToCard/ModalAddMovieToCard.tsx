@@ -2,13 +2,16 @@ import { FunctionComponent, useState, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import EuroIcon from '@material-ui/icons/Euro';
 import { addMovieToCart } from '@/store/slices/cartSlice';
 import { userSelector } from '@/selectors/auth';
-import { getPriceMovie } from '@/utils/calculations/calcCostMovie';
 import { EQuality } from '@/constants/constantsModal';
 import { useStyles } from './styles';
 import { RadioGroupForm } from './RadioGroupForm';
 import { SelectForm } from './SelectForm';
+import { convertQualityToNumber } from '@/utils/convertQualityToNumber';
+import { getPriceMovie } from '@/utils/calculations/calcCostMovie';
 
 interface IModalFormProps {
   movieId: string;
@@ -21,6 +24,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   price,
   closeModal,
 }) => {
+  const { t } = useTranslation(['ModalAddMovieToCart']);
   const classes = useStyles();
   const dispatch = useDispatch();
   const userId = useSelector(userSelector);
@@ -39,7 +43,12 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
 
   const onHandleAddMovieDataToCart = (): void => {
     dispatch(
-      addMovieToCart({ userId, movieId, period: moviePurchasePeriod, quality: movieQuality }),
+      addMovieToCart({
+        userId,
+        movieId,
+        period: moviePurchasePeriod,
+        quality: convertQualityToNumber(movieQuality),
+      }),
     );
     closeModal();
   };
@@ -57,11 +66,12 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
           <RadioGroupForm onChange={onHandleMovieQuality} value={movieQuality} />
           <SelectForm onChange={onHandleMoviePurchasePeriod} value={moviePurchasePeriod} />
           <div className={classes.modalFormFooter}>
-            <div>
-              <span>{getPriceMovie(price, movieQuality, moviePurchasePeriod)}</span>
+            <div className={classes.priceContainer}>
+              <span>{getPriceMovie(price, movieQuality, moviePurchasePeriod).toFixed(2)}</span>
+              <EuroIcon fontSize="inherit" />
             </div>
             <Button color="primary" variant="contained" type="submit">
-              Submit
+              {t('submit')}
             </Button>
           </div>
         </Form>
