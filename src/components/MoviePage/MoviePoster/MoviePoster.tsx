@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import { MovieControl } from '@/components';
+import { urlEmptyPoster } from '@/constants/constantsMovie';
 import { useStyle } from './styles';
 
 interface IMoviePosterProps {
@@ -9,9 +10,6 @@ interface IMoviePosterProps {
   title: string;
   movieId: string;
 }
-
-const urlEmptyPoster =
-  'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg';
 
 export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
   cover,
