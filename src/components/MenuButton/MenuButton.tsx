@@ -1,14 +1,13 @@
-import { FunctionComponent, MouseEvent, useCallback, useState } from 'react';
+import { FunctionComponent, useCallback, useState, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Button from '@material-ui/core/Button';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Fade from '@material-ui/core/Fade';
 import { logout } from '@/store/slices/authSlice';
 import { IUserMenuLinks } from '@/constants/menuButton';
+import { CustomButton } from '@/components';
 
 interface IPropsMenu {
   menuLink: IUserMenuLinks[];
@@ -24,7 +23,7 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
     dispatch(logout());
   }, []);
 
-  const handleOpenMenu = (event: MouseEvent<HTMLElement>): void => {
+  const handleOpenMenu = (event: SyntheticEvent<HTMLButtonElement, any>): void => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -34,9 +33,13 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
 
   return (
     <div>
-      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleOpenMenu}>
-        <AccountCircleIcon />
-      </Button>
+      <CustomButton
+        ariaControls="fade-menu"
+        ariaHaspopup
+        onClick={handleOpenMenu}
+        name="accountCircleIcon"
+        buttonType="button"
+      />
       <Menu
         id="fade-menu"
         anchorEl={anchorEl}

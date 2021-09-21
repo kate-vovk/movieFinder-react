@@ -3,16 +3,16 @@ import { useParams } from 'react-router-dom';
 import { Tabs, Tab } from '@material-ui/core';
 import { TabPanel } from '@/components/userProfile/TabPanel';
 import { useStyle } from './styles';
-import { Profile } from './Profile/Profile';
-import { Favorites } from './Favorites/Favorites';
-import { OrdersList } from './OrdersList/OrdersList';
-import { MyFeedback } from './MyFeedback/MyFeedback';
+import { Profile } from './Profile';
+import { Favorites } from './Favorites';
+import { OrdersList } from './OrdersList';
+import { MyFeedback } from './MyFeedback';
 
-const TabItem = [
-  { index: 0, name: 'Profile' },
-  { index: 1, name: 'Favorites' },
-  { index: 2, name: 'Orders list' },
-  { index: 3, name: 'My feedback' },
+const sectionUserProfile = [
+  { index: 0, name: 'Profile', component: <Profile /> },
+  { index: 1, name: 'Favorites', component: <Favorites /> },
+  { index: 2, name: 'Orders list', component: <OrdersList /> },
+  { index: 3, name: 'My feedback', component: <MyFeedback /> },
 ];
 
 interface IParamsIndexTab {
@@ -28,21 +28,6 @@ export const UserProfile: FunctionComponent = () => {
     setValue(newValue);
   };
 
-  const getTabItem = (name: string): JSX.Element | null => {
-    switch (name) {
-      case 'Profile':
-        return <Profile />;
-      case 'Favorites':
-        return <Favorites />;
-      case 'Orders list':
-        return <OrdersList />;
-      case 'My feedback':
-        return <MyFeedback />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <div>
       <div className={classes.container}>
@@ -53,7 +38,7 @@ export const UserProfile: FunctionComponent = () => {
           onChange={handleChange}
           aria-label="Vertical tabs example"
         >
-          {TabItem.map((item) => (
+          {sectionUserProfile.map((item) => (
             <Tab
               key={item.index}
               label={item.name}
@@ -62,9 +47,9 @@ export const UserProfile: FunctionComponent = () => {
             />
           ))}
         </Tabs>
-        {TabItem.map((item) => (
+        {sectionUserProfile.map((item) => (
           <TabPanel key={item.index} value={value} index={item.index}>
-            {getTabItem(item.name)}
+            {item.component}
           </TabPanel>
         ))}
       </div>

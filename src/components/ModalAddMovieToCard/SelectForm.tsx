@@ -1,5 +1,6 @@
 import { FunctionComponent, ChangeEvent, ReactNode } from 'react';
 import { FormControl, FormLabel, Select, MenuItem } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './styles';
 
 interface ISelectFormProps {
@@ -8,22 +9,23 @@ interface ISelectFormProps {
 }
 
 const selectOption = [
-  { value: 0, children: 'Forever' },
-  { value: 7, children: 'For 7 days' },
-  { value: 30, children: 'For 30 days' },
+  { value: 0, label: 'forever' },
+  { value: 7, label: 'for 7 days' },
+  { value: 30, label: 'for 30 days' },
 ];
 
 export const SelectForm: FunctionComponent<ISelectFormProps> = ({ onChange, value }) => {
   const classes = useStyles();
+  const { t } = useTranslation(['ModalAddMovieToCart']);
 
   return (
     <div className={classes.modalSelect}>
       <FormControl>
-        <FormLabel component="legend">Select subscription period</FormLabel>
+        <FormLabel component="legend">{t('selectPeriod')}</FormLabel>
         <Select value={value} onChange={onChange}>
-          {selectOption.map((item) => (
-            <MenuItem key={item.value} value={item.value}>
-              {item.children}
+          {selectOption.map(({ value: itemValue, label: itemLabel }) => (
+            <MenuItem key={itemValue} value={itemValue}>
+              {t(itemLabel)}
             </MenuItem>
           ))}
         </Select>
