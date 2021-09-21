@@ -1,7 +1,7 @@
-type TFieldsNames = 'name' | 'email' | 'date';
+type TFieldsNames = 'name' | 'email' | 'dateOfBirth';
 
 interface IField {
-  fullWidth: boolean;
+  isFieldFullWidth: boolean;
   name: TFieldsNames;
   label: string;
   type: string;
@@ -9,20 +9,20 @@ interface IField {
 
 export const userProfileFormFields: IField[] = [
   {
-    fullWidth: false,
+    isFieldFullWidth: false,
     name: 'name',
     label: 'name',
     type: 'text',
   },
   {
-    fullWidth: false,
+    isFieldFullWidth: false,
     name: 'email',
     label: 'email',
     type: 'text',
   },
   {
-    fullWidth: false,
-    name: 'date',
+    isFieldFullWidth: false,
+    name: 'dateOfBirth',
     label: 'date',
     type: 'date',
   },

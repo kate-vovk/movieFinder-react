@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
-import { IAuthData, IAuthInitialState, ILoginData } from '@/utils/interfaces/authInterfaces';
+import { IAuthData, IAuth, ILoginData } from '@/utils/interfaces/authInterfaces';
 import { getRegistrationData } from '@/businessLogic/registration';
 import { getLoginData } from '@/businessLogic/login';
 import { logoutUser } from '@/businessLogic/logout';
@@ -31,10 +31,10 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   return logoutUser();
 });
 
-const initialState: IAuthInitialState = {
-  userId: null,
-  userName: null,
-  userEmail: null,
+const initialState: IAuth = {
+  userId: '',
+  userName: '',
+  userEmail: '',
 };
 
 export const authSlice = createSlice({
@@ -66,9 +66,7 @@ export const authSlice = createSlice({
         return initialState;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.userId = action.payload.userId;
-        state.userName = action.payload.userName;
-        state.userEmail = action.payload.userEmail;
+        return action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         const { message } = action.error;
@@ -78,10 +76,8 @@ export const authSlice = createSlice({
           toast(i18next.t('AuthStatuses:error'));
         }
       })
-      .addCase(logout.fulfilled, (state) => {
-        state.userId = null;
-        state.userName = null;
-        state.userEmail = null;
+      .addCase(logout.fulfilled, () => {
+        return initialState;
       });
   },
 });

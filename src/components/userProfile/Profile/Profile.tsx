@@ -10,7 +10,7 @@ import { useStyle } from './styles';
 interface IFormInputs {
   name: string;
   email: string;
-  date: string;
+  dateOfBirth: string;
 }
 
 export const Profile: FunctionComponent = () => {
@@ -19,8 +19,9 @@ export const Profile: FunctionComponent = () => {
 
   const onSubmit = (values: IFormInputs, { setSubmitting }: FormikHelpers<IFormInputs>): void => {
     // Sending data to the server will be implemented later
+    // eslint-disable-next-line no-alert
     alert(
-      `id: ${user.userId} name: ${values.name}, email: ${values.email}, birthday: ${values.date}`,
+      `id: ${user.userId} name: ${values.name}, email: ${values.email}, birthday: ${values.dateOfBirth}`,
     );
     setSubmitting(false);
   };
@@ -29,7 +30,7 @@ export const Profile: FunctionComponent = () => {
     initialValues: {
       name: user.userName,
       email: user.userEmail,
-      date: '',
+      dateOfBirth: '',
     },
     validationSchema: userProfileFormValidationSchema,
     onSubmit,
@@ -43,7 +44,7 @@ export const Profile: FunctionComponent = () => {
             return (
               <TextField
                 key={field.name}
-                fullWidth={field.fullWidth}
+                fullWidth={field.isFieldFullWidth}
                 id={field.name}
                 name={field.name}
                 label={field.label}

@@ -40,12 +40,6 @@ export interface IAuthData {
 export interface IStoreState {
   auth: IAuth;
 }
-export interface IAuthInitialState {
-  userId: string | null;
-  userName: string | null;
-  userEmail: string | null;
-}
-
 export interface IAuth {
   userId: string;
   userName: string;
