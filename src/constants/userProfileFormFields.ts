@@ -23,7 +23,7 @@ export const userProfileFormFields: IField[] = [
   {
     isFieldFullWidth: false,
     name: 'dateOfBirth',
-    label: 'date',
+    label: 'date of birth',
     type: 'date',
   },
 ];

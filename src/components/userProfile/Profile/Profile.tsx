@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik, FormikHelpers } from 'formik';
 import { Button, TextField } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import { userSelector } from '@/selectors/auth';
 import { userProfileFormFields } from '@/constants/userProfileFormFields';
 import { userProfileFormValidationSchema } from '@/utils/validations/userProfileValidation';
@@ -15,6 +16,7 @@ interface IFormInputs {
 
 export const Profile: FunctionComponent = () => {
   const user = useSelector(userSelector);
+  const { t } = useTranslation(['UserPage']);
   const classes = useStyle();
 
   const onSubmit = (values: IFormInputs, { setSubmitting }: FormikHelpers<IFormInputs>): void => {
@@ -37,7 +39,7 @@ export const Profile: FunctionComponent = () => {
   });
   return (
     <div>
-      <h1 className={classes.title}>Profile</h1>
+      <h1 className={classes.title}>{t('Profile')}</h1>
       <form onSubmit={formik.handleSubmit}>
         <div className={classes.inputLine}>
           {userProfileFormFields.map((field) => {
@@ -47,7 +49,7 @@ export const Profile: FunctionComponent = () => {
                 fullWidth={field.isFieldFullWidth}
                 id={field.name}
                 name={field.name}
-                label={field.label}
+                label={`${t(field.label)}`}
                 type={field.type}
                 value={formik.values[field.name]}
                 className={classes.input}
@@ -62,7 +64,7 @@ export const Profile: FunctionComponent = () => {
           })}
         </div>
         <Button color="primary" variant="contained" type="submit" disabled={formik.isSubmitting}>
-          Save
+          {t('save')}
         </Button>
       </form>
     </div>

@@ -61,6 +61,7 @@ export const NavBar: FunctionComponent = () => {
             {isAuthorizedButtons(Boolean(user)).map((button) =>
               button.badge ? (
                 <CustomButton
+                  key={button.name}
                   name={button.name}
                   buttonType="button"
                   onClick={goToCart}
@@ -68,6 +69,7 @@ export const NavBar: FunctionComponent = () => {
                 />
               ) : (
                 <CustomButton
+                  key={button.name}
                   name={button.name}
                   buttonType="button"
                   onClick={() => history.push(button.to)}

@@ -108,4 +108,14 @@ export const ru = {
     'for 7 days': 'На 7 дней',
     'for 30 days': 'На 30 дней',
   },
+  UserPage: {
+    Profile: 'Профиль',
+    Favorites: 'Избранное',
+    'Orders list': 'Мои заказы',
+    'My feedback': 'Мои отзывы',
+    save: 'Сохранить',
+    name: 'имя',
+    email: 'email',
+    'date of birth': 'дата рождения',
+  },
 };

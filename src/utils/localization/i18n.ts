@@ -24,6 +24,7 @@ i18n
       'AuthStatuses',
       'CartStatuses',
       'ModalAddMovieToCart',
+      'UserPage',
     ],
     fallbackLng: 'en',
     parseMissingKeyHandler: (value: string) => {

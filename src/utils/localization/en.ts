@@ -108,4 +108,14 @@ export const en = {
     'for 7 days': 'For 7 days',
     'for 30 days': 'For 30 days',
   },
+  UserPage: {
+    Profile: 'Profile',
+    Favorites: 'Favorites',
+    'Orders list': 'Orders list',
+    'My feedback': 'My feedback',
+    save: 'Save',
+    name: 'name',
+    email: 'email',
+    'date of birth': 'date of birth',
+  },
 };

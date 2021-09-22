@@ -3,8 +3,8 @@ import { useStyle } from './styles';
 
 interface ITabPanelProps {
   children?: ReactNode;
-  tabValue: string;
-  index: string;
+  tabValue: number;
+  index: number;
 }
 
 export const TabPanel: FunctionComponent<ITabPanelProps> = ({ children, tabValue, index }) => {

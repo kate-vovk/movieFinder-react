@@ -7,6 +7,9 @@ export const useStyle = makeStyles(() => ({
     padding: '40px 15px',
     display: 'flex',
   },
+  menuPanel: {
+    flex: '0 0 200px',
+  },
   tabPanel: {
     marginLeft: '50px',
   },

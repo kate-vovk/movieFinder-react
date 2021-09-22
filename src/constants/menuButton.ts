@@ -11,15 +11,15 @@ export const userMenuLinks: IUserMenuLinks[] = [
     translate: 'adminPanel',
   },
   {
-    link: `${CLIENT_PATHS.user}/Profile`,
+    link: `${CLIENT_PATHS.user}/0`,
     translate: 'profile',
   },
   {
-    link: `${CLIENT_PATHS.user}/Favorites`,
+    link: `${CLIENT_PATHS.user}/1`,
     translate: 'favorites',
   },
   {
-    link: `${CLIENT_PATHS.user}/OrdersList`,
+    link: `${CLIENT_PATHS.user}/2`,
     translate: 'orders',
   },
 ];
