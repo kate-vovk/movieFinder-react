@@ -3,22 +3,22 @@ import { useStyle } from './styles';
 
 interface ITabPanelProps {
   children?: ReactNode;
-  value: number;
-  index: number;
+  tabValue: string;
+  index: string;
 }
 
-export const TabPanel: FunctionComponent<ITabPanelProps> = ({ children, value, index }) => {
+export const TabPanel: FunctionComponent<ITabPanelProps> = ({ children, tabValue, index }) => {
   const classes = useStyle();
 
   return (
     <div
       role="tabpanel"
-      hidden={value !== index}
+      hidden={tabValue !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       className={classes.tabPanel}
     >
-      {value === index && <div>{children}</div>}
+      {tabValue === index && <div>{children}</div>}
     </div>
   );
 };
