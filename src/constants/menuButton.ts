@@ -1,4 +1,4 @@
-import { SERVER_PATHS } from './constants';
+import { CLIENT_PATHS } from './constants';
 
 export interface IUserMenuLinks {
   link: string;
@@ -7,19 +7,19 @@ export interface IUserMenuLinks {
 
 export const userMenuLinks: IUserMenuLinks[] = [
   {
-    link: SERVER_PATHS.admin,
+    link: CLIENT_PATHS.admin,
     translate: 'adminPanel',
   },
   {
-    link: SERVER_PATHS.profile,
+    link: `${CLIENT_PATHS.user}/0`,
     translate: 'profile',
   },
   {
-    link: SERVER_PATHS.orders,
-    translate: 'orders',
+    link: `${CLIENT_PATHS.user}/1`,
+    translate: 'favorites',
   },
   {
-    link: SERVER_PATHS.favorites,
-    translate: 'favorites',
+    link: `${CLIENT_PATHS.user}/2`,
+    translate: 'orders',
   },
 ];

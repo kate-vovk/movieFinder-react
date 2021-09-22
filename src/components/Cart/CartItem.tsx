@@ -8,7 +8,7 @@ import { CustomButton } from '@/components';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { useStyle } from './styles';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
-import { userSelector } from '@/selectors/auth';
+import { userIdSelector } from '@/selectors/auth';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const { id, coverUrl, title, price, description } = movie;
@@ -16,7 +16,7 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userId = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
 
   const removeMovieIdFromCart = (): void => {
     dispatch(removeMovieFromCart({ userId, movieId: movie.id }));

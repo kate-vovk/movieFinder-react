@@ -5,10 +5,7 @@ export const CLIENT_PATHS = {
   signin: '/signin',
   signup: '/signup',
   notFound: '/notFound',
-  favorites: '/favorites',
   admin: '/admin',
-  profile: '/profile',
-  orders: '/orders',
   main: '/',
 };
 

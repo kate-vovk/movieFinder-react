@@ -7,7 +7,7 @@ import InputMask from 'react-input-mask';
 import { useTranslation } from 'react-i18next';
 import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidation';
 import { sendData } from '@/store/slices/cartSlice';
-import { userSelector } from '@/selectors/auth';
+import { userIdSelector } from '@/selectors/auth';
 import { CLIENT_PATHS } from '@/constants';
 import { useStyle } from './styles';
 
@@ -16,7 +16,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyle();
-  const userId = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
 
   const clickBuyButton = (): void => {
     dispatch(sendData({ userId }));
