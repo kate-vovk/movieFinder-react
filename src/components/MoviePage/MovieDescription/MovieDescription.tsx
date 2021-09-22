@@ -11,9 +11,13 @@ export const MovieDescription: FunctionComponent<IMovieDescriptionProps> = ({ de
   const classes = useStyle();
 
   return (
-    <div className={classes.descriptionMovie}>
-      <h2 className={classes.descriptionMovieTitle}>{t('description')}</h2>
-      <p className={classes.descriptionMovieText}>{description}</p>
+    <div>
+      {description && (
+        <div className={classes.descriptionMovie}>
+          <h2 className={classes.descriptionMovieTitle}>{t('description')}</h2>
+          <p className={classes.descriptionMovieText}>{description}</p>
+        </div>
+      )}
     </div>
   );
 };

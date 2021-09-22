@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
 
@@ -30,8 +30,8 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
 
   const movieInfo = [
     { id: 1, name: 'country', value: country },
-    { id: 2, name: 'duration', value: `${duration} ${t('min')}` },
-    { id: 3, name: 'releaseDate', value: new Date(year).getFullYear() },
+    { id: 2, name: 'duration', value: duration ? `${duration} ${t('min')}` : undefined },
+    { id: 3, name: 'releaseDate', value: String(new Date(year).getFullYear()) },
     { id: 4, name: 'productionCompanies', value: company },
     { id: 5, name: 'genres', value: genresList },
     { id: 6, name: 'categories', value: categoriesList },
@@ -39,11 +39,13 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
     { id: 8, name: 'actors', value: actorsList },
   ];
 
+  const resultMovieInfo = useMemo(() => movieInfo.filter((item) => item.value), [movieInfo]);
+
   return (
     <div className={classes.columnRight}>
       <h1 className={classes.infoMovieTitle}>{title}</h1>
       <ul className={classes.infoMovieList}>
-        {movieInfo.map((item) => {
+        {resultMovieInfo.map((item) => {
           return (
             <li key={item.id} className={classes.infoMovieListElement}>
               {`${t(item.name)}: ${item.value}`}
