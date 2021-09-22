@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import EuroIcon from '@material-ui/icons/Euro';
 import { addMovieToCart } from '@/store/slices/cartSlice';
-import { userSelector } from '@/selectors/auth';
+import { userIdSelector } from '@/selectors/auth';
 import { EQuality } from '@/constants/constantsModal';
 import { useStyles } from './styles';
 import { RadioGroupForm } from './RadioGroupForm';
@@ -27,7 +27,7 @@ export const ModalAddMovieToCard: FunctionComponent<IModalFormProps> = ({
   const { t } = useTranslation(['ModalAddMovieToCart']);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { userId } = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
   const [movieQuality, setMovieQuality] = useState<string>(EQuality.HD);
   const [moviePurchasePeriod, setMoviePurchasePeriod] = useState(0);
 

@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { CustomButton } from '@/components';
 import { showModal } from '@/store/slices/modalSlice';
 import { cartSelector } from '@/selectors/cart';
-import { userSelector } from '@/selectors/auth';
+import { userIdSelector } from '@/selectors/auth';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { useStyle, cartButtonTheme } from './styles';
 import { removeMovieFromCart } from '@/store/slices/cartSlice';
@@ -19,7 +19,7 @@ interface IMovieControlProps {
 export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, price }) => {
   const dispatch = useDispatch();
   const { movies, isLoading } = useSelector(cartSelector);
-  const { userId } = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
   const modalType = modalTypes.modalMovieCart;
   const modalProps = { movieId, price };
 

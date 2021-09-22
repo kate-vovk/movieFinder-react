@@ -2,13 +2,13 @@ import { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Sidebar, MoviesCards, SearchBar } from '@/components';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
-import { userSelector } from '@/selectors/auth';
+import { userIdSelector } from '@/selectors/auth';
 import { getMoviesList, setSelectedParam } from '@/store/slices/moviesSlice';
 import { useStyle } from './styles';
 
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
-  const { userId } = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {

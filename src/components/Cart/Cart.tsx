@@ -6,7 +6,7 @@ import EuroIcon from '@material-ui/icons/Euro';
 import { useTranslation } from 'react-i18next';
 import { cartSelector } from '@/selectors/cart';
 import { setCartMoviesToStore } from '@/store/slices/cartSlice';
-import { userSelector } from '@/selectors/auth';
+import { userIdSelector } from '@/selectors/auth';
 import { CustomButton, PaymentDetailsModal } from '@/components';
 import { IMovie } from '@/utils/interfaces/cartInterfaces';
 import { CartItem } from './CartItem';
@@ -18,7 +18,7 @@ export const Cart: FunctionComponent = () => {
 
   const history = useHistory();
   const { movies } = useSelector(cartSelector);
-  const { userId } = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
   const [openModal, isModalOpen] = useState(false);
