@@ -1,0 +1,1 @@
+export { columnsUsers } from './TableTemplate';

@@ -1,4 +1,4 @@
-import { searchOption } from '@/constants/constants';
+import { searchOption } from '@/user/constants/constants';
 
 interface ICreatePath {
   searchQuery?: string;

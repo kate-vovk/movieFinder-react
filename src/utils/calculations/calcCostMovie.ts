@@ -1,4 +1,4 @@
-import { priceCoefficients } from '@/constants/constantsModal';
+import { priceCoefficients } from '@/user/constants/constantsModal';
 
 const calcCostMovie = (cost: number, coefficient: number): number => {
   return Number((cost * coefficient).toFixed(2));
