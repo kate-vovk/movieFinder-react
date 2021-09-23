@@ -1,0 +1,1 @@
+export { columnsMovies } from './TableTemplate';

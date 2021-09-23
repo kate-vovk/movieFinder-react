@@ -1,4 +1,4 @@
-import { EQuality } from '@/constants/constantsModal';
+import { EQuality } from '@/user/constants/constantsModal';
 
 export const convertQualityToNumber = (quality: string): number => {
   if (quality === EQuality.HD) {

@@ -1,16 +1,16 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Layout } from './layout';
-import { AppRouter } from './routing/AppRouter';
+import { Layout } from './sharedComponents/layout';
+import { Routes } from './Routes';
 import './reset.css';
-import '@/utils/localization/i18n';
+import '@/localization/i18n';
 
 export const App: FunctionComponent = () => {
   return (
     <div className="App">
       <BrowserRouter>
         <Layout>
-          <AppRouter />
+          <Routes />
         </Layout>
       </BrowserRouter>
     </div>

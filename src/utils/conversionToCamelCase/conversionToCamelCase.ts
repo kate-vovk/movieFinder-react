@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
-import { IMovie } from '../interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/cartInterfaces';
 
-interface IMovieGET {
+export interface IMovieGET {
   id: string;
   title: string;
   description: string;

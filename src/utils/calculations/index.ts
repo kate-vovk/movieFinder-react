@@ -1,0 +1,1 @@
+export { getPriceMovie } from './calcCostMovie';
