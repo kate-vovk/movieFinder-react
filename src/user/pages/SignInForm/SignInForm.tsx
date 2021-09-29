@@ -31,7 +31,6 @@ export const SignInForm: FunctionComponent = () => {
     const previousRoute = Object(location.state).prevPath
       ? Object(location.state).prevPath
       : CLIENT_PATHS.main;
-    console.log('previousRoute', previousRoute);
     history.push(previousRoute);
   }
 
