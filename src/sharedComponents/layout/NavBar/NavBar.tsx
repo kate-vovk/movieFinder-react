@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CLIENT_PATHS } from '@/user/constants';
 import { isAuthorizedButtons } from '@/user/constants/navBarIsAuthrozedButtons';
-import { userSelector } from '@/user/store/selectors/auth';
+import { userIdSelector } from '@/user/store/selectors/auth';
 import { cartSelector } from '@/user/store/selectors/cart';
 import { CustomButton, MenuButton } from '@/user/components';
 import { userMenuLinks } from '@/user/constants/menuButton';
@@ -15,7 +15,7 @@ import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
   const languageFromLocalStorage = String(localStorage.getItem('i18nextLng'));
-  const user = useSelector(userSelector);
+  const user = useSelector(userIdSelector);
   const history = useHistory();
   const { movies } = useSelector(cartSelector);
 
