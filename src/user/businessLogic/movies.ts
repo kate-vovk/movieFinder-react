@@ -1,7 +1,7 @@
+import { IMovie } from '@/interfaces/cartInterfaces';
 import { getMovieList } from '@/user/api/movies';
-import { convertToCamelCase } from '@/utils/conversionToCamelCase';
 
-export const getMovies = async (): Promise<any> => {
+export const getMovies = async (): Promise<IMovie[]> => {
   const { data } = await getMovieList();
-  return convertToCamelCase(data);
+  return data;
 };

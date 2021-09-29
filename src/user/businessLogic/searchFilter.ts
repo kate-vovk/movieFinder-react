@@ -1,7 +1,7 @@
 import { getDataFromApi } from '@/user/api/search-filter';
-import { convertToCamelCase } from '@/utils/conversionToCamelCase';
+import { IMovie } from '@/interfaces/cartInterfaces';
 
-export const getMovieByQuery = async (path: string): Promise<any> => {
+export const getMovieByQuery = async (path: string): Promise<IMovie[]> => {
   const { data } = await getDataFromApi(path);
-  return convertToCamelCase(data);
+  return data;
 };
