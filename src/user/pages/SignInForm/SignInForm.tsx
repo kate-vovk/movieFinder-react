@@ -11,6 +11,7 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 import { ILoginData } from '@/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
 import { useStyle } from './styles';
+import { CLIENT_PATHS } from '@/user/constants';
 
 export const SignInForm: FunctionComponent = () => {
   const { t } = useTranslation(['SignIn']);
@@ -27,7 +28,10 @@ export const SignInForm: FunctionComponent = () => {
   };
 
   if (isLoggedIn) {
-    const previousRoute = Object(location.state).prevPath;
+    const previousRoute = Object(location.state).prevPath
+      ? Object(location.state).prevPath
+      : CLIENT_PATHS.main;
+    console.log('previousRoute', previousRoute);
     history.push(previousRoute);
   }
 

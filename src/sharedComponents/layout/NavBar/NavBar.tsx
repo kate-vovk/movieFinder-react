@@ -1,5 +1,5 @@
 import { FunctionComponent, useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ export const NavBar: FunctionComponent = () => {
   const languageFromLocalStorage = String(localStorage.getItem('i18nextLng'));
   const user = useSelector(userIdSelector);
   const history = useHistory();
+  const location = useLocation();
   const { movies } = useSelector(cartSelector);
 
   const { i18n } = useTranslation(['AppBar']);
@@ -57,24 +58,28 @@ export const NavBar: FunctionComponent = () => {
                 buttonType="button"
               />
             </ButtonGroup>
-            <MenuButton menuLink={userMenuLinks} />
-            {isAuthorizedButtons(Boolean(user)).map((button) =>
-              button.badge ? (
-                <CustomButton
-                  key={button.name}
-                  name={button.name}
-                  buttonType="button"
-                  onClick={goToCart}
-                  badgeContent={movies.length}
-                />
-              ) : (
-                <CustomButton
-                  key={button.name}
-                  name={button.name}
-                  buttonType="button"
-                  onClick={() => history.push(button.to)}
-                />
-              ),
+            {location.pathname === CLIENT_PATHS.signin ||
+            location.pathname === CLIENT_PATHS.signup ? null : (
+              <MenuButton menuLink={userMenuLinks} />
+            )}
+            {isAuthorizedButtons(Boolean(user), location.pathname === CLIENT_PATHS.signin).map(
+              (button) =>
+                button.badge ? (
+                  <CustomButton
+                    key={button.name}
+                    name={button.name}
+                    buttonType="button"
+                    onClick={goToCart}
+                    badgeContent={movies.length}
+                  />
+                ) : (
+                  <CustomButton
+                    key={button.name}
+                    name={button.name}
+                    buttonType="button"
+                    onClick={() => history.push(button.to)}
+                  />
+                ),
             )}
           </div>
         </Toolbar>
