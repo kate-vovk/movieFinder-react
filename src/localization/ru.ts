@@ -122,6 +122,8 @@ export const ru = {
     name: 'имя',
     email: 'эл. почта',
     'date of birth': 'дата рождения',
+    goHome: 'ВЕРНУТЬСЯ НА ГЛАВНУЮ',
+    empty: 'У вас нет фильмов в избранном!',
   },
   MovieControl: {
     tooltipText: 'Данный фильм уже находится в ваших заказах',

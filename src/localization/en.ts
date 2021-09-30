@@ -122,6 +122,8 @@ export const en = {
     name: 'name',
     email: 'email',
     'date of birth': 'date of birth',
+    goHome: 'GO HOME',
+    empty: 'You favorites are empty!',
   },
   MovieControl: {
     tooltipText: 'This movie is already in your orders',
