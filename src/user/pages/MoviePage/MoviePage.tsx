@@ -62,11 +62,11 @@ export const MoviePage: FunctionComponent = () => {
                 year={movie?.releaseDate}
                 duration={movie?.duration}
                 director={movie?.producer}
-                company={movie?.productionCompanyId}
-                country={movie?.countryId}
+                company={movie?.productionCompany}
+                country={movie?.country}
                 actorsList={movie?.cast}
-                genresList={movie?.genreId}
-                categoriesList={movie?.categoryId}
+                genresList={movie?.genres}
+                categoriesList={movie?.categories}
               />
             </div>
             <MovieDescription description={movie?.description} />

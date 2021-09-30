@@ -15,6 +15,10 @@ export const useStyle = makeStyles({
     backgroundColor: ({ isIncluded, isDisabled }: { isIncluded: boolean; isDisabled: boolean }) =>
       isIncluded ? 'yellow' : isDisabled ? 'grey' : 'lightGrey',
   },
+  addToFavoriteButton: {
+    backgroundColor: ({ isIncluded }: { isIncluded: boolean }) =>
+      isIncluded ? 'lightGreen' : 'lightGrey',
+  },
   price: {
     color: 'red',
     alignSelf: 'flex-end',
