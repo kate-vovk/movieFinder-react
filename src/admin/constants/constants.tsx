@@ -1,9 +1,18 @@
-import { Users } from '@/admin/components/Users';
-import { Movies } from '@/admin/components/Movies';
-import { Settings } from '@/admin/components/Settings';
+export const rowsPerPage = [1, 5, 10, 50, 100];
 
-export const allTabs = [
-  { label: 'All users', index: 0, component: <Users /> },
-  { label: 'All movies', index: 1, component: <Movies /> },
-  { label: 'Site settings', index: 2, component: <Settings /> },
-];
+export const SERVER_PATHS = {
+  signin: '/signin',
+  signup: '/signup',
+  logout: '/signout',
+  cart: '/cart',
+  users: '/users',
+  movies: '/films',
+  actors: '/actors',
+  genres: '/genres',
+  categories: '/categories',
+  favorites: '/favorites',
+  admin: '/admin',
+  profile: '/profile',
+  orders: '/orders',
+  main: '/',
+};
