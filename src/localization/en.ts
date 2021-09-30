@@ -123,4 +123,7 @@ export const en = {
     email: 'email',
     'date of birth': 'date of birth',
   },
+  MovieControl: {
+    tooltipText: 'This movie is already in your orders',
+  },
 };

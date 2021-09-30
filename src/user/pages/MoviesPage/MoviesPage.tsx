@@ -5,6 +5,7 @@ import { setCartMoviesToStore } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { getMoviesList, setSelectedParam } from '@/user/store/slices/moviesSlice';
 import { useStyle } from './styles';
+import { setUserOrdersToStore } from '@/user/store/slices/ordersSlice';
 
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();
@@ -15,6 +16,7 @@ export const MoviesPage: FunctionComponent = () => {
     dispatch(getMoviesList());
     dispatch(setCartMoviesToStore(userId));
     dispatch(setSelectedParam(''));
+    dispatch(setUserOrdersToStore({ userId }));
   }, []);
 
   return (
