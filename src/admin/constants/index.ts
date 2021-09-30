@@ -1,2 +1,2 @@
-export { allTabs } from './constants';
-export { mockMovies, mockUsers } from './mockConstants';
+export { SERVER_PATHS } from './constants';
+export { mockUsers } from './mockUsers';
