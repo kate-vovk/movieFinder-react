@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 
 interface ISearchState {
   movies: ISearchList;

@@ -26,6 +26,7 @@ i18n
       'ModalAddMovieToCart',
       'UserPage',
       'AdminPanel',
+      'MovieControl',
     ],
     fallbackLng: 'en',
     parseMissingKeyHandler: (value: string) => {

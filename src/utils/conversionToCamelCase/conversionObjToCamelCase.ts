@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { IMovieGET } from './conversionToCamelCase';
 
 export const convertObjToCamelCase = (movie: IMovieGET): IMovie => {

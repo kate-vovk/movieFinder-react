@@ -15,12 +15,14 @@ import { authReducer } from '@/user/store/slices/authSlice';
 import { cartReducer } from '@/user/store/slices/cartSlice';
 import { moviesReducer } from '@/user/store/slices/moviesSlice';
 import { modalReducer } from '@/user/store/slices/modalSlice';
+import { ordersReducer } from '@/user/store/slices/ordersSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
   cart: cartReducer,
   movies: moviesReducer,
   modal: modalReducer,
+  orders: ordersReducer,
 });
 
 const persistConfig = {
