@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { addOrder as addOrderAPI, getUserOrders as getUserOrdersAPI } from '@/user/api/orders';
 
 export const addOrder = async (userId: string): Promise<any> => {

@@ -7,9 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/user/components';
 import { showModal } from '@/user/store/slices/modalSlice';
 import { cartSelector } from '@/user/store/selectors/cart';
+import { favoritesSelector, isFavoritesLoadingSelector } from '@/user/store/selectors/favorites';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { IMovie } from '@/interfaces/movieInterface';
+import { TMovieFavorites } from '@/interfaces/favoritesInterface';
 import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
+import { addMovieToFavorites, removeMovieFromFavorites } from '@/user/store/slices/favoritesSlice';
 import { modalTypes } from '@/user/constants/modalTypes';
 import { activeOrdersSelector } from '@/user/store/selectors/orders';
 import { useStyle, cartButtonTheme } from './styles';
@@ -24,6 +27,8 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
   const dispatch = useDispatch();
   const activeOrders = useSelector(activeOrdersSelector);
   const { movies, isLoading } = useSelector(cartSelector);
+  const favoritesMovies = useSelector(favoritesSelector);
+  const isFavoritesLoading = useSelector(isFavoritesLoadingSelector);
   const userId = useSelector(userIdSelector);
   const modalType = modalTypes.modalMovieCart;
   const modalProps = { movieId, price };
@@ -48,14 +53,33 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
     }
   };
 
+  const toggleFavorites = (): void => {
+    if (favoritesMovies.find((movie: TMovieFavorites) => movie.id === movieId)) {
+      dispatch(removeMovieFromFavorites({ userId, movieId }));
+    } else {
+      dispatch(addMovieToFavorites({ userId, movieId }));
+    }
+  };
+
   const classes = useStyle({
     isIncluded: Boolean(movies.find((movie: IMovie) => movie.id === movieId)),
     isDisabled: Boolean(activeOrders.find(({ id }: { id: string }) => id === movieId)),
   });
+
+  const classesFavorites = useStyle({
+    isIncluded: Boolean(favoritesMovies.find((movie: TMovieFavorites) => movie.id === movieId)),
+    isDisabled: Boolean(),
+  });
+
   return (
     <div className={classes.footer}>
-      <CustomButton name="favorite" buttonType="button" className={classes.favoritesButton} />
-
+      <CustomButton
+        name="favorite"
+        buttonType="button"
+        className={classesFavorites.addToFavoriteButton}
+        onClick={toggleFavorites}
+        disabled={isFavoritesLoading}
+      />
       <ThemeProvider theme={cartButtonTheme}>
         <Tooltip
           open={openTooltip}

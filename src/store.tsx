@@ -15,6 +15,7 @@ import { authReducer } from '@/user/store/slices/authSlice';
 import { cartReducer } from '@/user/store/slices/cartSlice';
 import { moviesReducer } from '@/user/store/slices/moviesSlice';
 import { modalReducer } from '@/user/store/slices/modalSlice';
+import { favoritesReducer } from '@/user/store/slices/favoritesSlice';
 import { ordersReducer } from '@/user/store/slices/ordersSlice';
 
 const reducers = combineReducers({
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   cart: cartReducer,
   movies: moviesReducer,
   modal: modalReducer,
+  favorites: favoritesReducer,
   orders: ordersReducer,
 });
 

@@ -7,8 +7,8 @@ export interface IMovie {
   releaseDate: string;
   productionCompany: string;
   duration: number;
-  genre: string;
-  category: string;
+  genres: string;
+  categories: string;
   producer: string;
   cast: string;
   trailerUrl: string;
