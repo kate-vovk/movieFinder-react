@@ -1,7 +1,10 @@
 import { getDataFromApi } from '@/user/api/search-filter';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IGetMovies } from '@/interfaces/movieInterface';
 
-export const getMovieByQuery = async (path: string): Promise<IMovie[]> => {
-  const { data } = await getDataFromApi(path);
-  return data;
+export const getMovieByQuery = async (path: string): Promise<IGetMovies> => {
+  const {
+    data: { films, totalFilmCounter },
+  } = await getDataFromApi(path);
+
+  return { films, totalFilmCounter };
 };

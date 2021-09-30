@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { MovieControl } from '@/user/components';
 import { CLIENT_PATHS } from '@/user/constants';
 import { useStyle } from './styles';

@@ -6,7 +6,7 @@ import { CustomButton } from '@/user/components';
 import { showModal } from '@/user/store/slices/modalSlice';
 import { cartSelector } from '@/user/store/selectors/cart';
 import { userIdSelector } from '@/user/store/selectors/auth';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { useStyle, cartButtonTheme } from './styles';
 import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
 import { modalTypes } from '@/user/constants/modalTypes';
