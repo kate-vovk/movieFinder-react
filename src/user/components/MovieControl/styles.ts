@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { makeStyles } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
 
@@ -11,8 +12,8 @@ export const useStyle = makeStyles({
     color: 'yellow',
   },
   addToCartButton: {
-    backgroundColor: ({ isIncluded }: { isIncluded: boolean }) =>
-      isIncluded ? 'yellow' : 'lightGrey',
+    backgroundColor: ({ isIncluded, isDisabled }: { isIncluded: boolean; isDisabled: boolean }) =>
+      isIncluded ? 'yellow' : isDisabled ? 'grey' : 'lightGrey',
   },
   price: {
     color: 'red',

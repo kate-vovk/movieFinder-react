@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/user/constants';
 import { getDataMoviePage } from '@/user/businessLogic/movie';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { movieListSelector } from '@/user/store/selectors/movies';
 import { MovieFeedback } from './MovieFeedback';
 import { MovieInfo } from './MovieInfo';

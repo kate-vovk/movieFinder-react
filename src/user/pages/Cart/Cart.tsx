@@ -8,7 +8,7 @@ import { cartSelector } from '@/user/store/selectors/cart';
 import { setCartMoviesToStore } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { CustomButton, PaymentDetailsModal } from '@/user/components';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { CartItem } from './CartItem';
 import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';

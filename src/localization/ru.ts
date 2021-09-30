@@ -120,7 +120,10 @@ export const ru = {
     'My feedback': 'Мои отзывы',
     save: 'Сохранить',
     name: 'имя',
-    email: 'email',
+    email: 'эл. почта',
     'date of birth': 'дата рождения',
+  },
+  MovieControl: {
+    tooltipText: 'Данный фильм уже находится в ваших заказах',
   },
 };

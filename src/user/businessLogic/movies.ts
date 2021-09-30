@@ -1,7 +1,9 @@
+import { IGetMovies } from '@/interfaces/movieInterface';
 import { getMovieList } from '@/user/api/movies';
-import { convertToCamelCase } from '@/utils/conversionToCamelCase';
 
-export const getMovies = async (): Promise<any> => {
-  const { data } = await getMovieList();
-  return convertToCamelCase(data);
+export const getMovies = async (): Promise<IGetMovies> => {
+  const {
+    data: { films, totalFilmCounter },
+  } = await getMovieList();
+  return { films, totalFilmCounter };
 };

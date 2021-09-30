@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { getMovies } from '@/user/businessLogic/movies';
 import { getMovieByQuery } from '@/user/businessLogic/searchFilter';
 import { createPath } from '@/utils/url';
@@ -62,12 +62,12 @@ export const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMoviesList.fulfilled, (state, action) => {
-        state.movies = action.payload;
-        state.totalCount = action.payload?.length;
+        state.movies = action.payload.films;
+        state.totalCount = action.payload.totalFilmCounter;
       })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-        state.movies = action.payload;
-        state.totalCount = action.payload?.length;
+        state.movies = action.payload.films;
+        state.totalCount = action.payload.totalFilmCounter;
       });
   },
 });

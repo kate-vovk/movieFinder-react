@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/user/constants';
 import { CustomButton } from '@/user/components';
-import { IMovie } from '@/interfaces/cartInterfaces';
+import { IMovie } from '@/interfaces/movieInterface';
 import { useStyle } from './styles';
 import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';

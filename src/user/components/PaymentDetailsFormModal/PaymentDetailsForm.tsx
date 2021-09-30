@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputMask from 'react-input-mask';
 import { useTranslation } from 'react-i18next';
 import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidation';
-import { sendData } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { CLIENT_PATHS } from '@/user/constants';
 import { useStyle } from './styles';
+import { addOrder } from '@/user/store/slices/ordersSlice';
 
 export const PaymentDetailsForm: FunctionComponent = () => {
   const { t } = useTranslation(['PaymentForm']);
@@ -19,7 +19,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
   const userId = useSelector(userIdSelector);
 
   const clickBuyButton = (): void => {
-    dispatch(sendData({ userId }));
+    dispatch(addOrder(userId));
     history.push(CLIENT_PATHS.main);
   };
   const formik = useFormik({
