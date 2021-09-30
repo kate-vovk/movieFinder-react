@@ -28,9 +28,7 @@ export const SignInForm: FunctionComponent = () => {
   };
 
   if (isLoggedIn) {
-    const previousRoute = Object(location.state).prevPath
-      ? Object(location.state).prevPath
-      : CLIENT_PATHS.main;
+    const previousRoute = Object(location.state).prevPath || CLIENT_PATHS.main;
     history.push(previousRoute);
   }
 
