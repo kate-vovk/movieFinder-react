@@ -6,10 +6,10 @@ import { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 interface ISelectBlock {
   formControlClass: string;
   inputLabelName: string;
-  open: boolean | undefined;
+  open: boolean;
   id: string;
-  onClose: ((event: ChangeEvent<Record<string, unknown>>) => void) | undefined;
-  onOpen: ((event: ChangeEvent<Record<string, unknown>>) => void) | undefined;
+  onClose: (event: ChangeEvent<Record<string, unknown>>) => void;
+  onOpen: (event: ChangeEvent<Record<string, unknown>>) => void;
   value: string;
   onChange:
     | ((
