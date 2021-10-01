@@ -33,13 +33,16 @@ export const Movies: FunctionComponent = () => {
   const [movies, setMovies] = useState<IMovie[] | null>(null);
   const [pageSize, setPageSize] = useState(5);
   const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    getMovies({ limit: pageSize }).then((results) => {
-      setMovies(results);
+    getMovies({ limit: pageSize, page }).then((data) => {
+      setMovies(data.results);
+      setTotal(data.total);
       setLoading(false);
     });
-  }, [pageSize]);
+  }, [pageSize, page]);
 
   return (
     <div className={classes.root}>
@@ -49,10 +52,13 @@ export const Movies: FunctionComponent = () => {
         <Circular />
       ) : (
         <Table
+          page={page}
           rows={movies}
           columns={moviesTableDetails}
           onPageSizeChange={setPageSize}
           pageSize={pageSize}
+          rowCount={total}
+          onPageChange={setPage}
         />
       )}
     </div>
