@@ -5,7 +5,7 @@ import { sidebarFilterNamesFields } from '@/user/constants/sidebarFilterNamesFie
 import { useStyle } from './styles';
 import { CustomAccordion } from './CustomAccordion';
 import { getMoviesListWithQuery } from '@/user/store/slices/moviesSlice';
-import { CustomButton } from '@/user/components/CustomButton';
+import { CustomButton } from '@/sharedComponents/CustomButton';
 import { moviesSelector } from '@/user/store/selectors/movies';
 
 export const Sidebar: FunctionComponent = () => {

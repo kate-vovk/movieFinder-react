@@ -1,19 +1,19 @@
-import { Input, FormControl } from '@material-ui/core';
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
-import InputLabel from '@material-ui/core/InputLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesListWithQuery, setSearchOption } from '@/user/store/slices/moviesSlice';
-import { moviesSelector } from '@/user/store/selectors/movies';
+import { getMoviesListWithQuery } from '@/user/store/slices/moviesSlice';
+import { movieSearchSelector } from '@/user/store/selectors/movies';
 import { useStyle } from './styles';
+import { InputBlock } from '@/sharedComponents/InputBlock';
 
 export const SearchInput: FunctionComponent = () => {
   const { t } = useTranslation(['Search']);
   const classes = useStyle();
   const dispatch = useDispatch();
+  const selectParam = useSelector(movieSearchSelector);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchParam, setSearchParam] = useState('');
+
   const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     setSearchQuery(event.target?.value);
@@ -21,36 +21,21 @@ export const SearchInput: FunctionComponent = () => {
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
-  const { selectParam, filters } = useSelector(moviesSelector);
-
   useEffect(() => {
-    if (debouncedSearchQuery !== '' || searchParam === selectParam) {
-      dispatch(
-        getMoviesListWithQuery({
-          searchQuery: debouncedSearchQuery,
-          selectParam,
-          filters,
-        }),
-      );
-      dispatch(setSearchOption(debouncedSearchQuery));
+    if (searchQuery !== '') {
+      dispatch(getMoviesListWithQuery({ searchQuery: debouncedSearchQuery, selectParam }));
     }
   }, [selectParam, debouncedSearchQuery]);
 
-  useEffect(() => {
-    setSearchParam(selectParam);
-  }, [selectParam]);
-
   return (
-    <FormControl className={classes.searchForm}>
-      <InputLabel htmlFor="search">{t('search')}</InputLabel>
-      <Input
-        type="text"
-        autoComplete="off"
-        placeholder={t('search')}
-        value={searchQuery}
-        onChange={getSearchQuery}
-        id="search"
-      />
-    </FormControl>
+    <InputBlock
+      formControlClass={classes.searchForm}
+      labelName={t('search')}
+      type="text"
+      placeholder={t('search')}
+      value={searchQuery}
+      onChange={getSearchQuery}
+      id="search"
+    />
   );
 };

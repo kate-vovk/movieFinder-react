@@ -15,7 +15,7 @@ interface ISearchState {
 interface IQuery {
   selectParam: string;
   searchQuery: string;
-  filters: { [key: string]: string[] };
+  filters?: { [key: string]: string[] };
 }
 
 export const getMoviesList = createAsyncThunk('search/getMovieList', async () => {
