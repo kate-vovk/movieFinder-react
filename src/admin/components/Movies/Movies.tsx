@@ -35,8 +35,8 @@ export const Movies: FunctionComponent = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getMovies({ limit: pageSize }).then((result) => {
-      setMovies(result);
+    getMovies({ limit: pageSize }).then((results) => {
+      setMovies(results);
       setLoading(false);
     });
   }, [pageSize]);
