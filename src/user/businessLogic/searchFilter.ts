@@ -3,8 +3,8 @@ import { IGetMovies } from '@/interfaces/movieInterface';
 
 export const getMovieByQuery = async (path: string): Promise<IGetMovies> => {
   const {
-    data: { results, total },
+    data: { films, totalFilmCounter },
   } = await getDataFromApi(path);
 
-  return { results, total };
+  return { films, totalFilmCounter };
 };

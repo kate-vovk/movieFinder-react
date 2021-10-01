@@ -24,6 +24,6 @@ export interface IMovie {
 }
 
 export interface IGetMovies {
-  results: IMovie[];
-  total: number;
+  films: IMovie[];
+  totalFilmCounter: number;
 }

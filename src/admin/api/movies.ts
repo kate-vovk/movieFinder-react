@@ -7,6 +7,6 @@ export interface IMovieList {
   limit: number;
 }
 
-export const getMovieList = ({ page = 1, limit = 15 }: IMovieList): Promise<AxiosResponse> => {
+export const getMovieList = ({ page = 0, limit = 15 }: IMovieList): Promise<AxiosResponse> => {
   return HTTPService.get(`${SERVER_PATHS.movies}?page=${page}&limit=${limit}`);
 };
