@@ -62,12 +62,12 @@ export const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMoviesList.fulfilled, (state, action) => {
-        state.movies = action.payload.films;
-        state.totalCount = action.payload.totalFilmCounter;
+        state.movies = action.payload.results;
+        state.totalCount = action.payload.total;
       })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-        state.movies = action.payload.films;
-        state.totalCount = action.payload.totalFilmCounter;
+        state.movies = action.payload.results;
+        state.totalCount = action.payload.total;
       });
   },
 });
