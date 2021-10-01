@@ -5,11 +5,9 @@ import { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 
 interface ISelectBlock {
   formControlClass: string;
-  inputLabelId: string;
   inputLabelName: string;
   open: boolean | undefined;
   id: string;
-  labelId: string;
   onClose: ((event: ChangeEvent<Record<string, unknown>>) => void) | undefined;
   onOpen: ((event: ChangeEvent<Record<string, unknown>>) => void) | undefined;
   value: string;
@@ -24,7 +22,6 @@ interface ISelectBlock {
 
 export const SelectBlock: FunctionComponent<ISelectBlock> = ({
   formControlClass,
-  inputLabelId,
   inputLabelName,
   open,
   onClose,
@@ -32,14 +29,12 @@ export const SelectBlock: FunctionComponent<ISelectBlock> = ({
   value,
   onChange,
   option,
-  labelId,
   id,
 }) => {
   return (
     <FormControl className={formControlClass}>
-      <InputLabel id={inputLabelId}>{inputLabelName}</InputLabel>
+      <InputLabel htmlFor={id}>{inputLabelName}</InputLabel>
       <Select
-        labelId={labelId}
         id={id}
         open={open}
         onClose={onClose}

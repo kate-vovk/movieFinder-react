@@ -10,7 +10,6 @@ interface IInputBlock {
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   id: string;
-  htmlFor: string;
 }
 
 export const InputBlock: FunctionComponent<IInputBlock> = ({
@@ -21,11 +20,10 @@ export const InputBlock: FunctionComponent<IInputBlock> = ({
   value,
   onChange,
   id,
-  htmlFor,
 }) => {
   return (
     <FormControl className={formControlClass}>
-      <InputLabel htmlFor={htmlFor}>{labelName}</InputLabel>
+      <InputLabel htmlFor={id}>{labelName}</InputLabel>
       <Input
         type={type}
         autoComplete="off"
