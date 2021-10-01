@@ -2,8 +2,8 @@ import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesListWithQuery } from '@/user/store/slices/moviesSlice';
-import { movieSearchSelector } from '@/user/store/selectors/movies';
+import { getMoviesListWithQuery, setSearchOption } from '@/user/store/slices/moviesSlice';
+import { moviesSelector } from '@/user/store/selectors/movies';
 import { useStyle } from './styles';
 import { InputBlock } from '@/sharedComponents/InputBlock';
 
@@ -11,8 +11,9 @@ export const SearchInput: FunctionComponent = () => {
   const { t } = useTranslation(['Search']);
   const classes = useStyle();
   const dispatch = useDispatch();
-  const selectParam = useSelector(movieSearchSelector);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchParam, setSearchParam] = useState('');
+  const { selectParam, filters } = useSelector(moviesSelector);
 
   const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
@@ -22,10 +23,21 @@ export const SearchInput: FunctionComponent = () => {
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
   useEffect(() => {
-    if (searchQuery !== '') {
-      dispatch(getMoviesListWithQuery({ searchQuery: debouncedSearchQuery, selectParam }));
+    if (debouncedSearchQuery !== '' || searchParam === selectParam) {
+      dispatch(
+        getMoviesListWithQuery({
+          searchQuery: debouncedSearchQuery,
+          selectParam,
+          filters,
+        }),
+      );
+      dispatch(setSearchOption(debouncedSearchQuery));
     }
   }, [selectParam, debouncedSearchQuery]);
+
+  useEffect(() => {
+    setSearchParam(selectParam);
+  }, [selectParam]);
 
   return (
     <InputBlock
