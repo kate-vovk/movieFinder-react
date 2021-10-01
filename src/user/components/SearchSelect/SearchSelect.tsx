@@ -37,7 +37,9 @@ export const SearchSelect: FunctionComponent = () => {
     <SelectBlock
       formControlClass={classes.formControl}
       inputLabelId="demo-controlled-open-select-label"
+      labelId="demo-controlled-open-select-label"
       inputLabelName={t('selectOption')}
+      id="demo-controlled-open-select"
       open={isSelectOpen}
       onClose={selectClose}
       onOpen={selectOpen}

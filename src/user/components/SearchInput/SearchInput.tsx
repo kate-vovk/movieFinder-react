@@ -30,6 +30,7 @@ export const SearchInput: FunctionComponent = () => {
   return (
     <InputBlock
       formControlClass={classes.searchForm}
+      htmlFor="search"
       labelName={t('search')}
       type="text"
       placeholder={t('search')}

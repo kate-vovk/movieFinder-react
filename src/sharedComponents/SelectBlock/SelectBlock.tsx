@@ -8,6 +8,8 @@ interface ISelectBlock {
   inputLabelId: string;
   inputLabelName: string;
   open: boolean | undefined;
+  id: string;
+  labelId: string;
   onClose: ((event: ChangeEvent<Record<string, unknown>>) => void) | undefined;
   onOpen: ((event: ChangeEvent<Record<string, unknown>>) => void) | undefined;
   value: string;
@@ -30,13 +32,15 @@ export const SelectBlock: FunctionComponent<ISelectBlock> = ({
   value,
   onChange,
   option,
+  labelId,
+  id,
 }) => {
   return (
     <FormControl className={formControlClass}>
       <InputLabel id={inputLabelId}>{inputLabelName}</InputLabel>
       <Select
-        labelId="demo-controlled-open-select-label"
-        id="demo-controlled-open-select"
+        labelId={labelId}
+        id={id}
         open={open}
         onClose={onClose}
         onOpen={onOpen}
