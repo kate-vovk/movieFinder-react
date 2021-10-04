@@ -31,7 +31,11 @@ export const removeMovieFromCart = createAsyncThunk(
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    clearCart() {
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(setCartMoviesToStore.fulfilled, (state, action) => {
@@ -60,4 +64,5 @@ export const cartSlice = createSlice({
   },
 });
 
+export const { clearCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
