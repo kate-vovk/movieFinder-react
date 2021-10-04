@@ -3,27 +3,27 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 
+export type THandleChangeSelect = (
+  event: ChangeEvent<{ value: unknown }>,
+  child: ReactNode,
+) => void;
+
 interface ISelectBlock {
   formControlClass: string;
   inputLabelName: string;
-  open: boolean;
+  isOpen: boolean;
   id: string;
   onClose: (event: ChangeEvent<Record<string, unknown>>) => void;
   onOpen: (event: ChangeEvent<Record<string, unknown>>) => void;
   value: string;
-  onChange:
-    | ((
-        event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
-        child: ReactNode,
-      ) => void)
-    | undefined;
+  onChange: THandleChangeSelect | undefined;
   option: JSX.Element[];
 }
 
 export const SelectBlock: FunctionComponent<ISelectBlock> = ({
   formControlClass,
   inputLabelName,
-  open,
+  isOpen,
   onClose,
   onOpen,
   value,
@@ -36,7 +36,7 @@ export const SelectBlock: FunctionComponent<ISelectBlock> = ({
       <InputLabel htmlFor={id}>{inputLabelName}</InputLabel>
       <Select
         id={id}
-        open={open}
+        open={isOpen}
         onClose={onClose}
         onOpen={onOpen}
         value={value}
