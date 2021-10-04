@@ -15,7 +15,7 @@ export const SearchInput: FunctionComponent = () => {
   const [searchParam, setSearchParam] = useState('');
   const { selectParam, filters } = useSelector(moviesSelector);
 
-  const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
+  const getMoviesListWithSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     setSearchQuery(event.target?.value);
   };
@@ -46,7 +46,7 @@ export const SearchInput: FunctionComponent = () => {
       type="text"
       placeholder={t('search')}
       value={searchQuery}
-      onChange={getSearchQuery}
+      onChange={getMoviesListWithSearchQuery}
       id="search"
     />
   );
