@@ -7,40 +7,38 @@ import {
 } from '@/user/api/cart';
 import { ICartMovieState } from '@/interfaces/cartInterfaces';
 import { IMovie } from '@/interfaces/movieInterface';
-import HTTPService from '@/services/httpService';
+// import HTTPService from '@/services/httpService';
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
-  // const response = await getCart(userId);
-  const response = await HTTPService.get();
-  console.error(`Problem: ${response}`);
   try {
-    if (response.status === 200) {
-      console.log(response.status);
-      return response.data;
-    };
+    // const response = await HTTPService.get();
+    const response = await getCart(userId);
+    return response.data;
   } catch (err: any) {
-    console.error(`Problem: ${err}`);
-    switch (response.status) {
-      case 100:
-        toast(i18next.t('AuthStatuses:100'));
+    const arr = String(err)
+      .split(' ')
+      .filter((item: string) => {
+        return !Number.isNaN(Number(item));
+      });
+    console.log(arr[0], typeof arr[0]);
+    switch (arr[0] || String(err)) {
+      case 'Error: Network Error':
+        toast(i18next.t('Cart:Network Error happened'));
         break;
-      case 300:
-      case 400:
-        toast(`${JSON.parse(response.status).data} - ${i18next.t('AuthStatuses:400')}`, {
-          autoClose: false,
-        });
+      case '400':
+        toast(i18next.t('CartStatuses:400'));
         break;
-      case 401:
-        toast(`${i18next.t('AuthStatuses:401')}`, {
-          autoClose: false,
-        });
+      case '401':
+        toast(i18next.t('CartStatuses:401'));
         break;
-      case 500:
-        toast(i18next.t('AuthStatuses:500'));
+      case '500':
+        toast(i18next.t('CartStatuses:500'));
         break;
       default:
-        toast(i18next.t(err));
+        toast(err);
+        break;
     }
+    throw new Error(err);
   }
   return [];
 };

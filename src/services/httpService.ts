@@ -1,12 +1,13 @@
-import { AxiosResponse } from 'axios';
+import { AxiosPromise, AxiosResponse } from 'axios';
 
 const axios = require('axios').default;
 
 axios.defaults.withCredentials = true;
 
 const baseUrl = (path: string | number): string => {
-  // return `${process.env.REACT_APP_API_URL}${path}`;
-  return `https://run.mocky.io/v3/e00aefc7-f920-484f-b7d1-7bbd69809292`;
+  return `${process.env.REACT_APP_API_URL}${path}`;
+  // return `https://run.mocky.io/v3/e00aefc7-f920-484f-b7d1-7bbd69809292`; // 401
+  // return `https://run.mocky.io/v3/b34708f3-03de-45d1-ba91-57d4ad2c9ca5`; // 400
 };
 
 export default class HTTPService {
@@ -14,16 +15,16 @@ export default class HTTPService {
     return axios({
       method: 'get',
       url: baseUrl(path),
-    })
-      .then((response: AxiosResponse) => {
-        return response;
-      })
-      .catch((err: string) => {
-        throw new Error(err);
-      });
+    }).then((response: AxiosResponse) => {
+      console.log('response', response);
+      return response;
+    });
+    // .catch((err: any) => {
+    //   return err;
+    // });
   }
 
-  static post(path: string | number = '', data: any): Promise<any> {
+  static post(path = '', data: any): Promise<AxiosPromise> {
     return axios({
       method: 'post',
       url: baseUrl(path),
@@ -40,7 +41,7 @@ export default class HTTPService {
       });
   }
 
-  static put(data: any, path: string | number = ''): Promise<any> {
+  static put(data: any, path = ''): Promise<AxiosPromise> {
     return axios({
       method: 'put',
       url: baseUrl(path),
@@ -54,7 +55,7 @@ export default class HTTPService {
       });
   }
 
-  static delete(path: string | number = ''): Promise<any> {
+  static delete(path = ''): Promise<AxiosPromise> {
     return axios({
       method: 'delete',
       url: baseUrl(path),

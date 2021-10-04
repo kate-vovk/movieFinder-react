@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
+import { AxiosPromise } from 'axios';
 import HTTPService from '@/services/httpService';
 import { SERVER_PATHS } from '@/user/constants';
 import { ICartMovieState } from '@/interfaces/cartInterfaces';
 
-export const getCart = async (userId: string): Promise<any> => {
+export const getCart = async (userId: string): Promise<AxiosPromise> => {
   return HTTPService.get(`${SERVER_PATHS.cart}?user_id=${userId}`);
 };
 
@@ -12,7 +13,7 @@ export const addMovieToCart = async ({
   movieId: film_id,
   period,
   quality: quality_id,
-}: ICartMovieState): Promise<any> => {
+}: ICartMovieState): Promise<AxiosPromise> => {
   return HTTPService.post(`${SERVER_PATHS.cart}?user_id=${user_id}&film_id=${film_id}`, {
     user_id,
     film_id,

@@ -3,21 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { singInFormFields } from '@/user/constants/SignInFormFields';
 import { login } from '@/user/store/slices/authSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
-import { CLIENT_PATHS } from '@/user/constants';
 import { ILoginData } from '@/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
 import { useStyle } from './styles';
+import { CLIENT_PATHS } from '@/user/constants';
 
 export const SignInForm: FunctionComponent = () => {
   const { t } = useTranslation(['SignIn']);
   const history = useHistory();
   const isLoggedIn = useSelector(userIdSelector);
 
+  const location = useLocation();
   const classes = useStyle();
 
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ export const SignInForm: FunctionComponent = () => {
   };
 
   if (isLoggedIn) {
-    history.push(CLIENT_PATHS.movies);
+    const previousRoute = Object(location.state).prevPath || CLIENT_PATHS.main;
+    history.push(previousRoute);
   }
 
   const formik = useFormik({

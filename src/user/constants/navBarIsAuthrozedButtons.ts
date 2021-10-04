@@ -6,7 +6,10 @@ interface isAuthorizedButton {
   badge: boolean;
 }
 
-export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[] =>
+export const isAuthorizedButtons = (
+  isAuthorized: boolean,
+  isSignInForm: boolean,
+): isAuthorizedButton[] =>
   isAuthorized
     ? [
         {
@@ -16,14 +19,15 @@ export const isAuthorizedButtons = (isAuthorized: boolean): isAuthorizedButton[]
         },
       ]
     : [
-        {
-          name: 'signUp',
-          to: CLIENT_PATHS.signup,
-          badge: false,
-        },
-        {
-          name: 'signIn',
-          to: CLIENT_PATHS.signin,
-          badge: false,
-        },
+        isSignInForm
+          ? {
+              name: 'signUp',
+              to: CLIENT_PATHS.signup,
+              badge: false,
+            }
+          : {
+              name: 'signIn',
+              to: CLIENT_PATHS.signin,
+              badge: false,
+            },
       ];

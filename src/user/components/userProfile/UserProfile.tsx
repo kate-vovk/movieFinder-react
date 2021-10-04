@@ -8,12 +8,14 @@ import { Profile } from './Profile';
 import { Favorites } from './Favorites';
 import { OrdersList } from './OrdersList';
 import { MyFeedback } from './MyFeedback';
+import { MyMovies } from './MyMovies';
 
 const sectionUserProfile = [
   { index: 0, name: 'Profile', component: <Profile /> },
   { index: 1, name: 'Favorites', component: <Favorites /> },
   { index: 2, name: 'Orders list', component: <OrdersList /> },
   { index: 3, name: 'My feedback', component: <MyFeedback /> },
+  { index: 4, name: 'MyMovies', component: <MyMovies /> },
 ];
 
 interface IParamsIndexTab {

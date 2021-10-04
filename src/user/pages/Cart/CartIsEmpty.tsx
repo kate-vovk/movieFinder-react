@@ -4,19 +4,20 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/user/components';
 import { useStyle } from './styles';
+import { CLIENT_PATHS } from '@/user/constants';
 
 export const CartIsEmpty: FunctionComponent = () => {
   const { t } = useTranslation(['Cart']);
   const history = useHistory();
   const classes = useStyle();
 
-  const goToPreviousPage = useCallback(() => {
-    history.goBack();
+  const goHome = useCallback(() => {
+    history.push(CLIENT_PATHS.main);
   }, []);
   return (
     <div className={classes.cartIsEmpty}>
       <Typography>{t('emptyCart')}</Typography>
-      <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
+      <CustomButton buttonType="button" onClick={goHome} name="back" />
     </div>
   );
 };

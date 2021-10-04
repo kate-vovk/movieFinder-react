@@ -1,12 +1,12 @@
 import { FunctionComponent, useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CLIENT_PATHS } from '@/user/constants';
 import { isAuthorizedButtons } from '@/user/constants/navBarIsAuthrozedButtons';
-import { userSelector } from '@/user/store/selectors/auth';
+import { userIdSelector } from '@/user/store/selectors/auth';
 import { cartSelector } from '@/user/store/selectors/cart';
 import { CustomButton, MenuButton } from '@/user/components';
 import { userMenuLinks } from '@/user/constants/menuButton';
@@ -15,8 +15,9 @@ import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
   const languageFromLocalStorage = String(localStorage.getItem('i18nextLng'));
-  const user = useSelector(userSelector);
+  const userId = useSelector(userIdSelector);
   const history = useHistory();
+  const location = useLocation();
   const { movies } = useSelector(cartSelector);
 
   const { i18n } = useTranslation(['AppBar']);
@@ -57,24 +58,27 @@ export const NavBar: FunctionComponent = () => {
                 buttonType="button"
               />
             </ButtonGroup>
-            <MenuButton menuLink={userMenuLinks} />
-            {isAuthorizedButtons(Boolean(user)).map((button) =>
-              button.badge ? (
-                <CustomButton
-                  key={button.name}
-                  name={button.name}
-                  buttonType="button"
-                  onClick={goToCart}
-                  badgeContent={movies.length}
-                />
-              ) : (
-                <CustomButton
-                  key={button.name}
-                  name={button.name}
-                  buttonType="button"
-                  onClick={() => history.push(button.to)}
-                />
-              ),
+            {![CLIENT_PATHS.signin, CLIENT_PATHS.signup].includes(location.pathname) && (
+              <MenuButton menuLink={userMenuLinks} />
+            )}
+            {isAuthorizedButtons(Boolean(userId), location.pathname === CLIENT_PATHS.signin).map(
+              (button) =>
+                button.badge ? (
+                  <CustomButton
+                    key={button.name}
+                    name={button.name}
+                    buttonType="button"
+                    onClick={goToCart}
+                    badgeContent={movies.length}
+                  />
+                ) : (
+                  <CustomButton
+                    key={button.name}
+                    name={button.name}
+                    buttonType="button"
+                    onClick={() => history.push(button.to)}
+                  />
+                ),
             )}
           </div>
         </Toolbar>
