@@ -1,13 +1,12 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select, { SelectProps } from '@material-ui/core/Select';
+import { SelectProps } from '@material-ui/core/Select';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { searchOption } from '@/user/constants/constants';
 import { setSelectedParam } from '@/user/store/slices/moviesSlice';
 import { useStyle } from './styles';
+import { SelectBlock } from '@/sharedComponents/SelectBlock';
 
 export const SearchSelect: FunctionComponent = () => {
   const classes = useStyle();
@@ -35,25 +34,20 @@ export const SearchSelect: FunctionComponent = () => {
   }, [selectParam]);
 
   return (
-    <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">{t('selectOption')}</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={isSelectOpen}
-          onClose={selectClose}
-          onOpen={selectOpen}
-          value={selectParam}
-          onChange={changedSelectParam as SelectProps['onChange']}
-        >
-          {Object.values(searchOption).map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <SelectBlock
+      formControlClass={classes.formControl}
+      inputLabelName={t('selectOption')}
+      id="demo-controlled-open-select"
+      isOpen={isSelectOpen}
+      onClose={selectClose}
+      onOpen={selectOpen}
+      value={selectParam}
+      onChange={changedSelectParam as SelectProps['onChange']}
+      option={Object.values(searchOption).map((option) => (
+        <MenuItem key={option} value={option}>
+          {option}
+        </MenuItem>
+      ))}
+    />
   );
 };
