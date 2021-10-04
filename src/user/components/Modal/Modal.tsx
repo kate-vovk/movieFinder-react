@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal as ModalMUI, Fade, Backdrop } from '@material-ui/core';
-import { CustomButton } from '@/user/components/CustomButton';
+import { CustomButton } from '@/sharedComponents/CustomButton';
 import { modalSelector } from '@/user/store/selectors/modal';
 import { hideModal } from '@/user/store/slices/modalSlice';
 import { ModalAddMovieToCard } from '@/user/components/ModalAddMovieToCard';
