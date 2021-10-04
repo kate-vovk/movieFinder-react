@@ -39,7 +39,6 @@ export const Table: FunctionComponent<ITableProps> = ({
         <DataGrid
           onPageChange={onPageChange}
           autoHeight
-          checkboxSelection
           components={{ NoRowsOverlay: NoRowsComponent }}
           rows={rows}
           columns={columns}
