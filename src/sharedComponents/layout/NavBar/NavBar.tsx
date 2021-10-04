@@ -15,7 +15,7 @@ import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
   const languageFromLocalStorage = String(localStorage.getItem('i18nextLng'));
-  const user = useSelector(userIdSelector);
+  const userId = useSelector(userIdSelector);
   const history = useHistory();
   const location = useLocation();
   const { movies } = useSelector(cartSelector);
@@ -62,7 +62,7 @@ export const NavBar: FunctionComponent = () => {
             location.pathname === CLIENT_PATHS.signup ? null : (
               <MenuButton menuLink={userMenuLinks} />
             )}
-            {isAuthorizedButtons(Boolean(user), location.pathname === CLIENT_PATHS.signin).map(
+            {isAuthorizedButtons(Boolean(userId), location.pathname === CLIENT_PATHS.signin).map(
               (button) =>
                 button.badge ? (
                   <CustomButton
