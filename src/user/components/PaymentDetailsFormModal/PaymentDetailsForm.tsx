@@ -10,6 +10,7 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 import { CLIENT_PATHS } from '@/user/constants';
 import { useStyle } from './styles';
 import { addOrder } from '@/user/store/slices/ordersSlice';
+import { clearCart } from '@/user/store/slices/cartSlice';
 
 export const PaymentDetailsForm: FunctionComponent = () => {
   const { t } = useTranslation(['PaymentForm']);
@@ -20,6 +21,7 @@ export const PaymentDetailsForm: FunctionComponent = () => {
 
   const clickBuyButton = (): void => {
     dispatch(addOrder(userId));
+    dispatch(clearCart());
     history.push(CLIENT_PATHS.main);
   };
   const formik = useFormik({

@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosPromise, AxiosResponse } from 'axios';
 
 const axios = require('axios').default;
 
@@ -22,7 +22,7 @@ export default class HTTPService {
       });
   }
 
-  static post(path: string | number = '', data: any): Promise<any> {
+  static post(path = '', data: any): Promise<AxiosPromise> {
     return axios({
       method: 'post',
       url: baseUrl(path),
@@ -39,7 +39,7 @@ export default class HTTPService {
       });
   }
 
-  static put(data: any, path: string | number = ''): Promise<any> {
+  static put(data: any, path = ''): Promise<AxiosPromise> {
     return axios({
       method: 'put',
       url: baseUrl(path),
@@ -53,7 +53,7 @@ export default class HTTPService {
       });
   }
 
-  static delete(path: string | number = ''): Promise<any> {
+  static delete(path = ''): Promise<AxiosPromise> {
     return axios({
       method: 'delete',
       url: baseUrl(path),
