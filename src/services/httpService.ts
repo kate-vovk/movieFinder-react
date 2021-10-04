@@ -9,7 +9,7 @@ const baseUrl = (path: string | number): string => {
 };
 
 export default class HTTPService {
-  static get(path = ''): Promise<AxiosPromise> {
+  static get(path = ''): Promise<any> {
     return axios({
       method: 'get',
       url: baseUrl(path),

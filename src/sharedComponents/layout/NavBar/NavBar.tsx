@@ -58,8 +58,7 @@ export const NavBar: FunctionComponent = () => {
                 buttonType="button"
               />
             </ButtonGroup>
-            {location.pathname === CLIENT_PATHS.signin ||
-            location.pathname === CLIENT_PATHS.signup ? null : (
+            {![CLIENT_PATHS.signin, CLIENT_PATHS.signup].includes(location.pathname) && (
               <MenuButton menuLink={userMenuLinks} />
             )}
             {isAuthorizedButtons(Boolean(userId), location.pathname === CLIENT_PATHS.signin).map(
