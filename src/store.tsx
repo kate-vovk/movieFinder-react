@@ -30,7 +30,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'movies'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -40,17 +40,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [
-          'auth/registration/fulfilled',
-          'movies/getMovieListWithQuery/pending',
-          'movies/getMovieListWithQuery/fulfilled',
-          FLUSH,
-          REHYDRATE,
-          PAUSE,
-          PERSIST,
-          PURGE,
-          REGISTER,
-        ],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
   ],

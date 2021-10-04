@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Sidebar, MoviesCards, SearchBar } from '@/user/components';
 import { setCartMoviesToStore } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
-import { getMoviesList, setSelectedParam } from '@/user/store/slices/moviesSlice';
+import { getMoviesList, setSelectedParam, removeAllFilters } from '@/user/store/slices/moviesSlice';
 import { setFavoritesMoviesToStore } from '@/user/store/slices/favoritesSlice';
 import { useStyle } from './styles';
 import { setUserOrdersToStore } from '@/user/store/slices/ordersSlice';
@@ -18,6 +18,7 @@ export const MoviesPage: FunctionComponent = () => {
     dispatch(setCartMoviesToStore(userId));
     dispatch(setFavoritesMoviesToStore(userId));
     dispatch(setSelectedParam(''));
+    dispatch(removeAllFilters());
     dispatch(setUserOrdersToStore({ userId }));
   }, []);
 

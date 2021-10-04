@@ -9,3 +9,13 @@ export const convertQualityToNumber = (quality: string): number => {
   }
   return 2;
 };
+
+export const convertIdToQuality = (qualityId: number): string => {
+  if (qualityId === 1) {
+    return EQuality.HD;
+  }
+  if (qualityId === 2) {
+    return EQuality.SD;
+  }
+  return EQuality.SD;
+};
