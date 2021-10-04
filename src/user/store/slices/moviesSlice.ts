@@ -58,6 +58,9 @@ export const moviesSlice = createSlice({
     removeLastFilterOption(state, action) {
       state.filters[action.payload].pop();
     },
+    removeAllFilters(state) {
+      state.filters = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -73,5 +76,10 @@ export const moviesSlice = createSlice({
 });
 
 export const moviesReducer = moviesSlice.reducer;
-export const { setSelectedParam, setSearchOption, addFilterOption, removeLastFilterOption } =
-  moviesSlice.actions;
+export const {
+  setSelectedParam,
+  setSearchOption,
+  addFilterOption,
+  removeLastFilterOption,
+  removeAllFilters,
+} = moviesSlice.actions;
