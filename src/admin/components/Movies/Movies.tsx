@@ -21,7 +21,7 @@ const moviesTableDetails: GridColDef[] = [
     field: 'edit',
     headerName: ' ',
     renderCell: (params: GridCellParams): JSX.Element => {
-      return <EditButton buttonType="button" name="Edit" id={`${+params.id}`} />;
+      return <EditButton buttonType="button" name="Edit" id={String(params.id)} />;
     },
     width: 100,
   },
