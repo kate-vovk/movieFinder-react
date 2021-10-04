@@ -16,7 +16,7 @@ interface ISelectBlock {
   onClose: (event: ChangeEvent<Record<string, unknown>>) => void;
   onOpen: (event: ChangeEvent<Record<string, unknown>>) => void;
   value: string;
-  onChange: THandleChangeSelect | undefined;
+  onChange?: THandleChangeSelect | undefined;
   option: JSX.Element[];
 }
 
