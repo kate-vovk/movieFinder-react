@@ -1,12 +1,11 @@
-import { Input, FormControl } from '@material-ui/core';
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
-import InputLabel from '@material-ui/core/InputLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesListWithQuery, setSearchOption } from '@/user/store/slices/moviesSlice';
 import { moviesSelector } from '@/user/store/selectors/movies';
 import { useStyle } from './styles';
+import { InputBlock } from '@/sharedComponents/InputBlock';
 
 export const SearchInput: FunctionComponent = () => {
   const { t } = useTranslation(['Search']);
@@ -14,14 +13,14 @@ export const SearchInput: FunctionComponent = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchParam, setSearchParam] = useState('');
-  const getSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
+  const { selectParam, filters } = useSelector(moviesSelector);
+
+  const getMoviesListWithSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     setSearchQuery(event.target?.value);
   };
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
-
-  const { selectParam, filters } = useSelector(moviesSelector);
 
   useEffect(() => {
     if (debouncedSearchQuery !== '' || searchParam === selectParam) {
@@ -41,16 +40,14 @@ export const SearchInput: FunctionComponent = () => {
   }, [selectParam]);
 
   return (
-    <FormControl className={classes.searchForm}>
-      <InputLabel htmlFor="search">{t('search')}</InputLabel>
-      <Input
-        type="text"
-        autoComplete="off"
-        placeholder={t('search')}
-        value={searchQuery}
-        onChange={getSearchQuery}
-        id="search"
-      />
-    </FormControl>
+    <InputBlock
+      formControlClass={classes.searchForm}
+      labelName={t('search')}
+      type="text"
+      placeholder={t('search')}
+      value={searchQuery}
+      onChange={getMoviesListWithSearchQuery}
+      id="search"
+    />
   );
 };
