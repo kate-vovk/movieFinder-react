@@ -14,7 +14,7 @@ export interface IOrder {
   country: string;
   trailerUrl: string;
   orderPrice: string;
-  qualityId: string;
+  qualityId: number;
   period: number;
   isActive: boolean;
   expireDate: string;
