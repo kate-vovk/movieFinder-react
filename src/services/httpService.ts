@@ -5,7 +5,8 @@ const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 
 const baseUrl = (path: string | number): string => {
-  return `${process.env.REACT_APP_API_URL}${path}`;
+  // return `${process.env.REACT_APP_API_URL}${path}`;
+  return `https://run.mocky.io/v3/e00aefc7-f920-484f-b7d1-7bbd69809292`;
 };
 
 export default class HTTPService {
