@@ -1,8 +1,10 @@
+import { stateStatus } from '@/user/constants/constants';
 import { IMovie } from './movieInterface';
 
 export interface ICart {
   movies: IMovie[];
-  isLoading: boolean;
+  error: { [key: string]: string | any }[];
+  status: stateStatus;
 }
 
 export interface ICartMovieState {

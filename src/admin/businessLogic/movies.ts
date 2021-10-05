@@ -1,7 +1,7 @@
 import { getMovieList, IMovieList } from '@/admin/api/movies';
-import { IMovie } from '@/interfaces/movieInterface';
+import { IGetMovies } from '@/interfaces/movieInterface';
 
-export const getMovies = async ({ page, limit }: IMovieList): Promise<IMovie[]> => {
+export const getMovies = async ({ page, limit }: IMovieList): Promise<IGetMovies> => {
   const { data } = await getMovieList({ page, limit });
-  return data.results;
+  return data;
 };

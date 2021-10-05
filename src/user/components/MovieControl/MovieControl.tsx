@@ -16,6 +16,7 @@ import { addMovieToFavorites, removeMovieFromFavorites } from '@/user/store/slic
 import { modalTypes } from '@/user/constants/modalTypes';
 import { activeOrdersSelector } from '@/user/store/selectors/orders';
 import { useStyle, cartButtonTheme } from './styles';
+import { stateStatus } from '@/user/constants/constants';
 
 interface IMovieControlProps {
   movieId: string;
@@ -26,7 +27,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
   const { t } = useTranslation(['MovieControl']);
   const dispatch = useDispatch();
   const activeOrders = useSelector(activeOrdersSelector);
-  const { movies, isLoading } = useSelector(cartSelector);
+  const { movies, status } = useSelector(cartSelector);
   const favoritesMovies = useSelector(favoritesSelector);
   const isFavoritesLoading = useSelector(isFavoritesLoadingSelector);
   const userId = useSelector(userIdSelector);
@@ -93,7 +94,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
               buttonType="button"
               onClick={addMovieIdToCart}
               className={classes.addToCartButton}
-              disabled={isLoading || openTooltip}
+              disabled={status === stateStatus.loading || openTooltip}
             />
           </div>
         </Tooltip>

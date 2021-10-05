@@ -75,6 +75,16 @@ export const en = {
     error: 'Error',
   },
   CartStatuses: {
+    'Cart error': 'Something went wrong in cart',
+    'Try again': 'Try again',
+    'Error. Network Error': 'Network Error',
+    'Network Error': 'Network Error',
+    '400': 'Bad request',
+    '401': 'Unauthorized',
+    '403': 'Forbidden',
+    '500': 'Internal server error. No cart for current user exists',
+    '502': 'Bad gateway',
+    '503': 'Service Unavailable',
     noCart: 'No cart for current user exists',
   },
   UserMenu: {

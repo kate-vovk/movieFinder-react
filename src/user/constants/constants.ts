@@ -32,3 +32,11 @@ export enum searchOption {
   actor = 'actor',
   studio = 'studio',
 }
+
+export enum stateStatus {
+  initial = 'initial',
+  error = 'error',
+  loading = 'loading',
+  empty = 'empty',
+  success = 'success',
+}

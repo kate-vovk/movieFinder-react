@@ -16,7 +16,10 @@ export interface ITableProps {
   rows: IMovie[] | IUser[] | null;
   columns: GridColDef[];
   pageSize: number;
+  rowCount: number;
+  page: number;
   onPageSizeChange: (pageSize: number) => void;
+  onPageChange: (page: number) => void;
 }
 
 export const Table: FunctionComponent<ITableProps> = ({
@@ -24,6 +27,9 @@ export const Table: FunctionComponent<ITableProps> = ({
   rows,
   onPageSizeChange,
   pageSize,
+  rowCount,
+  onPageChange,
+  page,
 }) => {
   const classes = useStyles();
 
@@ -31,16 +37,17 @@ export const Table: FunctionComponent<ITableProps> = ({
     <div className={classes.root}>
       {rows && (
         <DataGrid
+          onPageChange={onPageChange}
           autoHeight
-          checkboxSelection
           components={{ NoRowsOverlay: NoRowsComponent }}
           rows={rows}
           columns={columns}
           rowsPerPageOptions={rowsPerPage}
-          pagination
+          rowCount={rowCount}
           paginationMode="server"
           pageSize={pageSize}
           onPageSizeChange={onPageSizeChange}
+          page={page}
         />
       )}
     </div>
