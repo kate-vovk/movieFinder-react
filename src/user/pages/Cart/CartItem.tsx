@@ -9,6 +9,9 @@ import { IMovie } from '@/interfaces/movieInterface';
 import { useStyle } from './styles';
 import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
+import { cartSelector } from '@/user/store/selectors/cart';
+import { stateStatus } from '@/user/constants/constants';
+import { CartError } from './CartError';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const { id, coverUrl, title, price, description } = movie;
@@ -17,6 +20,7 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const history = useHistory();
 
   const userId = useSelector(userIdSelector);
+  const { status, error } = useSelector(cartSelector);
 
   const removeMovieIdFromCart = (): void => {
     dispatch(removeMovieFromCart({ userId, movieId: movie.id }));
@@ -24,26 +28,39 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const goToDetailedView = (): void => {
     history.push(`${CLIENT_PATHS.movies}/${id}`);
   };
-  return (
-    <ListItem className={classes.container} component={Paper}>
-      <ListItemIcon className={classes.image}>
-        <img src={coverUrl} />
-      </ListItemIcon>
-      <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
-        <Typography onClick={goToDetailedView} className={classes.title}>
-          {title}
-        </Typography>
-        <Typography onClick={goToDetailedView} className={classes.description}>
-          {description}
-        </Typography>
-      </div>
-      <div className={`${classes.content} ${classes.removePriceContent}`}>
-        <CustomButton buttonType="button" onClick={removeMovieIdFromCart} name="remove" />
-        <div className={classes.priceContainer}>
-          <Typography variant="h6">{price}</Typography>
-          <EuroIcon fontSize="small" />
+
+  if (status === stateStatus.error) {
+    const caughtErrors = error.map(({ errorType }): string => String(errorType));
+    return caughtErrors.includes('cart/removeMovie/rejected') ? (
+      <CartError params={{ userId, movieId: movie.id }} />
+    ) : (
+      <CartError params={userId} />
+    );
+  }
+
+  if (status === stateStatus.success) {
+    return (
+      <ListItem className={classes.container} component={Paper}>
+        <ListItemIcon className={classes.image}>
+          <img src={coverUrl} />
+        </ListItemIcon>
+        <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
+          <Typography onClick={goToDetailedView} className={classes.title}>
+            {title}
+          </Typography>
+          <Typography onClick={goToDetailedView} className={classes.description}>
+            {description}
+          </Typography>
         </div>
-      </div>
-    </ListItem>
-  );
+        <div className={`${classes.content} ${classes.removePriceContent}`}>
+          <CustomButton buttonType="button" onClick={removeMovieIdFromCart} name="remove" />
+          <div className={classes.priceContainer}>
+            <Typography variant="h6">{price}</Typography>
+            <EuroIcon fontSize="small" />
+          </div>
+        </div>
+      </ListItem>
+    );
+  }
+  return null;
 };

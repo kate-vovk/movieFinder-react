@@ -20,7 +20,7 @@ export const Cart: FunctionComponent = () => {
   const { t } = useTranslation(['Cart']);
 
   const history = useHistory();
-  const { movies, status } = useSelector(cartSelector);
+  const { movies, status, error } = useSelector(cartSelector);
   const userId = useSelector(userIdSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
@@ -41,43 +41,43 @@ export const Cart: FunctionComponent = () => {
   const getTotalPrice = (): number =>
     movies.reduce((accumulator, { price }) => accumulator + Number(price), 0);
 
-  if (status === stateStatus.error) {
-    return <CartError />;
-  }
   if (status === stateStatus.loading) {
     return <Circular />;
   }
   if (status === stateStatus.empty) {
     return <CartIsEmpty />;
   }
-  if (status === stateStatus.success) {
-    return (
-      <>
-        <div className={classes.cartContainer}>
-          <List>
-            {movies.map((movie: IMovie) => (
-              <CartItem key={movie.id} movie={movie} />
-            ))}
-          </List>
-          <div className={classes.buttonsContainer}>
-            <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
-            <CustomButton
-              buttonType="button"
-              className={classes.buyButton}
-              onClick={clickOnBuyButton}
-              name={t('buyButton')}
-            />
-            <div className={classes.priceContainer}>
-              <Typography>{t('totalPrice')}: &nbsp; </Typography>
-              <Typography className={classes.priceContainer}>
-                {getTotalPrice().toFixed(2)} <EuroIcon fontSize="small" />
-              </Typography>
-            </div>
+  if (
+    status === stateStatus.error &&
+    !error.map(({ errorType }): string => String(errorType)).includes('cart/removeMovie/rejected')
+  ) {
+    return <CartError params={userId} />;
+  }
+  return (
+    <>
+      <div className={classes.cartContainer}>
+        <List>
+          {movies.map((movie: IMovie) => (
+            <CartItem key={movie.id} movie={movie} />
+          ))}
+        </List>
+        <div className={classes.buttonsContainer}>
+          <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
+          <CustomButton
+            buttonType="button"
+            className={classes.buyButton}
+            onClick={clickOnBuyButton}
+            name={t('buyButton')}
+          />
+          <div className={classes.priceContainer}>
+            <Typography>{t('totalPrice')}: &nbsp; </Typography>
+            <Typography className={classes.priceContainer}>
+              {getTotalPrice().toFixed(2)} <EuroIcon fontSize="small" />
+            </Typography>
           </div>
         </div>
-        <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
-      </>
-    );
-  }
-  return null;
+      </div>
+      <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
+    </>
+  );
 };

@@ -4,19 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import i18next from 'i18next';
 import { useHistory } from 'react-router-dom';
 import { cartSelector } from '@/user/store/selectors/cart';
-import { userIdSelector } from '@/user/store/selectors/auth';
 import { useStyle } from './styles';
 import { stateStatus } from '@/user/constants/constants';
 import { CLIENT_PATHS } from '@/user/constants';
 
-export const CartError: FunctionComponent = () => {
+export const CartError: FunctionComponent<{ params: any }> = ({ params }) => {
   const history = useHistory();
   const classes = useStyle();
   const { error, status } = useSelector(cartSelector);
-  const userId = useSelector(userIdSelector);
   const dispatch = useDispatch();
+
   const callFailedAction = (): void => {
-    error.map(({ reducer }): { reducer: any } => dispatch(reducer(userId)));
+    error.forEach(({ reducer }): void => {
+      dispatch(reducer(params));
+    });
   };
 
   if (error.map(({ message }): string => message).includes('404')) {

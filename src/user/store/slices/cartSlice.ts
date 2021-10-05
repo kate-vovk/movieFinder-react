@@ -107,6 +107,7 @@ export const cartSlice = createSlice({
           !state.error.map(({ message }): string => message).includes(String(action.error.message))
         ) {
           state.error.push({
+            errorType: action.type,
             message: action.error.message,
             reducer: removeMovieFromCart,
           });
