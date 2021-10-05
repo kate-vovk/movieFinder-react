@@ -43,6 +43,9 @@ export const Users: FunctionComponent = () => {
         columns={usersTableDetails}
         pageSize={10}
         onPageSizeChange={setMockPageSize}
+        page={1}
+        rowCount={1}
+        onPageChange={() => []}
       />
     </div>
   );
