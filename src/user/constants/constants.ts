@@ -23,7 +23,9 @@ export const SERVER_PATHS = {
   admin: '/admin',
   profile: '/profile',
   orders: '/orders',
+  myMovies: '/orders/myfilms',
   main: '/',
+  rate: '/rate',
 };
 
 export enum searchOption {

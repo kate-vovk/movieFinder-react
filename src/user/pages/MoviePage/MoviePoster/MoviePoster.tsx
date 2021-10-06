@@ -1,14 +1,20 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import StarIcon from '@material-ui/icons/Star';
+import { Rating } from '@material-ui/lab';
+import { useSelector } from 'react-redux';
 import { MovieControl } from '@/user/components';
 import { urlEmptyPoster } from '@/user/constants/constantsMovie';
 import { useStyle } from './styles';
+import { THandleChangeValueSlider } from '@/interfaces/movieTypes';
+import { addRate, getMovieRate } from '@/user/businessLogic/movieRate';
+import { userIdSelector } from '@/user/store/selectors/auth';
 
 interface IMoviePosterProps {
   cover: string;
   price: number;
   title: string;
   movieId: string;
+  voteAverage: number;
 }
 
 export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
@@ -16,8 +22,27 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
   price,
   title,
   movieId,
+  voteAverage,
 }) => {
   const classes = useStyle();
+  const userId = useSelector(userIdSelector);
+
+  const [userRate, setUserRate] = useState(0);
+
+  useEffect(() => {
+    getMovieRate({
+      movieId,
+      userId,
+    }).then((data) => {
+      console.log('rate', data);
+      setUserRate(data);
+    });
+  }, []);
+
+  const getValueSlider: THandleChangeValueSlider = (_event, newValue): void => {
+    setUserRate(newValue as number);
+    addRate({ movieId, userId, rate: newValue as number });
+  };
 
   return (
     <div className={classes.columnLeft}>
@@ -25,11 +50,15 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
         <img className={classes.posterImage} src={cover || urlEmptyPoster} alt={title} />
         <div className={classes.posterRate}>
           <StarIcon className={classes.posterRateIcon} />
-          <span className={classes.posterRateText}>9</span>
+          <span className={classes.posterRateText}>{Math.round(voteAverage)}</span>
           <span>/10</span>
         </div>
       </div>
       <MovieControl movieId={movieId} price={price} />
+      <div className={classes.rateContainer}>
+        <h3>Your rate:</h3>
+        <Rating value={userRate} name="customized-10" max={10} onChange={getValueSlider} />
+      </div>
     </div>
   );
 };

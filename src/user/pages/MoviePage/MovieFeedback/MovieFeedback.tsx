@@ -2,10 +2,10 @@ import { FunctionComponent } from 'react';
 import { MovieFeedbackForm } from './MovieFeedbackForm';
 import { MovieFeedbackList } from './MovieFeedbackList';
 
-export const MovieFeedback: FunctionComponent = () => {
+export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId }) => {
   return (
     <>
-      <MovieFeedbackForm />
+      <MovieFeedbackForm movieId={movieId} />
       <MovieFeedbackList />
     </>
   );

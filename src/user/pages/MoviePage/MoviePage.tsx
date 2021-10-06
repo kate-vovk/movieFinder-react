@@ -23,7 +23,12 @@ export const MoviePage: FunctionComponent = () => {
   const { id } = useParams<IParamsIdMovie>();
   const classes = useStyle();
   const history = useHistory();
+
   const [movie, setMovie] = useState({} as IMovie);
+  const [voteAverage, setVoteAverage] = useState<number>(0);
+  // const [userRate, setUserRate] = useState<{ id: string; rate: number }>({});
+  // const [userRate, setUserRate] = useState<number>(0);
+
   const allMovies = useSelector(movieListSelector);
   const existingFilm = allMovies.find((item) => item.id === id);
   const goToBack = (): void => {
@@ -31,8 +36,9 @@ export const MoviePage: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    getDataMoviePage(id).then((data): void => {
-      setMovie(data);
+    getDataMoviePage(id).then(({ movie: m, voteAverage: v }): void => {
+      setMovie(m);
+      setVoteAverage(v);
     });
   }, []);
 
@@ -51,12 +57,16 @@ export const MoviePage: FunctionComponent = () => {
         {existingFilm ? (
           <>
             <div className={classes.contentMovie}>
+              {/* <div style={{ display: 'flex', flexDirection: 'column' }}> */}
               <MoviePoster
                 cover={movie?.coverUrl}
                 price={Number(movie?.price)}
                 title={movie?.title}
                 movieId={id}
+                voteAverage={voteAverage}
               />
+              {/* <Rating value={userRate} name="customized-10" max={10} onChange={getValueSlider} />
+              </div> */}
               <MovieInfo
                 title={movie?.title}
                 year={movie?.releaseDate}
@@ -69,9 +79,10 @@ export const MoviePage: FunctionComponent = () => {
                 categoriesList={movie?.categories}
               />
             </div>
+
             <MovieDescription description={movie?.description} />
             <MovieTrailer trailerUrl={movie?.trailerUrl} />
-            <MovieFeedback />
+            <MovieFeedback movieId={id} />
           </>
         ) : (
           <Redirect to={CLIENT_PATHS.notFound} />
