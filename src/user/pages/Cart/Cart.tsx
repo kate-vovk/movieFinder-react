@@ -49,7 +49,7 @@ export const Cart: FunctionComponent = () => {
   }
   if (
     status === stateStatus.error &&
-    !error.map(({ errorType }): string => String(errorType)).includes('cart/removeMovie/rejected')
+    error.map(({ errorType }): string => String(errorType)).includes('cart/getMovies/rejected')
   ) {
     return <CartError params={userId} />;
   }

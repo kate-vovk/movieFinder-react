@@ -60,11 +60,13 @@ export const cartSlice = createSlice({
           !state.error.map(({ message }): string => message).includes(String(action.error.message))
         ) {
           state.error.push({
-            message: String(action.error.message),
+            errorType: action.type,
+            message: action.error.message,
             reducer: setCartMoviesToStore,
           });
         }
         state.status = stateStatus.error;
+        toast(i18next.t(`CartStatuses:${action.error.message}`));
       })
 
       .addCase(addMovieToCart.pending, (state) => {
@@ -83,7 +85,7 @@ export const cartSlice = createSlice({
           !state.error.map(({ message }): string => message).includes(String(action.error.message))
         ) {
           state.error.push({
-            message: String(action.error.message),
+            message: action.error.message,
             reducer: addMovieToCart,
           });
         }
