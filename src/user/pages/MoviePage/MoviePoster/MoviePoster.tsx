@@ -33,15 +33,14 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
     getMovieRate({
       movieId,
       userId,
-    }).then((data) => {
-      console.log('rate', data);
-      setUserRate(data);
+    }).then((rate) => {
+      setUserRate(rate);
     });
   }, []);
 
-  const getValueSlider: THandleChangeValueSlider = (_event, newValue): void => {
-    setUserRate(newValue as number);
-    addRate({ movieId, userId, rate: newValue as number });
+  const getValueSlider: THandleChangeValueSlider = (_event, newRate): void => {
+    setUserRate(newRate as number);
+    addRate({ movieId, userId, rate: newRate as number });
   };
 
   return (

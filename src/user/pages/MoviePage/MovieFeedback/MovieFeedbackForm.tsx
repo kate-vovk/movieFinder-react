@@ -2,18 +2,21 @@ import { FunctionComponent, useState } from 'react';
 import { Formik, FormikHelpers, Form } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { THandleChangeValueFeedback } from '@/interfaces/movieTypes';
 import { useStyle } from './styles';
+import { addMovieComment } from '@/user/businessLogic/movieComments';
+import { userIdSelector } from '@/user/store/selectors/auth';
 
 interface IValues {
   feedback: string;
   rate: number;
 }
 
-export const MovieFeedbackForm: FunctionComponent<{ movieId: string }> = () => {
+export const MovieFeedbackForm: FunctionComponent<{ movieId: string }> = ({ movieId }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
-
+  const userId = useSelector(userIdSelector);
   const { t } = useTranslation(['MoviePage']);
 
   const getValueFeedback: THandleChangeValueFeedback = (event): void => {
@@ -21,9 +24,10 @@ export const MovieFeedbackForm: FunctionComponent<{ movieId: string }> = () => {
   };
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
-    const objValues = { rate: 0, feedback: valueFeedback };
+    // const objValues = { rate: 0, feedback: valueFeedback };
     setTimeout(() => {
-      alert(JSON.stringify(objValues, null, 2)); // this is a temporary solution
+      // alert(JSON.stringify(objValues, null, 2)); // this is a temporary solution
+      addMovieComment({ movieId, userId, comment: valueFeedback });
       setValueFeedback('');
       setSubmitting(false);
     }, 500);

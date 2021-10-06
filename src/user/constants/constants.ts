@@ -26,6 +26,7 @@ export const SERVER_PATHS = {
   myMovies: '/orders/myfilms',
   main: '/',
   rate: '/rate',
+  comments: '/commentaries',
 };
 
 export enum searchOption {

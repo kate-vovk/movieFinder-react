@@ -15,7 +15,10 @@ export const useStyle = makeStyles(() => ({
     listStyle: 'none',
   },
   feedbackListElement: {
-    padding: '0 0 25px 0',
+    padding: '5px 5px 25px 5px',
+    marginBottom: 5,
+    border: '2px solid lightGrey',
+    borderRadius: 10,
   },
   feedbackListElementHeader: {
     display: 'flex',

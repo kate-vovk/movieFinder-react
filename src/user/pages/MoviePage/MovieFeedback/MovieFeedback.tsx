@@ -6,7 +6,7 @@ export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId 
   return (
     <>
       <MovieFeedbackForm movieId={movieId} />
-      <MovieFeedbackList />
+      <MovieFeedbackList movieId={movieId} />
     </>
   );
 };

@@ -45,6 +45,5 @@ export const getMovieRate = async ({
   if (data.length === 0) {
     return 0;
   }
-
   return data[data.length - 1].rate;
 };
