@@ -9,5 +9,5 @@ export const addOrder = async ({ userId: user_id }: { userId: string }): Promise
 };
 
 export const getUserOrders = async (userId: string, isActive: boolean | string): Promise<any> => {
-  return HTTPService.get(`${SERVER_PATHS.orders}?user_id=${userId}&is_active=${isActive}`);
+  return HTTPService.get(`${SERVER_PATHS.myMovies}?user_id=${userId}&is_active=${isActive}`);
 };
