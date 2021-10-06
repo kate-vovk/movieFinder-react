@@ -77,8 +77,8 @@ export const en = {
   CartStatuses: {
     'Cart error': 'Something went wrong in cart',
     'Try again': 'Try again',
-    'Error. Network Error': 'Network Error',
-    'Network Error': 'Network Error',
+    'Error. Network Error': 'Network Error in cart',
+    'Network Error': 'Network Error in cart',
     '400': 'Bad request',
     '401': 'Unauthorized',
     '403': 'Forbidden',

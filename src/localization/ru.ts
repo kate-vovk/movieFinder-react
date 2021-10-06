@@ -77,8 +77,8 @@ export const ru = {
   CartStatuses: {
     'Cart error': 'Произошла ошибка при загрузке корзины',
     'Try again': 'Попробуйте снова',
-    'Error. Network Error': 'Ошибка сети',
-    'Network Error': 'Ошибка сети',
+    'Error. Network Error': 'Ошибка сети в корзине',
+    'Network Error': 'Ошибка сети в корзине',
     '400': 'Плохой запрос',
     '401': 'Неавторизованно',
     '403': 'Запрещено',
