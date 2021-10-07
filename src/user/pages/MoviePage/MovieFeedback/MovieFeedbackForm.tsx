@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { Formik, FormikHelpers, Form } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
@@ -17,10 +17,9 @@ export const MovieFeedbackForm: FunctionComponent<{
   movieId: string;
   setMovieComments: any;
   setTotalAmountOfPages: any;
-  movieComments: any[];
   page: number;
   limit: number;
-}> = ({ movieId, setMovieComments, setTotalAmountOfPages, page, limit, movieComments }) => {
+}> = ({ movieId, setMovieComments, setTotalAmountOfPages, page, limit }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
   const userId = useSelector(userIdSelector);
@@ -31,24 +30,15 @@ export const MovieFeedbackForm: FunctionComponent<{
   };
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
-    // const objValues = { rate: 0, feedback: valueFeedback };
-    // alert(JSON.stringify(objValues, null, 2)); // this is a temporary solution
-    addMovieComment({ movieId, userId, comment: valueFeedback });
+    addMovieComment({ movieId, userId, comment: valueFeedback }).then(() => {
+      getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
+        setMovieComments(Array.from(results));
+        setTotalAmountOfPages(Math.ceil(total / limit));
+      });
+    });
     setValueFeedback('');
     setSubmitting(false);
-
-    getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
-      setMovieComments(Array.from(results));
-      setTotalAmountOfPages(Math.ceil(total / limit));
-    });
   };
-
-  useEffect(() => {
-    getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
-      setMovieComments(Array.from(results));
-      setTotalAmountOfPages(Math.ceil(total / limit));
-    });
-  }, [valueFeedback, movieComments.length]);
 
   return (
     <div>

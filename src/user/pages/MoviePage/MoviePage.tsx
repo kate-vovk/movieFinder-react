@@ -39,8 +39,9 @@ export const MoviePage: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    getDataMoviePage(id).then(({ movie: m }): void => {
+    getDataMoviePage(id).then(({ movie: m, voteAverage: v }): void => {
       setMovie(m);
+      setVoteAverage(v);
     });
 
     getMovieRate({
@@ -49,7 +50,7 @@ export const MoviePage: FunctionComponent = () => {
     }).then((rate) => {
       setUserRate(rate);
     });
-  }, [voteAverage]);
+  }, [voteAverage, userRate]);
 
   return (
     <div>

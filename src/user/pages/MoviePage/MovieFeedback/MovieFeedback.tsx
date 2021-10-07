@@ -30,10 +30,15 @@ export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId 
         setTotalAmountOfPages={setTotalAmountOfPages}
         page={page}
         limit={limit}
-        movieComments={movieComments}
       />
 
-      <MovieFeedbackList movieComments={movieComments} />
+      <MovieFeedbackList
+        movieComments={movieComments}
+        setMovieComments={setMovieComments}
+        setTotalAmountOfPages={setTotalAmountOfPages}
+        page={page}
+        limit={limit}
+      />
       <div className={classes.paginationContainer}>
         <Pagination count={totalAmountOfPages} page={page} onChange={handleChange} />
       </div>

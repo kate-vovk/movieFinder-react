@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import { Rating } from '@material-ui/lab';
 import { useSelector } from 'react-redux';
@@ -35,22 +35,19 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
   const userId = useSelector(userIdSelector);
 
   const changeRate: THandleChangeValueSlider = (_event, newRate): void => {
-    addRate({ movieId, userId, rate: newRate as number });
+    addRate({ movieId, userId, rate: newRate as number }).then(() => {
+      getDataMoviePage(movieId).then(({ voteAverage: v }): void => {
+        setVoteAverage(v);
+      });
+      getMovieRate({
+        movieId,
+        userId,
+      }).then((rate) => {
+        setUserRate(rate);
+      });
+    });
     setUserRate(newRate as number);
   };
-
-  useEffect(() => {
-    getDataMoviePage(movieId).then(({ voteAverage: v }): void => {
-      setVoteAverage(v);
-    });
-
-    getMovieRate({
-      movieId,
-      userId,
-    }).then((rate) => {
-      setUserRate(rate);
-    });
-  }, [voteAverage, userRate]);
 
   return (
     <div className={classes.columnLeft}>

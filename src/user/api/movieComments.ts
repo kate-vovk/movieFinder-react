@@ -32,3 +32,27 @@ export const addMovieCommentAPI = async ({
     date: new Date().toISOString(),
   });
 };
+
+export const changeMovieCommentAPI = async ({
+  commentId,
+  userId,
+  comment,
+}: {
+  commentId: string;
+  userId: string;
+  comment: string;
+}): Promise<AxiosPromise> => {
+  return HTTPService.patch(`${SERVER_PATHS.users}/${userId}${SERVER_PATHS.comments}/${commentId}`, {
+    comment,
+  });
+};
+
+export const deleteCommentAPI = ({
+  commentId,
+  userId,
+}: {
+  commentId: string;
+  userId: string;
+}): Promise<AxiosPromise> => {
+  return HTTPService.delete(`${SERVER_PATHS.users}/${userId}${SERVER_PATHS.comments}/${commentId}`);
+};

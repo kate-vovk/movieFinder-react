@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
+  mainContentContainer: {
+    width: '90%',
+  },
   feedbackFooter: {
     display: 'flex',
     alignItems: 'center',
@@ -17,6 +20,12 @@ export const useStyle = makeStyles(() => ({
     listStyle: 'none',
   },
   feedbackListElement: {
+    width: '100%',
+    height: '100%',
+    // minHeight: '150px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: '5px',
     marginBottom: 5,
     border: '2px solid',
@@ -32,23 +41,30 @@ export const useStyle = makeStyles(() => ({
   feedbackListElementTitle: {
     margin: '0 0 0 0',
   },
-  feedbackListElementRate: {
+  feedbackSidemenu: {
+    width: '5%',
     display: 'flex',
-    alignItems: 'flex-end',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  feedbackListElementRateIcon: {
+  feedbackRate: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  feedbackRateIcon: {
     margin: '0 5px 0 0',
     width: '15px',
     color: 'yellow',
   },
-  feedbackListElementRateText: {
+  feedbackRateText: {
     fontSize: '18px',
     fontWeight: 'bold',
   },
   feedbackText: {
     margin: '0 0 0 0',
     padding: '0 0 0 0',
-    lineHeight: '150%',
   },
   paginationContainer: {
     display: 'flex',
