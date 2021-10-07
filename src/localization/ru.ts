@@ -137,4 +137,11 @@ export const ru = {
   MovieControl: {
     tooltipText: 'Данный фильм уже находится в ваших заказах',
   },
+  myOrders: {
+    orders: 'Мои заказы',
+    orderId: 'Номер заказа',
+    orderDate: 'Дата заказа',
+    filmPrice: 'Стоимость фильма',
+    orderPrice: 'Стоимость заказа',
+  },
 };

@@ -13,9 +13,27 @@ export interface IOrder {
   category: string;
   country: string;
   trailerUrl: string;
+  orderId: string;
   orderPrice: string;
   qualityId: number;
   period: number;
   isActive: boolean;
+  orderDate: string;
   expireDate: string;
+}
+
+export type TOrders = Pick<
+  IOrder,
+  | 'id'
+  | 'coverUrl'
+  | 'title'
+  | 'releaseDate'
+  | 'filmPrice'
+  | 'orderDate'
+  | 'orderPrice'
+  | 'isActive'
+>;
+export interface IOrders {
+  ordersId: string;
+  ordersDataList: TOrders[];
 }
