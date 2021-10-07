@@ -27,3 +27,7 @@ export interface IGetMovies {
   results: IMovie[];
   total: number;
 }
+
+export interface IMovieDetailView {
+  film: IMovie;
+}
