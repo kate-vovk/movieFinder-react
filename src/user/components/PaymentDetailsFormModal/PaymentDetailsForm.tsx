@@ -9,7 +9,7 @@ import { cardDetailsValidation } from '@/utils/validations/paymentDetailsValidat
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { CLIENT_PATHS } from '@/user/constants';
 import { useStyle } from './styles';
-import { addOrder } from '@/user/store/slices/ordersSlice';
+import { addOrder } from '@/user/store/slices/myOrdersSlice';
 import { clearCart } from '@/user/store/slices/cartSlice';
 
 export const PaymentDetailsForm: FunctionComponent = () => {

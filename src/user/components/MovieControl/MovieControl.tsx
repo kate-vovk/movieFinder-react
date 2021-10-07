@@ -14,7 +14,7 @@ import { TMovieFavorites } from '@/interfaces/favoritesInterface';
 import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
 import { addMovieToFavorites, removeMovieFromFavorites } from '@/user/store/slices/favoritesSlice';
 import { modalTypes } from '@/user/constants/modalTypes';
-import { activeOrdersSelector } from '@/user/store/selectors/orders';
+import { activeOrdersSelector } from '@/user/store/selectors/myMovies';
 import { useStyle, cartButtonTheme } from './styles';
 
 interface IMovieControlProps {

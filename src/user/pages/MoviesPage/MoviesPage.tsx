@@ -6,7 +6,7 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 import { getMoviesList, setSelectedParam, removeAllFilters } from '@/user/store/slices/moviesSlice';
 import { setFavoritesMoviesToStore } from '@/user/store/slices/favoritesSlice';
 import { useStyle } from './styles';
-import { setUserOrdersToStore } from '@/user/store/slices/ordersSlice';
+import { setUserOrdersToStore } from '@/user/store/slices/myMoviesSlice';
 
 export const MoviesPage: FunctionComponent = () => {
   const classes = useStyle();

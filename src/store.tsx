@@ -16,7 +16,8 @@ import { cartReducer } from '@/user/store/slices/cartSlice';
 import { moviesReducer } from '@/user/store/slices/moviesSlice';
 import { modalReducer } from '@/user/store/slices/modalSlice';
 import { favoritesReducer } from '@/user/store/slices/favoritesSlice';
-import { ordersReducer } from '@/user/store/slices/ordersSlice';
+import { myMoviesReducer } from '@/user/store/slices/myMoviesSlice';
+import { myOrdersReducer } from '@/user/store/slices/myOrdersSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -24,7 +25,8 @@ const reducers = combineReducers({
   movies: moviesReducer,
   modal: modalReducer,
   favorites: favoritesReducer,
-  orders: ordersReducer,
+  myMovies: myMoviesReducer,
+  myOrders: myOrdersReducer,
 });
 
 const persistConfig = {
