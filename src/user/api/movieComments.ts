@@ -3,8 +3,18 @@ import { AxiosPromise } from 'axios';
 import HTTPService from '@/services/httpService';
 import { SERVER_PATHS } from '@/user/constants';
 
-export const getMovieAllCommentsAPI = ({ movieId }: { movieId: string }): Promise<AxiosPromise> => {
-  return HTTPService.get(`${SERVER_PATHS.movies}/${movieId}${SERVER_PATHS.comments}`);
+export const getMovieAllCommentsAPI = async ({
+  movieId,
+  page,
+  limit,
+}: {
+  movieId: string;
+  page: number;
+  limit: number;
+}): Promise<AxiosPromise> => {
+  return HTTPService.get(
+    `${SERVER_PATHS.movies}/${movieId}${SERVER_PATHS.comments}?limit=${limit}&page=${page - 1}`,
+  );
 };
 
 export const addMovieCommentAPI = async ({

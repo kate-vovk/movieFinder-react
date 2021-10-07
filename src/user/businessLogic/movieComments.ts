@@ -1,11 +1,17 @@
 import { AxiosPromise } from 'axios';
 import { addMovieCommentAPI, getMovieAllCommentsAPI } from '../api/movieComments';
 
-export const getMovieAllComments = async ({ movieId }: { movieId: string }): Promise<any> => {
-  const {
-    data: { results },
-  } = await getMovieAllCommentsAPI({ movieId });
-  return results;
+export const getMovieAllComments = async ({
+  movieId,
+  page,
+  limit,
+}: {
+  movieId: string;
+  page: number;
+  limit: number;
+}): Promise<any> => {
+  const { data } = await getMovieAllCommentsAPI({ movieId, page, limit });
+  return data;
 };
 
 export const addMovieComment = async ({

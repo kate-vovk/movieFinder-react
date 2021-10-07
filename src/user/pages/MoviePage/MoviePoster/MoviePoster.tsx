@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import { Rating } from '@material-ui/lab';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { useStyle } from './styles';
 import { THandleChangeValueSlider } from '@/interfaces/movieTypes';
 import { addRate, getMovieRate } from '@/user/businessLogic/movieRate';
 import { userIdSelector } from '@/user/store/selectors/auth';
+import { getDataMoviePage } from '@/user/businessLogic/movie';
 
 interface IMoviePosterProps {
   cover: string;
@@ -15,6 +16,9 @@ interface IMoviePosterProps {
   title: string;
   movieId: string;
   voteAverage: number;
+  userRate: number;
+  setUserRate: any;
+  setVoteAverage: any;
 }
 
 export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
@@ -23,25 +27,30 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
   title,
   movieId,
   voteAverage,
+  userRate,
+  setUserRate,
+  setVoteAverage,
 }) => {
   const classes = useStyle();
   const userId = useSelector(userIdSelector);
 
-  const [userRate, setUserRate] = useState(0);
+  const changeRate: THandleChangeValueSlider = (_event, newRate): void => {
+    addRate({ movieId, userId, rate: newRate as number });
+    setUserRate(newRate as number);
+  };
 
   useEffect(() => {
+    getDataMoviePage(movieId).then(({ voteAverage: v }): void => {
+      setVoteAverage(v);
+    });
+
     getMovieRate({
       movieId,
       userId,
     }).then((rate) => {
       setUserRate(rate);
     });
-  }, []);
-
-  const getValueSlider: THandleChangeValueSlider = (_event, newRate): void => {
-    setUserRate(newRate as number);
-    addRate({ movieId, userId, rate: newRate as number });
-  };
+  }, [voteAverage, userRate]);
 
   return (
     <div className={classes.columnLeft}>
@@ -56,7 +65,7 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
       <MovieControl movieId={movieId} price={price} />
       <div className={classes.rateContainer}>
         <h3>Your rate:</h3>
-        <Rating value={userRate} name="customized-10" max={10} onChange={getValueSlider} />
+        <Rating value={userRate} name="customized-10" max={10} onChange={changeRate} />
       </div>
     </div>
   );

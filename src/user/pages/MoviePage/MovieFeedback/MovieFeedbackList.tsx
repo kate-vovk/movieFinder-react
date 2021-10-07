@@ -1,28 +1,23 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import { getMovieAllComments } from '@/user/businessLogic/movieComments';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { FunctionComponent } from 'react';
 import { MovieFeedbackElement } from './MovieFeedbackElement';
 import { useStyle } from './styles';
 
-export const MovieFeedbackList: FunctionComponent<{ movieId: string }> = ({ movieId }) => {
-  const [movieComments, setMovieComments] = useState<any[]>([]);
-  useEffect(() => {
-    getMovieAllComments({ movieId }).then((data) => {
-      setMovieComments(data);
-    });
-  }, [movieComments.length]);
+export const MovieFeedbackList: FunctionComponent<{
+  movieComments: any[];
+}> = ({ movieComments }) => {
+  console.log('movieComments', movieComments);
   const classes = useStyle();
   return (
-    <div>
-      <ul className={classes.feedbackList}>
-        {movieComments.map((comment: any) => (
-          <MovieFeedbackElement
-            commentId={comment.id}
-            userId={comment.userId}
-            movieId={comment.filmId}
-            commentText={comment.comment}
-          />
-        ))}
-      </ul>
-    </div>
+    <ul className={classes.feedbackList}>
+      {movieComments.map((comment: any) => (
+        <MovieFeedbackElement
+          commentId={comment.id}
+          userId={comment.userId}
+          movieId={comment.filmId}
+          commentText={comment.comment}
+        />
+      ))}
+    </ul>
   );
 };

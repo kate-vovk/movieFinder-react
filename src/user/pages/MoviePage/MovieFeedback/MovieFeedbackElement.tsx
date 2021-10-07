@@ -13,7 +13,6 @@ interface IComment {
 export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   commentId,
   userId,
-  movieId,
   commentText,
 }) => {
   const classes = useStyle();

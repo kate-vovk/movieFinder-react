@@ -1,11 +1,11 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Formik, FormikHelpers, Form } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { THandleChangeValueFeedback } from '@/interfaces/movieTypes';
 import { useStyle } from './styles';
-import { addMovieComment } from '@/user/businessLogic/movieComments';
+import { addMovieComment, getMovieAllComments } from '@/user/businessLogic/movieComments';
 import { userIdSelector } from '@/user/store/selectors/auth';
 
 interface IValues {
@@ -13,7 +13,14 @@ interface IValues {
   rate: number;
 }
 
-export const MovieFeedbackForm: FunctionComponent<{ movieId: string }> = ({ movieId }) => {
+export const MovieFeedbackForm: FunctionComponent<{
+  movieId: string;
+  setMovieComments: any;
+  setTotalAmountOfPages: any;
+  movieComments: any[];
+  page: number;
+  limit: number;
+}> = ({ movieId, setMovieComments, setTotalAmountOfPages, page, limit, movieComments }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
   const userId = useSelector(userIdSelector);
@@ -25,13 +32,23 @@ export const MovieFeedbackForm: FunctionComponent<{ movieId: string }> = ({ movi
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
     // const objValues = { rate: 0, feedback: valueFeedback };
-    setTimeout(() => {
-      // alert(JSON.stringify(objValues, null, 2)); // this is a temporary solution
-      addMovieComment({ movieId, userId, comment: valueFeedback });
-      setValueFeedback('');
-      setSubmitting(false);
-    }, 500);
+    // alert(JSON.stringify(objValues, null, 2)); // this is a temporary solution
+    addMovieComment({ movieId, userId, comment: valueFeedback });
+    setValueFeedback('');
+    setSubmitting(false);
+
+    getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
+      setMovieComments(Array.from(results));
+      setTotalAmountOfPages(Math.ceil(total / limit));
+    });
   };
+
+  useEffect(() => {
+    getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
+      setMovieComments(Array.from(results));
+      setTotalAmountOfPages(Math.ceil(total / limit));
+    });
+  }, [valueFeedback, movieComments.length]);
 
   return (
     <div>

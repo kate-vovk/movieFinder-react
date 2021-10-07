@@ -10,15 +10,18 @@ export const useStyle = makeStyles(() => ({
     margin: '0 0 0 20%',
   },
   feedbackList: {
-    margin: '0 0 0 0',
-    padding: '0 0 0 0',
+    width: '100%',
+    minHeight: '500px',
+    margin: 0,
+    padding: 0,
     listStyle: 'none',
   },
   feedbackListElement: {
-    padding: '5px 5px 25px 5px',
+    padding: '5px',
     marginBottom: 5,
-    border: '2px solid lightGrey',
+    border: '2px solid',
     borderRadius: 10,
+    backgroundColor: 'lightGrey',
   },
   feedbackListElementHeader: {
     display: 'flex',
@@ -46,5 +49,11 @@ export const useStyle = makeStyles(() => ({
     margin: '0 0 0 0',
     padding: '0 0 0 0',
     lineHeight: '150%',
+  },
+  paginationContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 }));

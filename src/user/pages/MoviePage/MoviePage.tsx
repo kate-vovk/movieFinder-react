@@ -13,6 +13,8 @@ import { MoviePoster } from './MoviePoster';
 import { MovieDescription } from './MovieDescription';
 import { MovieTrailer } from './MovieTrailer';
 import { useStyle } from './styles';
+import { getMovieRate } from '@/user/businessLogic/movieRate';
+import { userIdSelector } from '@/user/store/selectors/auth';
 
 interface IParamsIdMovie {
   id: string;
@@ -26,21 +28,28 @@ export const MoviePage: FunctionComponent = () => {
 
   const [movie, setMovie] = useState({} as IMovie);
   const [voteAverage, setVoteAverage] = useState<number>(0);
-  // const [userRate, setUserRate] = useState<{ id: string; rate: number }>({});
-  // const [userRate, setUserRate] = useState<number>(0);
+  const [userRate, setUserRate] = useState(0);
 
+  const userId = useSelector(userIdSelector);
   const allMovies = useSelector(movieListSelector);
+
   const existingFilm = allMovies.find((item) => item.id === id);
   const goToBack = (): void => {
     history.goBack();
   };
 
   useEffect(() => {
-    getDataMoviePage(id).then(({ movie: m, voteAverage: v }): void => {
+    getDataMoviePage(id).then(({ movie: m }): void => {
       setMovie(m);
-      setVoteAverage(v);
     });
-  }, []);
+
+    getMovieRate({
+      movieId: id,
+      userId,
+    }).then((rate) => {
+      setUserRate(rate);
+    });
+  }, [voteAverage]);
 
   return (
     <div>
@@ -57,16 +66,16 @@ export const MoviePage: FunctionComponent = () => {
         {existingFilm ? (
           <>
             <div className={classes.contentMovie}>
-              {/* <div style={{ display: 'flex', flexDirection: 'column' }}> */}
               <MoviePoster
                 cover={movie?.coverUrl}
                 price={Number(movie?.price)}
                 title={movie?.title}
                 movieId={id}
                 voteAverage={voteAverage}
+                userRate={userRate}
+                setUserRate={setUserRate}
+                setVoteAverage={setVoteAverage}
               />
-              {/* <Rating value={userRate} name="customized-10" max={10} onChange={getValueSlider} />
-              </div> */}
               <MovieInfo
                 title={movie?.title}
                 year={movie?.releaseDate}
