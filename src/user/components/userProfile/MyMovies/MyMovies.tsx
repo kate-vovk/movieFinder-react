@@ -1,22 +1,18 @@
-import { Button } from '@material-ui/core';
 import { FunctionComponent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { IOrder } from '@/interfaces/orderInterface';
 import { userIdSelector } from '@/user/store/selectors/auth';
-import { activeOrdersSelector } from '@/user/store/selectors/orders';
-import { setUserOrdersToStore } from '@/user/store/slices/ordersSlice';
-import { useStyle } from './styles';
+import { activeOrdersSelector } from '@/user/store/selectors/myMovies';
+import { setUserOrdersToStore } from '@/user/store/slices/myMoviesSlice';
 import { MyMovieItem } from './MyMovieItem';
 import { MyMoviesIsEmpty } from './MyMoviesIsEmpty';
+import { GoToMainPageButton } from '@/sharedComponents/GoToMainPageButton';
+import { useStyle } from './styles';
 
 export const MyMovies: FunctionComponent = () => {
   const { t } = useTranslation(['UserPage']);
-
   const classes = useStyle();
-  const history = useHistory();
-
   const dispatch = useDispatch();
   const userId = useSelector(userIdSelector);
   const myMovies = useSelector(activeOrdersSelector);
@@ -24,10 +20,6 @@ export const MyMovies: FunctionComponent = () => {
   useEffect(() => {
     dispatch(setUserOrdersToStore({ userId }));
   }, []);
-
-  const goToMainPage = (): void => {
-    history.push('/');
-  };
 
   return (
     <div>
@@ -53,9 +45,7 @@ export const MyMovies: FunctionComponent = () => {
           </ul>
         </div>
       )}
-      <Button color="primary" variant="contained" type="button" onClick={goToMainPage}>
-        {t('goHome')}
-      </Button>
+      <GoToMainPageButton />
     </div>
   );
 };

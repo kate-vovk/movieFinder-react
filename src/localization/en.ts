@@ -147,4 +147,11 @@ export const en = {
   MovieControl: {
     tooltipText: 'This movie is already in your orders',
   },
+  myOrders: {
+    orders: 'My orders',
+    orderId: 'Order ID',
+    orderDate: 'Order date',
+    filmPrice: 'Film price',
+    orderPrice: 'Order price',
+  },
 };
