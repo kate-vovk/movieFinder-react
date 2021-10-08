@@ -5,21 +5,19 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { THandleChangeValueFeedback } from '@/interfaces/movieTypes';
 import { useStyle } from './styles';
-import { addMovieComment, getMovieAllComments } from '@/user/businessLogic/movieComments';
+import { addMovieComment } from '@/user/businessLogic/movieComments';
 import { userIdSelector } from '@/user/store/selectors/auth';
 
 interface IValues {
   feedback: string;
   rate: number;
+  setPage: 
 }
 
 export const MovieFeedbackForm: FunctionComponent<{
   movieId: string;
-  setMovieComments: any;
-  setTotalAmountOfPages: any;
-  page: number;
-  limit: number;
-}> = ({ movieId, setMovieComments, setTotalAmountOfPages, page, limit }) => {
+  isAddedComment: any;
+}> = ({ movieId, isAddedComment }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
   const userId = useSelector(userIdSelector);
@@ -31,10 +29,7 @@ export const MovieFeedbackForm: FunctionComponent<{
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
     addMovieComment({ movieId, userId, comment: valueFeedback }).then(() => {
-      getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
-        setMovieComments(Array.from(results));
-        setTotalAmountOfPages(Math.ceil(total / limit));
-      });
+      isAddedComment(true);
     });
     setValueFeedback('');
     setSubmitting(false);

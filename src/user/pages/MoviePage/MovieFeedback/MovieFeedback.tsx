@@ -7,6 +7,7 @@ import { useStyle } from './styles';
 
 export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId }) => {
   const classes = useStyle();
+  const [isEditedComment, setEditedComment] = useState<boolean>(false);
   const [movieComments, setMovieComments] = useState<any[]>([]);
   const [totalAmountOfPages, setTotalAmountOfPages] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
@@ -21,24 +22,13 @@ export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId 
       setMovieComments(Array.from(results));
       setTotalAmountOfPages(Math.ceil(total / limit));
     });
-  }, [page, movieComments.length]);
+    setEditedComment(false);
+  }, [page, movieComments.length, isEditedComment]);
   return (
     <>
-      <MovieFeedbackForm
-        movieId={movieId}
-        setMovieComments={setMovieComments}
-        setTotalAmountOfPages={setTotalAmountOfPages}
-        page={page}
-        limit={limit}
-      />
+      <MovieFeedbackForm movieId={movieId} isAddedComment={setEditedComment} />
 
-      <MovieFeedbackList
-        movieComments={movieComments}
-        setMovieComments={setMovieComments}
-        setTotalAmountOfPages={setTotalAmountOfPages}
-        page={page}
-        limit={limit}
-      />
+      <MovieFeedbackList movieComments={movieComments} setEditedComment={setEditedComment} />
       <div className={classes.paginationContainer}>
         <Pagination count={totalAmountOfPages} page={page} onChange={handleChange} />
       </div>

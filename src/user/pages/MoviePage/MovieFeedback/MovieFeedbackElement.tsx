@@ -1,54 +1,42 @@
-import { FunctionComponent, MouseEvent, useEffect, useState } from 'react';
+import { FunctionComponent, MouseEvent, useState } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useSelector } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 import { useStyle } from './styles';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import {
   changeMovieComment,
   deleteComment as removeComment,
-  getMovieAllComments,
+  // getMovieAllComments,
 } from '@/user/businessLogic/movieComments';
 
 interface IComment {
   commentId: string;
   userName: string;
-  movieId: string;
+  // movieId: string;
   userId: string;
   commentText: string;
   date: string;
-  setMovieComments: any;
-  setTotalAmountOfPages: any;
-  page: number;
-  limit: number;
-  movieComments: any[];
+  setEditedComment: (value: boolean) => void;
 }
 
 export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   commentId,
   userId,
-  movieId,
+  // movieId,
   userName,
   commentText,
   date,
-  setMovieComments,
-  setTotalAmountOfPages,
-  page,
-  limit,
-  movieComments,
+  setEditedComment,
 }) => {
   const classes = useStyle();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(Boolean(anchorEl));
   const currentUserId = useSelector(userIdSelector);
-
-  useEffect(() => {
-    getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
-      setMovieComments(Array.from(results));
-      setTotalAmountOfPages(Math.ceil(total / limit));
-    });
-  }, [movieComments.length]);
+  const [openEditCommentField, setOpenEditCommentField] = useState(false);
+  const [editedComment, editComment] = useState<string>(commentText);
 
   const clickOnMenu = (event: MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -60,20 +48,30 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   };
   const deleteComment = (): void => {
     removeComment({ commentId, userId }).then(() => {
-      getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
-        setMovieComments(Array.from(results));
-        setTotalAmountOfPages(Math.ceil(total / limit));
-      });
+      setEditedComment(true);
     });
   };
   const updateComment = (): void => {
     changeMovieComment({
       commentId,
       userId: currentUserId,
-      comment: commentText,
+      comment: String(editedComment),
     }).then(() => {
-      console.log('update movie');
+      setEditedComment(true);
     });
+    setOpenEditCommentField(false);
+  };
+
+  const editCommentText = (event: any): void => {
+    editComment(event.target.value);
+    if (event.currentTarget !== anchorEl) {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const cancelEditCommentText = (): void => {
+    setOpenEditCommentField(false);
+    editComment(commentText);
   };
 
   return (
@@ -82,7 +80,29 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
         <div className={classes.feedbackListElementHeader}>
           <h3 className={classes.feedbackListElementTitle}>{userName}</h3>
         </div>
-        <p className={classes.feedbackText}>{commentText}</p>
+        {openEditCommentField ? (
+          <div>
+            <TextField
+              id="outlined-multiline-static"
+              name="editComment"
+              label="Edit comment"
+              multiline
+              fullWidth
+              onChange={editCommentText}
+              value={editedComment}
+              rows={3}
+              variant="outlined"
+            />
+            <Button onClick={updateComment} variant="outlined">
+              update comment
+            </Button>
+            <Button onClick={cancelEditCommentText} variant="outlined">
+              cancel
+            </Button>
+          </div>
+        ) : (
+          <p className={classes.feedbackText}>{commentText}</p>
+        )}
         <p>{date}</p>
       </div>
       <div className={classes.feedbackSidemenu}>
@@ -106,7 +126,13 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
             <Button onClick={deleteComment}>Delete comment</Button>
           </MenuItem>
           <MenuItem onClick={closeMenu}>
-            <Button onClick={updateComment}>Update comment</Button>
+            <Button
+              onClick={() => {
+                setOpenEditCommentField(true);
+              }}
+            >
+              Update comment
+            </Button>
           </MenuItem>
         </Menu>
       </div>
