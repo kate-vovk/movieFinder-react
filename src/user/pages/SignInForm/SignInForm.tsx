@@ -27,10 +27,10 @@ export const SignInForm: FunctionComponent = () => {
     dispatch(login(values));
   };
 
-  if (isLoggedIn) {
-    const previousRoute = Object(location.state).prevPath || CLIENT_PATHS.main;
-    history.push(previousRoute);
-  }
+  // if (isLoggedIn) {
+  //   const previousRoute = Object(location.state).prevPath || CLIENT_PATHS.main;
+  //   history.push(previousRoute);
+  // }
 
   const formik = useFormik({
     initialValues: {

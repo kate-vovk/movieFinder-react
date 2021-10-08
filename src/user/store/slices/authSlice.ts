@@ -40,7 +40,11 @@ const initialState: IAuth = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    clearAuth() {
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registration.rejected, (state, action) => {
@@ -81,5 +85,7 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export const { clearAuth } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
