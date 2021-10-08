@@ -11,12 +11,12 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 interface IValues {
   feedback: string;
   rate: number;
-  setPage: 
 }
 
 export const MovieFeedbackForm: FunctionComponent<{
   movieId: string;
   isAddedComment: any;
+  setPage: (value: boolean) => {};
 }> = ({ movieId, isAddedComment }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
