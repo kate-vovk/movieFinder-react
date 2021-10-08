@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { singInFormFields } from '@/user/constants/SignInFormFields';
-import { clearAuth, login } from '@/user/store/slices/authSlice';
+import { login } from '@/user/store/slices/authSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { ILoginData } from '@/interfaces/authInterfaces';
 import { loginFormValidationSchema } from '@/utils/validations/singInValidation';
