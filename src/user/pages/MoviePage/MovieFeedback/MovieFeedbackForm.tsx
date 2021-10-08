@@ -15,9 +15,9 @@ interface IValues {
 
 export const MovieFeedbackForm: FunctionComponent<{
   movieId: string;
-  isAddedComment: any;
-  setPage: (value: boolean) => {};
-}> = ({ movieId, isAddedComment }) => {
+  setAddedComment: (value: boolean) => void;
+  setPage: (value: number) => void;
+}> = ({ movieId, setAddedComment, setPage }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
   const userId = useSelector(userIdSelector);
@@ -29,7 +29,8 @@ export const MovieFeedbackForm: FunctionComponent<{
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
     addMovieComment({ movieId, userId, comment: valueFeedback }).then(() => {
-      isAddedComment(true);
+      setAddedComment(true);
+      setPage(1);
     });
     setValueFeedback('');
     setSubmitting(false);

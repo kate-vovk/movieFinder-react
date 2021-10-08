@@ -26,7 +26,7 @@ export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId 
   }, [page, movieComments.length, isEditedComment]);
   return (
     <>
-      <MovieFeedbackForm movieId={movieId} isAddedComment={setEditedComment} />
+      <MovieFeedbackForm movieId={movieId} setAddedComment={setEditedComment} setPage={setPage} />
 
       <MovieFeedbackList movieComments={movieComments} setEditedComment={setEditedComment} />
       <div className={classes.paginationContainer}>

@@ -17,8 +17,8 @@ interface IMoviePosterProps {
   movieId: string;
   voteAverage: number;
   userRate: number;
-  setUserRate: any;
-  setVoteAverage: any;
+  setUserRate: (data: number) => void;
+  setVoteAverage: (data: number) => void;
 }
 
 export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({

@@ -22,7 +22,6 @@ export const useStyle = makeStyles(() => ({
   feedbackListElement: {
     width: '100%',
     height: '100%',
-    // minHeight: '150px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -65,6 +64,19 @@ export const useStyle = makeStyles(() => ({
   feedbackText: {
     margin: '0 0 0 0',
     padding: '0 0 0 0',
+  },
+  feedbackElementEdit: {
+    padding: 10,
+  },
+  feedbackElementEditTextContainer: {
+    backgroundColor: 'white',
+  },
+  feedbackElementEditButtonsContainer: {
+    marginTop: 5,
+  },
+  feedbackElementEditButton: {
+    marginRight: 5,
+    backgroundColor: 'white',
   },
   paginationContainer: {
     display: 'flex',

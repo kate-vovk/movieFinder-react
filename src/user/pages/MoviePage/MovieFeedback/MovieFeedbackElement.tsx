@@ -3,19 +3,17 @@ import StarIcon from '@material-ui/icons/Star';
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useSelector } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
 import { useStyle } from './styles';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import {
   changeMovieComment,
   deleteComment as removeComment,
-  // getMovieAllComments,
 } from '@/user/businessLogic/movieComments';
+import { MovieFeedbackElementEdit } from './MovieFeedbackElementEdit';
 
 interface IComment {
   commentId: string;
   userName: string;
-  // movieId: string;
   userId: string;
   commentText: string;
   date: string;
@@ -25,7 +23,6 @@ interface IComment {
 export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   commentId,
   userId,
-  // movieId,
   userName,
   commentText,
   date,
@@ -81,29 +78,16 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
           <h3 className={classes.feedbackListElementTitle}>{userName}</h3>
         </div>
         {openEditCommentField ? (
-          <div>
-            <TextField
-              id="outlined-multiline-static"
-              name="editComment"
-              label="Edit comment"
-              multiline
-              fullWidth
-              onChange={editCommentText}
-              value={editedComment}
-              rows={3}
-              variant="outlined"
-            />
-            <Button onClick={updateComment} variant="outlined">
-              update comment
-            </Button>
-            <Button onClick={cancelEditCommentText} variant="outlined">
-              cancel
-            </Button>
-          </div>
+          <MovieFeedbackElementEdit
+            cancelEditCommentText={cancelEditCommentText}
+            editCommentText={editCommentText}
+            updateComment={updateComment}
+            editedComment={editedComment}
+          />
         ) : (
           <p className={classes.feedbackText}>{commentText}</p>
         )}
-        <p>{date}</p>
+        <p>{new Date(date).toLocaleDateString()}</p>
       </div>
       <div className={classes.feedbackSidemenu}>
         <div className={classes.feedbackRate}>
