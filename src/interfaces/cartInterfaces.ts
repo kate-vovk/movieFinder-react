@@ -3,7 +3,7 @@ import { IMovie } from './movieInterface';
 
 export interface ICart {
   movies: IMovie[];
-  error: { [key: string]: string | any }[];
+  // error: { [key: string]: string | any }[];
   status: stateStatus;
 }
 
