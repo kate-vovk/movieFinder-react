@@ -4,8 +4,14 @@ import i18next from 'i18next';
 import * as cart from '@/user/businessLogic/cart';
 import { ICart, ICartMovieState } from '@/interfaces/cartInterfaces';
 import { stateStatus } from '@/user/constants/constants';
+import { store } from '@/store';
 
-toast.configure();
+// function actionToDispatch(action: string, params = {}): any {
+//   return {
+//     type: action,
+//     payload: params,
+//   };
+// }
 
 const initialState: ICart = {
   movies: [],
@@ -47,13 +53,19 @@ export const cartSlice = createSlice({
         state.status = stateStatus.loading;
       })
       .addCase(setCartMoviesToStore.fulfilled, (state, action) => {
-        state.movies = action.payload;
-        state.error = [];
         if (action.payload.length === 0) {
           state.status = stateStatus.empty;
         } else {
           state.status = stateStatus.success;
         }
+        // if (state.error.length !== 0) {
+        // store.dispatch(actionToDispatch('errors/clearError'));
+        state.error = [];
+        // }
+        // state.error = state.error.filter(
+        //   ({ errorType }) => String(errorType) !== 'cart/getMovies/rejected',
+        // );
+        state.movies = action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, (state, action) => {
         if (
@@ -66,13 +78,20 @@ export const cartSlice = createSlice({
           });
         }
         state.status = stateStatus.error;
-        toast(i18next.t(`CartStatuses:${action.error.message}`));
+        // toast(i18next.t(`CartStatuses:${action.error.message}`));
       })
 
       .addCase(addMovieToCart.pending, (state) => {
         state.status = stateStatus.loading;
       })
       .addCase(addMovieToCart.fulfilled, (state, action) => {
+        // if (state.error.length !== 0) {
+        //   store.dispatch(actionToDispatch('errors/clearError'));
+        state.error = [];
+        // }
+        // state.error = state.error.filter(
+        //   ({ errorType }) => String(errorType) !== 'cart/addToCart/rejected',
+        // );
         state.movies = action.payload;
         if (action.payload.length === 0) {
           state.status = stateStatus.empty;
@@ -97,6 +116,13 @@ export const cartSlice = createSlice({
         state.status = stateStatus.loading;
       })
       .addCase(removeMovieFromCart.fulfilled, (state, action) => {
+        // if (state.error.length !== 0) {
+        //   store.dispatch(actionToDispatch('errors/clearError'));
+        state.error = [];
+        // }
+        // state.error = state.error.filter(
+        //   ({ errorType }) => String(errorType) !== 'cart/removeMovie/rejected',
+        // );
         state.movies = action.payload;
         if (action.payload.length === 0) {
           state.status = stateStatus.empty;

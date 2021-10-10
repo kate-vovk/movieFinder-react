@@ -13,19 +13,19 @@ import { CartItem } from './CartItem';
 import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';
 import { Circular } from '@/sharedComponents/Circular/Circular';
-import { CartError } from './CartError';
 import { stateStatus } from '@/user/constants/constants';
+// import { ErrorComponent } from '@/sharedComponents/ErrorComponent/ErrorComponent';
+import { addError } from '@/user/store/slices/errorSlice';
+import { CLIENT_PATHS } from '@/user/constants';
 
 export const Cart: FunctionComponent = () => {
   const { t } = useTranslation(['Cart']);
-
   const history = useHistory();
   const { movies, status, error } = useSelector(cartSelector);
   const userId = useSelector(userIdSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
   const [openModal, isModalOpen] = useState(false);
-
   useEffect(() => {
     dispatch(setCartMoviesToStore(userId));
   }, []);
@@ -51,7 +51,16 @@ export const Cart: FunctionComponent = () => {
     status === stateStatus.error &&
     error.map(({ errorType }): string => String(errorType)).includes('cart/getMovies/rejected')
   ) {
-    return <CartError params={userId} />;
+    console.log('Error in Cart', error[0].reducer, userId);
+    dispatch(
+      addError({
+        message: error[0].message,
+        reducer: error[0].reducer,
+        params: userId,
+        route: CLIENT_PATHS.cart,
+      }),
+    );
+    // return <ErrorComponent params={userId} />;
   }
   return (
     <>

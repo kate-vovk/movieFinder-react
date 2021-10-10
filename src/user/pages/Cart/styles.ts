@@ -85,16 +85,4 @@ export const useStyle = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
   },
-  cartError: {
-    height: '50vh',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-  },
-  cartErrorMessageContainer: {
-    margin: 20,
-  },
 }));

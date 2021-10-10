@@ -11,7 +11,8 @@ import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { cartSelector } from '@/user/store/selectors/cart';
 import { stateStatus } from '@/user/constants/constants';
-import { CartError } from './CartError';
+// import { ErrorComponent } from '@/sharedComponents/ErrorComponent/ErrorComponent';
+import { addError } from '@/user/store/slices/errorSlice';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const { id, coverUrl, title, price, description } = movie;
@@ -30,15 +31,46 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   };
 
   if (status === stateStatus.error) {
+    console.log('Error in CartItem');
     const caughtErrors = error.map(({ errorType }): string => String(errorType));
-    return caughtErrors.includes('cart/removeMovie/rejected') ? (
-      <CartError params={{ userId, movieId: movie.id }} />
-    ) : (
-      <CartError params={userId} />
-    );
+    if (
+      caughtErrors.includes('cart/removeMovie/rejected') ||
+      caughtErrors.includes('cart/addToCart/rejected')
+    ) {
+      dispatch(
+        addError({
+          message: error[0].message,
+          reducer: error[0].reducer,
+          params: { userId, movieId: movie.id },
+          route: CLIENT_PATHS.cart,
+        }),
+      );
+    } else {
+      dispatch(
+        addError({
+          message: error[0].message,
+          reducer: error[0].reducer,
+          params: userId,
+          route: CLIENT_PATHS.cart,
+        }),
+      );
+    }
+    // return caughtErrors.includes('cart/removeMovie/rejected') ? (
+    //   <ErrorComponent params={{ userId, movieId: movie.id }} />
+    // ) : (
+    //   <ErrorComponent params={userId} />
+    // );
   }
 
   if (status === stateStatus.success) {
+    // dispatch(
+    //   addError({
+    //     message: error[0].message,
+    //     reducer: error[0].reducer,
+    //     params: userId,
+    //     route: CLIENT_PATHS.cart,
+    //   }),
+    // );
     return (
       <ListItem className={classes.container} component={Paper}>
         <ListItemIcon className={classes.image}>

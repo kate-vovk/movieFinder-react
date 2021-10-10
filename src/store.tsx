@@ -18,6 +18,7 @@ import { modalReducer } from '@/user/store/slices/modalSlice';
 import { favoritesReducer } from '@/user/store/slices/favoritesSlice';
 import { myMoviesReducer } from '@/user/store/slices/myMoviesSlice';
 import { myOrdersReducer } from '@/user/store/slices/myOrdersSlice';
+import { errorReducer } from '@/user/store/slices/errorSlice';
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   favorites: favoritesReducer,
   myMovies: myMoviesReducer,
   myOrders: myOrdersReducer,
+  errors: errorReducer,
 });
 
 const persistConfig = {
