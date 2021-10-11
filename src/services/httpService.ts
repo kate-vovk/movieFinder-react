@@ -17,8 +17,8 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: string) => {
-        throw new Error(err);
+      .catch((err: { message: string }) => {
+        throw new Error(err.message);
       });
   }
 
