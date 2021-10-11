@@ -1,5 +1,10 @@
 import { AxiosPromise } from 'axios';
-import { addMovieCommentAPI, changeMovieCommentAPI, deleteCommentAPI, getMovieAllCommentsAPI } from '../api/movieComments';
+import {
+  addMovieCommentAPI,
+  changeMovieCommentAPI,
+  deleteCommentAPI,
+  getMovieAllCommentsAPI,
+} from '../api/movieComments';
 
 export const getMovieAllComments = async ({
   movieId,

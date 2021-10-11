@@ -47,6 +47,10 @@ export const ru = {
     actors: 'в ролях',
     description: 'Описание',
     min: 'мин',
+    'Update comment': 'Редактировать комментарий',
+    'Delete comment': 'Удалить комментарий',
+    You: 'Вы',
+    Comments: 'Комментарии',
   },
   Filtration: {
     genres: 'Жанры',

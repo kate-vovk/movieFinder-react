@@ -29,13 +29,14 @@ export const MoviePage: FunctionComponent = () => {
   const [movie, setMovie] = useState({} as IMovie);
   const [voteAverage, setVoteAverage] = useState<number>(0);
   const [userRate, setUserRate] = useState(0);
+  const [isEditedComment, setEditedComment] = useState<boolean>(false);
 
   const userId = useSelector(userIdSelector);
   const allMovies = useSelector(movieListSelector);
 
   const existingFilm = allMovies.find((item) => item.id === id);
-  const goToBack = (): void => {
-    history.goBack();
+  const goToMainPage = (): void => {
+    history.push(CLIENT_PATHS.main);
   };
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export const MoviePage: FunctionComponent = () => {
           color="primary"
           variant="contained"
           type="button"
-          onClick={goToBack}
+          onClick={goToMainPage}
         >
           {t('goHome')}
         </Button>
@@ -76,6 +77,7 @@ export const MoviePage: FunctionComponent = () => {
                 userRate={userRate}
                 setUserRate={setUserRate}
                 setVoteAverage={setVoteAverage}
+                setEditedComment={setEditedComment}
               />
               <MovieInfo
                 title={movie?.title}
@@ -92,7 +94,11 @@ export const MoviePage: FunctionComponent = () => {
 
             <MovieDescription description={movie?.description} />
             <MovieTrailer trailerUrl={movie?.trailerUrl} />
-            <MovieFeedback movieId={id} />
+            <MovieFeedback
+              movieId={id}
+              isEditedComment={isEditedComment}
+              setEditedComment={setEditedComment}
+            />
           </>
         ) : (
           <Redirect to={CLIENT_PATHS.notFound} />

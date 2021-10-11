@@ -47,6 +47,10 @@ export const en = {
     actors: 'actors',
     description: 'Description',
     min: 'min',
+    'Update comment': 'Update comment',
+    'Delete comment': 'Delete comment',
+    You: 'You',
+    Comments: 'Comments',
   },
   Filtration: {
     genres: 'Genres',

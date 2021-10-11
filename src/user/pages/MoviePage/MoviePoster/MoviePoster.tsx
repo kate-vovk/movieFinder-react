@@ -19,6 +19,7 @@ interface IMoviePosterProps {
   userRate: number;
   setUserRate: (data: number) => void;
   setVoteAverage: (data: number) => void;
+  setEditedComment: (flag: boolean) => void;
 }
 
 export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
@@ -30,6 +31,7 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
   userRate,
   setUserRate,
   setVoteAverage,
+  setEditedComment,
 }) => {
   const classes = useStyle();
   const userId = useSelector(userIdSelector);
@@ -45,6 +47,7 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
       }).then((rate) => {
         setUserRate(rate);
       });
+      setEditedComment(true);
     });
     setUserRate(newRate as number);
   };

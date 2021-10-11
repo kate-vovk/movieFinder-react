@@ -3,8 +3,9 @@ import StarIcon from '@material-ui/icons/Star';
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { useStyle } from './styles';
-import { userIdSelector } from '@/user/store/selectors/auth';
+import { userIdSelector, userNameSelector } from '@/user/store/selectors/auth';
 import {
   changeMovieComment,
   deleteComment as removeComment,
@@ -17,6 +18,7 @@ interface IComment {
   userId: string;
   commentText: string;
   date: string;
+  rate: number;
   setEditedComment: (value: boolean) => void;
 }
 
@@ -26,15 +28,17 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   userName,
   commentText,
   date,
+  rate,
   setEditedComment,
 }) => {
+  const { t } = useTranslation(['MoviePage']);
   const classes = useStyle();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(Boolean(anchorEl));
   const currentUserId = useSelector(userIdSelector);
   const [openEditCommentField, setOpenEditCommentField] = useState(false);
   const [editedComment, editComment] = useState<string>(commentText);
-
+  const currentUserName = useSelector(userNameSelector);
   const clickOnMenu = (event: MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);
     setOpen(true);
@@ -75,7 +79,9 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
     <li className={classes.feedbackListElement}>
       <div className={classes.mainContentContainer}>
         <div className={classes.feedbackListElementHeader}>
-          <h3 className={classes.feedbackListElementTitle}>{userName}</h3>
+          <h3 className={classes.feedbackListElementTitle}>
+            {currentUserName === userName ? t('You') : userName}
+          </h3>
         </div>
         {openEditCommentField ? (
           <MovieFeedbackElementEdit
@@ -92,7 +98,7 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
       <div className={classes.feedbackSidemenu}>
         <div className={classes.feedbackRate}>
           <StarIcon className={classes.feedbackRateIcon} />
-          <span className={classes.feedbackRateText}>9</span>
+          <span className={classes.feedbackRateText}>{rate}</span>
         </div>
 
         {userId === currentUserId && (
@@ -107,7 +113,7 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
         )}
         <Menu id="long-menu" anchorEl={anchorEl} keepMounted open={open} onClose={closeMenu}>
           <MenuItem onClick={closeMenu}>
-            <Button onClick={deleteComment}>Delete comment</Button>
+            <Button onClick={deleteComment}>{t('Delete comment')}</Button>
           </MenuItem>
           <MenuItem onClick={closeMenu}>
             <Button
@@ -115,7 +121,7 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
                 setOpenEditCommentField(true);
               }}
             >
-              Update comment
+              {t('Update comment')}
             </Button>
           </MenuItem>
         </Menu>

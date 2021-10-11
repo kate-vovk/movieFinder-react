@@ -5,9 +5,12 @@ import { MovieFeedbackForm } from './MovieFeedbackForm';
 import { MovieFeedbackList } from './MovieFeedbackList';
 import { useStyle } from './styles';
 
-export const MovieFeedback: FunctionComponent<{ movieId: string }> = ({ movieId }) => {
+export const MovieFeedback: FunctionComponent<{
+  movieId: string;
+  isEditedComment: boolean;
+  setEditedComment: (flag: boolean) => void;
+}> = ({ movieId, isEditedComment, setEditedComment }) => {
   const classes = useStyle();
-  const [isEditedComment, setEditedComment] = useState<boolean>(false);
   const [movieComments, setMovieComments] = useState<any[]>([]);
   const [totalAmountOfPages, setTotalAmountOfPages] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
