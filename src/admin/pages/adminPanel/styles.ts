@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
+    paddingRight: '100px',
   },
   tabs: {
     marginTop: '200px',

@@ -1,10 +1,11 @@
 import { GridColDef } from '@material-ui/data-grid';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './styles';
 import { Table } from '../Table';
-import { mockUsers } from '@/admin/constants';
 import { SearchUsers } from './SearchUsers';
+import { getUsers } from '@/admin/businessLogic/users';
+import { IUser, DataStatus } from '@/admin/interfaces';
 
 export const usersTableDetails: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 150 },
@@ -31,21 +32,46 @@ export const usersTableDetails: GridColDef[] = [
 export const Users: FunctionComponent = () => {
   const { t } = useTranslation(['AdminPanel']);
   const classes = useStyles();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [mockPageSize, setMockPageSize] = useState(5);
+  const [users, setUsers] = useState<IUser[] | null>(null);
+  const [pageSize, setPageSize] = useState(5);
+  const [totalCount, setTotal] = useState(0);
+  const [page, setPage] = useState(0);
+  const [dataStatus, setDataStatus] = useState(DataStatus.initial);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    setDataStatus(DataStatus.loading);
+    getUsers({ limit: pageSize, page })
+      .then((data) => {
+        if (data?.results?.length > 0 && data?.total) {
+          setUsers(data.results);
+          setTotal(data.total);
+          setDataStatus(DataStatus.success);
+        } else {
+          setErrorMessage('Sorry, please refresh the page');
+          setDataStatus(DataStatus.error);
+        }
+      })
+      .catch((error: { message: string }) => {
+        setErrorMessage(error.message);
+        setDataStatus(DataStatus.error);
+      });
+  }, [pageSize, page]);
 
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>{t('allUsers')}</h2>
       <SearchUsers />
       <Table
-        rows={mockUsers}
+        page={page}
+        rows={users}
         columns={usersTableDetails}
-        pageSize={10}
-        onPageSizeChange={setMockPageSize}
-        page={1}
-        rowCount={1}
-        onPageChange={() => []}
+        onPageSizeChange={setPageSize}
+        pageSize={pageSize}
+        rowCount={totalCount}
+        onPageChange={setPage}
+        dataStatus={dataStatus}
+        errorMessage={errorMessage}
       />
     </div>
   );
