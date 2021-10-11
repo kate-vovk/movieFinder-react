@@ -8,6 +8,7 @@ import { ControlBlock } from './ControlBlock';
 import { EditButton } from '../sharedComponents/EditButton';
 import { getMovies } from '@/admin/businessLogic/movies';
 import { IMovie } from '@/interfaces/movieInterface';
+import { DataStatus } from '@/admin/interfaces';
 
 const moviesTableDetails: GridColDef[] = [
   {
@@ -32,15 +33,17 @@ export const Movies: FunctionComponent = () => {
   const classes = useStyles();
   const [movies, setMovies] = useState<IMovie[] | null>(null);
   const [pageSize, setPageSize] = useState(5);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(0);
+  const [dataStatus] = useState(DataStatus.initial);
+  const [errorMessage] = useState('');
 
   useEffect(() => {
     getMovies({ limit: pageSize, page }).then((data) => {
       setMovies(data.results);
       setTotal(data.total);
-      setLoading(false);
+      setIsLoading(false);
     });
   }, [pageSize, page]);
 
@@ -48,7 +51,7 @@ export const Movies: FunctionComponent = () => {
     <div className={classes.root}>
       <h2 className={classes.title}>{t('allMovies')}</h2>
       <ControlBlock />
-      {loading ? (
+      {isLoading ? (
         <Circular />
       ) : (
         <Table
@@ -59,6 +62,8 @@ export const Movies: FunctionComponent = () => {
           pageSize={pageSize}
           rowCount={total}
           onPageChange={setPage}
+          dataStatus={dataStatus}
+          errorMessage={errorMessage}
         />
       )}
     </div>

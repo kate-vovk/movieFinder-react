@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
 
-export interface ITabPanel {
+interface ITabPanel {
   children: ReactNode;
   tabValue: string;
   index: string;
