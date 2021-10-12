@@ -14,7 +14,7 @@ export const MovieFeedbackList: FunctionComponent<{
     <>
       <h2 style={{ textAlign: 'center' }}>{t('Comments')}</h2>
       <ul className={classes.feedbackList}>
-        {movieComments.map(({ id, userId, userName, comment, date, rate }: IComment) => (
+        {movieComments.map(({ id, userId, userName, comment, date }: IComment) => (
           <MovieFeedbackElement
             key={id}
             commentId={id}
@@ -22,7 +22,6 @@ export const MovieFeedbackList: FunctionComponent<{
             userName={userName}
             commentText={comment}
             date={date}
-            rate={rate}
             setEditedComment={setEditedComment}
           />
         ))}

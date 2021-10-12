@@ -44,7 +44,7 @@ export const useStyle = makeStyles(() => ({
     width: '5%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   feedbackRate: {

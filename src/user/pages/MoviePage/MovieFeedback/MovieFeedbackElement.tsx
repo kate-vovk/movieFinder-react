@@ -1,5 +1,4 @@
 import { FunctionComponent, MouseEvent, useState } from 'react';
-import StarIcon from '@material-ui/icons/Star';
 import { Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useSelector } from 'react-redux';
@@ -18,7 +17,6 @@ interface IComment {
   userId: string;
   commentText: string;
   date: string;
-  rate: number;
   setEditedComment: (value: boolean) => void;
 }
 
@@ -28,7 +26,6 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   userName,
   commentText,
   date,
-  rate,
   setEditedComment,
 }) => {
   const { t } = useTranslation(['MoviePage']);
@@ -63,7 +60,10 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
     setOpenEditCommentField(false);
   };
 
-  const editCommentText = (event: any): void => {
+  const editCommentText = (event: {
+    currentTarget: HTMLElement;
+    target: { value: string };
+  }): void => {
     editComment(event.target.value);
     if (event.currentTarget !== anchorEl) {
       setAnchorEl(event.currentTarget);
@@ -96,11 +96,6 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
         <p>{new Date(date).toLocaleDateString()}</p>
       </div>
       <div className={classes.feedbackSidemenu}>
-        <div className={classes.feedbackRate}>
-          <StarIcon className={classes.feedbackRateIcon} />
-          <span className={classes.feedbackRateText}>{rate}</span>
-        </div>
-
         {userId === currentUserId && (
           <IconButton
             aria-label="more"
