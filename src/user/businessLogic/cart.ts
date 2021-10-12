@@ -5,10 +5,15 @@ import {
 } from '@/user/api/cart';
 import { ICartMovieState } from '@/interfaces/cartInterfaces';
 import { IMovie } from '@/interfaces/movieInterface';
+import CustomError from '@/utils/customError';
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
-  const { data } = await getCart(userId);
-  return data;
+  try {
+    const response = await getCart(userId);
+    return response.data;
+  } catch (err) {
+    throw new CustomError(err as { response: { status: number }; message: string });
+  }
 };
 
 export const addMovieToCart = async ({
@@ -17,17 +22,25 @@ export const addMovieToCart = async ({
   period,
   quality,
 }: ICartMovieState): Promise<string> => {
-  const { data } = await addMovieToCartAPI({ movieId, userId, period, quality });
-  return data;
+  try {
+    const { data } = await addMovieToCartAPI({ movieId, userId, period, quality });
+    return data;
+  } catch (err) {
+    throw new CustomError(err as { response: { status: number }; message: string });
+  }
 };
 
 export const deleteMovieFromCart = async ({
   movieId,
   userId,
 }: ICartMovieState): Promise<string> => {
-  const { data } = await deleteMovieFromCartAPI({
-    movieId,
-    userId,
-  });
-  return data;
+  try {
+    const { data } = await deleteMovieFromCartAPI({
+      movieId,
+      userId,
+    });
+    return data;
+  } catch (err) {
+    throw new CustomError(err as { response: { status: number }; message: string });
+  }
 };

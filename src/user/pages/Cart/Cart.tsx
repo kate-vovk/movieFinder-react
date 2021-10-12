@@ -12,17 +12,17 @@ import { IMovie } from '@/interfaces/movieInterface';
 import { CartItem } from './CartItem';
 import { useStyle } from './styles';
 import { CartIsEmpty } from './CartIsEmpty';
+import { Circular } from '@/sharedComponents/Circular/Circular';
+import { DataStatus } from '@/interfaces/status';
 
 export const Cart: FunctionComponent = () => {
   const { t } = useTranslation(['Cart']);
-
   const history = useHistory();
-  const { movies } = useSelector(cartSelector);
+  const { movies, status } = useSelector(cartSelector);
   const userId = useSelector(userIdSelector);
   const classes = useStyle();
   const dispatch = useDispatch();
   const [openModal, isModalOpen] = useState(false);
-
   useEffect(() => {
     dispatch(setCartMoviesToStore(userId));
   }, []);
@@ -38,11 +38,16 @@ export const Cart: FunctionComponent = () => {
   const getTotalPrice = (): number =>
     movies.reduce((accumulator, { price }) => accumulator + Number(price), 0);
 
-  return (
-    <div>
-      {!movies.length ? (
-        <CartIsEmpty />
-      ) : (
+  if (status === DataStatus.loading) {
+    return <Circular />;
+  }
+  if (status === DataStatus.empty) {
+    return <CartIsEmpty />;
+  }
+
+  if (status === DataStatus.success) {
+    return (
+      <>
         <div className={classes.cartContainer}>
           <List>
             {movies.map((movie: IMovie) => (
@@ -65,8 +70,9 @@ export const Cart: FunctionComponent = () => {
             </div>
           </div>
         </div>
-      )}
-      <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
-    </div>
-  );
+        <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
+      </>
+    );
+  }
+  return null;
 };

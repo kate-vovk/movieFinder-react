@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import i18next from 'i18next';
 import * as cart from '@/user/businessLogic/cart';
 import { ICart, ICartMovieState } from '@/interfaces/cartInterfaces';
+import { DataStatus } from '@/interfaces/status';
 
-toast.configure();
-
-const initialState: ICart = { movies: [], isLoading: false };
+const initialState: ICart = {
+  movies: [],
+  status: DataStatus.initial,
+};
 
 export const setCartMoviesToStore = createAsyncThunk('cart/getMovies', async (userId: string) => {
   return cart.getUserCart(userId);
@@ -38,28 +38,49 @@ export const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(setCartMoviesToStore.pending, (state) => {
+        state.status = DataStatus.loading;
+      })
       .addCase(setCartMoviesToStore.fulfilled, (state, action) => {
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+        }
         state.movies = action.payload;
       })
       .addCase(setCartMoviesToStore.rejected, (state) => {
-        toast(i18next.t('CartStatuses:noCart'));
-        state.isLoading = false;
+        state.status = DataStatus.error;
       })
 
       .addCase(addMovieToCart.pending, (state) => {
-        state.isLoading = true;
+        state.status = DataStatus.loading;
       })
       .addCase(addMovieToCart.fulfilled, (state, action) => {
         state.movies = action.payload;
-        state.isLoading = false;
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+        }
+      })
+      .addCase(addMovieToCart.rejected, (state) => {
+        state.status = DataStatus.error;
       })
 
       .addCase(removeMovieFromCart.pending, (state) => {
-        state.isLoading = true;
+        state.status = DataStatus.loading;
       })
       .addCase(removeMovieFromCart.fulfilled, (state, action) => {
         state.movies = action.payload;
-        state.isLoading = false;
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+        }
+      })
+      .addCase(removeMovieFromCart.rejected, (state) => {
+        state.status = DataStatus.error;
       });
   },
 });

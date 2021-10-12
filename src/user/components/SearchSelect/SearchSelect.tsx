@@ -3,10 +3,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { SelectProps } from '@material-ui/core/Select';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { searchOption } from '@/user/constants/constants';
 import { setSelectedParam } from '@/user/store/slices/moviesSlice';
 import { useStyle } from './styles';
 import { SelectBlock } from '@/sharedComponents/SelectBlock';
+import { SearchOption } from '@/interfaces/movieInterface';
 
 export const SearchSelect: FunctionComponent = () => {
   const classes = useStyle();
@@ -25,7 +25,7 @@ export const SearchSelect: FunctionComponent = () => {
     setIsSelectOpen(true);
   };
 
-  const changedSelectParam = (event: ChangeEvent<{ name: string; value: searchOption }>): void => {
+  const changedSelectParam = (event: ChangeEvent<{ name: string; value: SearchOption }>): void => {
     setSelectParam(event.target?.value);
   };
 
@@ -43,7 +43,7 @@ export const SearchSelect: FunctionComponent = () => {
       onOpen={selectOpen}
       value={selectParam}
       onChange={changedSelectParam as SelectProps['onChange']}
-      option={Object.values(searchOption).map((option) => (
+      option={Object.values(SearchOption).map((option) => (
         <MenuItem key={option} value={option}>
           {option}
         </MenuItem>

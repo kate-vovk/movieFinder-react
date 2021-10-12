@@ -1,4 +1,5 @@
 import { AxiosPromise, AxiosResponse } from 'axios';
+import CustomError from '@/utils/customError';
 
 const axios = require('axios').default;
 
@@ -17,8 +18,8 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: { message: string }) => {
-        throw new Error(err.message);
+      .catch((err: { response: { status: number }; message: string }) => {
+        throw new CustomError(err);
       });
   }
 
@@ -34,8 +35,8 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((error: Record<string, any>) => {
-        throw new Error(JSON.stringify(error.response));
+      .catch((err: { response: { status: number }; message: string }) => {
+        throw new CustomError(err);
       });
   }
 
@@ -48,8 +49,8 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: string) => {
-        throw new Error(err);
+      .catch((err: { response: { status: number }; message: string }) => {
+        throw new CustomError(err);
       });
   }
 
@@ -61,8 +62,8 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: string) => {
-        throw new Error(err);
+      .catch((err: { response: { status: number }; message: string }) => {
+        throw new CustomError(err);
       });
   }
 }

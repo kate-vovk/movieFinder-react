@@ -75,7 +75,24 @@ export const en = {
     error: 'Error',
   },
   CartStatuses: {
+    'Cart error': 'Something went wrong in cart',
     noCart: 'No cart for current user exists',
+  },
+  ErrorStatuses: {
+    Error: 'Error occured',
+    'Try again': 'Try again',
+    'Try again later': 'Try again later',
+    'Go to login page': 'Go to login page',
+    '401': 'You are not authorized',
+    '403': 'You do not have permission to access this resource',
+
+    'Error in /cart': 'Error in Cart',
+    'Network Error in /cart': 'Network Error in Cart',
+    '400 in /cart': '400. Bad request in Cart',
+    '404 in /cart': '404. This request does not exist in Cart',
+    '500 in /cart': '500. Internal server error. No cart for current user exists',
+    '502 in /cart': '502. Bad gateway in Cart',
+    '503 in /cart': '503. Service Unavailable in Cart',
   },
   UserMenu: {
     adminPanel: 'Admin panel',
