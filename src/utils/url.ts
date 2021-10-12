@@ -1,4 +1,4 @@
-import { searchOption } from '@/user/constants/constants';
+import { SearchOption } from '@/interfaces/movieInterface';
 
 interface ICreatePath {
   searchQuery?: string;
@@ -19,16 +19,16 @@ export const createPath = ({
   );
 
   switch (selectParam) {
-    case searchOption.initial:
+    case SearchOption.initial:
       searchParam = 'initial';
       break;
-    case searchOption.movie:
+    case SearchOption.movie:
       searchParam = 'initial';
       break;
-    case searchOption.studio:
+    case SearchOption.studio:
       searchParam = 'production_company';
       break;
-    case searchOption.actor:
+    case SearchOption.actor:
       searchParam = 'actor';
       break;
     default:

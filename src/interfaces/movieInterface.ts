@@ -31,3 +31,10 @@ export interface IGetMovies {
 export interface IMovieDetailView {
   film: IMovie;
 }
+
+export enum SearchOption {
+  initial = '',
+  movie = 'movie',
+  actor = 'actor',
+  studio = 'studio',
+}
