@@ -31,6 +31,7 @@ export const MyMovieItem: FunctionComponent<IMyMovie> = ({
   const { t } = useTranslation(['UserPage']);
   const classes = useStyle();
   const history = useHistory();
+  const [time, setTime] = useState<string>('');
   const [selectedDate, handleDateChange] = useState<Date | null>(new Date(expirationDate));
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event: MouseEvent<any>): void => {
@@ -47,17 +48,20 @@ export const MyMovieItem: FunctionComponent<IMyMovie> = ({
 
   const getDaysHours = (expiration: string): string => {
     const dateFuture = new Date(expiration);
-    const dateNow = new Date();
+    setInterval((): void => {
+      const dateNow = new Date();
+      const distance = dateFuture.getTime() - dateNow.getTime();
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-    let minutes = Math.floor((dateFuture.getTime() - dateNow.getTime()) / (1000 * 60));
-    let hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    hours -= days * 24;
-    minutes -= days * 24 * 60 - hours * 60;
-
-    return days <= 0
-      ? `${hours}${t('hours')} ${minutes}${t('minutes')}`
-      : `${days}${t('days')} ${hours}${t('hours')}`;
+      setTime(
+        days <= 0
+          ? `${hours}${t('hours')} ${minutes}${t('minutes')}`
+          : `${days}${t('days')} ${hours}${t('hours')}`,
+      );
+    }, 1000);
+    return time;
   };
 
   const goToMoviePage = (): void => {
