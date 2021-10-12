@@ -47,11 +47,6 @@ export const useStyle = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  feedbackRate: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   feedbackRateIcon: {
     margin: '0 5px 0 0',
     width: '15px',
