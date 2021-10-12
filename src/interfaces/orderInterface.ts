@@ -1,3 +1,10 @@
+import { DataStatus } from './status';
+
+export interface IMyMovies {
+  myMovies: IOrder[];
+  status: DataStatus;
+}
+
 export interface IOrder {
   id: string;
   title: string;

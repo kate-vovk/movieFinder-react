@@ -1,10 +1,13 @@
 import { IOrder } from '@/interfaces/orderInterface';
+import { store } from '@/store';
 import { getUserOrders as getUserOrdersAPI } from '@/user/api/myMovies';
+import { actionToDispatch } from '@/utils';
 import CustomError from '@/utils/customError';
 
 export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
   try {
     const { data } = await getUserOrdersAPI(userId);
+    store.dispatch(actionToDispatch('errors/clearError', 'getUserOrders/failed'));
     return data;
   } catch (err) {
     const error = {
@@ -13,6 +16,7 @@ export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
       failedFunctionFromBusinessLogic: getUserOrders,
       params: userId,
       isMajor: false,
+      route: '/user/4',
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }

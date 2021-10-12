@@ -41,14 +41,19 @@ export const errorSlice = createSlice({
                 errorName: action.payload.errorName,
                 message: action.payload.message,
                 failedFunctionFromBusinessLogic: action.payload.failedFunctionFromBusinessLogic,
-                params: action.payload.params,
-                isMajor: action.payload.isMajor,
+                params: action.payload.params || '',
+                isMajor: action.payload.isMajor || false,
+                route: action.payload.route || '/',
               },
         );
       }
     },
     setErrorPriority(state, action) {
       state.errors = state.errors.map((error) => {
+        console.log(
+          'action.payload.currentRoute === error.route',
+          action.payload.currentRoute === error.route,
+        );
         if (error.route && action.payload.currentRoute === error.route && !error.redirectionPage) {
           return {
             ...error,

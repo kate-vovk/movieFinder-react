@@ -5,7 +5,7 @@ import { actionToDispatch } from '@/utils';
 export default class CustomError extends Error {
   constructor(
     err: { response: { status: number }; message: string },
-    object: { [key: string]: any } = {},
+    failedServerCall: { [key: string]: any } = {},
   ) {
     const error = err.response ? err.response.status : err.message;
     super(error as string);
@@ -18,14 +18,15 @@ export default class CustomError extends Error {
         }),
       );
     }
-    if (object !== {} && object.failedFunctionFromBusinessLogic) {
+    if (failedServerCall !== {} && failedServerCall.failedFunctionFromBusinessLogic) {
       store.dispatch(
         actionToDispatch('errors/addError', {
-          errorName: object.errorName,
-          message: object.message,
-          failedFunctionFromBusinessLogic: object.failedFunctionFromBusinessLogic,
-          params: object.params,
-          isMajor: object.isMajor,
+          errorName: failedServerCall.errorName,
+          message: failedServerCall.message,
+          failedFunctionFromBusinessLogic: failedServerCall.failedFunctionFromBusinessLogic,
+          params: failedServerCall.params,
+          isMajor: failedServerCall.isMajor,
+          route: failedServerCall.route,
         }),
       );
     }

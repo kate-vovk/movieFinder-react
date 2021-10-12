@@ -26,7 +26,7 @@ interface IMovieControlProps {
 export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, price }) => {
   const { t } = useTranslation(['MovieControl']);
   const dispatch = useDispatch();
-  const activeOrders = useSelector(activeOrdersSelector);
+  const { myMovies } = useSelector(activeOrdersSelector);
   const { movies, status } = useSelector(cartSelector);
   const favoritesMovies = useSelector(favoritesSelector);
   const isFavoritesLoading = useSelector(isFavoritesLoadingSelector);
@@ -37,7 +37,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
   const [openTooltip, setOpen] = useState(false);
 
   const handleOpen = (): void => {
-    if (activeOrders.find(({ id }: { id: string }) => id === movieId)) {
+    if (myMovies.find(({ id }: { id: string }) => id === movieId)) {
       setOpen(true);
     }
   };
@@ -49,7 +49,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
   const addMovieIdToCart = (): void => {
     if (movies.find((movie: IMovie) => movie.id === movieId)) {
       dispatch(removeMovieFromCart({ userId, movieId }));
-    } else if (!activeOrders.find(({ id }: { id: string }) => id === movieId)) {
+    } else if (!myMovies.find(({ id }: { id: string }) => id === movieId)) {
       dispatch(showModal({ modalType, modalProps }));
     }
   };
@@ -64,7 +64,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
 
   const classes = useStyle({
     isIncluded: Boolean(movies.find((movie: IMovie) => movie.id === movieId)),
-    isDisabled: Boolean(activeOrders.find(({ id }: { id: string }) => id === movieId)),
+    isDisabled: Boolean(myMovies.find(({ id }: { id: string }) => id === movieId)),
   });
 
   const classesFavorites = useStyle({
