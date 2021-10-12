@@ -1,8 +1,9 @@
 import { IMovie } from './movieInterface';
+import { DataStatus } from '@/interfaces/status';
 
 export interface ICart {
   movies: IMovie[];
-  isLoading: boolean;
+  status: DataStatus;
 }
 
 export interface ICartMovieState {
