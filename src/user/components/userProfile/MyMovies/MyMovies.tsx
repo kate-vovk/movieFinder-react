@@ -27,23 +27,19 @@ export const MyMovies: FunctionComponent = () => {
       {!myMovies.length ? (
         <MyMoviesIsEmpty />
       ) : (
-        <div className={classes.myMoviesContainer}>
-          <ul className={classes.listItem}>
-            {myMovies.map((movie: IOrder) => (
-              <li className={classes.item} key={movie.id}>
-                <MyMovieItem
-                  movieId={movie.id}
-                  coverUrl={movie.coverUrl}
-                  title={movie.title}
-                  quality={movie.qualityId}
-                  duration={movie.duration}
-                  expirationDate={movie.expireDate}
-                  period={movie.period}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className={classes.container}>
+          {myMovies.map((movie: IOrder) => (
+            <MyMovieItem
+              movieId={movie.id}
+              coverUrl={movie.coverUrl}
+              title={movie.title}
+              quality={movie.qualityId}
+              duration={movie.duration}
+              expirationDate={movie.expireDate}
+              period={movie.period}
+            />
+          ))}
+        </ul>
       )}
       <GoToMainPageButton />
     </div>
