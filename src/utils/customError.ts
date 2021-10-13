@@ -26,12 +26,10 @@ export default class CustomError extends Error {
           failedFunctionFromBusinessLogic: failedServerCall.failedFunctionFromBusinessLogic,
           params: failedServerCall.params,
           isMajor: failedServerCall.isMajor,
+          isMajorFlagMutable: failedServerCall.isMajorFlagMutable,
           route: failedServerCall.route,
         }),
       );
-      // store.dispatch(
-      //   actionToDispatch('errors/setErrorPriority', { errorName: failedServerCall.errorName }),
-      // );
     }
   }
 }

@@ -28,29 +28,29 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
     history.push(`${CLIENT_PATHS.movies}/${id}`);
   };
 
-  if (status === DataStatus.success) {
-    return (
-      <ListItem className={classes.container} component={Paper}>
-        <ListItemIcon className={classes.image}>
-          <img src={coverUrl} />
-        </ListItemIcon>
-        <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
-          <Typography onClick={goToDetailedView} className={classes.title}>
-            {title}
-          </Typography>
-          <Typography onClick={goToDetailedView} className={classes.description}>
-            {description}
-          </Typography>
+  // if (status === DataStatus.success) {
+  return (
+    <ListItem className={classes.container} component={Paper}>
+      <ListItemIcon className={classes.image}>
+        <img src={coverUrl} />
+      </ListItemIcon>
+      <div className={`${classes.content} ${classes.titleDescriptionContent}`}>
+        <Typography onClick={goToDetailedView} className={classes.title}>
+          {title}
+        </Typography>
+        <Typography onClick={goToDetailedView} className={classes.description}>
+          {description}
+        </Typography>
+      </div>
+      <div className={`${classes.content} ${classes.removePriceContent}`}>
+        <CustomButton buttonType="button" onClick={removeMovieIdFromCart} name="remove" />
+        <div className={classes.priceContainer}>
+          <Typography variant="h6">{price}</Typography>
+          <EuroIcon fontSize="small" />
         </div>
-        <div className={`${classes.content} ${classes.removePriceContent}`}>
-          <CustomButton buttonType="button" onClick={removeMovieIdFromCart} name="remove" />
-          <div className={classes.priceContainer}>
-            <Typography variant="h6">{price}</Typography>
-            <EuroIcon fontSize="small" />
-          </div>
-        </div>
-      </ListItem>
-    );
-  }
-  return null;
+      </div>
+    </ListItem>
+  );
+  // }
+  // return null;
 };
