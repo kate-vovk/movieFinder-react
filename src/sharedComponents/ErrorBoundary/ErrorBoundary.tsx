@@ -21,7 +21,6 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
   useEffect(() => {
     dispatch(setCurrentRoute(location.pathname));
     dispatch(setErrorPriority());
-    // dispatch(setErrorPriority({ currentRoute: location.pathname }));
   }, [location.pathname]);
 
   const callFailedAction = (): void => {
