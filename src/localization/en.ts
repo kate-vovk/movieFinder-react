@@ -88,7 +88,10 @@ export const en = {
 
     'Error in /cart': 'Error in Cart',
     'Network Error in /cart': 'Network Error in Cart',
+    'Network Error in /cart. Please try later': 'Network Error in Cart. Please try later',
     '400 in /cart': '400. Bad request in Cart',
+    '401 in /cart': 'You are not authorized',
+    '403 in /cart': 'You do not have permission to access this resource',
     '404 in /cart': '404. This request does not exist in Cart',
     '500 in /cart': '500. Internal server error. No cart for current user exists',
     '502 in /cart': '502. Bad gateway in Cart',
@@ -96,6 +99,14 @@ export const en = {
 
     'Error in /user/4': 'Error in My Movies',
     'Network Error in /user/4': 'Network Error in My Movies',
+    'Network Error in /user/4. Please try later': 'Network Error in My Movies. Please try later',
+    '400 in /user/4': '400. Bad request in My Movies',
+    '401 in /user/4': 'You are not authorized',
+    '403 in /user/4': 'You do not have permission to access this resource',
+    '404 in /user/4': '404. This request does not exist in My Movies',
+    '500 in /user/4': '500. Internal server error. My Movies does not exist for current user',
+    '502 in /user/4': '502. Bad gateway in My Movies',
+    '503 in /user/4': '503. Service Unavailable in My Movies',
   },
   UserMenu: {
     adminPanel: 'Admin panel',

@@ -14,7 +14,6 @@ export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
       errorName: 'getUserOrders/failed',
       failedFunctionFromBusinessLogic: getUserOrders,
       params: userId,
-      // isMajor: false,
       isMajorFlagMutable: true,
       route: '/user/4',
     };

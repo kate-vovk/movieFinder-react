@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import { IErrorState } from '@/interfaces/errorInterfaces';
 
-// const AUTH_FAILED_ERROR = 'auth/failed';
-
 const initialState: IErrorState = {
   errors: [],
   currentRoute: '/',
@@ -17,11 +15,14 @@ const isMajorError = (
   isMajorFlag: boolean,
 ): boolean => {
   const isMajor = currentRoute && route ? currentRoute === route : false;
-  if ((isMajorFlag !== undefined && isMajorFlag === false) || !isMajor) {
-    toast(i18next.t(`ErrorStatuses:${message} in ${route}`));
-  }
   if (isMajorFlag !== undefined) {
+    if (isMajorFlag === false) {
+      toast(i18next.t(`ErrorStatuses:${message} in ${route}. Please try later`));
+    }
     return isMajorFlag;
+  }
+  if (!isMajor) {
+    toast(i18next.t(`ErrorStatuses:${message} in ${route}`));
   }
   return isMajor;
 };
@@ -35,7 +36,6 @@ export const errorSlice = createSlice({
     },
     addError(state, action) {
       if (!state.errors.map(({ errorName }) => errorName).includes(action.payload.errorName)) {
-        console.log('action.payload.isMajor !== undefined', action.payload.isMajor !== undefined);
         const isMajorErr = isMajorError(
           state.currentRoute,
           action.payload.route,
@@ -64,32 +64,10 @@ export const errorSlice = createSlice({
         );
       }
     },
-    // params: {currentRoute} || {errorName} || {errorName && isMajor}
-    setErrorPriority(state, action) {
+    setErrorPriority(state) {
       state.errors = state.errors.map((error) => {
-        if (!error.redirectionPage) {
-          if (error.isMajorFlagMutable !== undefined && error.isMajorFlagMutable === false) {
-            return error;
-          }
-          if (
-            action.payload.errorName &&
-            action.payload.isMajor &&
-            error.errorName === action.payload.errorName
-          ) {
-            return { ...error, isMajor: action.payload.isMajor };
-          }
-          if (
-            action.payload.currentRoute &&
-            error.route &&
-            action.payload.currentRoute === error.route
-          ) {
-            return { ...error, isMajor: true };
-          }
-          if (
-            action.payload.errorName &&
-            error.errorName === action.payload.errorName &&
-            state.currentRoute === error.route
-          ) {
+        if (!error.redirectionPage && error.isMajorFlagMutable) {
+          if (error.route && state.currentRoute === error.route) {
             return { ...error, isMajor: true };
           }
           return { ...error, isMajor: false };

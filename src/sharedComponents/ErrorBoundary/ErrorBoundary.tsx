@@ -20,7 +20,8 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
 
   useEffect(() => {
     dispatch(setCurrentRoute(location.pathname));
-    dispatch(setErrorPriority({ currentRoute: location.pathname }));
+    dispatch(setErrorPriority());
+    // dispatch(setErrorPriority({ currentRoute: location.pathname }));
   }, [location.pathname]);
 
   const callFailedAction = (): void => {
@@ -70,7 +71,7 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
-          return majorError.route
+          return majorError.route && majorError.route === location.pathname
             ? `${i18next.t(`ErrorStatuses:Error in ${majorError.route}`)}`
             : `${i18next.t(`ErrorStatuses:Error`)}`;
         }),

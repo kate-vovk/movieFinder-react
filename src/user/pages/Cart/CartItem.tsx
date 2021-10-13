@@ -9,8 +9,6 @@ import { IMovie } from '@/interfaces/movieInterface';
 import { useStyle } from './styles';
 import { removeMovieFromCart } from '@/user/store/slices/cartSlice';
 import { userIdSelector } from '@/user/store/selectors/auth';
-import { cartSelector } from '@/user/store/selectors/cart';
-import { DataStatus } from '@/interfaces/status';
 
 export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const { id, coverUrl, title, price, description } = movie;
@@ -19,7 +17,6 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
   const history = useHistory();
 
   const userId = useSelector(userIdSelector);
-  const { status } = useSelector(cartSelector);
 
   const removeMovieIdFromCart = (): void => {
     dispatch(removeMovieFromCart({ userId, movieId: movie.id }));
@@ -28,7 +25,6 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
     history.push(`${CLIENT_PATHS.movies}/${id}`);
   };
 
-  // if (status === DataStatus.success) {
   return (
     <ListItem className={classes.container} component={Paper}>
       <ListItemIcon className={classes.image}>
@@ -51,6 +47,4 @@ export const CartItem: FunctionComponent<{ movie: IMovie }> = ({ movie }) => {
       </div>
     </ListItem>
   );
-  // }
-  // return null;
 };
