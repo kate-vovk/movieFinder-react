@@ -11,9 +11,13 @@ const initialState: IErrorState = {
   currentRoute: '/',
 };
 
-const isMajorError = (currentRoute: string, route: string, message = ''): boolean => {
-  const isMajor = currentRoute === route;
-  if (!isMajor) {
+const isMajorError = (
+  currentRoute: string | undefined,
+  route: string | undefined,
+  message = '',
+): boolean | undefined => {
+  const isMajor = currentRoute && route ? currentRoute === route : undefined;
+  if (!isMajor && isMajor !== undefined) {
     toast(i18next.t(`ErrorStatuses:${message} in ${route}`));
   }
   return isMajor;
@@ -28,6 +32,11 @@ export const errorSlice = createSlice({
     },
     addError(state, action) {
       if (!state.errors.map(({ errorName }) => errorName).includes(action.payload.errorName)) {
+        const isMajorErr = isMajorError(
+          state.currentRoute,
+          action.payload.route,
+          action.payload.message,
+        );
         state.errors.push(
           action.payload.redirectionPage
             ? {
@@ -42,25 +51,40 @@ export const errorSlice = createSlice({
                 message: action.payload.message,
                 failedFunctionFromBusinessLogic: action.payload.failedFunctionFromBusinessLogic,
                 params: action.payload.params || '',
-                isMajor: action.payload.isMajor || false,
+                isMajor: isMajorErr || action.payload.isMajor || false,
                 route: action.payload.route || '/',
               },
         );
       }
     },
+    // params: {currentRoute} || {errorName} || {errorName && isMajor}
     setErrorPriority(state, action) {
       state.errors = state.errors.map((error) => {
-        console.log(
-          'action.payload.currentRoute === error.route',
-          action.payload.currentRoute === error.route,
-        );
-        if (error.route && action.payload.currentRoute === error.route && !error.redirectionPage) {
-          return {
-            ...error,
-            isMajor: true,
-          };
+        if (!error.redirectionPage) {
+          if (
+            action.payload.currentRoute &&
+            error.route &&
+            action.payload.currentRoute === error.route
+          ) {
+            return { ...error, isMajor: true };
+          }
+          if (
+            action.payload.errorName &&
+            action.payload.isMajor &&
+            error.errorName === action.payload.errorName
+          ) {
+            return { ...error, isMajor: action.payload.isMajor };
+          }
+          if (
+            action.payload.errorName &&
+            error.errorName === action.payload.errorName &&
+            state.currentRoute === error.route
+          ) {
+            return { ...error, isMajor: true };
+          }
+          return { ...error, isMajor: false };
         }
-        return { ...error, isMajor: false };
+        return error;
       });
     },
     clearError(state, action) {
@@ -96,7 +120,7 @@ export const errorSlice = createSlice({
               failedActionFromRedux: setCartMoviesToStore,
               params: action.meta.arg,
               route: '/cart',
-              isMajor: isMajorError(state.currentRoute, '/cart', action.error.message),
+              isMajor: isMajorError(state.currentRoute, '/cart', action.error.message) || false,
             },
           ];
         }
@@ -112,7 +136,7 @@ export const errorSlice = createSlice({
               failedActionFromRedux: addMovieToCart,
               params: action.meta.arg,
               route: '/cart',
-              isMajor: isMajorError(state.currentRoute, '/cart', action.error.message),
+              isMajor: isMajorError(state.currentRoute, '/cart', action.error.message) || false,
             },
           ];
         }
@@ -128,7 +152,7 @@ export const errorSlice = createSlice({
               failedActionFromRedux: removeMovieFromCart,
               params: action.meta.arg,
               route: '/cart',
-              isMajor: isMajorError(state.currentRoute, '/cart', action.error.message),
+              isMajor: isMajorError(state.currentRoute, '/cart', action.error.message) || false,
             },
           ];
         }

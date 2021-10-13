@@ -6,7 +6,6 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 import { activeOrdersSelector } from '@/user/store/selectors/myMovies';
 import { setUserOrdersToStore } from '@/user/store/slices/myMoviesSlice';
 import { MyMovieItem } from './MyMovieItem';
-// import { MyMoviesIsEmpty } from './MyMoviesIsEmpty';
 import { GoToMainPageButton } from '@/sharedComponents/GoToMainPageButton';
 import { useStyle } from './styles';
 import { MyMoviesIsEmpty } from './MyMoviesIsEmpty';

@@ -25,12 +25,14 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
 
   const callFailedAction = (): void => {
     majorErrors.forEach((majorError: IError): void => {
+      // if (majorError.route === location.pathname) {
       if (majorError.failedActionFromRedux) {
         dispatch(majorError.failedActionFromRedux(majorError.params as any));
       }
       if (majorError.failedFunctionFromBusinessLogic) {
         majorError.failedFunctionFromBusinessLogic(majorError.params as any);
       }
+      // }
     });
   };
   // if 401 or 403 errors occur, redirect to login page.

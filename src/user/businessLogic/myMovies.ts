@@ -12,7 +12,7 @@ export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
   } catch (err) {
     const error = {
       errorName: 'getUserOrders/failed',
-      message: 'getUserOrders/failed',
+      // message: 'getUserOrders/failed',
       failedFunctionFromBusinessLogic: getUserOrders,
       params: userId,
       isMajor: false,

@@ -93,6 +93,9 @@ export const en = {
     '500 in /cart': '500. Internal server error. No cart for current user exists',
     '502 in /cart': '502. Bad gateway in Cart',
     '503 in /cart': '503. Service Unavailable in Cart',
+
+    'Error in /user/4': 'Error in My Movies',
+    'Network Error in /user/4': 'Network Error in My Movies',
   },
   UserMenu: {
     adminPanel: 'Admin panel',

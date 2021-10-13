@@ -22,13 +22,16 @@ export default class CustomError extends Error {
       store.dispatch(
         actionToDispatch('errors/addError', {
           errorName: failedServerCall.errorName,
-          message: failedServerCall.message,
+          message: error,
           failedFunctionFromBusinessLogic: failedServerCall.failedFunctionFromBusinessLogic,
           params: failedServerCall.params,
           isMajor: failedServerCall.isMajor,
           route: failedServerCall.route,
         }),
       );
+      // store.dispatch(
+      //   actionToDispatch('errors/setErrorPriority', { errorName: failedServerCall.errorName }),
+      // );
     }
   }
 }
