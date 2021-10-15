@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import { IErrorState } from '@/interfaces/errorInterfaces';
+import { exctractParams, exctractRoute } from '@/utils/extractRouteParams';
 
 const initialState: IErrorState = {
   errors: [],
@@ -22,8 +23,9 @@ const isMajorError = (
     return isMajorFlag;
   }
   if (!isMajor) {
-    const pageName = i18next.t(`ErrorStatuses:${route}`);
-    toast(i18next.t(`ErrorStatuses:${message}`, { pageName }));
+    const param = exctractParams(route);
+    const pageName = i18next.t(`ErrorStatuses:${exctractRoute(route)}`);
+    toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
   }
   return isMajor;
 };

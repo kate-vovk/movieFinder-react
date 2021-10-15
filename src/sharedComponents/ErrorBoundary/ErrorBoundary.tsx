@@ -8,6 +8,7 @@ import { clearError, setCurrentRoute, setErrorPriority } from '@/user/store/slic
 import { errorSelector, majorErrorSelector } from '@/user/store/selectors/errors';
 import { clearAuth } from '@/user/store/slices/authSlice';
 import { IError } from '@/interfaces/errorInterfaces';
+import { exctractParams, exctractRoute } from '@/utils/extractRouteParams';
 
 export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
   children = null,
@@ -17,7 +18,8 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
   const errors = useSelector(errorSelector);
   const majorErrors = useSelector(majorErrorSelector);
   const dispatch = useDispatch();
-
+  // const { id } = useParams();
+  // console.log('id', id);
   useEffect(() => {
     dispatch(setCurrentRoute(location.pathname));
     dispatch(setErrorPriority());
@@ -59,9 +61,11 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
-          const pageName = i18next.t(`ErrorStatuses:${majorError.route}`);
+          const route = exctractRoute(majorError.route);
+          const param = exctractParams(majorError.route);
+          const pageName = i18next.t(`ErrorStatuses:${route}`);
           return majorError.route
-            ? `${i18next.t(`ErrorStatuses:${majorError.message}`, { pageName })}`
+            ? `${i18next.t(`ErrorStatuses:${majorError.message}`, { pageName })} ${param}`
             : `${i18next.t(`ErrorStatuses:${majorError.message}`)}`;
         }),
       ),
@@ -71,7 +75,8 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
-          const pageName = i18next.t(`ErrorStatuses:${majorError.route}`);
+          const route = exctractRoute(majorError.route);
+          const pageName = i18next.t(`ErrorStatuses:${route}`);
           return majorError.route && majorError.route === location.pathname
             ? `${i18next.t(`ErrorStatuses:Error`, { pageName })}`
             : `${i18next.t(`ErrorStatuses:GlobalError`)}`;

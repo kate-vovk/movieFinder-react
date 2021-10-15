@@ -97,6 +97,7 @@ export const en = {
     '502': '502. Bad gateway in {{pageName}}',
     '503': '503. Service Unavailable in {{pageName}}',
 
+    '/movies': 'Movies',
     '/cart': 'Cart',
     '/user/4': 'My Movies',
   },

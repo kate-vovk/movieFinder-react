@@ -6,8 +6,8 @@ import CustomError from '@/utils/customError';
 
 export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
   try {
-    const { data } = await getUserOrdersAPI(userId);
     store.dispatch(actionToDispatch('errors/clearError', 'getUserOrders/failed'));
+    const { data } = await getUserOrdersAPI(userId);
     return data;
   } catch (err) {
     const error = {
