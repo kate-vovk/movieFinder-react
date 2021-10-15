@@ -59,8 +59,9 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
+          const pageName = i18next.t(`ErrorStatuses:${majorError.route}`);
           return majorError.route
-            ? `${i18next.t(`ErrorStatuses:${majorError.message} in ${majorError.route}`)}`
+            ? `${i18next.t(`ErrorStatuses:${majorError.message}`, { pageName })}`
             : `${i18next.t(`ErrorStatuses:${majorError.message}`)}`;
         }),
       ),
@@ -70,9 +71,10 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
+          const pageName = i18next.t(`ErrorStatuses:${majorError.route}`);
           return majorError.route && majorError.route === location.pathname
-            ? `${i18next.t(`ErrorStatuses:Error in ${majorError.route}`)}`
-            : `${i18next.t(`ErrorStatuses:Error`)}`;
+            ? `${i18next.t(`ErrorStatuses:Error`, { pageName })}`
+            : `${i18next.t(`ErrorStatuses:GlobalError`)}`;
         }),
       ),
     ).join();

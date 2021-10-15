@@ -38,8 +38,8 @@ export const MyMovieItem: FunctionComponent<IMyMovie> = ({
     getTimeLeftToExpiration(getDaysHoursMinutesFromExpirationDate(expirationDate)),
   );
   const [selectedDate, handleDateChange] = useState<Date | null>(new Date(expirationDate));
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event: { currentTarget: any }): void => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const handleClick = (event: { currentTarget: HTMLElement }): void => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (): void => {

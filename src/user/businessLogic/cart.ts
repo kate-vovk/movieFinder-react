@@ -19,7 +19,6 @@ export const getUserCart = async (userId: string): Promise<IMovie[]> => {
       errorName: 'getUserCart/failed',
       failedFunctionFromBusinessLogic: getUserCart,
       params: userId,
-      // isMajor: false,
       isMajorFlagMutable: true,
       route: '/cart',
     };
