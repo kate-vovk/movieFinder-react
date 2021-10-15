@@ -26,7 +26,6 @@ const isMajorError = (
   if (!isMajor) {
     const param = exctractParams(route);
     const pageName = i18next.t(`ErrorStatuses:${exctractRoute(route)}`);
-    console.log('pageName', param, pageName);
     toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
   }
   return isMajor;

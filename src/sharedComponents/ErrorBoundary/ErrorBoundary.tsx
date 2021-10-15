@@ -18,8 +18,6 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
   const errors = useSelector(errorSelector);
   const majorErrors = useSelector(majorErrorSelector);
   const dispatch = useDispatch();
-  // const { id } = useParams();
-  // console.log('id', id);
   useEffect(() => {
     dispatch(setCurrentRoute(location.pathname));
     dispatch(setErrorPriority());

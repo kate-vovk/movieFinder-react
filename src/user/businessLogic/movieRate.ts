@@ -45,7 +45,7 @@ export const addRate = async ({
   }
 };
 
-export const deleteRate = ({
+export const deleteRate = async ({
   movieId,
   userId,
 }: {
@@ -54,7 +54,7 @@ export const deleteRate = ({
 }): Promise<AxiosPromise> => {
   try {
     store.dispatch(actionToDispatch('errors/clearError', 'deleteRate/failed'));
-    return deleteRateAPI({ movieId, userId });
+    return await deleteRateAPI({ movieId, userId });
   } catch (err) {
     const error = {
       errorName: 'deleteRate/failed',

@@ -5,5 +5,4 @@ export interface IComment {
   userName: string;
   comment: string;
   date: string;
-  rate: number;
 }
