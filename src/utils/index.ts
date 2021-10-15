@@ -7,3 +7,4 @@ export {
   loginFormValidationSchema,
   userProfileFormValidationSchema,
 } from './validations';
+export { actionToDispatch } from './actionToDispatch';

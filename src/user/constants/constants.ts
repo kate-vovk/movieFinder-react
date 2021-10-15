@@ -28,10 +28,3 @@ export const SERVER_PATHS = {
   rate: '/rate',
   comments: '/commentaries',
 };
-
-export enum searchOption {
-  initial = '',
-  movie = 'movie',
-  actor = 'actor',
-  studio = 'studio',
-}
