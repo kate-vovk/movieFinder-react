@@ -45,34 +45,31 @@ export const Cart: FunctionComponent = () => {
     return <CartIsEmpty />;
   }
 
-  if (status === DataStatus.success) {
-    return (
-      <>
-        <div className={classes.cartContainer}>
-          <List>
-            {movies.map((movie: IMovie) => (
-              <CartItem key={movie.id} movie={movie} />
-            ))}
-          </List>
-          <div className={classes.buttonsContainer}>
-            <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
-            <CustomButton
-              buttonType="button"
-              className={classes.buyButton}
-              onClick={clickOnBuyButton}
-              name={t('buyButton')}
-            />
-            <div className={classes.priceContainer}>
-              <Typography>{t('totalPrice')}: &nbsp; </Typography>
-              <Typography className={classes.priceContainer}>
-                {getTotalPrice().toFixed(2)} <EuroIcon fontSize="small" />
-              </Typography>
-            </div>
+  return (
+    <>
+      <div className={classes.cartContainer}>
+        <List>
+          {movies.map((movie: IMovie) => (
+            <CartItem key={movie.id} movie={movie} />
+          ))}
+        </List>
+        <div className={classes.buttonsContainer}>
+          <CustomButton buttonType="button" onClick={goToPreviousPage} name="back" />
+          <CustomButton
+            buttonType="button"
+            className={classes.buyButton}
+            onClick={clickOnBuyButton}
+            name={t('buyButton')}
+          />
+          <div className={classes.priceContainer}>
+            <Typography>{t('totalPrice')}: &nbsp; </Typography>
+            <Typography className={classes.priceContainer}>
+              {getTotalPrice().toFixed(2)} <EuroIcon fontSize="small" />
+            </Typography>
           </div>
         </div>
-        <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
-      </>
-    );
-  }
-  return null;
+      </div>
+      <PaymentDetailsModal isOpen={openModal} setOpen={isModalOpen} />
+    </>
+  );
 };

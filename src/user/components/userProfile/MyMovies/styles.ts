@@ -40,12 +40,11 @@ export const useStyle = makeStyles(() => ({
       height: 80,
     },
   },
-  myMoviesContainer: {
-    height: '100%',
-    width: '100%',
-  },
   container: {
-    width: '100%',
+    width: '60vw',
+    padding: '0px',
+  },
+  itemContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -65,16 +64,6 @@ export const useStyle = makeStyles(() => ({
     '@media (max-width:700px)': {
       flexDirection: 'column',
     },
-  },
-  listItem: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: '0px',
-  },
-  item: {
-    display: 'flex',
-    flex: '0 0 calc(100% - 20px)',
   },
   hidden: {
     '@media (max-width:900px)': {
