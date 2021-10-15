@@ -18,13 +18,15 @@ const isMajorError = (
   const isMajor = currentRoute && route ? currentRoute === route : false;
   if (isMajorFlag !== undefined) {
     if (isMajorFlag === false) {
-      toast(i18next.t(`ErrorStatuses:${message}. Please try later`, { route }));
+      const pageName = i18next.t(`ErrorStatuses:${exctractRoute(route)}`);
+      toast(i18next.t(`ErrorStatuses:${message}. Please try later`, { pageName }));
     }
     return isMajorFlag;
   }
   if (!isMajor) {
     const param = exctractParams(route);
     const pageName = i18next.t(`ErrorStatuses:${exctractRoute(route)}`);
+    console.log('pageName', param, pageName);
     toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
   }
   return isMajor;

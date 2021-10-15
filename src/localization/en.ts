@@ -89,6 +89,7 @@ export const en = {
     'Go to login page': 'Go to login page',
     Error: 'Error in {{pageName}}',
     'Network Error': 'Network Error in {{pageName}}',
+    'Network Error. Please try later': 'Network Error in {{pageName}}. Please try later',
     '400': '400. Bad request in {{pageName}}',
     '401': 'You are not authorized',
     '403': 'You do not have permission to access this resource',

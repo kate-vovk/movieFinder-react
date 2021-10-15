@@ -3,6 +3,7 @@ import { IMovie } from '@/interfaces/movieInterface';
 import CustomError from '@/utils/customError';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
+import { CLIENT_PATHS } from '../constants';
 
 interface IGetMovie {
   movie: IMovie;
@@ -22,7 +23,7 @@ export const getDataMoviePage = async (movieId: string): Promise<IGetMovie> => {
       failedFunctionFromBusinessLogic: getDataMoviePage,
       params: movieId,
       isMajorFlagMutable: true,
-      route: `/movies/${movieId}`,
+      route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }
