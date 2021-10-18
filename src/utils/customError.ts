@@ -19,13 +19,8 @@ export default class CustomError extends Error {
     if (failedServerCall !== {} && failedServerCall.failedFunctionFromBusinessLogic) {
       store.dispatch(
         actionToDispatch('errors/addError', {
-          errorName: failedServerCall.errorName,
+          ...failedServerCall,
           message: error,
-          failedFunctionFromBusinessLogic: failedServerCall.failedFunctionFromBusinessLogic,
-          params: failedServerCall.params,
-          isMajor: failedServerCall.isMajor,
-          isMajorFlagMutable: failedServerCall.isMajorFlagMutable,
-          route: failedServerCall.route,
         }),
       );
     }
