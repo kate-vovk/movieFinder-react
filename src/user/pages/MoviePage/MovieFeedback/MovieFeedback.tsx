@@ -35,6 +35,7 @@ export const MovieFeedback: FunctionComponent<{
         } else {
           setMovieFeedbackStatus(DataStatus.empty);
         }
+        setEditedComment(false);
       })
       .catch(() => {
         setMovieFeedbackStatus(DataStatus.error);

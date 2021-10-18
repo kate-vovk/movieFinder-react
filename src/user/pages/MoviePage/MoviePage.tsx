@@ -4,7 +4,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { CLIENT_PATHS } from '@/user/constants';
-import { getMovieDataAndUserRate } from '@/user/businessLogic/movie';
+import { getMovieData } from '@/user/businessLogic/movie';
+import { getMovieRate } from '@/user/businessLogic/movieRate';
+
 import { IMovie } from '@/interfaces/movieInterface';
 import { MovieFeedback } from './MovieFeedback';
 import { MovieInfo } from './MovieInfo';
@@ -40,21 +42,30 @@ export const MoviePage: FunctionComponent = () => {
 
   useEffect(() => {
     setMoviePageStatus(DataStatus.loading);
-    getMovieDataAndUserRate({
-      movieId: id,
-      userId,
-    })
-      .then(({ movie: m, userRate: rate }) => {
-        setMovie(m.movie);
-        setVoteAverage(m.voteAverage);
-        setUserRate(rate);
-        setMoviePageStatus(DataStatus.success);
+    getMovieData(id)
+      .then(({ movie: m, voteAverage: v }): void => {
+        setMovie(m);
+        setVoteAverage(v);
+
+        getMovieRate({
+          movieId: id,
+          userId,
+        })
+          .then((rate) => {
+            setUserRate(rate);
+            setMoviePageStatus(DataStatus.success);
+          })
+          .catch(() => {
+            setMoviePageStatus(DataStatus.error);
+          });
       })
       .catch(() => {
         setMoviePageStatus(DataStatus.error);
       });
+    setMoviePageStatus(DataStatus.success);
+
     setEditedUserRate(false);
-  }, [userRate, isEditedUserRate]);
+  }, [voteAverage, userRate, isEditedUserRate]);
 
   if (moviePageStatus === DataStatus.loading) {
     return <Circular />;

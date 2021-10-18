@@ -22,6 +22,9 @@ export const getMovieAllComments = async ({
 }): Promise<{ results: IComment[]; total: number }> => {
   try {
     store.dispatch(actionToDispatch('errors/clearError', 'getMovieAllComments/failed'));
+    store.dispatch(actionToDispatch('errors/clearError', 'changeMovieComment/failed'));
+    store.dispatch(actionToDispatch('errors/clearError', 'deleteComment/failed'));
+    store.dispatch(actionToDispatch('errors/clearError', 'addMovieComment/failed'));
     const { data } = await getMovieAllCommentsAPI({ movieId, page, limit });
     return data;
   } catch (err) {

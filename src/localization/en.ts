@@ -53,6 +53,8 @@ export const en = {
     Comments: 'Comments',
     movieNotFound: 'Not found movie',
     noComments: 'No comments on this movie',
+    errorInComments: 'Error occured while loading comments',
+    reloadComments: 'Reload comments',
   },
   Filtration: {
     genres: 'Genres',

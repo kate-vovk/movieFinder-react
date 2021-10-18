@@ -22,17 +22,6 @@ const isMajorError = (
     toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
   }
   return isMajor;
-  // // isMajorFlag variable was passed from a function in business logic, isMajorFlag === defined
-  // if (isMajorFlag !== undefined && isMajorFlag === false) {
-  //   toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
-  //   return isMajorFlag;
-  // }
-  // // isMajorFlag variable was not created in a function in business logic, isMajorFlag === undefined
-  // const isMajor = currentRoute && route ? currentRoute === route : false;
-  // if (!isMajor) {
-  //   toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
-  // }
-  // return isMajor;
 };
 
 export const errorSlice = createSlice({
@@ -43,15 +32,15 @@ export const errorSlice = createSlice({
       state.currentRoute = action.payload;
     },
     addError(state, action) {
+      const isMajorErr =
+        action.payload.redirectionPage ||
+        isMajorError(
+          state.currentRoute,
+          action.payload.route,
+          action.payload.message,
+          action.payload.isMajor,
+        );
       if (!state.errors.map(({ errorName }) => errorName).includes(action.payload.errorName)) {
-        const isMajorErr =
-          action.payload.redirectionPage ||
-          isMajorError(
-            state.currentRoute,
-            action.payload.route,
-            action.payload.message,
-            action.payload.isMajor,
-          );
         state.errors.push(
           action.payload.redirectionPage
             ? {

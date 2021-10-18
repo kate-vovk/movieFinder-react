@@ -4,7 +4,6 @@ import CustomError from '@/utils/customError';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
 import { CLIENT_PATHS } from '../constants';
-import { getMovieRate } from './movieRate';
 
 interface IGetMovie {
   movie: IMovie;
@@ -27,24 +26,5 @@ export const getMovieData = async (movieId: string): Promise<IGetMovie> => {
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
-  }
-};
-
-export const getMovieDataAndUserRate = async ({
-  movieId,
-  userId,
-}: {
-  movieId: string;
-  userId: string;
-}): Promise<{ movie: IGetMovie; userRate: number }> => {
-  try {
-    const movie = await getMovieData(movieId);
-    const userRate = await getMovieRate({
-      movieId,
-      userId,
-    });
-    return { movie, userRate };
-  } catch {
-    throw new Error();
   }
 };

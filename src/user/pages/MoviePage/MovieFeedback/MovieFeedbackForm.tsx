@@ -38,8 +38,10 @@ export const MovieFeedbackForm: FunctionComponent<{
         setPage(1);
       })
       .catch(() => {
-        setMovieFeedbackStatus(DataStatus.error);
+        setAddedComment(true);
+        setMovieFeedbackStatus(DataStatus.success);
       });
+    setAddedComment(true);
     setValueFeedback('');
     setSubmitting(false);
   };

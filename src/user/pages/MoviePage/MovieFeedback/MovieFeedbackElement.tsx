@@ -55,7 +55,7 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
         setEditedComment(true);
       })
       .catch(() => {
-        setMovieFeedbackStatus(DataStatus.error);
+        setMovieFeedbackStatus(DataStatus.success);
       });
   };
   const updateComment = (): void => {
@@ -70,7 +70,7 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
         setEditedComment(true);
       })
       .catch(() => {
-        setMovieFeedbackStatus(DataStatus.error);
+        setMovieFeedbackStatus(DataStatus.success);
       });
     setOpenEditCommentField(false);
   };

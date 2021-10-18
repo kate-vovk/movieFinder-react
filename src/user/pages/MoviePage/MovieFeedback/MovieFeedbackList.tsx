@@ -5,6 +5,7 @@ import { useStyle } from './styles';
 import { DataStatus } from '@/interfaces/status';
 import { NoComments } from './NoComments';
 import { Circular } from '@/sharedComponents/Circular';
+import { ErrorInComments } from './ErrorInComments';
 
 export const MovieFeedbackList: FunctionComponent<{
   movieComments: IComment[];
@@ -21,7 +22,10 @@ export const MovieFeedbackList: FunctionComponent<{
   if (movieFeedbackStatus === DataStatus.empty) {
     return <NoComments />;
   }
-  if (movieFeedbackStatus === DataStatus.success || movieFeedbackStatus === DataStatus.error) {
+  if (movieFeedbackStatus === DataStatus.error) {
+    return <ErrorInComments reloadComments={setEditedComment} />;
+  }
+  if (movieFeedbackStatus === DataStatus.success) {
     return (
       <ul className={classes.feedbackList}>
         {movieComments.map(({ id, userId, userName, comment, date }: IComment) => (
