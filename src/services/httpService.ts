@@ -6,6 +6,7 @@ const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 
 const baseUrl = (path: string | number): string => {
+  // return 'https://run.mocky.io/v3/3cd7e7aa-e4c4-4427-8d68-496311a84b64'; // 404
   return `${process.env.REACT_APP_API_URL}${path}`;
 };
 

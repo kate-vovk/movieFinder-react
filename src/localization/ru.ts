@@ -88,7 +88,9 @@ export const ru = {
     'Try again later': 'Попробуйте снова позже',
     'Go to login page': 'Вернутся на страницу логина',
     Error: 'Ошибка при загрузке {{pageName}}',
+    'Error. Network Error': 'Ошибка сети. Попробуйте снова',
     'Network Error': 'Ошибка сети при получении {{pageName}}',
+    'Network Error. Please try later': 'Ошибка сети. Попробуйте снова позже',
     'Error. Network Error. Please try later':
       'Ошибка сети при получении {{pageName}}. Попробуйте снова позже',
     '400': '400. Плохой запрос при загрузке {{pageName}}',

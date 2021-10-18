@@ -88,6 +88,8 @@ export const en = {
     'Try again later': 'Try again later',
     'Go to login page': 'Go to login page',
     Error: 'Error in {{pageName}}',
+    'Error. Network Error': 'Network Error. Please try again',
+    'Network Error. Please try later': 'Network Error. Please try later',
     'Network Error': 'Network Error in {{pageName}}',
     'Error. Network Error. Please try later': 'Network Error in {{pageName}}. Please try later',
     '400': '400. Bad request in {{pageName}}',
