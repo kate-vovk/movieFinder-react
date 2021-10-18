@@ -15,13 +15,7 @@ const isMajorError = (
   isMajorFlag: boolean,
 ): boolean => {
   const pageName = i18next.t(`ErrorStatuses:${route}`);
-  // isMajorFlag variable was passed from a function in business logic, isMajorFlag === defined
-  if (isMajorFlag !== undefined && isMajorFlag === false) {
-    toast(i18next.t(`ErrorStatuses:${message}`, { pageName }));
-    return isMajorFlag;
-  }
-  // isMajorFlag variable was not created in a function in business logic, isMajorFlag === undefined
-  const isMajor = currentRoute && route ? currentRoute === route : false;
+  const isMajor = isMajorFlag ?? (currentRoute && route) ? currentRoute === route : false;
   if (!isMajor) {
     toast(i18next.t(`ErrorStatuses:${message}`, { pageName }));
   }
