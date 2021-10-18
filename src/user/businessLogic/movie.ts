@@ -37,10 +37,14 @@ export const getMovieDataAndUserRate = async ({
   movieId: string;
   userId: string;
 }): Promise<{ movie: IGetMovie; userRate: number }> => {
-  const movie = await getMovieData(movieId);
-  const userRate = await getMovieRate({
-    movieId,
-    userId,
-  });
-  return { movie, userRate };
+  try {
+    const movie = await getMovieData(movieId);
+    const userRate = await getMovieRate({
+      movieId,
+      userId,
+    });
+    return { movie, userRate };
+  } catch {
+    throw new Error();
+  }
 };

@@ -26,15 +26,19 @@ export const MovieFeedback: FunctionComponent<{
 
   useEffect(() => {
     setMovieFeedbackStatus(DataStatus.loading);
-    getMovieAllComments({ movieId, page, limit }).then(({ results, total }) => {
-      if (results.length) {
-        setMovieComments(Array.from(results));
-        setTotalAmountOfPages(Math.ceil(total / limit));
-        setMovieFeedbackStatus(DataStatus.success);
-      } else {
-        setMovieFeedbackStatus(DataStatus.empty);
-      }
-    });
+    getMovieAllComments({ movieId, page, limit })
+      .then(({ results, total }) => {
+        if (results.length) {
+          setMovieComments(Array.from(results));
+          setTotalAmountOfPages(Math.ceil(total / limit));
+          setMovieFeedbackStatus(DataStatus.success);
+        } else {
+          setMovieFeedbackStatus(DataStatus.empty);
+        }
+      })
+      .catch(() => {
+        setMovieFeedbackStatus(DataStatus.error);
+      });
     setEditedComment(false);
   }, [page, movieComments.length, isEditedComment]);
   return (

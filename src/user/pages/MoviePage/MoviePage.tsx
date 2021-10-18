@@ -43,62 +43,69 @@ export const MoviePage: FunctionComponent = () => {
     getMovieDataAndUserRate({
       movieId: id,
       userId,
-    }).then(({ movie: m, userRate: rate }) => {
-      setMovie(m.movie);
-      setVoteAverage(m.voteAverage);
-      setUserRate(rate);
-      setMoviePageStatus(DataStatus.success);
-    });
+    })
+      .then(({ movie: m, userRate: rate }) => {
+        setMovie(m.movie);
+        setVoteAverage(m.voteAverage);
+        setUserRate(rate);
+        setMoviePageStatus(DataStatus.success);
+      })
+      .catch(() => {
+        setMoviePageStatus(DataStatus.error);
+      });
     setEditedUserRate(false);
   }, [userRate, isEditedUserRate]);
 
   if (moviePageStatus === DataStatus.loading) {
     return <Circular />;
   }
+  if (DataStatus.error)
+    if (moviePageStatus === DataStatus.success || moviePageStatus === DataStatus.error) {
+      return (
+        <div>
+          <div className={classes.container}>
+            <Button
+              className={classes.buttonMovie}
+              color="primary"
+              variant="contained"
+              type="button"
+              onClick={goToMainPage}
+            >
+              {t('goHome')}
+            </Button>
+            <>
+              <div className={classes.contentMovie}>
+                <MoviePoster
+                  cover={movie?.coverUrl}
+                  price={Number(movie?.price)}
+                  title={movie?.title}
+                  movieId={id}
+                  voteAverage={voteAverage}
+                  userRate={userRate}
+                  setUserRate={setUserRate}
+                  setEditedUserRate={setEditedUserRate}
+                  setMoviePageStatus={setMoviePageStatus}
+                />
+                <MovieInfo
+                  title={movie?.title}
+                  year={movie?.releaseDate}
+                  duration={movie?.duration}
+                  director={movie?.producer}
+                  company={movie?.productionCompany}
+                  country={movie?.country}
+                  actorsList={movie?.cast}
+                  genresList={movie?.genres}
+                  categoriesList={movie?.categories}
+                />
+              </div>
 
-  return (
-    <div>
-      <div className={classes.container}>
-        <Button
-          className={classes.buttonMovie}
-          color="primary"
-          variant="contained"
-          type="button"
-          onClick={goToMainPage}
-        >
-          {t('goHome')}
-        </Button>
-        <>
-          <div className={classes.contentMovie}>
-            <MoviePoster
-              cover={movie?.coverUrl}
-              price={Number(movie?.price)}
-              title={movie?.title}
-              movieId={id}
-              voteAverage={voteAverage}
-              userRate={userRate}
-              setUserRate={setUserRate}
-              setEditedUserRate={setEditedUserRate}
-              setMoviePageStatus={setMoviePageStatus}
-            />
-            <MovieInfo
-              title={movie?.title}
-              year={movie?.releaseDate}
-              duration={movie?.duration}
-              director={movie?.producer}
-              company={movie?.productionCompany}
-              country={movie?.country}
-              actorsList={movie?.cast}
-              genresList={movie?.genres}
-              categoriesList={movie?.categories}
-            />
+              <MovieDescription description={movie?.description} />
+              <MovieTrailer trailerUrl={movie?.trailerUrl} />
+              <MovieFeedback movieId={id} />
+            </>
           </div>
-
-          <MovieDescription description={movie?.description} />
-          <MovieTrailer trailerUrl={movie?.trailerUrl} />
-          <MovieFeedback movieId={id} />
-        </>
-      </div>
-    </div>
-  );
+        </div>
+      );
+    }
+  return null;
 };

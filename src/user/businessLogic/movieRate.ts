@@ -93,8 +93,7 @@ export const getMovieRate = async ({
         movieId,
         userId,
       },
-      isMajor: false,
-      isMajorFlagMutable: false,
+      isMajorFlagMutable: true,
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
