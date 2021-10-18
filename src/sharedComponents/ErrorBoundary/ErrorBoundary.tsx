@@ -20,19 +20,17 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
 
   useEffect(() => {
     dispatch(setCurrentRoute(location.pathname));
-    dispatch(setErrorPriority({ currentRoute: location.pathname }));
+    dispatch(setErrorPriority());
   }, [location.pathname]);
 
   const callFailedAction = (): void => {
     majorErrors.forEach((majorError: IError): void => {
-      if (majorError.failedActionFromRedux) {
-        dispatch(majorError.failedActionFromRedux(majorError.params as any));
-      }
       if (majorError.failedFunctionFromBusinessLogic) {
         majorError.failedFunctionFromBusinessLogic(majorError.params as any);
       }
     });
   };
+
   // if 401 or 403 errors occur, redirect to login page.
   // clearAuth() was called to clear auth State to prevent automatical redirection from login page to moviePage
   const redirectToPage = (): void => {
@@ -61,8 +59,9 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
+          const pageName = i18next.t(`ErrorStatuses:${majorError.route}`);
           return majorError.route
-            ? `${i18next.t(`ErrorStatuses:${majorError.message} in ${majorError.route}`)}`
+            ? `${i18next.t(`ErrorStatuses:${majorError.message}`, { pageName })}`
             : `${i18next.t(`ErrorStatuses:${majorError.message}`)}`;
         }),
       ),
@@ -72,9 +71,10 @@ export const ErrorBoundary: FunctionComponent<{ children?: ReactElement }> = ({
     return Array.from(
       new Set(
         majorErrors.map((majorError: IError): string => {
-          return majorError.route
-            ? `${i18next.t(`ErrorStatuses:Error in ${majorError.route}`)}`
-            : `${i18next.t(`ErrorStatuses:Error`)}`;
+          const pageName = i18next.t(`ErrorStatuses:${majorError.route}`);
+          return majorError.route && majorError.route === location.pathname
+            ? `${i18next.t(`ErrorStatuses:Error`, { pageName })}`
+            : `${i18next.t(`ErrorStatuses:GlobalError`)}`;
         }),
       ),
     ).join();
