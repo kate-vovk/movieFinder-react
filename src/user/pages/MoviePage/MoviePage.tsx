@@ -96,11 +96,7 @@ export const MoviePage: FunctionComponent = () => {
 
           <MovieDescription description={movie?.description} />
           <MovieTrailer trailerUrl={movie?.trailerUrl} />
-          <MovieFeedback
-            movieId={id}
-            // isEditedComment={isEditedComment}
-            // setEditedComment={setEditedComment}
-          />
+          <MovieFeedback movieId={id} />
         </>
       </div>
     </div>

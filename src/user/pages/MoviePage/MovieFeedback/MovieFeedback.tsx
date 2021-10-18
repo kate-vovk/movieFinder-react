@@ -10,8 +10,6 @@ import { DataStatus } from '@/interfaces/status';
 
 export const MovieFeedback: FunctionComponent<{
   movieId: string;
-  // isEditedComment: boolean;
-  // setEditedComment: (flag: boolean) => void;
 }> = ({ movieId }) => {
   const classes = useStyle();
   const [movieComments, setMovieComments] = useState<IComment[]>([]);
