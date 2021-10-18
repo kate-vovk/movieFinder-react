@@ -51,6 +51,8 @@ export const en = {
     'Delete comment': 'Delete comment',
     You: 'You',
     Comments: 'Comments',
+    movieNotFound: 'Not found movie',
+    noComments: 'No comments on this movie',
   },
   Filtration: {
     genres: 'Genres',
@@ -96,13 +98,14 @@ export const en = {
     '401': 'You are not authorized',
     '403': 'You do not have permission to access this resource',
     '404': '404. This request does not exist in {{pageName}}',
-    '500': '500. Internal server error. {{pageName}} does not exist for current user',
+    '500': '500. Internal server error. {{pageName}} does not exist',
     '502': '502. Bad gateway in {{pageName}}',
     '503': '503. Service Unavailable in {{pageName}}',
 
     '/movies': 'Movies',
     '/cart': 'Cart',
     '/user/4': 'My Movies',
+    '/comments': 'Comments',
   },
   UserMenu: {
     adminPanel: 'Admin panel',

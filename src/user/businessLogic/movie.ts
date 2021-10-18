@@ -4,27 +4,43 @@ import CustomError from '@/utils/customError';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
 import { CLIENT_PATHS } from '../constants';
+import { getMovieRate } from './movieRate';
 
 interface IGetMovie {
   movie: IMovie;
   voteAverage: number;
 }
 
-export const getDataMoviePage = async (movieId: string): Promise<IGetMovie> => {
+export const getMovieData = async (movieId: string): Promise<IGetMovie> => {
   try {
-    store.dispatch(actionToDispatch('errors/clearError', 'getDataMoviePage/failed'));
+    store.dispatch(actionToDispatch('errors/clearError', 'getMovieData/failed'));
     const {
       data: { film: movie, avg },
     } = await getMovie(movieId);
     return { movie, voteAverage: Number(avg[0].round) };
   } catch (err) {
     const error = {
-      errorName: 'getDataMoviePage/failed',
-      failedFunctionFromBusinessLogic: getDataMoviePage,
+      errorName: 'getMovieData/failed',
+      failedFunctionFromBusinessLogic: getMovieData,
       params: movieId,
       isMajorFlagMutable: true,
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }
+};
+
+export const getMovieDataAndUserRate = async ({
+  movieId,
+  userId,
+}: {
+  movieId: string;
+  userId: string;
+}): Promise<{ movie: IGetMovie; userRate: number }> => {
+  const movie = await getMovieData(movieId);
+  const userRate = await getMovieRate({
+    movieId,
+    userId,
+  });
+  return { movie, userRate };
 };

@@ -10,6 +10,7 @@ import {
   deleteComment as removeComment,
 } from '@/user/businessLogic/movieComments';
 import { MovieFeedbackElementEdit } from './MovieFeedbackElementEdit';
+import { DataStatus } from '@/interfaces/status';
 
 interface IComment {
   commentId: string;
@@ -18,6 +19,7 @@ interface IComment {
   commentText: string;
   date: string;
   setEditedComment: (value: boolean) => void;
+  setMovieFeedbackStatus: (status: DataStatus) => void;
 }
 
 export const MovieFeedbackElement: FunctionComponent<IComment> = ({
@@ -27,6 +29,7 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
   commentText,
   date,
   setEditedComment,
+  setMovieFeedbackStatus,
 }) => {
   const { t } = useTranslation(['MoviePage']);
   const classes = useStyle();
@@ -45,18 +48,30 @@ export const MovieFeedbackElement: FunctionComponent<IComment> = ({
     setOpen(false);
   };
   const deleteComment = (): void => {
-    removeComment({ commentId, userId }).then(() => {
-      setEditedComment(true);
-    });
+    setMovieFeedbackStatus(DataStatus.loading);
+    removeComment({ commentId, userId })
+      .then(() => {
+        setMovieFeedbackStatus(DataStatus.success);
+        setEditedComment(true);
+      })
+      .catch(() => {
+        setMovieFeedbackStatus(DataStatus.error);
+      });
   };
   const updateComment = (): void => {
+    setMovieFeedbackStatus(DataStatus.loading);
     changeMovieComment({
       commentId,
       userId: currentUserId,
       comment: String(editedComment),
-    }).then(() => {
-      setEditedComment(true);
-    });
+    })
+      .then(() => {
+        setMovieFeedbackStatus(DataStatus.success);
+        setEditedComment(true);
+      })
+      .catch(() => {
+        setMovieFeedbackStatus(DataStatus.error);
+      });
     setOpenEditCommentField(false);
   };
 

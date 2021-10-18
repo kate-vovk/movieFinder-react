@@ -6,9 +6,9 @@ import { MovieControl } from '@/user/components';
 import { urlEmptyPoster } from '@/user/constants/constantsMovie';
 import { useStyle } from './styles';
 import { THandleChangeValueSlider } from '@/interfaces/movieTypes';
-import { addRate, getMovieRate } from '@/user/businessLogic/movieRate';
+import { addRate } from '@/user/businessLogic/movieRate';
 import { userIdSelector } from '@/user/store/selectors/auth';
-import { getDataMoviePage } from '@/user/businessLogic/movie';
+import { DataStatus } from '@/interfaces/status';
 
 interface IMoviePosterProps {
   cover: string;
@@ -18,8 +18,8 @@ interface IMoviePosterProps {
   voteAverage: number;
   userRate: number;
   setUserRate: (data: number) => void;
-  setVoteAverage: (data: number) => void;
-  setEditedComment: (flag: boolean) => void;
+  setEditedUserRate: (flag: boolean) => void;
+  setMoviePageStatus: (state: DataStatus) => void;
 }
 
 export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
@@ -30,26 +30,22 @@ export const MoviePoster: FunctionComponent<IMoviePosterProps> = ({
   voteAverage,
   userRate,
   setUserRate,
-  setVoteAverage,
-  setEditedComment,
+  setEditedUserRate,
+  setMoviePageStatus,
 }) => {
   const classes = useStyle();
   const userId = useSelector(userIdSelector);
 
   const changeRate: THandleChangeValueSlider = (_event, newRate): void => {
-    addRate({ movieId, userId, rate: newRate as number }).then(() => {
-      getDataMoviePage(movieId).then(({ voteAverage: v }): void => {
-        setVoteAverage(v);
+    setMoviePageStatus(DataStatus.loading);
+    addRate({ movieId, userId, rate: newRate as number })
+      .then(() => {
+        setUserRate(newRate as number);
+        setEditedUserRate(true);
+      })
+      .catch(() => {
+        setMoviePageStatus(DataStatus.error);
       });
-      getMovieRate({
-        movieId,
-        userId,
-      }).then((rate) => {
-        setUserRate(rate);
-      });
-      setEditedComment(true);
-    });
-    setUserRate(newRate as number);
   };
 
   return (

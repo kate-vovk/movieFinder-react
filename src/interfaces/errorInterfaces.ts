@@ -13,3 +13,8 @@ export interface IErrorState {
   errors: IError[];
   currentRoute: string;
 }
+
+export interface ICaughtError {
+  response: { status: number };
+  message: string;
+}

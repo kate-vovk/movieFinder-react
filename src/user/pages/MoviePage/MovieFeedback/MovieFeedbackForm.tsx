@@ -7,6 +7,7 @@ import { THandleChangeValueFeedback } from '@/interfaces/movieTypes';
 import { useStyle } from './styles';
 import { addMovieComment } from '@/user/businessLogic/movieComments';
 import { userIdSelector } from '@/user/store/selectors/auth';
+import { DataStatus } from '@/interfaces/status';
 
 interface IValues {
   feedback: string;
@@ -17,7 +18,8 @@ export const MovieFeedbackForm: FunctionComponent<{
   movieId: string;
   setAddedComment: (value: boolean) => void;
   setPage: (value: number) => void;
-}> = ({ movieId, setAddedComment, setPage }) => {
+  setMovieFeedbackStatus: (status: DataStatus) => void;
+}> = ({ movieId, setAddedComment, setPage, setMovieFeedbackStatus }) => {
   const classes = useStyle();
   const [valueFeedback, setValueFeedback] = useState('');
   const userId = useSelector(userIdSelector);
@@ -28,10 +30,16 @@ export const MovieFeedbackForm: FunctionComponent<{
   };
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
-    addMovieComment({ movieId, userId, comment: valueFeedback }).then(() => {
-      setAddedComment(true);
-      setPage(1);
-    });
+    setMovieFeedbackStatus(DataStatus.loading);
+    addMovieComment({ movieId, userId, comment: valueFeedback })
+      .then(() => {
+        setMovieFeedbackStatus(DataStatus.success);
+        setAddedComment(true);
+        setPage(1);
+      })
+      .catch(() => {
+        setMovieFeedbackStatus(DataStatus.error);
+      });
     setValueFeedback('');
     setSubmitting(false);
   };
@@ -63,6 +71,7 @@ export const MovieFeedbackForm: FunctionComponent<{
               color="primary"
               variant="contained"
               type="submit"
+              disabled={valueFeedback === ''}
             >
               {t('submit')}
             </Button>

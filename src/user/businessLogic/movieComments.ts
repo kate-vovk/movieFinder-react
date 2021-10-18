@@ -35,7 +35,7 @@ export const getMovieAllComments = async ({
       },
       isMajor: false,
       isMajorFlagMutable: false,
-      route: `${CLIENT_PATHS.movies}/${movieId}`,
+      route: `${CLIENT_PATHS.comments}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }
@@ -68,7 +68,7 @@ export const addMovieComment = async ({
       },
       isMajor: false,
       isMajorFlagMutable: false,
-      route: `${CLIENT_PATHS.movies}/${movieId}`,
+      route: `${CLIENT_PATHS.comments}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }
@@ -101,7 +101,7 @@ export const changeMovieComment = async ({
       },
       isMajor: false,
       isMajorFlagMutable: false,
-      route: `${CLIENT_PATHS.movies}`,
+      route: `${CLIENT_PATHS.comments}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }
@@ -130,7 +130,7 @@ export const deleteComment = async ({
       },
       isMajor: false,
       isMajorFlagMutable: false,
-      route: `${CLIENT_PATHS.movies}`,
+      route: `${CLIENT_PATHS.comments}`,
     };
     throw new CustomError(err as { response: { status: number }; message: string }, error);
   }

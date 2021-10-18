@@ -4,7 +4,7 @@ import { useStyle } from './styles';
 
 interface IMovieFeedbackElementEdit {
   cancelEditCommentText: () => void;
-  editCommentText: (event: any) => void;
+  editCommentText: (event: { currentTarget: HTMLElement; target: { value: string } }) => void;
   updateComment: () => void;
   editedComment: string;
 }

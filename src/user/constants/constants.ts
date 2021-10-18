@@ -7,6 +7,7 @@ export const CLIENT_PATHS = {
   notFound: '/notFound',
   admin: '/admin',
   main: '/',
+  comments: '/comments',
 };
 
 export const SERVER_PATHS = {

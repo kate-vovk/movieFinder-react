@@ -79,4 +79,10 @@ export const useStyle = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  noComments: {
+    width: '100%',
+    height: '100%',
+    margin: '20px 0px',
+    textAlign: 'center',
+  },
 }));

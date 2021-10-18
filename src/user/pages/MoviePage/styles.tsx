@@ -13,4 +13,10 @@ export const useStyle = makeStyles(() => ({
     display: 'flex',
     margin: '0 0 30px 0',
   },
+  movieNotFound: {
+    width: '100%',
+    height: '100%',
+    margin: '20px 0px',
+    textAlign: 'center',
+  },
 }));
