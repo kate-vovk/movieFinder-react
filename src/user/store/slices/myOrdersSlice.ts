@@ -1,11 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as order from '@/user/businessLogic/myOrders';
 import { IOrders } from '@/interfaces/orderInterface';
+import { DataStatus } from '@/interfaces/status';
 
 interface ISetOrdersToStore {
   userId: string;
 }
-const initialState: IOrders[] = [];
+
+interface IMyOrdersState {
+  ordersData: IOrders[];
+  status: string;
+}
+
+const initialState: IMyOrdersState = {
+  ordersData: [],
+  status: DataStatus.initial,
+};
 
 export const addOrder = createAsyncThunk('myOrders/addOrder', async (userId: string) => {
   await order.addOrder(userId);
@@ -25,11 +35,35 @@ export const myOrdersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(setUserOrdersToStore.pending, (state) => {
+        state.ordersData = [];
+        state.status = DataStatus.loading;
+      })
       .addCase(setUserOrdersToStore.fulfilled, (state, action) => {
-        return action.payload;
+        if (action.payload.length !== 0) {
+          state.ordersData = action.payload;
+          state.status = DataStatus.success;
+        } else {
+          state.status = DataStatus.empty;
+        }
+      })
+      .addCase(setUserOrdersToStore.rejected, (state) => {
+        state.status = DataStatus.error;
+      })
+      .addCase(addOrder.pending, (state) => {
+        state.ordersData = [];
+        state.status = DataStatus.loading;
       })
       .addCase(addOrder.fulfilled, (state, action) => {
-        return action.payload;
+        state.ordersData = action.payload;
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+        }
+      })
+      .addCase(addOrder.rejected, (state) => {
+        state.status = DataStatus.error;
       });
   },
 });

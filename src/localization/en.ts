@@ -93,9 +93,9 @@ export const en = {
     'Go to login page': 'Go to login page',
     Error: 'Error in {{pageName}}',
     'Error. Network Error': 'Network Error. Please try again',
-    'Network Error. Please try later': 'Network Error. Please try later',
     'Network Error': 'Network Error in {{pageName}}',
     'Error. Network Error. Please try later': 'Network Error in {{pageName}}. Please try later',
+    'Network Error. Please try later': 'Network Error in {{pageName}}. Please try later',
     '400': '400. Bad request in {{pageName}}',
     '401': 'You are not authorized',
     '403': 'You do not have permission to access this resource',
@@ -107,8 +107,11 @@ export const en = {
     '/movies': 'Movies',
     '/cart': 'Cart',
     '/user/4': 'My Movies',
+    '/user/3': 'My Feedback',
+    '/user/2': 'My Orders',
     '/comments': 'Comments',
   },
+
   UserMenu: {
     adminPanel: 'Admin panel',
     profile: 'Profile',
@@ -126,18 +129,6 @@ export const en = {
     allUsers: 'All users',
     allMovies: 'All movies',
     siteSettings: 'Site settings',
-  },
-  mockFavorites: {
-    favoritesPage: 'Favorites page',
-    goBack: 'GO BACK',
-  },
-  mockOrders: {
-    orderPage: 'Order page',
-    goBack: 'GO BACK',
-  },
-  mockProfile: {
-    profilePage: 'Profile page',
-    goBack: 'GO BACK',
   },
   ModalAddMovieToCart: {
     selectPeriod: 'Select subscription period',
@@ -175,5 +166,10 @@ export const en = {
     orderDate: 'Order date',
     filmPrice: 'Film price',
     orderPrice: 'Order price',
+    noOrder: 'No order for current user exists',
+  },
+  myFeedback: {
+    feedback: 'My Feedback',
+    noFeedback: 'Feedback for current user not exist!',
   },
 };

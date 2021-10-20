@@ -103,11 +103,14 @@ export const ru = {
     '502': '502. Плохой шлюз в {{pageName}}',
     '503': '503. Сервис недоступен в {{pageName}}',
 
-    '/movies': 'Фильмах',
-    '/cart': 'Корзине',
-    '/user/4': 'Ваших фильмах',
+    '/cart': 'Корзины',
+    '/user/4': 'Ваших фильмов',
+    '/user/3': 'Мои комментарии',
+    '/user/2': 'Мои заказы',
     '/comments': 'Комментариях',
+    '/movies': 'Фильмах',
   },
+
   UserMenu: {
     adminPanel: 'Админ панель',
     profile: 'Профиль',
@@ -125,18 +128,6 @@ export const ru = {
     allUsers: 'Все пользователи',
     allMovies: 'Все фильмы',
     siteSettings: 'Настройки сайта',
-  },
-  mockFavorites: {
-    favoritesPage: 'Избранное',
-    goBack: 'ВЕРНУТЬСЯ НАЗАД',
-  },
-  mockOrders: {
-    orderPage: 'Мои заказы',
-    goBack: 'ВЕРНУТЬСЯ НАЗАД',
-  },
-  mockProfile: {
-    profilePage: 'Профиль',
-    goBack: 'ВЕРНУТЬСЯ НАЗАД',
   },
   ModalAddMovieToCart: {
     selectPeriod: 'Выберите период подписки',
@@ -174,5 +165,10 @@ export const ru = {
     orderDate: 'Дата заказа',
     filmPrice: 'Стоимость фильма',
     orderPrice: 'Стоимость заказа',
+    noCart: 'Заказов для данного пользователя не существует',
+  },
+  myFeedback: {
+    feedback: 'Мои комментарии',
+    noFeedback: 'Комментарии для данного пользоватля отсутсвуют!',
   },
 };
