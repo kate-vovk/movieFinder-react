@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/user/components';
 import { showModal } from '@/user/store/slices/modalSlice';
 import { cartSelector } from '@/user/store/selectors/cart';
-import { favoritesSelector, isFavoritesLoadingSelector } from '@/user/store/selectors/favorites';
+import { favoritesSelector, favoritesStatusSelector } from '@/user/store/selectors/favorites';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { IMovie } from '@/interfaces/movieInterface';
 import { TMovieFavorites } from '@/interfaces/favoritesInterface';
@@ -29,7 +29,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
   const { myMovies } = useSelector(activeOrdersSelector);
   const { movies, status } = useSelector(cartSelector);
   const favoritesMovies = useSelector(favoritesSelector);
-  const isFavoritesLoading = useSelector(isFavoritesLoadingSelector);
+  const favoritesStatus = useSelector(favoritesStatusSelector);
   const userId = useSelector(userIdSelector);
   const modalType = modalTypes.modalMovieCart;
   const modalProps = { movieId, price };
@@ -79,7 +79,7 @@ export const MovieControl: FunctionComponent<IMovieControlProps> = ({ movieId, p
         buttonType="button"
         className={classesFavorites.addToFavoriteButton}
         onClick={toggleFavorites}
-        disabled={isFavoritesLoading}
+        disabled={favoritesStatus === DataStatus.loading}
       />
       <ThemeProvider theme={cartButtonTheme}>
         <Tooltip

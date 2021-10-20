@@ -95,6 +95,7 @@ export const en = {
     '503': '503. Service Unavailable in {{pageName}}',
 
     '/cart': 'Cart',
+    '/user/1': 'Favorites',
     '/user/4': 'My Movies',
     '/user/3': 'My Feedback',
     '/user/2': 'My Orders',
