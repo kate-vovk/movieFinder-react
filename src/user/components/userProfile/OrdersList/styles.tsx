@@ -25,7 +25,7 @@ export const useStyle = makeStyles((theme: Theme) =>
     buttonMovie: {
       margin: '0 0 20px 0',
     },
-    title: { textAlign: 'center' },
+    title: { textAlign: 'left' },
     image: {
       width: '75px',
       height: '100px',

@@ -54,6 +54,20 @@ export default class HTTPService {
       });
   }
 
+  static patch(path = '', data: any): Promise<AxiosPromise> {
+    return axios({
+      method: 'patch',
+      url: baseUrl(path),
+      data,
+    })
+      .then((response: AxiosResponse) => {
+        return response;
+      })
+      .catch((err: { response: { status: number }; message: string }) => {
+        throw new CustomError(err);
+      });
+  }
+
   static delete(path = ''): Promise<AxiosPromise> {
     return axios({
       method: 'delete',
