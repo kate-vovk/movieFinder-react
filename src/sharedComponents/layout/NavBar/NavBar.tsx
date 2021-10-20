@@ -2,7 +2,7 @@ import { FunctionComponent, useCallback } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CLIENT_PATHS } from '@/user/constants';
 import { isAuthorizedButtons } from '@/user/constants/navBarIsAuthrozedButtons';
@@ -11,6 +11,7 @@ import { cartSelector } from '@/user/store/selectors/cart';
 import { CustomButton, MenuButton } from '@/user/components';
 import { userMenuLinks } from '@/user/constants/menuButton';
 import logo from '@/assets/icons/logo.svg';
+import { clearMovieState } from '@/user/store/slices/moviesSlice';
 import { useStyle } from './styles';
 
 export const NavBar: FunctionComponent = () => {
@@ -19,7 +20,7 @@ export const NavBar: FunctionComponent = () => {
   const history = useHistory();
   const location = useLocation();
   const { movies } = useSelector(cartSelector);
-
+  const dispatch = useDispatch();
   const { i18n } = useTranslation(['AppBar']);
 
   const changeLanguage = (lang: string): void => {
@@ -29,6 +30,11 @@ export const NavBar: FunctionComponent = () => {
   const goToCart = useCallback(() => {
     history.push(CLIENT_PATHS.cart);
   }, []);
+
+  const goToMainPage = (): void => {
+    dispatch(clearMovieState());
+    history.push(CLIENT_PATHS.main);
+  };
 
   const classes = useStyle({
     chosenLanguage:
@@ -40,7 +46,7 @@ export const NavBar: FunctionComponent = () => {
     <div>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Link to={CLIENT_PATHS.main} className={classes.link}>
+          <Link to={CLIENT_PATHS.main} className={classes.link} onClick={goToMainPage}>
             <img src={logo} className={classes.logo} alt="logo" />
           </Link>
           <div className={classes.buttonsContainer}>

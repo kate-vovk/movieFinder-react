@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IMovie } from '@/interfaces/movieInterface';
-import { getMovies } from '@/user/businessLogic/movies';
 import { getMovieByQuery } from '@/user/businessLogic/searchFilter';
 import { createPath } from '@/utils/url';
+import { DataStatus } from '@/interfaces/status';
 
 interface ISearchState {
   movies: IMovie[];
@@ -10,6 +10,7 @@ interface ISearchState {
   searchQuery: string;
   selectParam: string;
   filters: { [key: string]: string[] };
+  status: string;
 }
 
 interface IQuery {
@@ -17,10 +18,6 @@ interface IQuery {
   searchQuery: string;
   filters: { [key: string]: string[] };
 }
-
-export const getMoviesList = createAsyncThunk('search/getMovieList', async () => {
-  return getMovies();
-});
 
 export const getMoviesListWithQuery = createAsyncThunk(
   'filtration/getFIlteredMoviesList',
@@ -40,6 +37,7 @@ const initialState: ISearchState = {
   searchQuery: '',
   selectParam: 'initial',
   filters: {},
+  status: DataStatus.initial,
 };
 
 export const moviesSlice = createSlice({
@@ -61,16 +59,29 @@ export const moviesSlice = createSlice({
     removeAllFilters(state) {
       state.filters = {};
     },
+    clearMovieState(state) {
+      state.searchQuery = '';
+      state.selectParam = '';
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getMoviesList.fulfilled, (state, action) => {
-        state.movies = action.payload.results;
-        state.totalCount = action.payload.total;
+      .addCase(getMoviesListWithQuery.pending, (state) => {
+        state.status = DataStatus.loading;
       })
       .addCase(getMoviesListWithQuery.fulfilled, (state, action) => {
-        state.movies = action.payload.results;
-        state.totalCount = action.payload.total;
+        if (action.payload.results.length === 0) {
+          state.status = DataStatus.empty;
+          state.movies = [];
+          state.totalCount = 0;
+        } else {
+          state.status = DataStatus.success;
+          state.movies = action.payload.results;
+          state.totalCount = action.payload.total;
+        }
+      })
+      .addCase(getMoviesListWithQuery.rejected, (state) => {
+        state.status = DataStatus.error;
       });
   },
 });
@@ -82,4 +93,5 @@ export const {
   addFilterOption,
   removeLastFilterOption,
   removeAllFilters,
+  clearMovieState,
 } = moviesSlice.actions;
