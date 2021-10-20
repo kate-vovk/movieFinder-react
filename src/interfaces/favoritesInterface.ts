@@ -14,7 +14,7 @@ export type TMovieFavorites = Pick<
 
 export interface IFavorites {
   favoritesMovies: TMovieFavorites[];
-  isFavoritesLoading: boolean;
+  status: string;
 }
 
 export interface IFavoritesMovieState {

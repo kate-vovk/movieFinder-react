@@ -7,13 +7,10 @@ interface IState {
 
 interface IFavorites {
   favoritesMovies: TMovieFavorites[];
-  isFavoritesLoading: boolean;
+  status: string;
 }
 
 const stateSelector = (state: IState): IFavorites => state.favorites;
 
 export const favoritesSelector = createSelector(stateSelector, (state) => state.favoritesMovies);
-export const isFavoritesLoadingSelector = createSelector(
-  stateSelector,
-  (state) => state.isFavoritesLoading,
-);
+export const favoritesStatusSelector = createSelector(stateSelector, (state) => state.status);

@@ -5,8 +5,9 @@ import {
   getUserFavorites,
 } from '@/user/businessLogic/favorites';
 import { IFavorites, IFavoritesMovieState } from '@/interfaces/favoritesInterface';
+import { DataStatus } from '@/interfaces/status';
 
-const initialState: IFavorites = { favoritesMovies: [], isFavoritesLoading: false };
+const initialState: IFavorites = { favoritesMovies: [], status: DataStatus.initial };
 
 export const setFavoritesMoviesToStore = createAsyncThunk(
   'favorites/getMovies',
@@ -37,27 +38,48 @@ export const favoritesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(setFavoritesMoviesToStore.pending, (state) => {
+        state.status = DataStatus.loading;
+      })
       .addCase(setFavoritesMoviesToStore.fulfilled, (state, action) => {
-        state.favoritesMovies = action.payload;
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+          state.favoritesMovies = action.payload;
+        }
       })
       .addCase(setFavoritesMoviesToStore.rejected, (state) => {
-        state.isFavoritesLoading = false;
+        state.status = DataStatus.error;
       })
 
       .addCase(addMovieToFavorites.pending, (state) => {
-        state.isFavoritesLoading = true;
+        state.status = DataStatus.loading;
       })
       .addCase(addMovieToFavorites.fulfilled, (state, action) => {
-        state.favoritesMovies = action.payload;
-        state.isFavoritesLoading = false;
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+          state.favoritesMovies = action.payload;
+        }
       })
-
+      .addCase(addMovieToFavorites.rejected, (state) => {
+        state.status = DataStatus.error;
+      })
       .addCase(removeMovieFromFavorites.pending, (state) => {
-        state.isFavoritesLoading = true;
+        state.status = DataStatus.loading;
       })
       .addCase(removeMovieFromFavorites.fulfilled, (state, action) => {
-        state.favoritesMovies = action.payload;
-        state.isFavoritesLoading = false;
+        if (action.payload.length === 0) {
+          state.status = DataStatus.empty;
+        } else {
+          state.status = DataStatus.success;
+          state.favoritesMovies = action.payload;
+        }
+      })
+      .addCase(removeMovieFromFavorites.rejected, (state) => {
+        state.status = DataStatus.error;
       });
   },
 });
