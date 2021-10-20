@@ -96,6 +96,7 @@ export const en = {
 
     '/cart': 'Cart',
     '/user/4': 'My Movies',
+    '/user/3': 'My Feedback',
     '/user/2': 'My Orders',
   },
 
@@ -154,5 +155,9 @@ export const en = {
     filmPrice: 'Film price',
     orderPrice: 'Order price',
     noOrder: 'No order for current user exists',
+  },
+  myFeedback: {
+    feedback: 'My Feedback',
+    noFeedback: 'Feedback for current user not exist!',
   },
 };
