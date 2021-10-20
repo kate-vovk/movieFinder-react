@@ -97,7 +97,9 @@ export const ru = {
 
     '/cart': 'Корзины',
     '/user/4': 'Ваших фильмов',
+    '/user/2': 'Мои заказы',
   },
+
   UserMenu: {
     adminPanel: 'Админ панель',
     profile: 'Профиль',
@@ -115,18 +117,6 @@ export const ru = {
     allUsers: 'Все пользователи',
     allMovies: 'Все фильмы',
     siteSettings: 'Настройки сайта',
-  },
-  mockFavorites: {
-    favoritesPage: 'Избранное',
-    goBack: 'ВЕРНУТЬСЯ НАЗАД',
-  },
-  mockOrders: {
-    orderPage: 'Мои заказы',
-    goBack: 'ВЕРНУТЬСЯ НАЗАД',
-  },
-  mockProfile: {
-    profilePage: 'Профиль',
-    goBack: 'ВЕРНУТЬСЯ НАЗАД',
   },
   ModalAddMovieToCart: {
     selectPeriod: 'Выберите период подписки',
@@ -164,5 +154,6 @@ export const ru = {
     orderDate: 'Дата заказа',
     filmPrice: 'Стоимость фильма',
     orderPrice: 'Стоимость заказа',
+    noCart: 'Заказов для данного пользователя не существует',
   },
 };
