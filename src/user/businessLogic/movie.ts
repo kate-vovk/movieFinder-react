@@ -4,6 +4,7 @@ import CustomError from '@/utils/customError';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
 import { CLIENT_PATHS } from '../constants';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 interface IGetMovie {
   movie: IMovie;
@@ -25,6 +26,6 @@ export const getMovieData = async (movieId: string): Promise<IGetMovie> => {
       isMajorFlagMutable: true,
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

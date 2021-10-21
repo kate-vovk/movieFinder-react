@@ -3,6 +3,7 @@ import { store } from '@/store';
 import { getUserOrders as getUserOrdersAPI } from '@/user/api/myMovies';
 import { actionToDispatch } from '@/utils';
 import CustomError from '@/utils/customError';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
   try {
@@ -17,6 +18,6 @@ export const getUserOrders = async (userId: string): Promise<IOrder[]> => {
       isMajorFlagMutable: true,
       route: '/user/4',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

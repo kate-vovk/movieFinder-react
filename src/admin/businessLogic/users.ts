@@ -1,6 +1,7 @@
 import { getUsersList } from '@/admin/api/users';
 import { IUser, IUserQueryParams } from '@/admin/interfaces';
 import CustomError from '@/utils/customError';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 interface IGetUsers {
   results: IUser[];
@@ -15,6 +16,6 @@ export const getUsers = async ({ page, limit }: IUserQueryParams): Promise<IGetU
     }
     throw new Error('something went wrong, please try again');
   } catch (err) {
-    throw new CustomError(err as { response: { status: number }; message: string });
+    throw new CustomError(err as ICaughtError);
   }
 };

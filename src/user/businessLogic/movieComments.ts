@@ -10,6 +10,7 @@ import {
 import { CLIENT_PATHS } from '../constants';
 import CustomError from '@/utils/customError';
 import { IComment } from '@/interfaces/commentInterfaces';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getMovieAllComments = async ({
   movieId,
@@ -40,7 +41,7 @@ export const getMovieAllComments = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.comments}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -73,7 +74,7 @@ export const addMovieComment = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.comments}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -106,7 +107,7 @@ export const changeMovieComment = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.comments}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -135,6 +136,6 @@ export const deleteComment = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.comments}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

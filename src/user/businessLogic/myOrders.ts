@@ -3,6 +3,7 @@ import { store } from '@/store';
 import { addOrder as addOrderAPI, getUserOrders as getUserOrdersAPI } from '@/user/api/myOrders';
 import { actionToDispatch } from '@/utils';
 import CustomError from '@/utils/customError';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 interface IData {
   data: IUserOrders;
@@ -27,7 +28,7 @@ export const addOrder = async (userId: string): Promise<IOrder[]> => {
       isMajorFlagMutable: false,
       route: '/cart',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -56,6 +57,6 @@ export const getAllUserOrders = async (userId: string): Promise<IOrders[]> => {
       isMajorFlagMutable: true,
       route: '/user/2',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

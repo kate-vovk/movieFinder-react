@@ -8,6 +8,7 @@ import {
 import CustomError from '@/utils/customError';
 import { actionToDispatch } from '@/utils';
 import { store } from '@/store';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 interface IData {
   data: IUserFeedback;
@@ -41,7 +42,7 @@ export const getAllUserFeedback = async (userId: string): Promise<IFeedbackData[
       isMajor: true,
       route: '/user/3',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -74,7 +75,7 @@ export const changeUserFeedback = async ({
       isMajor: false,
       route: '/user/3',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -103,6 +104,6 @@ export const deleteUserFeedback = async ({
       isMajor: false,
       route: '/user/3',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

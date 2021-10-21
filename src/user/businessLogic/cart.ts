@@ -8,6 +8,7 @@ import { IMovie } from '@/interfaces/movieInterface';
 import CustomError from '@/utils/customError';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getUserCart = async (userId: string): Promise<IMovie[]> => {
   try {
@@ -22,7 +23,7 @@ export const getUserCart = async (userId: string): Promise<IMovie[]> => {
       isMajorFlagMutable: true,
       route: '/cart',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -50,7 +51,7 @@ export const addMovieToCart = async ({
       isMajorFlagMutable: false,
       route: '/cart',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -77,6 +78,6 @@ export const deleteMovieFromCart = async ({
       isMajorFlagMutable: false,
       route: '/cart',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

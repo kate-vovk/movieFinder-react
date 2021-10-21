@@ -4,6 +4,7 @@ import { actionToDispatch } from '@/utils';
 import { getMovieRateAPI, addRateAPI, deleteRateAPI, updateRateAPI } from '../api/movieRate';
 import CustomError from '@/utils/customError';
 import { CLIENT_PATHS } from '../constants';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const addRate = async ({
   movieId,
@@ -41,7 +42,7 @@ export const addRate = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -67,7 +68,7 @@ export const deleteRate = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -97,6 +98,6 @@ export const getMovieRate = async ({
       isMajorFlagMutable: false,
       route: `${CLIENT_PATHS.movies}/${movieId}`,
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

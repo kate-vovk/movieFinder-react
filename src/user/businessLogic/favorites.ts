@@ -7,6 +7,7 @@ import { IFavoritesMovieState, TMovieFavorites } from '@/interfaces/favoritesInt
 import CustomError from '@/utils/customError';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getUserFavorites = async (userId: string): Promise<TMovieFavorites[]> => {
   try {
@@ -21,7 +22,7 @@ export const getUserFavorites = async (userId: string): Promise<TMovieFavorites[
       isMajorFlagMutable: true,
       route: '/user/1',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -42,7 +43,7 @@ export const addMovieToFavorites = async ({
       isMajorFlagMutable: false,
       route: '/user/1',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
 
@@ -69,6 +70,6 @@ export const deleteMovieFromFavorites = async ({
       isMajorFlagMutable: false,
       route: '/user/1',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };
