@@ -10,4 +10,8 @@ export const useStyles = makeStyles(() => ({
     fontSize: '30px',
     fontWeight: 'bold',
   },
+  btn: {
+    marginTop: '40px',
+    background: 'aqua',
+  },
 }));

@@ -6,12 +6,12 @@ interface IMovieInfoProps {
   director: string;
   duration: number;
   title: string;
-  year: string;
-  company: string;
-  country: string;
-  actorsList: string;
-  genresList: string;
-  categoriesList: string;
+  year?: string;
+  company?: string | number;
+  country?: string;
+  actorsList?: string;
+  genresList?: string;
+  categoriesList?: string | number;
 }
 
 export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
@@ -31,7 +31,7 @@ export const MovieInfo: FunctionComponent<IMovieInfoProps> = ({
   const movieInfo = [
     { id: 1, name: 'country', value: country },
     { id: 2, name: 'duration', value: duration ? `${duration} ${t('min')}` : undefined },
-    { id: 3, name: 'releaseDate', value: String(new Date(year).getFullYear()) },
+    { id: 3, name: 'releaseDate', value: year ? String(new Date(year).getFullYear()) : undefined },
     { id: 4, name: 'productionCompanies', value: company },
     { id: 5, name: 'genres', value: genresList },
     { id: 6, name: 'categories', value: categoriesList },

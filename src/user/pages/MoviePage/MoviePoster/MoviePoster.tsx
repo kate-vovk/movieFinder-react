@@ -5,7 +5,7 @@ import { urlEmptyPoster } from '@/user/constants/constantsMovie';
 import { useStyle } from './styles';
 
 interface IMoviePosterProps {
-  cover: string;
+  cover?: string;
   price: number;
   title: string;
   movieId: string;

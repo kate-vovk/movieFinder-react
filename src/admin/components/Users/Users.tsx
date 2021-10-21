@@ -2,31 +2,34 @@ import { GridColDef } from '@material-ui/data-grid';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './styles';
-import { Table } from '../Table';
+import { Table } from '@/admin/components/shared';
 import { SearchUsers } from './SearchUsers';
 import { getUsers } from '@/admin/businessLogic/users';
 import { IUser, DataStatus } from '@/admin/interfaces';
 
 export const usersTableDetails: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 150 },
+  {
+    field: 'name',
+    flex: 1,
+    headerName: 'name',
+    width: 300,
+    editable: false,
+  },
   {
     field: 'email',
     headerName: 'email',
+    flex: 1,
     width: 300,
-    editable: true,
-  },
-  {
-    field: 'name',
-    headerName: 'name',
-    width: 300,
-    editable: true,
+    editable: false,
   },
   {
     field: 'role',
     headerName: 'role',
+    flex: 0,
     width: 197,
-    editable: true,
+    editable: false,
   },
+  { field: 'id', hide: true },
 ];
 
 export const Users: FunctionComponent = () => {
@@ -43,14 +46,9 @@ export const Users: FunctionComponent = () => {
     setDataStatus(DataStatus.loading);
     getUsers({ limit: pageSize, page })
       .then((data) => {
-        if (data?.results?.length > 0 && data?.total) {
-          setUsers(data.results);
-          setTotal(data.total);
-          setDataStatus(DataStatus.success);
-        } else {
-          setErrorMessage('Sorry, please refresh the page');
-          setDataStatus(DataStatus.error);
-        }
+        setUsers(data.results);
+        setTotal(data.total);
+        setDataStatus(DataStatus.success);
       })
       .catch((error: { message: string }) => {
         setErrorMessage(error.message);

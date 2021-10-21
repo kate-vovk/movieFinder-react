@@ -11,8 +11,7 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 import { useStyle } from './styles';
 
 export const FavoritesItem: FunctionComponent<{ movie: TMovieFavorites }> = ({ movie }) => {
-  const { id, coverUrl, title, description, productionCompany, cast, releaseDate, producer } =
-    movie;
+  const { id, coverUrl, title, description, productionCompany, cast, producer } = movie;
   const classes = useStyle();
   const dispatch = useDispatch();
   const { t } = useTranslation(['MoviePage']);
@@ -26,7 +25,7 @@ export const FavoritesItem: FunctionComponent<{ movie: TMovieFavorites }> = ({ m
     <Card className={classes.container}>
       <Link to={`${CLIENT_PATHS.movies}/${id}`} className={classes.link}>
         <Typography className={classes.title} variant="h5">
-          {title} ({new Date(releaseDate).getFullYear()})
+          {title}
         </Typography>
         <CardMedia className={classes.image} image={coverUrl} />
         <CardContent className={classes.description}>

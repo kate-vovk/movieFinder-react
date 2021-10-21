@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { FunctionComponent, useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { useHistory, useParams, Redirect } from 'react-router-dom';
@@ -60,7 +62,7 @@ export const MoviePage: FunctionComponent = () => {
               <MovieInfo
                 title={movie?.title}
                 year={movie?.releaseDate}
-                duration={movie?.duration}
+                duration={+movie?.duration!}
                 director={movie?.producer}
                 company={movie?.productionCompany}
                 country={movie?.country}

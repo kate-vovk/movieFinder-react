@@ -1,0 +1,1 @@
+export { EditMoviePage } from './EditMoviePage';

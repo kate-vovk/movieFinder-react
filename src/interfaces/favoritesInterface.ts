@@ -2,14 +2,7 @@ import { IMovie } from './movieInterface';
 
 export type TMovieFavorites = Pick<
   IMovie,
-  | 'id'
-  | 'coverUrl'
-  | 'title'
-  | 'description'
-  | 'productionCompany'
-  | 'cast'
-  | 'releaseDate'
-  | 'producer'
+  'id' | 'coverUrl' | 'title' | 'description' | 'productionCompany' | 'cast' | 'producer'
 >;
 
 export interface IFavorites {
