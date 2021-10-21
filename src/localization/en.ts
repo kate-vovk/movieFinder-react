@@ -106,6 +106,7 @@ export const en = {
 
     '/movies': 'Movies',
     '/cart': 'Cart',
+    '/user/1': 'Favorites',
     '/user/4': 'My Movies',
     '/user/3': 'My Feedback',
     '/user/2': 'My Orders',
@@ -171,5 +172,13 @@ export const en = {
   myFeedback: {
     feedback: 'My Feedback',
     noFeedback: 'Feedback for current user not exist!',
+  },
+  Movies: {
+    nothingFound: 'NOTHING FOUND',
+    youSearch: 'Your search "{{movieQuery}}" did not match any movie.',
+    suggestions: 'Suggestions',
+    suggestionFirst: 'Make sure all words are spelled correctly.',
+    suggestionSecond: 'Try using other keywords.',
+    suggestionThird: 'Select other options.',
   },
 };

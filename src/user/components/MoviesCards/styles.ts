@@ -17,4 +17,19 @@ export const useStyle = makeStyles(() => ({
       flex: '0 0 calc(100% - 20px)',
     },
   },
+  MoviesIsEmpty: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    gap: '10px',
+    marginTop: '100px',
+  },
+  icon: {
+    fontSize: '7rem',
+  },
+  header: {
+    fontSize: '2rem',
+  },
 }));

@@ -8,7 +8,6 @@ export const useStyle = makeStyles(() => ({
     minHeight: '85vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     paddingLeft: 100,
   },
   header: {

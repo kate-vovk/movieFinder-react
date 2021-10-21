@@ -4,8 +4,6 @@ export const useStyle = makeStyles((theme) => ({
   footer: {
     zIndex: theme.zIndex.drawer + 1,
     marginTop: 'auto',
-    height: '50px',
-    width: '100%',
   },
   paper: {
     backgroundColor: 'lightGrey',
@@ -37,6 +35,6 @@ export const useStyle = makeStyles((theme) => ({
   },
   logo: {
     paddingTop: '10px',
-    width: '50%',
+    width: '40%',
   },
 }));

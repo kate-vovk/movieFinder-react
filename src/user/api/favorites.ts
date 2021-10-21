@@ -4,11 +4,11 @@ import HTTPService from '@/services/httpService';
 import { SERVER_PATHS } from '@/user/constants';
 import { IFavoritesMovieState } from '@/interfaces/favoritesInterface';
 
-export const getFavorites = async (userId: string): Promise<AxiosPromise> => {
+export const getFavorites = (userId: string): Promise<AxiosPromise> => {
   return HTTPService.get(`${SERVER_PATHS.favorites}?user_id=${userId}`);
 };
 
-export const addMovieToFavorites = async ({
+export const addMovieToFavorites = ({
   userId: user_id,
   movieId: film_id,
 }: IFavoritesMovieState): Promise<AxiosPromise> => {
@@ -18,7 +18,7 @@ export const addMovieToFavorites = async ({
   });
 };
 
-export const deleteMovieFromFavorites = async ({
+export const deleteMovieFromFavorites = ({
   userId: user_id,
   movieId: film_id,
 }: IFavoritesMovieState): Promise<AxiosPromise> => {
