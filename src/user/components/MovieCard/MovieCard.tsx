@@ -23,7 +23,7 @@ export const MovieCard: FunctionComponent<IMovieCardProps> = ({ movie }) => {
           <Typography>{movie.description}</Typography>
         </CardContent>
       </Link>
-      <MovieControl movieId={movie.id} price={movie.price} />
+      <MovieControl movieId={movie.id} price={+movie.price!} />
     </Card>
   );
 };

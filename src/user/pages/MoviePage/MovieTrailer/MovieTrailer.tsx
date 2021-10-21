@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { useStyle } from './styles';
 
 interface IMovieTrailerProps {
-  trailerUrl: string;
+  trailerUrl?: string;
 }
 
 export const MovieTrailer: FunctionComponent<IMovieTrailerProps> = ({ trailerUrl }) => {

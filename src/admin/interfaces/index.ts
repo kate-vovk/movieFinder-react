@@ -1,1 +1,8 @@
-export { IUserQueryParams, IUser, IMovieList, DataStatus } from './admin';
+export {
+  IUserQueryParams,
+  IUser,
+  IMovieList,
+  DataStatus,
+  IFieldsValue,
+  IGetParamsData,
+} from './admin';
