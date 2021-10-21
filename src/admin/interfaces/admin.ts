@@ -25,3 +25,24 @@ export enum DataStatus {
   empty = 'empty',
   success = 'success',
 }
+
+export enum IFieldsValue {
+  title = 'title',
+  description = 'description',
+  coverUrl = 'coverUrl',
+  cast = 'cast',
+  category = 'category',
+  country = 'country',
+  duration = 'duration',
+  genre = 'genre',
+  price = 'price',
+  producer = 'producer',
+  productionCompany = 'productionCompany',
+  releaseDate = 'releaseDate',
+  trailerUrl = 'trailerUrl',
+}
+
+export interface IGetParamsData {
+  id: number;
+  name: string;
+}

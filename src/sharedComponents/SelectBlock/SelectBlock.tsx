@@ -9,18 +9,21 @@ export type THandleChangeSelect = (
 ) => void;
 
 interface ISelectBlock {
+  className?: string;
+  name?: string;
   formControlClass: string;
   inputLabelName: string;
-  isOpen: boolean;
+  isOpen?: boolean;
   id: string;
-  onClose: (event: ChangeEvent<Record<string, unknown>>) => void;
-  onOpen: (event: ChangeEvent<Record<string, unknown>>) => void;
-  value: string;
+  onClose?: (event: ChangeEvent<Record<string, unknown>>) => void;
+  onOpen?: (event: ChangeEvent<Record<string, unknown>>) => void;
+  value: string | number;
   onChange?: THandleChangeSelect | undefined;
   option: JSX.Element[];
 }
 
 export const SelectBlock: FunctionComponent<ISelectBlock> = ({
+  className,
   formControlClass,
   inputLabelName,
   isOpen,
@@ -30,11 +33,14 @@ export const SelectBlock: FunctionComponent<ISelectBlock> = ({
   onChange,
   option,
   id,
+  name,
 }) => {
   return (
     <FormControl className={formControlClass}>
       <InputLabel htmlFor={id}>{inputLabelName}</InputLabel>
       <Select
+        className={className}
+        name={name}
         id={id}
         open={isOpen}
         onClose={onClose}

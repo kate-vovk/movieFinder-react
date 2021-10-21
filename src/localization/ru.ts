@@ -129,6 +129,9 @@ export const ru = {
     allUsers: 'Все пользователи',
     allMovies: 'Все фильмы',
     siteSettings: 'Настройки сайта',
+    emptyField: 'Пустое поле',
+    apply: 'Применить',
+    editMovie: 'Редактировать данные фильма',
   },
   ModalAddMovieToCart: {
     selectPeriod: 'Выберите период подписки',

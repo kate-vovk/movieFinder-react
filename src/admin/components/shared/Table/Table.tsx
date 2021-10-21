@@ -6,7 +6,7 @@ import { IUser, DataStatus } from '@/admin/interfaces';
 import { rowsPerPage } from '@/admin/constants';
 import { NoRows } from './NoRows';
 import { Circular } from '@/sharedComponents/Circular';
-import { TableErrors } from '../sharedComponents/TableErrors';
+import { TableErrors } from '../TableErrors';
 
 interface ITableProps {
   rows: IMovie[] | IUser[] | null;

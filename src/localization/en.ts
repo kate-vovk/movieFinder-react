@@ -130,6 +130,9 @@ export const en = {
     allUsers: 'All users',
     allMovies: 'All movies',
     siteSettings: 'Site settings',
+    emptyField: 'Empty field',
+    apply: 'Apply',
+    editMovie: 'Edit movie',
   },
   ModalAddMovieToCart: {
     selectPeriod: 'Select subscription period',

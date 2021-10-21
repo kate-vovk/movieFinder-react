@@ -11,7 +11,7 @@ import { userIdSelector } from '@/user/store/selectors/auth';
 import { DataStatus } from '@/interfaces/status';
 
 interface IMoviePosterProps {
-  cover: string;
+  cover?: string;
   price: number;
   title: string;
   movieId: string;
