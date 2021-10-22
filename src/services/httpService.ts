@@ -1,5 +1,6 @@
 import { AxiosPromise, AxiosResponse } from 'axios';
 import CustomError from '@/utils/customError';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 const axios = require('axios').default;
 
@@ -18,7 +19,7 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: { response: { status: number }; message: string }) => {
+      .catch((err: ICaughtError) => {
         throw new CustomError(err);
       });
   }
@@ -35,7 +36,7 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: { response: { status: number }; message: string }) => {
+      .catch((err: ICaughtError) => {
         throw new CustomError(err);
       });
   }
@@ -49,7 +50,7 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: { response: { status: number }; message: string }) => {
+      .catch((err: ICaughtError) => {
         throw new CustomError(err);
       });
   }
@@ -63,7 +64,7 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: { response: { status: number }; message: string }) => {
+      .catch((err: ICaughtError) => {
         throw new CustomError(err);
       });
   }
@@ -76,7 +77,7 @@ export default class HTTPService {
       .then((response: AxiosResponse) => {
         return response;
       })
-      .catch((err: { response: { status: number }; message: string }) => {
+      .catch((err: ICaughtError) => {
         throw new CustomError(err);
       });
   }

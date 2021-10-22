@@ -1,3 +1,4 @@
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 import CustomError from '@/utils/customError';
 import { getCategories } from '../api/categories';
 import { IGetParamsData } from '../interfaces';
@@ -10,6 +11,6 @@ export const getAllCategories = async (): Promise<IGetParamsData[]> => {
     }
     throw new Error('something went wrong, please try again');
   } catch (err) {
-    throw new CustomError(err as { response: { status: number }; message: string });
+    throw new CustomError(err as ICaughtError);
   }
 };

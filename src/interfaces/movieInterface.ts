@@ -5,7 +5,7 @@ export interface IMovie {
   description: string;
   coverUrl?: string;
   price?: string;
-  releaseDate?: string | undefined;
+  releaseDate?: string;
   productionCompany?: string | number;
   duration?: string;
   genres?: string;

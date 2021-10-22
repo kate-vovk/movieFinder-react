@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import { IErrorState } from '@/interfaces/errorInterfaces';
+import { exctractParams, exctractRoute } from '@/utils/extractRouteParams';
 
 const initialState: IErrorState = {
   errors: [],
@@ -14,10 +15,11 @@ const isMajorError = (
   message = '',
   isMajorFlag: boolean,
 ): boolean => {
-  const pageName = i18next.t(`ErrorStatuses:${route}`);
+  const pageName = i18next.t(`ErrorStatuses:${exctractRoute(route)}`);
+  const param = exctractParams(route);
   const isMajor = isMajorFlag ?? (currentRoute && route) ? currentRoute === route : false;
   if (!isMajor) {
-    toast(i18next.t(`ErrorStatuses:${message}`, { pageName }));
+    toast(`${i18next.t(`ErrorStatuses:${message}`, { pageName })} ${param}`);
   }
   return isMajor;
 };
@@ -30,15 +32,15 @@ export const errorSlice = createSlice({
       state.currentRoute = action.payload;
     },
     addError(state, action) {
+      const isMajorErr =
+        action.payload.redirectionPage ||
+        isMajorError(
+          state.currentRoute,
+          action.payload.route,
+          action.payload.message,
+          action.payload.isMajor,
+        );
       if (!state.errors.map(({ errorName }) => errorName).includes(action.payload.errorName)) {
-        const isMajorErr =
-          action.payload.redirectionPage ||
-          isMajorError(
-            state.currentRoute,
-            action.payload.route,
-            action.payload.message,
-            action.payload.isMajor,
-          );
         state.errors.push(
           action.payload.redirectionPage
             ? {

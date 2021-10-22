@@ -3,6 +3,7 @@ import { IGetMovies } from '@/interfaces/movieInterface';
 import { actionToDispatch } from '@/utils';
 import { store } from '@/store';
 import CustomError from '@/utils/customError';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getMovieByQuery = async (path: string): Promise<IGetMovies> => {
   try {
@@ -19,6 +20,6 @@ export const getMovieByQuery = async (path: string): Promise<IGetMovies> => {
       isMajorFlagMutable: true,
       route: '/movies',
     };
-    throw new CustomError(err as { response: { status: number }; message: string }, error);
+    throw new CustomError(err as ICaughtError, error);
   }
 };

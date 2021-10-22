@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
+  mainContentContainer: {
+    width: '90%',
+  },
   feedbackFooter: {
     display: 'flex',
     alignItems: 'center',
@@ -10,12 +13,23 @@ export const useStyle = makeStyles(() => ({
     margin: '0 0 0 20%',
   },
   feedbackList: {
-    margin: '0 0 0 0',
-    padding: '0 0 0 0',
+    width: '100%',
+    minHeight: '500px',
+    margin: 0,
+    padding: 0,
     listStyle: 'none',
   },
   feedbackListElement: {
-    padding: '0 0 25px 0',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '5px',
+    marginBottom: 5,
+    border: '2px solid',
+    borderRadius: 10,
+    backgroundColor: 'lightGrey',
   },
   feedbackListElementHeader: {
     display: 'flex',
@@ -26,22 +40,49 @@ export const useStyle = makeStyles(() => ({
   feedbackListElementTitle: {
     margin: '0 0 0 0',
   },
-  feedbackListElementRate: {
+  feedbackSidemenu: {
+    width: '5%',
     display: 'flex',
-    alignItems: 'flex-end',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  feedbackListElementRateIcon: {
+  feedbackRateIcon: {
     margin: '0 5px 0 0',
     width: '15px',
     color: 'yellow',
   },
-  feedbackListElementRateText: {
+  feedbackRateText: {
     fontSize: '18px',
     fontWeight: 'bold',
   },
   feedbackText: {
     margin: '0 0 0 0',
     padding: '0 0 0 0',
-    lineHeight: '150%',
+  },
+  feedbackElementEdit: {
+    padding: 10,
+  },
+  feedbackElementEditTextContainer: {
+    backgroundColor: 'white',
+  },
+  feedbackElementEditButtonsContainer: {
+    marginTop: 5,
+  },
+  feedbackElementEditButton: {
+    marginRight: 5,
+    backgroundColor: 'white',
+  },
+  paginationContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noComments: {
+    width: '100%',
+    height: '100%',
+    margin: '20px 0px',
+    textAlign: 'center',
   },
 }));

@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 export type THandleChangeValueSlider = (
   event: ChangeEvent<Record<string, unknown>>,
-  value: number | number[],
+  value: number | null,
 ) => void;
 
 export type THandleChangeValueFeedback = (

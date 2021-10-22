@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyle = makeStyles(() => ({
   columnLeft: {
-    flex: '0 0 300px',
+    flex: '0 0 350px',
   },
   poster: {
     position: 'relative',
@@ -35,5 +35,12 @@ export const useStyle = makeStyles(() => ({
   posterRateText: {
     fontSize: '18px',
     fontWeight: 'bold',
+  },
+  rateContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: '10px 0 0 0',
   },
 }));

@@ -4,7 +4,7 @@ import HTTPService from '@/services/httpService';
 import { SERVER_PATHS } from '@/user/constants';
 
 const commentariesPath = (userId: string): string =>
-  `${SERVER_PATHS.users}/${userId}${SERVER_PATHS.commentaries}`;
+  `${SERVER_PATHS.users}/${userId}${SERVER_PATHS.comments}`;
 
 export const getAllUserFeedbackAPI = async (userId: string): Promise<AxiosPromise> => {
   return HTTPService.get(commentariesPath(userId));

@@ -7,6 +7,7 @@ import { IGetParamsData } from '../interfaces';
 import { getAllCategories } from './categories';
 import { getAllGenres } from './genres';
 import { getAllProductCompanies } from './productCompanies';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 interface IGetMovieParams {
   dataForEditPage: IMovie;
@@ -57,7 +58,7 @@ export const getMoviePageData = async (movieId: string): Promise<IGetMovieParams
     }
     throw new Error('something went wrong, please try again');
   } catch (err) {
-    throw new CustomError(err as { response: { status: number }; message: string });
+    throw new CustomError(err as ICaughtError);
   }
 };
 
@@ -85,6 +86,6 @@ export const editMovieData = async (values: IMovie): Promise<IMovieInSnakeCase> 
     }
     throw new Error('something went wrong, please try again');
   } catch (err) {
-    throw new CustomError(err as { response: { status: number }; message: string });
+    throw new CustomError(err as ICaughtError);
   }
 };

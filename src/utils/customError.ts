@@ -1,12 +1,10 @@
 import { CLIENT_PATHS } from '@/user/constants';
 import { store } from '@/store';
 import { actionToDispatch } from '@/utils';
+import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export default class CustomError extends Error {
-  constructor(
-    err: { response: { status: number }; message: string },
-    failedServerCall: { [key: string]: any } = {},
-  ) {
+  constructor(err: ICaughtError, failedServerCall: { [key: string]: any } = {}) {
     const error = err.response ? err.response.status : err.message;
     super(error as string);
     if (error === 401 || error === 403) {

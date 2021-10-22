@@ -1,38 +1,49 @@
 import { FunctionComponent, useState } from 'react';
 import { Formik, FormikHelpers, Form } from 'formik';
-import { Button, TextField, Slider } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { THandleChangeValueSlider, THandleChangeValueFeedback } from '@/interfaces/movieTypes';
+import { useSelector } from 'react-redux';
+import { THandleChangeValueFeedback } from '@/interfaces/movieTypes';
 import { useStyle } from './styles';
+import { addMovieComment } from '@/user/businessLogic/movieComments';
+import { userIdSelector } from '@/user/store/selectors/auth';
+import { DataStatus } from '@/interfaces/status';
 
 interface IValues {
   feedback: string;
   rate: number;
 }
 
-export const MovieFeedbackForm: FunctionComponent = () => {
+export const MovieFeedbackForm: FunctionComponent<{
+  movieId: string;
+  setAddedComment: (value: boolean) => void;
+  setPage: (value: number) => void;
+  setMovieFeedbackStatus: (status: DataStatus) => void;
+}> = ({ movieId, setAddedComment, setPage, setMovieFeedbackStatus }) => {
   const classes = useStyle();
-  const [valueRate, setValueRate] = useState(0);
   const [valueFeedback, setValueFeedback] = useState('');
-
+  const userId = useSelector(userIdSelector);
   const { t } = useTranslation(['MoviePage']);
-
-  const getValueSlider: THandleChangeValueSlider = (_event, newValue): void => {
-    setValueRate(newValue as number);
-  };
 
   const getValueFeedback: THandleChangeValueFeedback = (event): void => {
     setValueFeedback(event.target.value);
   };
 
   const handleSubmit = (values: IValues, { setSubmitting }: FormikHelpers<IValues>): void => {
-    const objValues = { rate: valueRate, feedback: valueFeedback };
-    setTimeout(() => {
-      alert(JSON.stringify(objValues, null, 2)); // this is a temporary solution
-      setValueRate(0);
-      setValueFeedback('');
-      setSubmitting(false);
-    }, 500);
+    setMovieFeedbackStatus(DataStatus.loading);
+    addMovieComment({ movieId, userId, comment: valueFeedback })
+      .then(() => {
+        setMovieFeedbackStatus(DataStatus.success);
+        setAddedComment(true);
+        setPage(1);
+      })
+      .catch(() => {
+        setAddedComment(true);
+        setMovieFeedbackStatus(DataStatus.success);
+      });
+    setAddedComment(true);
+    setValueFeedback('');
+    setSubmitting(false);
   };
 
   return (
@@ -45,37 +56,24 @@ export const MovieFeedbackForm: FunctionComponent = () => {
         onSubmit={handleSubmit}
       >
         <Form>
-          <TextField
-            id="outlined-multiline-static"
-            name="feedback"
-            label={t('feedback')}
-            multiline
-            fullWidth
-            onChange={getValueFeedback}
-            value={valueFeedback}
-            rows={4}
-            variant="outlined"
-          />
-
           <div className={classes.feedbackFooter}>
-            <Slider
-              name="rate"
-              defaultValue={0}
-              value={valueRate}
-              onChange={getValueSlider}
-              aria-labelledby="discrete-slider"
-              valueLabelDisplay="auto"
-              step={1}
-              marks
-              min={0}
-              max={10}
+            <TextField
+              id="outlined-multiline-static"
+              name="feedback"
+              label={t('feedback')}
+              multiline
+              fullWidth
+              onChange={getValueFeedback}
+              value={valueFeedback}
+              rows={4}
+              variant="outlined"
             />
-
             <Button
               className={classes.feedbackButton}
               color="primary"
               variant="contained"
               type="submit"
+              disabled={valueFeedback === ''}
             >
               {t('submit')}
             </Button>

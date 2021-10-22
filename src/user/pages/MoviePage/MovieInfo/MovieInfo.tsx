@@ -4,7 +4,7 @@ import { useStyle } from './styles';
 
 interface IMovieInfoProps {
   director: string;
-  duration: number;
+  duration?: number;
   title: string;
   year?: string;
   company?: string | number;

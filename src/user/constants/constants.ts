@@ -7,6 +7,7 @@ export const CLIENT_PATHS = {
   notFound: '/notFound',
   admin: '/admin',
   main: '/',
+  comments: '/comments',
 };
 
 export const SERVER_PATHS = {
@@ -25,5 +26,6 @@ export const SERVER_PATHS = {
   orders: '/orders',
   myMovies: '/orders/myfilms',
   main: '/',
-  commentaries: '/commentaries',
+  rate: '/rate',
+  comments: '/commentaries',
 };
