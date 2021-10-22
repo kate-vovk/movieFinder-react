@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesListWithQuery, setSearchOption } from '@/user/store/slices/moviesSlice';
 import { moviesSelector } from '@/user/store/selectors/movies';
-import { useStyle } from './styles';
 import { InputBlock } from '@/sharedComponents/InputBlock';
+import { useStyle } from './styles';
 
 export const SearchInput: FunctionComponent = () => {
   const { t } = useTranslation(['Search']);
@@ -13,7 +13,7 @@ export const SearchInput: FunctionComponent = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchParam, setSearchParam] = useState('');
-  const { selectParam, filters } = useSelector(moviesSelector);
+  const { selectParam, filters, moviePerPage } = useSelector(moviesSelector);
 
   const getMoviesListWithSearchQuery = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
@@ -29,6 +29,8 @@ export const SearchInput: FunctionComponent = () => {
           searchQuery: debouncedSearchQuery,
           selectParam,
           filters,
+          currentPage: 0,
+          moviePerPage,
         }),
       );
       dispatch(setSearchOption(debouncedSearchQuery));

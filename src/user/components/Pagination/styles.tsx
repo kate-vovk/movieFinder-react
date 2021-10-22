@@ -6,4 +6,7 @@ export const useStyle = makeStyles(() => ({
     justifyContent: 'center',
     marginTop: 'auto',
   },
+  pagination: {
+    alignSelf: 'center',
+  },
 }));
