@@ -38,6 +38,7 @@ export const getAllUserOrders = async (userId: string): Promise<IOrders[]> => {
     const {
       data: { results },
     }: IData = await getUserOrdersAPI(userId);
+
     const ordersIdList: string[] = Array.from(
       new Set(results.map((order: IOrder) => order.orderId)),
     );

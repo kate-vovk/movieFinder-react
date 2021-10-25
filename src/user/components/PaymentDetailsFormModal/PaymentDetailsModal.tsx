@@ -1,7 +1,8 @@
 import { FunctionComponent } from 'react';
 import { Dialog } from '@material-ui/core';
-import { PaymentDetailsForm } from './PaymentDetailsForm';
 import { ModalHeader } from './ModalHeader';
+import { PaymentDetailsForm } from './PaymentDetailsForm/PaymentDetailsForm';
+import { StripeWrapper } from './StripeWrapper';
 
 interface IPaymentDetailsModal {
   isOpen: boolean;
@@ -14,7 +15,9 @@ export const PaymentDetailsModal: FunctionComponent<IPaymentDetailsModal> = ({
   return (
     <Dialog open={isOpen}>
       <ModalHeader setOpen={setOpen} />
-      <PaymentDetailsForm />
+      <StripeWrapper>
+        <PaymentDetailsForm />
+      </StripeWrapper>
     </Dialog>
   );
 };
