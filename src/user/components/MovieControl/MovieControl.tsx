@@ -19,7 +19,7 @@ import { useStyle, cartButtonTheme } from './styles';
 import { DataStatus } from '@/interfaces/status';
 
 interface IMovieControlProps {
-  movieId: string;
+  movieId?: string;
   price: number;
 }
 

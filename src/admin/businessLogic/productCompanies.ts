@@ -1,15 +1,17 @@
 import CustomError from '@/utils/customError';
 import { getProductionCompanies } from '../api/poductionCompanies';
-import { IGetParamsData } from '../interfaces';
+import { DataStatus, IGetParamsData } from '../interfaces';
 import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getAllProductCompanies = async (): Promise<IGetParamsData[]> => {
   try {
     const { data } = await getProductionCompanies();
     if (data?.length) {
+      data.status = DataStatus.success;
       return data;
     }
-    throw new Error('something went wrong, please try again');
+    data.status = DataStatus.error;
+    return data;
   } catch (err) {
     throw new CustomError(err as ICaughtError);
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';

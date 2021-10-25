@@ -46,9 +46,9 @@ export const Users: FunctionComponent = () => {
     setDataStatus(DataStatus.loading);
     getUsers({ limit: pageSize, page })
       .then((data) => {
+        setDataStatus(data.status);
         setUsers(data.results);
         setTotal(data.total);
-        setDataStatus(DataStatus.success);
       })
       .catch((error: { message: string }) => {
         setErrorMessage(error.message);

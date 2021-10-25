@@ -1,15 +1,17 @@
 import { getGenres } from '@/admin/api/genres';
 import CustomError from '@/utils/customError';
-import { IGetParamsData } from '../interfaces';
+import { DataStatus, IGetParamsData } from '../interfaces';
 import { ICaughtError } from '@/interfaces/errorInterfaces';
 
 export const getAllGenres = async (): Promise<IGetParamsData[]> => {
   try {
     const { data } = await getGenres();
     if (data?.length) {
+      data.status = DataStatus.success;
       return data;
     }
-    throw new Error('something went wrong, please try again');
+    data.status = DataStatus.error;
+    return data;
   } catch (err) {
     throw new CustomError(err as ICaughtError);
   }
