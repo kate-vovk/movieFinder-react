@@ -1,3 +1,5 @@
+import { IMovie } from '@/interfaces/movieInterface';
+
 export interface IUserQueryParams {
   page?: number;
   limit?: number;
@@ -11,6 +13,12 @@ export interface IUser {
   name: string;
   photoUrl: string;
   roleId: string;
+}
+
+export interface IGetMovies {
+  results: IMovie[];
+  total: number;
+  status: DataStatus;
 }
 
 export interface IMovieList {

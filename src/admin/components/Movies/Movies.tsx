@@ -42,9 +42,9 @@ export const Movies: FunctionComponent = () => {
     setDataStatus(DataStatus.loading);
     getMovies({ limit: pageSize, page })
       .then((data) => {
+        setDataStatus(data.status);
         setMovies(data.results);
         setTotal(data.total);
-        setDataStatus(DataStatus.success);
       })
       .catch((error: { message: string }) => {
         setErrorMessage(error.message);

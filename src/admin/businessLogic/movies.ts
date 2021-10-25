@@ -1,6 +1,6 @@
 import { getMovieList } from '@/admin/api/movies';
-import { IGetMovies } from '@/interfaces/movieInterface';
-import { IMovieList } from '@/admin/interfaces';
+import { IGetMovies } from '@/admin/interfaces/admin';
+import { DataStatus, IMovieList } from '@/admin/interfaces';
 import CustomError from '@/utils/customError';
 import { ICaughtError } from '@/interfaces/errorInterfaces';
 
@@ -8,9 +8,11 @@ export const getMovies = async ({ page, limit }: IMovieList): Promise<IGetMovies
   try {
     const { data } = await getMovieList({ page, limit });
     if (data?.results?.length && data.total !== 0) {
+      data.status = DataStatus.success;
       return data;
     }
-    throw new Error('something went wrong, please try again');
+    data.status = DataStatus.error;
+    return data;
   } catch (err) {
     throw new CustomError(err as ICaughtError);
   }

@@ -1,60 +1,44 @@
 import { useFormik } from 'formik';
 import { FunctionComponent, useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
 import { Button, MenuItem, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import countries from 'i18n-iso-countries';
 import InputMask from 'react-input-mask';
-import { editMovieData, getMoviePageData } from '@/admin/businessLogic/movie';
-import { IMovie } from '@/interfaces/movieInterface';
 import { useStyles } from './styles';
-import { InputBlock } from '@/sharedComponents/InputBlock';
 import { CLIENT_PATHS, movieAllFields } from '@/admin/constants';
 import { Circular } from '@/sharedComponents/Circular';
-import { TableErrors } from '@/admin/components/shared';
-import { IFieldsValue, IGetParamsData, DataStatus } from '@/admin/interfaces';
+import { TableErrors } from '@/admin/components/shared/TableErrors';
+import { InputBlock } from '@/sharedComponents/InputBlock';
+import { addMovieData, getAllParamsList } from '@/admin/businessLogic/movie';
+import { DataStatus, IFieldsValue, IGetParamsData } from '@/admin/interfaces';
 import { SelectBlock } from '@/sharedComponents/SelectBlock';
 import { editPageFormValidation } from '@/utils/validations/editPageForm';
 
-interface IParamsIdMovie {
-  id: string;
-}
-
 countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 
-export const EditMoviePage: FunctionComponent = () => {
-  const { id } = useParams<IParamsIdMovie>();
-  const { t } = useTranslation(['AdminPanel']);
+export const AddNewMovie: FunctionComponent = () => {
   const classes = useStyles();
   const history = useHistory();
-
-  const [dataStatus, setDataStatus] = useState(DataStatus.initial);
+  const { t } = useTranslation(['AdminPanel']);
   const [errorMessage, setErrorMessage] = useState('');
+  const [dataStatus, setDataStatus] = useState(DataStatus.initial);
 
   const [productCompanies, setProductCompanies] = useState<IGetParamsData[]>([]);
   const [categories, setCategories] = useState<IGetParamsData[]>([]);
   const [genres, setGenres] = useState<IGetParamsData[]>([]);
-  const [movie, setMovie] = useState<IMovie | null>(null);
-
-  const initialCategory = categories.find((item) => movie?.category === item.name);
-  const initialGenre = genres.find((item) => movie?.genre === item.name);
-  const initialProductionCompany = productCompanies.find(
-    (item) => movie?.productionCompany === item.name,
-  );
 
   const countryObj = countries.getNames('en', { select: 'official' });
-  const initialCounty = Object.entries(countryObj).find((item) => movie?.country === item[1]);
   const dateNow = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
     setDataStatus(DataStatus.loading);
-    getMoviePageData(id)
-      .then((result) => {
-        setDataStatus(result.stateStatus);
-        setMovie(result.dataForEditPage);
-        setProductCompanies(result.productionCompanies);
-        setCategories(result.categories);
-        setGenres(result.genres);
+    getAllParamsList()
+      .then((data) => {
+        setDataStatus(data.stateStatus);
+        setProductCompanies(data.productionCompanies);
+        setCategories(data.categories);
+        setGenres(data.genres);
       })
       .catch((error: { message: string }) => {
         setErrorMessage(error.message);
@@ -63,26 +47,25 @@ export const EditMoviePage: FunctionComponent = () => {
   }, []);
 
   const formik = useFormik({
-    enableReinitialize: true,
     initialValues: {
-      id: movie?.id || '',
-      title: movie?.title || '',
-      description: movie?.description || '',
-      coverUrl: movie?.coverUrl || '',
-      cast: movie?.cast || '',
-      category: initialCategory?.id || '',
-      country: initialCounty?.[1] || '',
-      duration: `${movie?.duration} minutes`,
-      genre: initialGenre?.id || '',
-      price: `${movie?.price} USD`,
-      producer: movie?.producer || '',
-      productionCompany: initialProductionCompany?.id || '',
-      releaseDate: movie?.releaseDate || dateNow,
-      trailerUrl: movie?.trailerUrl || '',
+      id: '',
+      title: '',
+      description: '',
+      coverUrl: '',
+      cast: '',
+      category: '',
+      country: '',
+      duration: 'minutes',
+      genre: '',
+      price: 'USD',
+      producer: '',
+      productionCompany: '',
+      releaseDate: dateNow,
+      trailerUrl: '',
     },
     validationSchema: editPageFormValidation,
     onSubmit: (values) => {
-      editMovieData(values)
+      addMovieData(values)
         .then(() => {
           history.push(CLIENT_PATHS.admin);
         })
@@ -118,7 +101,7 @@ export const EditMoviePage: FunctionComponent = () => {
     return (
       <div className={classes.root}>
         <h1 className={classes.title}>{t('adminPanel')}</h1>
-        <h2>{t('editMovie')}</h2>
+        <h2>{t('addMovie')}</h2>
         <form onSubmit={formik.handleSubmit} className={classes.form}>
           {movieAllFields.map((item: IFieldsValue) => {
             if (item === 'country') {
@@ -197,7 +180,7 @@ export const EditMoviePage: FunctionComponent = () => {
             if (item === 'price') {
               return (
                 <InputMask
-                  mask="99,99 USD"
+                  mask="99.99 USD"
                   maskPlaceholder="."
                   value={formik.values[item]}
                   onChange={formik.handleChange}

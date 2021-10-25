@@ -7,3 +7,4 @@ export {
   userProfileFormValidationSchema,
 } from './validations';
 export { actionToDispatch } from './actionToDispatch';
+export { extractsNumbersFromString } from './extractsNumbersFromString';

@@ -13,6 +13,7 @@ interface IInputBlock {
   className?: string;
   error?: boolean | undefined;
   helperText?: string | false | undefined;
+  inputProps?: Record<string, unknown>;
 }
 
 export const InputBlock: FunctionComponent<IInputBlock> = ({
@@ -26,6 +27,7 @@ export const InputBlock: FunctionComponent<IInputBlock> = ({
   className,
   error,
   helperText,
+  inputProps,
 }) => {
   return (
     <FormControl className={formControlClass}>
@@ -34,6 +36,7 @@ export const InputBlock: FunctionComponent<IInputBlock> = ({
         error={error}
         type={type}
         autoComplete="off"
+        inputProps={inputProps}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

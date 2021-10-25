@@ -10,3 +10,7 @@ export const getMovie = (movieId: string): Promise<AxiosPromise> => {
 export const editMovie = (values: IMovie): Promise<AxiosPromise> => {
   return HTTPService.patch(`${SERVER_PATHS.movies}`, values);
 };
+
+export const addMovie = (values: IMovie): Promise<AxiosPromise> => {
+  return HTTPService.post(`${SERVER_PATHS.movies}`, values);
+};

@@ -1,0 +1,1 @@
+export { AddNewMovie } from './AddNewMovie';

@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
 export interface IMovie {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   coverUrl?: string;
   price?: string;
   releaseDate?: string;
   productionCompany?: string | number;
-  duration?: string;
+  duration?: number | string;
   genres?: string;
   categories?: string | number;
   producer: string;
@@ -44,13 +44,13 @@ export enum SearchOption {
 }
 
 export interface IMovieInSnakeCase {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   cover_url?: string;
   cast: string;
   category?: string | number;
-  duration: number | string;
+  duration?: string;
   genre?: string | number;
   price?: string;
   producer: string;

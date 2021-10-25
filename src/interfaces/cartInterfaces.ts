@@ -8,7 +8,7 @@ export interface ICart {
 
 export interface ICartMovieState {
   userId: string;
-  movieId: string;
+  movieId?: string;
   period?: number;
   quality?: number;
 }

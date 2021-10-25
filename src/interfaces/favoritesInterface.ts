@@ -12,5 +12,5 @@ export interface IFavorites {
 
 export interface IFavoritesMovieState {
   userId: string;
-  movieId: string;
+  movieId?: string;
 }
