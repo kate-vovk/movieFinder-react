@@ -7,6 +7,7 @@ import { ControlBlock } from './ControlBlock';
 import { getMovies } from '@/admin/businessLogic/movies';
 import { IMovie } from '@/interfaces/movieInterface';
 import { DataStatus } from '@/admin/interfaces';
+import { DeleteButton } from '../shared/DeleteButton';
 
 const moviesTableDetails: GridColDef[] = [
   {
@@ -22,7 +23,15 @@ const moviesTableDetails: GridColDef[] = [
     flex: 0,
     headerName: ' ',
     renderCell: (params: GridCellParams): JSX.Element => {
-      return <EditButton buttonType="button" name="Edit" id={String(params.id)} />;
+      return <EditButton name="Edit" id={String(params.id)} />;
+    },
+    width: 100,
+  },
+  {
+    field: 'deleteButton',
+    headerName: ' ',
+    renderCell: (params: GridCellParams): JSX.Element => {
+      return <DeleteButton name="Delete" id={String(params.id)} />;
     },
     width: 100,
   },

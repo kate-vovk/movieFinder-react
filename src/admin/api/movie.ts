@@ -14,3 +14,7 @@ export const editMovie = (values: IMovie): Promise<AxiosPromise> => {
 export const addMovie = (values: IMovie): Promise<AxiosPromise> => {
   return HTTPService.post(`${SERVER_PATHS.movies}`, values);
 };
+
+export const deleteMovie = (movieId: string): Promise<AxiosPromise> => {
+  return HTTPService.delete(`${SERVER_PATHS.movies}?id=${movieId}`);
+};
