@@ -24,6 +24,8 @@ export interface IGetMovies {
 export interface IMovieList {
   page?: number;
   limit?: number;
+  searchQueryParams?: string;
+  queryParams?: string;
 }
 
 export enum DataStatus {

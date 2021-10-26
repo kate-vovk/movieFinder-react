@@ -23,7 +23,6 @@ export const ModalDelete: FunctionComponent<IModalDelete> = ({ isModalOpen, clos
 
   const deleteMovie = (): void => {
     setDataStatus(DataStatus.loading);
-    console.log(id);
     deleteMovieFromServer(id)
       .then(() => {
         setDataStatus(DataStatus.success);

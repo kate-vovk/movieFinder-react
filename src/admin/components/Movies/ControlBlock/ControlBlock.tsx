@@ -6,7 +6,11 @@ import { SearchMovies } from './SearchMovies';
 import { useStyles } from './styles';
 import { CLIENT_PATHS } from '@/admin/constants';
 
-export const ControlBlock: FunctionComponent = () => {
+interface IControlBlockProps {
+  setSearchQueryParams: (value: string) => void;
+}
+
+export const ControlBlock: FunctionComponent<IControlBlockProps> = ({ setSearchQueryParams }) => {
   const { t } = useTranslation(['AdminPanel']);
   const history = useHistory();
   const classes = useStyles();
@@ -16,7 +20,7 @@ export const ControlBlock: FunctionComponent = () => {
 
   return (
     <div className={classes.controlBlock}>
-      <SearchMovies />
+      <SearchMovies setSearchQueryParams={setSearchQueryParams} />
       <Button
         variant="contained"
         color="primary"

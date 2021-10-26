@@ -17,7 +17,7 @@ export const TableErrors: FunctionComponent<IErrorMessage> = ({ errorMessage }) 
 
   return (
     <div className={classes.root}>
-      Sorry, {errorMessage}
+      Error {errorMessage}. Please try again.
       <div>
         <CustomButton
           name="Go back" // will be altered in the future

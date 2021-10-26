@@ -7,16 +7,19 @@ interface IInputBlock {
   labelName?: string;
   type: string;
   placeholder?: string;
-  value: string | number | undefined;
+  value?: string | number;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   id: string;
   className?: string;
-  error?: boolean | undefined;
-  helperText?: string | false | undefined;
+  error?: boolean;
+  helperText?: string | false;
   inputProps?: Record<string, unknown>;
+  name?: string;
+  labelClass?: string;
 }
 
 export const InputBlock: FunctionComponent<IInputBlock> = ({
+  name,
   formControlClass,
   labelName,
   type,
@@ -28,12 +31,16 @@ export const InputBlock: FunctionComponent<IInputBlock> = ({
   error,
   helperText,
   inputProps,
+  labelClass,
 }) => {
   return (
     <FormControl className={formControlClass}>
-      <InputLabel htmlFor={id}>{helperText || labelName}</InputLabel>
+      <InputLabel className={labelClass} htmlFor={id}>
+        {helperText || labelName}
+      </InputLabel>
       <Input
         error={error}
+        name={name}
         type={type}
         autoComplete="off"
         inputProps={inputProps}
