@@ -39,9 +39,6 @@ export const Table: FunctionComponent<ITableProps> = ({
   if (dataStatus === DataStatus.error) {
     return <TableErrors errorMessage={errorMessage} />;
   }
-  if (dataStatus === DataStatus.empty) {
-    return <NoRows />;
-  }
   return (
     <div className={classes.root}>
       {rows && (

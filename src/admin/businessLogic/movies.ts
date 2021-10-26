@@ -5,14 +5,24 @@ import CustomError from '@/utils/customError';
 import { ICaughtError } from '@/interfaces/errorInterfaces';
 import { deleteMovie } from '../api/movie';
 
-export const getMovies = async ({ page, limit }: IMovieList): Promise<IGetMovies> => {
+export const getMovies = async ({
+  page,
+  limit,
+  searchQueryParams,
+}: IMovieList): Promise<IGetMovies> => {
   try {
-    const { data } = await getMovieList({ page, limit });
+    let queryParams = '';
+    if (searchQueryParams) {
+      queryParams = `&initial=${searchQueryParams}`;
+    }
+    const { data } = await getMovieList({ page, limit, queryParams });
+
     if (data?.results?.length && data.total !== 0) {
       data.status = DataStatus.success;
-      return data;
     }
-    data.status = DataStatus.error;
+    if (data?.results?.length === 0 && data.total === 0) {
+      data.status = DataStatus.empty;
+    }
     return data;
   } catch (err) {
     throw new CustomError(err as ICaughtError);

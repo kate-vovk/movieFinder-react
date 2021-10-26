@@ -46,10 +46,11 @@ export const Movies: FunctionComponent = () => {
   const [page, setPage] = useState(0);
   const [dataStatus, setDataStatus] = useState(DataStatus.initial);
   const [errorMessage, setErrorMessage] = useState('');
+  const [searchQueryParams, setSearchQueryParams] = useState<string>('');
 
   useEffect(() => {
     setDataStatus(DataStatus.loading);
-    getMovies({ limit: pageSize, page })
+    getMovies({ limit: pageSize, page, searchQueryParams })
       .then((data) => {
         setDataStatus(data.status);
         setMovies(data.results);
@@ -59,12 +60,12 @@ export const Movies: FunctionComponent = () => {
         setErrorMessage(error.message);
         setDataStatus(DataStatus.error);
       });
-  }, [pageSize, page]);
+  }, [pageSize, page, searchQueryParams]);
 
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>{t('allMovies')}</h2>
-      <ControlBlock />
+      <ControlBlock setSearchQueryParams={setSearchQueryParams} />
       <Table
         page={page}
         rows={movies}
