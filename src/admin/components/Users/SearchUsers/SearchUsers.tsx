@@ -1,15 +1,31 @@
-import { FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
+import { FunctionComponent, ChangeEvent } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
+import { InputBlock } from '@/sharedComponents/InputBlock';
 import { useStyles } from './styles';
 
-export const SearchUsers: FunctionComponent = () => {
-  const { t } = useTranslation(['AdminPanel']);
+interface ISearchUsersProps {
+  setSearchQueryParams: (value: string) => void;
+}
+
+export const SearchUsers: FunctionComponent<ISearchUsersProps> = ({ setSearchQueryParams }) => {
   const classes = useStyles();
+  const debounced = useDebouncedCallback((searchQueryParams) => {
+    setSearchQueryParams(searchQueryParams);
+  }, 1000);
+
+  const changeSearchQueryParams = (event: ChangeEvent<HTMLInputElement>): void => {
+    return debounced(event.target.value);
+  };
+
   return (
-    <form>
-      <label />
-      {/* stub for normal search, correct later */}
-      <input placeholder={t('enterUserEmail')} className={classes.usersSearch} />
-    </form>
+    <InputBlock
+      name="inputBlock"
+      className={classes.input}
+      type="text"
+      onChange={changeSearchQueryParams}
+      id="inputBlock"
+      labelName="enter user email"
+      labelClass={classes.label}
+    />
   );
 };

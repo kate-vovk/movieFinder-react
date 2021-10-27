@@ -7,6 +7,7 @@ export const useStyles = makeStyles(() => ({
   },
   input: {
     border: '1px solid #999',
+    borderRadius: '5px',
     height: '25px',
     marginBottom: '10px',
     paddingLeft: '5px',

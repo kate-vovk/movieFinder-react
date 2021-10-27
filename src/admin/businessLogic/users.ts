@@ -7,16 +7,26 @@ interface IGetUsers {
   results: IUser[];
   total: number;
   status: DataStatus;
+  searchQueryParams: string;
 }
 
-export const getUsers = async ({ page, limit }: IUserQueryParams): Promise<IGetUsers> => {
+export const getUsers = async ({
+  page,
+  limit,
+  searchQueryParams,
+}: IUserQueryParams): Promise<IGetUsers> => {
   try {
-    const { data } = await getUsersList({ page, limit });
+    let queryParams = '';
+    if (searchQueryParams) {
+      queryParams = `&email=${searchQueryParams}`;
+    }
+    const { data } = await getUsersList({ page, limit, queryParams });
     if (data?.results?.length && data.total !== 0) {
       data.status = DataStatus.success;
-      return data;
     }
-    data.status = DataStatus.error;
+    if (data?.results?.length === 0 && data.total === 0) {
+      data.status = DataStatus.empty;
+    }
     return data;
   } catch (err) {
     throw new CustomError(err as ICaughtError);
