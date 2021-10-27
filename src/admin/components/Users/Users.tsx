@@ -41,10 +41,11 @@ export const Users: FunctionComponent = () => {
   const [page, setPage] = useState(0);
   const [dataStatus, setDataStatus] = useState(DataStatus.initial);
   const [errorMessage, setErrorMessage] = useState('');
+  const [searchQueryParams, setSearchQueryParams] = useState<string>('');
 
   useEffect(() => {
     setDataStatus(DataStatus.loading);
-    getUsers({ limit: pageSize, page })
+    getUsers({ limit: pageSize, page, searchQueryParams })
       .then((data) => {
         setDataStatus(data.status);
         setUsers(data.results);
@@ -54,12 +55,12 @@ export const Users: FunctionComponent = () => {
         setErrorMessage(error.message);
         setDataStatus(DataStatus.error);
       });
-  }, [pageSize, page]);
+  }, [pageSize, page, searchQueryParams]);
 
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>{t('allUsers')}</h2>
-      <SearchUsers />
+      <SearchUsers setSearchQueryParams={setSearchQueryParams} />
       <Table
         page={page}
         rows={users}

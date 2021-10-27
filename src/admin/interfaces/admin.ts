@@ -3,7 +3,8 @@ import { IMovie } from '@/interfaces/movieInterface';
 export interface IUserQueryParams {
   page?: number;
   limit?: number;
-  isError?: boolean;
+  searchQueryParams?: string;
+  queryParams?: string;
 }
 
 export interface IUser {

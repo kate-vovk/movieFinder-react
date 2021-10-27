@@ -6,6 +6,7 @@ import { IUserQueryParams } from '@/admin/interfaces';
 export const getUsersList = ({
   page = 0,
   limit = 15,
+  queryParams,
 }: IUserQueryParams): Promise<AxiosResponse> => {
-  return HTTPService.get(`${SERVER_PATHS.users}?page=${page}&limit=${limit}`);
+  return HTTPService.get(`${SERVER_PATHS.users}?page=${page}&limit=${limit}${queryParams}`);
 };
