@@ -44,4 +44,5 @@ export interface IAuth {
   userId: string;
   userName: string;
   userEmail: string;
+  userRole: number;
 }

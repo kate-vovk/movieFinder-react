@@ -35,6 +35,7 @@ const initialState: IAuth = {
   userId: '',
   userName: '',
   userEmail: '',
+  userRole: 0,
 };
 
 export const authSlice = createSlice({

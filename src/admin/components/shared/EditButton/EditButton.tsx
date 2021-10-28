@@ -13,7 +13,7 @@ export const EditButton: FunctionComponent<IEditButton> = ({ name, id }) => {
   const classes = useStyle();
   const history = useHistory();
   const pushToMoviePage = (): void => {
-    history.push(`${`${CLIENT_PATHS.admin}/editMovie/${id}`}`);
+    history.push(`${CLIENT_PATHS.admin}/editMovie/${id}`);
   };
   return (
     <CustomButton

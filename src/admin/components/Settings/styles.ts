@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
   root: {
-    width: '1000px',
+    width: '60%',
     marginLeft: '200px',
   },
   title: {

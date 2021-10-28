@@ -84,7 +84,7 @@ export const EditMoviePage: FunctionComponent = () => {
     onSubmit: (values) => {
       editMovieData(values)
         .then(() => {
-          history.push(CLIENT_PATHS.admin);
+          history.push(CLIENT_PATHS.adminMovies);
         })
         .catch((error: { message: string }) => {
           setErrorMessage(error.message);
@@ -95,29 +95,14 @@ export const EditMoviePage: FunctionComponent = () => {
 
   const renderData = (): JSX.Element => {
     if (dataStatus === DataStatus.loading) {
-      return (
-        <div>
-          <h1 className={classes.titleAdmin}>{t('adminPanel')}</h1>
-          <div className={classes.block}>
-            <Circular />
-          </div>
-        </div>
-      );
+      return <Circular />;
     }
     if (dataStatus === DataStatus.error) {
-      return (
-        <div>
-          <h1 className={classes.titleAdmin}>{t('adminPanel')}</h1>
-          <div className={classes.block}>
-            <TableErrors errorMessage={errorMessage} />
-          </div>
-        </div>
-      );
+      return <TableErrors errorMessage={errorMessage} />;
     }
 
     return (
       <div className={classes.root}>
-        <h1 className={classes.title}>{t('adminPanel')}</h1>
         <h2>{t('editMovie')}</h2>
         <form onSubmit={formik.handleSubmit} className={classes.form}>
           {movieAllFields.map((item: IFieldsValue) => {

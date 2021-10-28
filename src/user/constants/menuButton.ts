@@ -7,7 +7,7 @@ export interface IUserMenuLinks {
 
 export const userMenuLinks: IUserMenuLinks[] = [
   {
-    link: CLIENT_PATHS.admin,
+    link: CLIENT_PATHS.adminMovies,
     translate: 'adminPanel',
   },
   {

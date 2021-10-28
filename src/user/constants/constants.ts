@@ -4,6 +4,7 @@ export const CLIENT_PATHS = {
   movies: '/movies',
   signin: '/signin',
   signup: '/signup',
+  adminMovies: '/admin/movies',
   notFound: '/notFound',
   admin: '/admin',
   main: '/',
