@@ -8,8 +8,7 @@ import { CLIENT_PATHS } from '@/user/constants';
 import { isAuthorizedButtons } from '@/user/constants/navBarIsAuthrozedButtons';
 import { userIdSelector } from '@/user/store/selectors/auth';
 import { cartSelector } from '@/user/store/selectors/cart';
-import { CustomButton, MenuButton } from '@/user/components';
-import { userMenuLinks } from '@/user/constants/menuButton';
+import { CustomButton, NavBarButtons } from '@/user/components';
 import logo from '@/assets/icons/logo.svg';
 import { clearMovieState } from '@/user/store/slices/moviesSlice';
 import { useStyle } from './styles';
@@ -65,7 +64,7 @@ export const NavBar: FunctionComponent = () => {
               />
             </ButtonGroup>
             {![CLIENT_PATHS.signin, CLIENT_PATHS.signup].includes(location.pathname) && (
-              <MenuButton menuLink={userMenuLinks} />
+              <NavBarButtons />
             )}
             {isAuthorizedButtons(Boolean(userId), location.pathname === CLIENT_PATHS.signin).map(
               (button) =>

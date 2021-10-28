@@ -5,9 +5,9 @@ import { CustomButton } from '@/sharedComponents/CustomButton';
 import { useStyles } from './styles';
 import { deleteMovieFromServer } from '@/admin/businessLogic/movies';
 import { DataStatus } from '@/admin/interfaces';
-import { CLIENT_PATHS } from '@/user/constants';
 import { Circular } from '@/sharedComponents/Circular/Circular';
 import { TableErrors } from '@/admin/components/shared/TableErrors';
+import { CLIENT_PATHS } from '@/admin/constants';
 
 interface IModalDelete {
   isModalOpen: boolean;

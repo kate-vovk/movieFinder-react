@@ -1,22 +1,21 @@
 import { FunctionComponent, useCallback, useState, SyntheticEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Fade from '@material-ui/core/Fade';
 import { logout } from '@/user/store/slices/authSlice';
-import { IUserMenuLinks } from '@/user/constants/menuButton';
+import { IUserMenuLinks, userMenuLinks } from '@/user/constants/menuButton';
 import { CustomButton } from '@/user/components';
+import { userRoleSelector } from '@/user/store/selectors/auth';
+import { CLIENT_PATHS } from '@/user/constants';
 
-interface IPropsMenu {
-  menuLink: IUserMenuLinks[];
-}
-
-export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
+export const NavBarButtons: FunctionComponent = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const dispatch = useDispatch();
   const { t } = useTranslation(['UserMenu']);
+  const userRole = useSelector(userRoleSelector);
   const history = useHistory();
 
   const goToLogOut = useCallback(() => {
@@ -29,6 +28,38 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
 
   const handleCloseMenu = (): void => {
     setAnchorEl(null);
+  };
+
+  const renderMenuItems = (): JSX.Element[] => {
+    return userRole === 1
+      ? userMenuLinks.map((element: IUserMenuLinks) => (
+          <MenuItem
+            key={element.translate}
+            onClick={() => {
+              history.push(element.link);
+              handleCloseMenu();
+            }}
+          >
+            {t(element.translate)}
+          </MenuItem>
+        ))
+      : userMenuLinks.reduce((acc: JSX.Element[], element: IUserMenuLinks) => {
+          if (element.link !== CLIENT_PATHS.adminMovies) {
+            return [
+              ...acc,
+              <MenuItem
+                key={element.translate}
+                onClick={() => {
+                  history.push(element.link);
+                  handleCloseMenu();
+                }}
+              >
+                {t(element.translate)}
+              </MenuItem>,
+            ];
+          }
+          return acc;
+        }, []);
   };
 
   return (
@@ -48,17 +79,7 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
         onClose={handleCloseMenu}
         TransitionComponent={Fade}
       >
-        {menuLink.map((element: IUserMenuLinks) => (
-          <MenuItem
-            key={element.link}
-            onClick={() => {
-              history.push(element.link);
-              handleCloseMenu();
-            }}
-          >
-            {t(element.translate)}
-          </MenuItem>
-        ))}
+        {renderMenuItems()}
         <MenuItem onClick={goToLogOut}>{t('signout')}</MenuItem>
       </Menu>
     </div>

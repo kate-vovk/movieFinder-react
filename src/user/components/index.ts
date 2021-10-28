@@ -1,5 +1,5 @@
 export { CustomButton } from '@/sharedComponents/CustomButton';
-export { MenuButton } from './MenuButton';
+export { NavBarButtons } from './NavBarButtons';
 export { Modal } from './Modal';
 export { ModalAddMovieToCard } from './ModalAddMovieToCard';
 export { MovieCard } from './MovieCard';
