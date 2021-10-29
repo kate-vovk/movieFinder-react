@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { CLIENT_PATHS } from '@/admin/constants';
 import { useStyles } from './styles';
 
 export const AdminPanel: FunctionComponent = () => {
@@ -8,9 +9,9 @@ export const AdminPanel: FunctionComponent = () => {
   const classes = useStyles();
 
   const allTabs = [
-    { label: 'All users', value: 'users' },
-    { label: 'All movies', value: 'movies' },
-    { label: 'Site settings', value: 'settings' },
+    { label: 'All users', value: `${CLIENT_PATHS.adminUsers}` },
+    { label: 'All movies', value: `${CLIENT_PATHS.adminMovies}` },
+    { label: 'Site settings', value: `${CLIENT_PATHS.adminSettings}` },
   ];
   return (
     <>

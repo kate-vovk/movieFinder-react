@@ -13,7 +13,7 @@ export const AdminRoute: FunctionComponent = () => {
   return (
     <>
       <AdminPanel />
-      <Route path={CLIENT_PATHS.admin}>
+      <Route exact path={CLIENT_PATHS.admin}>
         <Redirect to={CLIENT_PATHS.adminMovies} />
       </Route>
       <OnlyAdminRoute path={CLIENT_PATHS.adminUsers} component={Users} />
