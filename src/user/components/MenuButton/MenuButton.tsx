@@ -8,6 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import { logout } from '@/user/store/slices/authSlice';
 import { IUserMenuLinks } from '@/user/constants/menuButton';
 import { CustomButton } from '@/user/components';
+import { CLIENT_PATHS } from '@/user/constants';
 
 interface IPropsMenu {
   menuLink: IUserMenuLinks[];
@@ -22,7 +23,9 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
   const goToLogOut = useCallback(() => {
     dispatch(logout());
   }, []);
-
+  const goToUserChat = useCallback(() => {
+    history.push(CLIENT_PATHS.userChat);
+  }, []);
   const handleOpenMenu = (event: SyntheticEvent<HTMLButtonElement, any>): void => {
     setAnchorEl(event.currentTarget);
   };
@@ -60,6 +63,7 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
           </MenuItem>
         ))}
         <MenuItem onClick={goToLogOut}>{t('signout')}</MenuItem>
+        <MenuItem onClick={goToUserChat}>{t('userChat')}</MenuItem>
       </Menu>
     </div>
   );
