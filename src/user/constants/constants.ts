@@ -27,4 +27,5 @@ export const SERVER_PATHS = {
   myMovies: '/orders/myfilms',
   main: '/',
   commentaries: '/commentaries',
+  userChat: '/userChat',
 };

@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import { io, Socket } from 'socket.io-client';
-import { IMessage } from '@/interfaces/userChatInterfaces';
-// import { UserChatActionTypes } from '@/store/modules/userChat/action-types';
+import { store } from '@/store';
 
 interface IUserInfo {
   username: string;
@@ -12,68 +11,31 @@ class SocketioService {
 
   info: IUserInfo[] = [];
 
-  username = null;
+  userName: string = store.getState().auth.userName;
+
+  userId: string = store.getState().auth.userId;
 
   roomname = 'userChat12345';
 
-  //   store = globalStore.state.auth;
-
   constructor() {
     this.info = [];
-    this.username = null;
-    // this.store = globalStore.state.auth;
-  }
-
-  setupSocketConnection(): void {
     this.socket = io(`${process.env.REACT_APP_SOCKET_ENDPOINT}`, {
       auth: { userName: 'this.store.userName', userId: 'this.store.userId' },
     });
-    this.socket.on('chat-broadcast', ({ message, type, userId, userName }: IMessage) => {
-      console.log('chat-broadcast', message, type, userId, userName);
-      //   globalStore.dispatch(UserChatActionTypes.PUSH_NEW_MESSAGE, {
-      //     message,
-      //     type,
-      //     userId,
-      //     userName,
-      //   });
-    });
+    // this.userName = store.getState().auth.userName;
+    // this.userId = store.getState().auth.userId;
+  }
 
-    this.socket.on('joined', ({ userId, userName, type, message }: IMessage) => {
-      console.log('chat-broadcast', message, type, userId, userName);
-      //   const prevMessage =
-      //     globalStore.state.userChat.messages[globalStore.state.userChat.messages.length - 1];
-      //   if (
-      //     !(
-      //       prevMessage.type === type &&
-      //       prevMessage.message === message &&
-      //       prevMessage.userId === userId
-      //     )
-      //   ) {
-      // globalStore.dispatch(UserChatActionTypes.PUSH_NEW_MESSAGE, {
-      //   message,
-      //   type,
-      //   userId,
-      //   userName,
-      // });
-      //   }
-    });
-
-    this.socket.on('left', ({ userId, userName, type, message }: IMessage) => {
-      console.log('chat-broadcast', message, type, userId, userName);
-      //   globalStore.dispatch(UserChatActionTypes.PUSH_NEW_MESSAGE, {
-      //     message,
-      //     type,
-      //     userId,
-      //     userName,
-      //   });
-    });
+  getSocket(): Socket {
+    return this.socket;
   }
 
   send(input: string | null): void {
+    console.warn('store', store.getState().auth, store.getState().auth.userName, this.userName);
     this.socket.emit('my-message', {
       message: input,
-      userName: 'this.store.userName',
-      userId: 'this.store.userId',
+      userName: store.getState().auth.userName,
+      userId: store.getState().auth.userId,
       roomname: this.roomname,
     });
   }
@@ -81,8 +43,8 @@ class SocketioService {
   disconnect(): void {
     if (this.socket) {
       this.socket.emit('leave', {
-        userName: 'this.store.userName',
-        userId: 'this.store.userId',
+        userName: store.getState().auth.userName,
+        userId: store.getState().auth.userId,
         roomname: this.roomname,
       });
       this.socket.disconnect();
@@ -91,13 +53,14 @@ class SocketioService {
 
   join(): void {
     if (this.socket) {
+      console.log('join');
       this.socket.emit('join', {
-        userName: 'this.store.userName',
-        userId: 'this.store.userId',
+        userName: store.getState().auth.userName,
+        userId: store.getState().auth.userId,
         roomname: this.roomname,
       });
     }
   }
 }
 
-export default SocketioService;
+export default new SocketioService();

@@ -1,19 +1,23 @@
 import { AxiosPromise, AxiosResponse } from 'axios';
 import CustomError from '@/utils/customError';
+import { SERVER_PATHS } from '@/user/constants';
 
 const axios = require('axios').default;
 
 axios.defaults.withCredentials = true;
 
-const baseUrl = (path: string | number): string => {
+const baseUrl = (path: string | number, customLink?: string): string => {
+  if (customLink === SERVER_PATHS.userChat) {
+    return `${process.env.REACT_USER_CHAT}${path}`;
+  }
   return `${process.env.REACT_APP_API_URL}${path}`;
 };
 
 export default class HTTPService {
-  static get(path = ''): Promise<any> {
+  static get(path = '', customLink?: string): Promise<any> {
     return axios({
       method: 'get',
-      url: baseUrl(path),
+      url: baseUrl(path, customLink),
     })
       .then((response: AxiosResponse) => {
         return response;
@@ -23,19 +27,21 @@ export default class HTTPService {
       });
   }
 
-  static post(path = '', data: any): Promise<AxiosPromise> {
+  static post(path = '', data: any, customLink?: string): Promise<AxiosPromise> {
     return axios({
       method: 'post',
-      url: baseUrl(path),
+      url: baseUrl(path, customLink),
       data,
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then((response: AxiosResponse) => {
+        console.warn('response', response);
         return response;
       })
       .catch((err: { response: { status: number }; message: string }) => {
+        console.warn('baseUrl(path, customLink)', baseUrl(path, customLink));
         throw new CustomError(err);
       });
   }
