@@ -19,8 +19,8 @@ module.exports = {
         include: [path.resolve(__dirname, 'src')],
       },
       {
-        test: /\.(css|less)$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        test: /\.(css|less|sass|scss)$/,
+        use: ['style-loader', 'css-loader', 'less-loader', 'sass-loader'],
       },
       {
         test: /\.(jpg|jpeg|png|svg)/,

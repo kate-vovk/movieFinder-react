@@ -8,3 +8,7 @@ export interface IMessage {
 export interface IChat {
   messages: IMessage[];
 }
+export interface IReceivedMessage extends IMessage {
+  messageId: string;
+  createdAt: string;
+}

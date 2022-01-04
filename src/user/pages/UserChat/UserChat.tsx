@@ -1,66 +1,31 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FunctionComponent, useEffect, useState } from 'react';
+import classNames from 'classnames';
+import { useSelector } from 'react-redux';
+import { userIdSelector } from '@/user/store/selectors/auth';
 import socket from '@/services/socketService';
-import { IMessage } from '@/interfaces/userChatInterfaces';
-import { getUserChatComments, addUserChatComments } from '@/user/businessLogic/userChat';
+import { IReceivedMessage } from '@/interfaces/userChatInterfaces';
+import './userChat.scss';
 
 export const UserChat: FunctionComponent = () => {
   const [newMessage, setNewMessage] = useState<string>('');
-  const [messages, setMessages] = useState<IMessage[]>();
-  // const socket = new SocketService();
-  console.warn('comments:', messages);
+  const [messages, setMessages] = useState<IReceivedMessage[]>();
+  const userId = useSelector(userIdSelector);
 
   useEffect(() => {
-    console.warn('useEffect');
-    // socket.setupSocketConnection();
-    socket.getSocket().on('chat-broadcast', ({ message, type, userId, userName }: IMessage) => {
-      console.log('chat-broadcast', message, type, userId, userName);
-      addUserChatComments({ message, type, userId, userName }).then(() => {
-        getUserChatComments().then((data: IMessage[]) => {
-          setMessages(data);
-        });
-      });
-
-      //   globalStore.dispatch(UserChatActionTypes.PUSH_NEW_MESSAGE, {
-      //     message,
-      //     type,
-      //     userId,
-      //     userName,
-      //   });
-    });
-
-    socket.getSocket().on('joined', ({ userId, userName, type, message }: IMessage) => {
-      console.log('chat-broadcast', message, type, userId, userName);
-      //   const prevMessage =
-      //     globalStore.state.userChat.messages[globalStore.state.userChat.messages.length - 1];
-      //   if (
-      //     !(
-      //       prevMessage.type === type &&
-      //       prevMessage.message === message &&
-      //       prevMessage.userId === userId
-      //     )
-      //   ) {
-      // globalStore.dispatch(UserChatActionTypes.PUSH_NEW_MESSAGE, {
-      //   message,
-      //   type,
-      //   userId,
-      //   userName,
-      // });
-      //   }
-    });
-
-    socket.getSocket().on('left', ({ userId, userName, type, message }: IMessage) => {
-      console.log('chat-broadcast', message, type, userId, userName);
-      //   globalStore.dispatch(UserChatActionTypes.PUSH_NEW_MESSAGE, {
-      //     message,
-      //     type,
-      //     userId,
-      //     userName,
-      //   });
-    });
     socket.join();
+
+    socket.getSocket().on('chat-broadcast', (messagesFromServer: any) => {
+      setMessages(messagesFromServer);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
-  const sendMessage = (): void => {
+  const sendMessage = (e: any): void => {
+    e.preventDefault();
     socket.send(newMessage);
     setNewMessage('');
   };
@@ -68,17 +33,47 @@ export const UserChat: FunctionComponent = () => {
     setNewMessage(event.target.value);
   };
   return (
-    <div>
-      <input
-        className="messageInput"
-        type="text"
-        placeholder="Enter message here"
-        value={newMessage}
-        onChange={writeMessage}
-      />
-      <button className="sendButton" disabled={!newMessage} type="button" onClick={sendMessage}>
-        Send
-      </button>
+    <div className="container">
+      <ul>
+        {messages?.map((message) => (
+          <li key={message.messageId}>
+            {message.type === 'info' ? (
+              <p className="info">
+                {message.userName} {message.message}
+              </p>
+            ) : (
+              <div>
+                {userId !== message.userId && <div className="avatar" />}
+                <div
+                  className={classNames('message', {
+                    myMessage: userId === message.userId,
+                    anotherMessage: userId !== message.userId,
+                  })}
+                >
+                  <h4>{message.userName}:</h4>
+                  <p>{message.message}</p>
+                </div>
+              </div>
+            )}
+
+            {message.message}
+          </li>
+        ))}
+      </ul>
+      <form onSubmit={sendMessage}>
+        <div className="form">
+          <input
+            className="messageInput"
+            type="text"
+            placeholder="Enter message here"
+            value={newMessage}
+            onChange={writeMessage}
+          />
+          <button className="sendButton" disabled={!newMessage} type="button" onClick={sendMessage}>
+            Send
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

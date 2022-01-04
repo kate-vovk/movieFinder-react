@@ -1,0 +1,116 @@
+.container {
+  background-color: rgb(137, 223, 235);
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow-x: auto;
+    li {
+      list-style: none;
+      margin: 2px auto;
+      padding: 0 1%;
+      width: 95vw;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .info {
+          background-color: cornflowerblue;
+          height: 20px;
+          padding: 0px 10px;
+          border-radius: 20px;
+          margin: auto;
+        }
+        .avatar {
+          background-color: blanchedalmond;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          z-index: 5;
+          margin-right: 15px;
+        }
+        .message {
+          max-width: 60%;
+          border-radius: 10px;
+          text-align: left;
+          padding: 10px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          > * {
+            width: 100%;
+            margin: 0px;
+            margin-left: 10px;
+            word-break: break-word;
+            text-align: left;
+          }
+        }
+        .myMessage {
+          background-color: rgb(174, 248, 190);
+          margin-left: 55px;
+          word-wrap: break-all;
+        }
+        .anotherMessage {
+          background-color: blanchedalmond;
+        }
+        .anotherMessage::after,
+        .anotherMessage::before {
+          content: '';
+          position: absolute;
+          right: 100%;
+          bottom: 0px;
+          width: 40px;
+          height: 30px;
+          border: 0.7em solid rgb(137, 223, 235);
+          border-radius: 45%;
+          background: rgb(137, 223, 235);
+        }
+        .anotherMessage::before {
+          border-top: none;
+          height: 1.4em;
+          background: blanchedalmond;
+          border-color: blanchedalmond;
+          margin-right: -0.6em;
+        }
+        @media screen and (max-width: 1300px) {
+          .myMessage {
+            margin-left: auto;
+          }
+          .anotherMessage {
+            margin-right: auto;
+          }
+        }
+        @media screen and (max-width: 250px) {
+          .message {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  form {
+    background-color: white;
+    .form {
+      display: flex;
+      justify-content: space-between;
+      .messageInput {
+        height: 40px;
+        width: 95%;
+        border: none;
+        outline: none;
+      }
+      .sendButton {
+        width: 50px;
+        margin: 3px;
+        border-radius: 8px;
+        background-color: rgb(137, 223, 235);
+      }
+    }
+  }
+}
