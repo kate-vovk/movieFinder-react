@@ -12,8 +12,6 @@ class SocketioService {
 
   info: IUserInfo[] = [];
 
-  roomname = 'userChat12345';
-
   constructor() {
     this.info = [];
     this.socket = io(`${process.env.REACT_APP_SOCKET_ENDPOINT}`, {
@@ -32,7 +30,6 @@ class SocketioService {
       message: input,
       userName: store.getState().auth.userName,
       userId: store.getState().auth.userId,
-      // roomname: this.roomname,
     });
   }
 
@@ -41,9 +38,7 @@ class SocketioService {
       this.socket.emit('leave', {
         userName: store.getState().auth.userName,
         userId: store.getState().auth.userId,
-        // roomname: this.roomname,
       });
-      // this.socket.disconnect();
     }
   }
 
@@ -52,7 +47,6 @@ class SocketioService {
       this.socket.emit('join', {
         userName: store.getState().auth.userName,
         userId: store.getState().auth.userId,
-        roomname: this.roomname,
       });
     }
   }

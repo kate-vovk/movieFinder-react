@@ -110,6 +110,7 @@ export const ru = {
     favorites: 'Избранное',
     feedback: 'Мои отзывы',
     myMovies: 'Мои фильмы',
+    userChat: 'Чат пользователей',
     signout: 'Выйти',
   },
   AdminPanel: {

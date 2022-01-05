@@ -109,6 +109,7 @@ export const en = {
     favorites: 'Favorites',
     feedback: 'My feedback',
     myMovies: 'My movies',
+    userChat: 'User chat',
     signout: 'Sign Out',
   },
   AdminPanel: {

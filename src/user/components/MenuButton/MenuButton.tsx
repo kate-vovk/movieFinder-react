@@ -62,8 +62,8 @@ export const MenuButton: FunctionComponent<IPropsMenu> = ({ menuLink }) => {
             {t(element.translate)}
           </MenuItem>
         ))}
-        <MenuItem onClick={goToLogOut}>{t('signout')}</MenuItem>
         <MenuItem onClick={goToUserChat}>{t('userChat')}</MenuItem>
+        <MenuItem onClick={goToLogOut}>{t('signout')}</MenuItem>
       </Menu>
     </div>
   );
